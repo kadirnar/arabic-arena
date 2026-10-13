@@ -162,3 +162,26 @@ class GemmaAudio(ASRModel):
             out = self.model.generate(**inputs, max_new_tokens=440, do_sample=False)
         return [t.strip() for t in self.processor.batch_decode(out[:, inputs["input_ids"].shape[1]:],
                                                                  skip_special_tokens=True)]
+
+
+class NemotronRNNT(ASRModel):
+    """NVIDIA Nemotron-3.5 ASR (cache-aware FastConformer-RNNT) via transformers, language-conditioned."""
+
+    LOCALE = {"ar": "ar-AR", "en": "en-US"}
+
+    def __init__(self, spec: ModelSpec, device: str = "cuda"):
+        super().__init__(spec, device)
+        from transformers import AutoModelForRNNT, AutoProcessor
+
+        self.processor = AutoProcessor.from_pretrained(spec.hf_id)
+        self.model = AutoModelForRNNT.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+
+    def transcribe(self, audios, language):
+        import torch
+
+        inputs = self.processor(list(audios), sampling_rate=SR, language=self.LOCALE[language], return_tensors="pt",
+                                padding=True).to(self.device, dtype=self.model.dtype)
+        with torch.inference_mode():
+            out = self.model.generate(**inputs, return_dict_in_generate=True)
+        texts = self.processor.batch_decode(out.sequences, skip_special_tokens=True)
+        return [texts] if isinstance(texts, str) else list(texts)

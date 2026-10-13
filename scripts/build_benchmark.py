@@ -59,7 +59,7 @@ def _load_source(spec: SetSpec, config: str | None):
         from datasets import load_dataset_builder
 
         builder = load_dataset_builder(spec.source, config)
-        files = list(builder.config.data_files[spec.split])
+        files = list(builder.config.data_files[spec.split])[: spec.max_files]  # keep hub order: row uids depend on it
         fmt = "parquet" if files[0].endswith(".parquet") else None
         if fmt:
             ds = load_dataset(fmt, data_files={spec.split: files}, split=spec.split)

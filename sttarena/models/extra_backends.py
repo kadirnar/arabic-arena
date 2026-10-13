@@ -50,7 +50,8 @@ class NeMoASR(ASRModel):
             self.model.change_decoding_strategy(decoder_type=spec.kwargs["decoder"])
 
     def transcribe(self, audios, language):
-        out = self.model.transcribe(list(audios), batch_size=len(audios), verbose=False)
+        kw = {"source_lang": language, "target_lang": language} if self.spec.kwargs.get("lang_kwargs") else {}
+        out = self.model.transcribe(list(audios), batch_size=len(audios), verbose=False, **kw)
         if isinstance(out, tuple):
             out = out[0]
         return [o.text if hasattr(o, "text") else str(o) for o in out]

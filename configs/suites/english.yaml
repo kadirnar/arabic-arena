@@ -1,0 +1,181 @@
+# English STT benchmark suite (v1). Same construction rules as arabic.yaml.
+# TED-LIUM is intentionally absent (taken down upstream for copyright reasons).
+
+language: en
+hf_repo: kadirnar/arabic-arena-en
+
+datasets:
+  librispeech_clean:
+    source: openslr/librispeech_asr
+    config: clean
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: US/UK read
+    domain: audiobooks
+    license: CC-BY-4.0
+    redistribute: true
+
+  librispeech_other:
+    source: openslr/librispeech_asr
+    config: other
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: US/UK read (hard)
+    domain: audiobooks
+    license: CC-BY-4.0
+    redistribute: true
+
+  fleurs_en:
+    source: google/fleurs
+    config: en_us
+    split: test
+    text: raw_transcription
+    n: 1000
+    track: clean
+    dialect: various
+    domain: read wikipedia
+    license: CC-BY-4.0
+    redistribute: true
+
+  common_voice_en:
+    source: hf-audio/open-asr-leaderboard
+    config: common_voice
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: global accents
+    domain: read (crowd-sourced)
+    license: CC0-1.0
+    redistribute: true
+
+  voxpopuli_en:
+    source: hf-audio/open-asr-leaderboard
+    config: voxpopuli
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: European accents
+    domain: parliament
+    license: CC0-1.0
+    redistribute: true
+
+  earnings22:
+    source: hf-audio/open-asr-leaderboard
+    config: earnings22
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: global accents
+    domain: earnings calls
+    license: CC-BY-SA-4.0
+    redistribute: true
+
+  gigaspeech:
+    source: hf-audio/open-asr-leaderboard
+    config: gigaspeech
+    split: test
+    text: text
+    max_files: 3
+    n: 1000
+    track: clean
+    dialect: US
+    domain: podcasts / youtube
+    license: GigaSpeech terms
+    redistribute: false
+
+  spgispeech:
+    source: hf-audio/open-asr-leaderboard
+    config: spgispeech
+    split: test
+    text: text
+    max_files: 2
+    n: 1000
+    track: clean
+    dialect: US
+    domain: finance calls
+    license: Kensho SPGISpeech terms
+    redistribute: false
+
+  ami_sdm:
+    source: hf-audio/open-asr-leaderboard
+    config: ami
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: various
+    domain: meetings
+    license: CC-BY-4.0
+    redistribute: true
+
+  edacc:
+    source: edinburghcstr/edacc
+    split: test
+    text: text
+    n: 1000
+    track: accented
+    dialect: 40+ accents
+    domain: conversation
+    license: CC-BY-SA-4.0
+    redistribute: true
+
+  urgent2024:
+    source: hf-audio/open-asr-leaderboard
+    config: urgent2024
+    split: test
+    text: text
+    n: 1000
+    track: noisy
+    dialect: various
+    domain: noisy (-5..20 dB)
+    license: mixed
+    redistribute: false
+
+  # ---- real telephone speech ------------------------------------------------------------
+  minds14_tel:
+    source: BrunoHays/minds14-telephony-en-us
+    split: test
+    text: transcription
+    n: 1000
+    track: telephony
+    dialect: US
+    domain: banking IVR calls (8 kHz)
+    license: CC-BY-4.0
+    redistribute: true
+
+  vystadial_voip:
+    source: BrunoHays/vystadial-telephony-en
+    split: test
+    text: transcription
+    n: 1000
+    track: telephony
+    dialect: various
+    domain: VoIP dialogue system
+    license: CC-BY-SA-3.0
+    redistribute: true
+
+degraded:
+  noisy:
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22]
+    n: 300
+  telephony:
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22, common_voice_en, gigaspeech]
+    n: 300
+  callcenter:
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22, common_voice_en, gigaspeech]
+    n: 300
+
+scoring:
+  tracks:
+    clean: {weight: 0.35}
+    accented: {weight: 0.05}
+    noisy: {weight: 0.15}
+    telephony: {weight: 0.225}
+    callcenter: {weight: 0.225}

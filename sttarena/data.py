@@ -36,6 +36,7 @@ class SetSpec:
     config: str | None = None
     configs: list[str] | None = None
     data_files: str | None = None
+    max_files: int | None = None  # only read the first k shards of very large test splits
     filter: dict[str, Any] = field(default_factory=dict)
     unbracket: bool = False
     dialect: str = ""
