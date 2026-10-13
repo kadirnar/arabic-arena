@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 import os
 import subprocess
 import tempfile
@@ -36,6 +37,20 @@ CODEC_WEIGHTS: dict[str, float] = {
 }
 
 
+@functools.lru_cache(maxsize=1)
+def _available_encoders() -> str:
+    return subprocess.run(["ffmpeg", "-hide_banner", "-encoders"], capture_output=True, text=True).stdout
+
+
+def check_codec(codec: str) -> None:
+    enc = CODECS[codec][0][1]
+    if enc not in _available_encoders().split():
+        raise RuntimeError(
+            f"ffmpeg has no '{enc}' encoder (needed for {codec}). Degraded sets would not be reproducible; "
+            "install an ffmpeg build with libopencore-amrnb, libgsm and libopus (e.g. a static build)."
+        )
+
+
 def _estimate_lag(ref: np.ndarray, out: np.ndarray, max_lag: int) -> int:
     m = min(len(ref), len(out))
     if m <= max_lag * 2:
@@ -49,6 +64,7 @@ def _estimate_lag(ref: np.ndarray, out: np.ndarray, max_lag: int) -> int:
 def codec_roundtrip(audio: np.ndarray, codec: str, sr: int = 8000) -> np.ndarray:
     if sr != 8000:
         raise ValueError("telephony codecs run at 8 kHz")
+    check_codec(codec)
     enc_args, ext = CODECS[codec]
     n = len(audio)
     with tempfile.TemporaryDirectory() as tmp:

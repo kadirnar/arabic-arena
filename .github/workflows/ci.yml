@@ -10,7 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
-      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      # Distro ffmpeg lacks the AMR-NB encoder used by the telephony chain; use a static build.
+      - run: |
+          curl -sL https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz | tar xJ
+          sudo mv ffmpeg-*-static/ffmpeg /usr/local/bin/
+          ffmpeg -hide_banner -encoders | grep -E "amrnb|libgsm|g726|opus"
       - run: uv venv --python 3.12 && uv pip install -e ".[dev]"
       - run: .venv/bin/ruff check sttarena scripts tests --select E,F,W --ignore E501
       - run: .venv/bin/pytest -q tests
