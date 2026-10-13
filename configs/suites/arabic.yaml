@@ -1,0 +1,176 @@
+# Arabic STT benchmark suite (v1).
+#
+# Every set is a deterministic subset of a public Hugging Face dataset: rows are filtered
+# (1-30 s, non-empty reference), then ranked by sha256(source_id) and the first `n` are kept.
+# Degraded tracks (noisy / telephony / callcenter) re-use the first `n` of a clean set and are
+# generated with seeded, recorded parameters (see sttarena/degrade).
+#
+# redistribute: whether the built subset may be re-hosted on the HF Hub
+# (false -> only the manifest is published; build it locally with scripts/build_benchmark.py).
+
+language: ar
+hf_repo: kadirnar/arabic-arena-ar
+
+datasets:
+  fleurs_ar:
+    source: google/fleurs
+    config: ar_eg
+    split: test
+    text: raw_transcription
+    n: 1000
+    track: clean
+    dialect: MSA
+    domain: read
+    license: CC-BY-4.0
+    redistribute: true
+
+  cv18_ar:
+    source: MohamedRashad/common-voice-18-arabic
+    split: test
+    text: sentence
+    n: 1000
+    track: clean
+    dialect: MSA
+    domain: read (crowd-sourced)
+    license: CC0-1.0
+    redistribute: true
+
+  masc_clean:
+    source: MohamedRashad/MASC-Arabic
+    split: test
+    text: text
+    filter: {type: c}
+    n: 1000
+    track: clean
+    dialect: mixed
+    domain: youtube
+    license: CC-BY-4.0
+    redistribute: true
+
+  mgb2:
+    source: MohamedRashad/mgb2-arabic
+    split: test
+    text: transcript
+    n: 1000
+    track: clean
+    dialect: MSA (mostly)
+    domain: broadcast news
+    license: QCRI MGB-2 agreement
+    redistribute: false
+
+  sada:
+    source: MohamedRashad/SADA22
+    split: test
+    text: cleaned_text
+    n: 1000
+    track: clean
+    dialect: Gulf (Saudi)
+    domain: tv shows
+    license: CC-BY-NC-SA-4.0
+    redistribute: true
+
+  casablanca:
+    source: UBC-NLP/Casablanca
+    configs: [Algeria, Egypt, Jordan, Mauritania, Morocco, Palestine, UAE, Yemen]
+    split: test
+    text: transcription
+    n: 1000  # split evenly across configs
+    track: clean
+    dialect: 8 dialects
+    domain: tv series
+    license: CC-BY-NC-ND-4.0
+    redistribute: false
+
+  mgb3_egy:
+    source: ArabicSpeech/MGB-3
+    data_files: data/test.parquet
+    split: train  # a single parquet file loads as "train"
+    text: text_annotater_1
+    n: 1000
+    track: clean
+    dialect: Egyptian
+    domain: youtube
+    license: unspecified
+    redistribute: false
+
+  mgb5_mor:
+    source: ArabicSpeech/MGB-5
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: Moroccan (Darija)
+    domain: youtube
+    license: unspecified
+    redistribute: false
+
+  # ---- code-switching -------------------------------------------------------------------
+  mixat_cs:
+    source: sqrk/mixat-tri
+    split: test
+    text: transcript
+    unbracket: true  # English inside [...] is speech, not an annotation
+    n: 1000
+    track: codeswitch
+    dialect: Emirati + English
+    domain: podcast
+    license: CC-BY-NC-SA-4.0
+    redistribute: true
+
+  algerian_cs:
+    source: oist/algerian-code-switched-asr-eval
+    split: test
+    text: transcription
+    n: 1000
+    track: codeswitch
+    dialect: Algerian + French
+    domain: conversational
+    license: controlled-access terms
+    redistribute: false
+
+  # ---- real noisy speech ----------------------------------------------------------------
+  masc_noisy:
+    source: MohamedRashad/MASC-Arabic
+    split: test
+    text: text
+    filter: {type: n}
+    n: 1000
+    track: noisy
+    dialect: mixed
+    domain: youtube (noisy)
+    license: CC-BY-4.0
+    redistribute: true
+
+  nadi_robust:
+    source: UBC-NLP/NADI2026_subtask1.1_Robust_ASR
+    configs: [Algeria, Egypt, Jordan, Mauritania, Morocco, Palestine, UAE, Yemen]
+    split: validation
+    text: transcription
+    n: 1000
+    track: noisy
+    dialect: 8 dialects
+    domain: noisy dialectal
+    license: unspecified
+    redistribute: false
+
+# Simulated acoustic conditions built from the clean sets above.
+degraded:
+  noisy:
+    from: [fleurs_ar, cv18_ar, mgb2, sada]
+    n: 300
+  telephony:
+    from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
+    n: 300
+  callcenter:
+    from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
+    n: 300
+
+# Leaderboard aggregation: each track is the macro-average WER over its sets; the
+# Arena score is a weighted mean of track scores (telephony matters for real deployments).
+scoring:
+  tracks:
+    clean: {weight: 0.35}
+    noisy: {weight: 0.15}
+    codeswitch: {weight: 0.1}
+    telephony: {weight: 0.2}
+    callcenter: {weight: 0.2}

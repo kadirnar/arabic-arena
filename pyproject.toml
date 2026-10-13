@@ -1,0 +1,53 @@
+[project]
+name = "sttarena"
+version = "0.1.0"
+description = "Multi-dataset WER/CER benchmark for Arabic and English speech-to-text, including telephony and noisy conditions."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "numpy",
+  "scipy",
+  "soundfile",
+  "soxr",
+  "jiwer>=3.0",
+  "datasets>=3.0",
+  "huggingface_hub",
+  "pandas",
+  "pyyaml",
+  "tqdm",
+  "regex",
+  "whisper-normalizer",
+]
+
+[project.optional-dependencies]
+gpu = [
+  "torch>=2.7",
+  "torchaudio>=2.7",
+  "transformers>=4.57",
+  "accelerate",
+  "faster-whisper",
+]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+sttarena = "sttarena.cli:main"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sttarena"]
+
+[tool.ruff]
+line-length = 110
