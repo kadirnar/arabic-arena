@@ -112,6 +112,9 @@ def build(suite_name: str) -> dict:
     payload = json.dumps(lb, indent=1, ensure_ascii=False)
     (LB_DIR / f"{lang}.json").write_text(payload)
     (SITE_DATA / f"{lang}.json").write_text(payload)
+    # Same data as a script so the page also renders from file:// and before any fetch.
+    (SITE_DATA / f"{lang}.js").write_text(
+        f"window.ARENA_DATA = window.ARENA_DATA || {{}};\nwindow.ARENA_DATA[{lang!r}] = {payload};\n")
     md = to_markdown(lb)
     (LB_DIR / f"{lang}.md").write_text(md + "\n")
     readme = ROOT / "README.md"

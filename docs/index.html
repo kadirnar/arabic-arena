@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arabic Arena Leaderboard</title>
+<meta name="description" content="Multi-dataset WER/CER leaderboard for Arabic and English speech-to-text, including telephony and call-center conditions.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --accent: #2a78d6; --hover: rgba(42,120,214,0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --accent: #3987e5; --hover: rgba(57,135,229,0.12);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --accent: #3987e5; --hover: rgba(57,135,229,0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--accent); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 32px 16px 64px; }
+header h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
+header p { margin: 0; color: var(--ink-2); max-width: 760px; }
+.links { margin-top: 8px; font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 24px 0 16px; }
+.filters .label { color: var(--muted); font-size: 13px; margin-right: 4px; }
+.seg { display: inline-flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: transparent; color: var(--ink-2); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--ring); }
+.seg button[aria-pressed="true"] { background: var(--hover); color: var(--ink); font-weight: 600; }
+.seg button:disabled { color: var(--muted); cursor: not-allowed; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 860px) { .grid2 { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px 16px 12px; margin-bottom: 16px; min-width: 0; }
+.card h2 { font-size: 16px; margin: 0; }
+.card .sub { color: var(--ink-2); font-size: 13px; margin: 2px 0 12px; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { fill: var(--ink-2); font-size: 12px; font-family: inherit; }
+svg .muted { fill: var(--muted); }
+svg .gridline { stroke: var(--grid); stroke-width: 1; }
+svg .axis { stroke: var(--axis); stroke-width: 1; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.tip { position: fixed; pointer-events: none; z-index: 10; background: var(--surface); border: 1px solid var(--ring);
+  border-radius: 8px; padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: none; max-width: 280px; }
+.tip .t { color: var(--ink-2); margin-bottom: 4px; }
+.tip .r { display: flex; align-items: center; gap: 8px; }
+.tip .r b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.tip .k { width: 12px; height: 2px; background: var(--c); }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:nth-child(-n+2), td:nth-child(-n+2) { text-align: left; }
+th { color: var(--muted); font-weight: 500; cursor: pointer; user-select: none; position: sticky; top: 0; background: var(--surface); }
+th[aria-sort] { color: var(--ink); }
+td.model a { color: var(--ink); text-decoration: none; font-weight: 500; }
+td.model a:hover { text-decoration: underline; }
+td.best { font-weight: 700; }
+tr:hover td { background: var(--hover); }
+.pending { color: var(--muted); }
+details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin: 8px 0; }
+.method { color: var(--ink-2); font-size: 14px; }
+.method li { margin: 4px 0; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arabic Arena</h1>
+    <p>A speech-to-text leaderboard scored on many test sets at once: MSA, Gulf, Egyptian,
+      Levantine, Maghrebi, code-switching, noisy speech, and simulated 8 kHz telephone and
+      call-center channels. One test set can mislead; the average of many is harder to game.</p>
+    <div class="links">
+      <a href="https://github.com/kadirnar/arabic-arena">GitHub</a>
+      <a href="https://huggingface.co/datasets/kadirnar/arabic-arena-ar">Datasets on HF</a>
+      <a href="https://github.com/kadirnar/arabic-arena/blob/main/docs/METHODOLOGY.md">Methodology</a>
+      <a href="https://github.com/kadirnar/arabic-arena/blob/main/docs/ROADMAP.md">Roadmap</a>
+    </div>
+  </header>
+
+  <div class="filters" role="toolbar" aria-label="Filters">
+    <span class="label">Language</span>
+    <div class="seg" id="lang">
+      <button data-v="ar" aria-pressed="true">Arabic</button>
+      <button data-v="en" disabled title="Coming soon">English</button>
+    </div>
+    <span class="label" style="margin-left:12px">Score</span>
+    <div class="seg" id="track"></div>
+    <span class="label" style="margin-left:12px">Metric</span>
+    <div class="seg" id="metric">
+      <button data-v="wer" aria-pressed="true">WER</button>
+      <button data-v="cer">CER</button>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2 id="rank-title">Arena WER</h2>
+    <p class="sub" id="rank-sub">Lower is better.</p>
+    <div id="rank"></div>
+  </section>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>Accuracy vs speed</h2>
+      <p class="sub" id="scatter-sub">RTFx on one RTX 5070 Ti (log scale). Down and to the right is better.</p>
+      <div id="scatter"></div>
+    </section>
+    <section class="card">
+      <h2>Phone-channel robustness</h2>
+      <p class="sub">WER on the same source sets: clean audio, then the telephony channel, then the call-center condition.</p>
+      <div class="legend"><span style="--c:var(--s1)">Clean</span><span style="--c:var(--s2)">Telephony</span><span style="--c:var(--s3)">Call-center</span></div>
+      <div id="dumbbell"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>All results</h2>
+    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far.</p>
+    <div class="table-wrap"><table id="tbl"></table></div>
+    <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
+  </section>
+
+  <section class="card method">
+    <h2>How scores are computed</h2>
+    <ul>
+      <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same Arabic normalization is applied to references and hypotheses.</li>
+      <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
+      <li><b>Arena</b>: <span id="weights"></span>.</li>
+      <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
+      <li><b>Decoding</b>: greedy, language forced to Arabic, batch inference on one RTX 5070 Ti (16 GB).</li>
+    </ul>
+  </section>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script src="data/ar.js"></script>
+<script>
+const TRACKS = [["arena", "Arena"], ["clean", "Clean"], ["noisy", "Noisy"], ["codeswitch", "Code-switch"],
+  ["telephony", "Telephony"], ["callcenter", "Call-center"]];
+const state = { lang: "ar", track: "arena", metric: "wer", sort: null, data: null };
+const NS = "http://www.w3.org/2000/svg";
+const tip = document.getElementById("tip");
+
+function el(tag, attrs = {}, parent) {
+  const n = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function h(tag, text, parent, cls) {
+  const n = document.createElement(tag);
+  if (text != null) n.textContent = text;
+  if (cls) n.className = cls;
+  if (parent) parent.appendChild(n);
+  return n;
+}
+const pct = (x) => (x == null ? "—" : (x * 100).toFixed(2));
+function score(m, track = state.track, metric = state.metric) {
+  if (track === "arena") return metric === "wer" ? m.arena_wer : m.arena_cer;
+  const t = m.tracks[track];
+  return t ? t[metric] : null;
+}
+function showTip(evt, title, rows) {
+  tip.replaceChildren();
+  h("div", title, tip, "t");
+  for (const [label, value, color] of rows) {
+    const r = h("div", null, tip, "r");
+    const k = h("span", null, r, "k"); k.style.setProperty("--c", color || "var(--s1)");
+    h("b", value, r); h("span", label, r);
+  }
+  tip.style.display = "block";
+  const x = Math.min(evt.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+  const y = Math.min(evt.clientY + 14, window.innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+}
+const hideTip = () => (tip.style.display = "none");
+function bindHover(node, fn) {
+  node.setAttribute("tabindex", "0");
+  node.addEventListener("pointermove", fn);
+  node.addEventListener("focus", (e) => { const b = node.getBoundingClientRect(); fn({ clientX: b.right, clientY: b.top }); });
+  node.addEventListener("pointerleave", hideTip);
+  node.addEventListener("blur", hideTip);
+}
+function niceMax(v) {
+  const p = Math.pow(10, Math.floor(Math.log10(v)));
+  for (const m of [1, 2, 2.5, 5, 10]) if (m * p >= v) return m * p;
+  return 10 * p;
+}
+
+// ---- ranked bars -------------------------------------------------------------------------
+function drawRank() {
+  const box = document.getElementById("rank"); box.replaceChildren();
+  const label = TRACKS.find((t) => t[0] === state.track)[1];
+  document.getElementById("rank-title").textContent = `${label} ${state.metric.toUpperCase()}`;
+  const ms = state.data.models.filter((m) => score(m) != null).sort((a, b) => score(a) - score(b));
+  const pending = state.data.models.length - ms.length;
+  document.getElementById("rank-sub").textContent =
+    `${ms.length} model${ms.length === 1 ? "" : "s"}. Lower is better.` + (pending ? ` ${pending} still running.` : "");
+  if (!ms.length) { h("div", "No completed results for this score yet.", box, "empty"); return; }
+  const W = 1000, labelW = 270, row = 28, bar = 18, top = 8, right = 60;
+  const H = top + ms.length * row + 24;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${label} ranking` }, box);
+  const max = niceMax(Math.max(...ms.map((m) => score(m))) * 100);
+  const x = (v) => labelW + (v * 100 / max) * (W - labelW - right);
+  for (let i = 0; i <= 4; i++) {
+    const v = (max / 4) * i, gx = labelW + (v / max) * (W - labelW - right);
+    el("line", { x1: gx, x2: gx, y1: top, y2: H - 20, class: i ? "gridline" : "axis" }, svg);
+    el("text", { x: gx, y: H - 4, "text-anchor": "middle", class: "muted" }, svg).textContent = v + "%";
+  }
+  ms.forEach((m, i) => {
+    const y = top + i * row + (row - bar) / 2, v = score(m), x1 = x(v), x0 = labelW, r = 4;
+    const t = el("text", { x: labelW - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg);
+    t.textContent = `${i + 1}. ${m.model}`;
+    const w = Math.max(x1 - x0, r);
+    el("path", { d: `M${x0},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
+      fill: "var(--s1)" }, svg);
+    el("text", { x: x0 + w + 6, y: y + bar / 2 + 4, fill: "var(--ink)" }, svg).textContent = pct(v);
+    const hit = el("rect", { x: 0, y: top + i * row, width: W, height: row, fill: "transparent" }, svg);
+    bindHover(hit, (e) => showTip(e, m.model, [[`${label} ${state.metric.toUpperCase()}`, pct(v) + "%"],
+      ["RTFx", String(m.rtfx ?? "—")], ["Params", m.params_b ? m.params_b + "B" : "—"]]));
+  });
+}
+
+// ---- scatter -----------------------------------------------------------------------------
+function drawScatter() {
+  const box = document.getElementById("scatter"); box.replaceChildren();
+  const ms = state.data.models.filter((m) => score(m) != null && m.rtfx);
+  if (!ms.length) { h("div", "No data yet.", box, "empty"); return; }
+  const W = 520, H = 340, L = 44, R = 16, T = 12, B = 36;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Accuracy versus speed" }, box);
+  const ymax = niceMax(Math.max(...ms.map((m) => score(m))) * 100);
+  const lx = ms.map((m) => Math.log10(m.rtfx));
+  const x0 = Math.floor(Math.min(...lx)), x1 = Math.ceil(Math.max(...lx));
+  const X = (r) => L + ((Math.log10(r) - x0) / Math.max(x1 - x0, 1)) * (W - L - R);
+  const Y = (v) => T + (1 - (v * 100) / ymax) * (H - T - B);
+  for (let i = 0; i <= 4; i++) {
+    const v = (ymax / 4) * i, y = T + (1 - v / ymax) * (H - T - B);
+    el("line", { x1: L, x2: W - R, y1: y, y2: y, class: i ? "gridline" : "axis" }, svg);
+    el("text", { x: L - 6, y: y + 4, "text-anchor": "end", class: "muted" }, svg).textContent = v + "%";
+  }
+  for (let p = x0; p <= x1; p++) {
+    const x = X(Math.pow(10, p));
+    el("line", { x1: x, x2: x, y1: T, y2: H - B, class: "gridline" }, svg);
+    el("text", { x, y: H - B + 16, "text-anchor": "middle", class: "muted" }, svg).textContent = Math.pow(10, p) + "×";
+  }
+  el("text", { x: W - R, y: H - 2, "text-anchor": "end", class: "muted" }, svg).textContent = "RTFx (faster →)";
+  const best = new Set([...ms].sort((a, b) => score(a) - score(b)).slice(0, 4).map((m) => m.model));
+  for (const m of ms) {
+    const cx = X(m.rtfx), cy = Y(score(m));
+    el("circle", { cx, cy, r: 5, fill: "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
+    if (best.has(m.model)) {
+      const anchor = cx > W * 0.7 ? "end" : "start";
+      el("text", { x: cx + (anchor === "end" ? -9 : 9), y: cy + 4, "text-anchor": anchor }, svg).textContent = m.model;
+    }
+    const hit = el("circle", { cx, cy, r: 12, fill: "transparent" }, svg);
+    bindHover(hit, (e) => showTip(e, m.model, [[state.metric.toUpperCase(), pct(score(m)) + "%"], ["RTFx", String(m.rtfx)]]));
+  }
+}
+
+// ---- dumbbell: clean -> telephony -> callcenter on the same source sets --------------------
+function drawDumbbell() {
+  const box = document.getElementById("dumbbell"); box.replaceChildren();
+  const d = state.data, keys = d.tracks.telephony || [];
+  const sources = keys.map((k) => k.split("/")[0]);
+  const rows = d.models.map((m) => {
+    const get = (cond) => {
+      const v = sources.map((s) => m.sets[`${s}/${cond}`]?.[state.metric]);
+      return v.every((x) => x != null) ? v.reduce((a, b) => a + b, 0) / v.length : null;
+    };
+    return { m, clean: get("clean"), tel: get("telephony"), cc: get("callcenter") };
+  }).filter((r) => r.clean != null && r.tel != null && r.cc != null).sort((a, b) => a.cc - b.cc);
+  if (!rows.length) { h("div", "No telephony results yet.", box, "empty"); return; }
+  const W = 520, L = 190, R = 16, T = 4, row = 22, H = T + rows.length * row + 26;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Clean versus telephony versus call-center" }, box);
+  const max = niceMax(Math.max(...rows.map((r) => Math.max(r.clean, r.tel, r.cc))) * 100);
+  const X = (v) => L + (v * 100 / max) * (W - L - R);
+  for (let i = 0; i <= 4; i++) {
+    const v = (max / 4) * i, x = L + (v / max) * (W - L - R);
+    el("line", { x1: x, x2: x, y1: T, y2: H - 20, class: i ? "gridline" : "axis" }, svg);
+    el("text", { x, y: H - 4, "text-anchor": "middle", class: "muted" }, svg).textContent = v + "%";
+  }
+  rows.forEach((r, i) => {
+    const y = T + i * row + row / 2;
+    el("text", { x: L - 8, y: y + 4, "text-anchor": "end" }, svg).textContent = r.m.model;
+    const lo = Math.min(r.clean, r.tel, r.cc), hi = Math.max(r.clean, r.tel, r.cc);
+    el("line", { x1: X(lo), x2: X(hi), y1: y, y2: y, stroke: "var(--axis)", "stroke-width": 2, "stroke-linecap": "round" }, svg);
+    [["clean", "--s1"], ["tel", "--s2"], ["cc", "--s3"]].forEach(([k, c]) =>
+      el("circle", { cx: X(r[k]), cy: y, r: 5, fill: `var(${c})`, stroke: "var(--surface)", "stroke-width": 2 }, svg));
+    const hit = el("rect", { x: 0, y: y - row / 2, width: W, height: row, fill: "transparent" }, svg);
+    bindHover(hit, (e) => showTip(e, r.m.model, [["Clean", pct(r.clean) + "%", "var(--s1)"],
+      ["Telephony", pct(r.tel) + "%", "var(--s2)"], ["Call-center", pct(r.cc) + "%", "var(--s3)"],
+      ["Call-center vs clean", "+" + ((r.cc - r.clean) * 100).toFixed(1) + " pts", "var(--axis)"]]));
+  });
+}
+
+// ---- tables ------------------------------------------------------------------------------
+function drawTable() {
+  const d = state.data, tbl = document.getElementById("tbl"); tbl.replaceChildren();
+  const cols = [["#", null], ["Model", null], ["Params (B)", (m) => m.params_b],
+    ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]), ["RTFx", (m) => m.rtfx]];
+  let ms = [...d.models];
+  const sc = state.sort ?? 3, dir = sc === cols.length - 1 ? -1 : 1;
+  if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
+  const tr = h("tr", null, h("thead", null, tbl));
+  cols.forEach(([l], i) => {
+    const th = h("th", l, tr);
+    if (i === sc) th.setAttribute("aria-sort", "ascending");
+    if (cols[i][1]) th.addEventListener("click", () => { state.sort = i; drawTable(); });
+  });
+  const best = cols.map(([, f], i) => (f && i > 2 && i < cols.length - 1) ? Math.min(...ms.map(f).filter((v) => v != null)) : null);
+  const tb = h("tbody", null, tbl);
+  ms.forEach((m, r) => {
+    const row = h("tr", null, tb);
+    h("td", String(r + 1), row);
+    const td = h("td", null, row, "model");
+    const a = h("a", m.model, td); a.href = m.kind === "open" ? `https://huggingface.co/${m.hf_id}` : "#";
+    h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
+    TRACKS.forEach(([k], j) => {
+      const v = score(m, k), t = m.tracks[k];
+      const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : "");
+      if (v != null && v === best[3 + j]) c.classList.add("best");
+    });
+    h("td", m.rtfx != null ? String(m.rtfx) : "—", row);
+  });
+
+  const st = document.getElementById("sets"); st.replaceChildren();
+  const keys = Object.values(d.tracks).flat();
+  const hr = h("tr", null, h("thead", null, st));
+  h("th", "#", hr); h("th", "Model", hr);
+  keys.forEach((k) => h("th", k.replace("/clean", "").replace("/", " · "), hr));
+  const sb = h("tbody", null, st);
+  ms.forEach((m, r) => {
+    const row = h("tr", null, sb);
+    h("td", String(r + 1), row); h("td", m.model, row, "model");
+    keys.forEach((k) => h("td", pct(m.sets[k]?.[state.metric]), row));
+  });
+}
+
+function drawAll() { drawRank(); drawScatter(); drawDumbbell(); drawTable(); }
+
+function setupSeg(id, key, onChange) {
+  document.getElementById(id).addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b || b.disabled) return;
+    state[key] = b.dataset.v;
+    for (const x of e.currentTarget.querySelectorAll("button")) x.setAttribute("aria-pressed", String(x === b));
+    onChange();
+  });
+}
+
+(async function init() {
+  const tr = document.getElementById("track");
+  TRACKS.forEach(([k, l]) => { const b = h("button", l, tr); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === "arena")); });
+  setupSeg("track", "track", () => { drawRank(); drawScatter(); });
+  setupSeg("metric", "metric", drawAll);
+  setupSeg("lang", "lang", load);
+  await load();
+})();
+
+async function load() {
+  try {
+    state.data = (window.ARENA_DATA || {})[state.lang]
+      || await (await fetch(`data/${state.lang}.json`, { cache: "no-store" })).json();
+  } catch (e) {
+    document.getElementById("rank").replaceChildren(h("div", "Could not load results.", null, "empty"));
+    return;
+  }
+  const w = state.data.weights, names = Object.fromEntries(TRACKS);
+  document.getElementById("weights").textContent =
+    "the weighted mean of the track scores: " + Object.entries(w).map(([k, v]) => `${names[k]} ${Math.round(v * 100)}%`).join(", ");
+  drawAll();
+}
+</script>
+</body>
+</html>

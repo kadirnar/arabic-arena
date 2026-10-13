@@ -1,0 +1,38 @@
+{
+ "results": {
+  "fleurs_ar/clean": {
+   "wer": 0.09234037236036487,
+   "cer": 0.036642020545704375,
+   "substitutions": 613,
+   "deletions": 83,
+   "insertions": 43,
+   "ref_words": 8003,
+   "ref_chars": 45849,
+   "char_errors": 1680,
+   "num_utterances": 428,
+   "num_empty_hyp": 0,
+   "track": "clean",
+   "set": "fleurs_ar",
+   "condition": "clean",
+   "audio_hours": 1.3015,
+   "seconds": 22.77,
+   "rtfx": 205.8,
+   "limit": null,
+   "date": "2026-10-13T23:28:34+00:00"
+  }
+ },
+ "model": "qwen3-asr-1.7b",
+ "hf_id": "Qwen/Qwen3-ASR-1.7B-hf",
+ "params_b": 2.04,
+ "license": "Apache-2.0",
+ "kind": "open",
+ "language": "ar",
+ "env": {
+  "python": "3.12.13",
+  "host": "kadir",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "transformers": "5.19.0"
+ },
+ "batch_size": 32
+}

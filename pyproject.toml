@@ -26,6 +26,9 @@ gpu = [
   "torchaudio>=2.7",
   "transformers>=4.57",
   "accelerate",
+  "librosa",
+  "mistral-common",
+  "sentencepiece",
   "faster-whisper",
 ]
 dev = ["pytest", "ruff"]

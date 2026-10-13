@@ -1,0 +1,416 @@
+{
+ "language": "ar",
+ "tracks": {
+  "clean": [
+   "fleurs_ar/clean",
+   "cv18_ar/clean",
+   "masc_clean/clean",
+   "mgb2/clean",
+   "sada/clean",
+   "casablanca/clean",
+   "mgb3_egy/clean",
+   "mgb5_mor/clean"
+  ],
+  "codeswitch": [
+   "mixat_cs/clean",
+   "algerian_cs/clean"
+  ],
+  "noisy": [
+   "masc_noisy/clean",
+   "nadi_robust/clean",
+   "fleurs_ar/noisy",
+   "cv18_ar/noisy",
+   "mgb2/noisy",
+   "sada/noisy"
+  ],
+  "telephony": [
+   "fleurs_ar/telephony",
+   "cv18_ar/telephony",
+   "mgb2/telephony",
+   "sada/telephony",
+   "casablanca/telephony",
+   "mgb3_egy/telephony"
+  ],
+  "callcenter": [
+   "fleurs_ar/callcenter",
+   "cv18_ar/callcenter",
+   "mgb2/callcenter",
+   "sada/callcenter",
+   "casablanca/callcenter",
+   "mgb3_egy/callcenter"
+  ]
+ },
+ "weights": {
+  "clean": 0.35,
+  "noisy": 0.15,
+  "codeswitch": 0.1,
+  "telephony": 0.2,
+  "callcenter": 0.2
+ },
+ "sets": {
+  "fleurs_ar": {
+   "dialect": "MSA",
+   "domain": "read",
+   "source": "google/fleurs",
+   "track": "clean",
+   "license": "CC-BY-4.0"
+  },
+  "cv18_ar": {
+   "dialect": "MSA",
+   "domain": "read (crowd-sourced)",
+   "source": "MohamedRashad/common-voice-18-arabic",
+   "track": "clean",
+   "license": "CC0-1.0"
+  },
+  "masc_clean": {
+   "dialect": "mixed",
+   "domain": "youtube",
+   "source": "MohamedRashad/MASC-Arabic",
+   "track": "clean",
+   "license": "CC-BY-4.0"
+  },
+  "mgb2": {
+   "dialect": "MSA (mostly)",
+   "domain": "broadcast news",
+   "source": "MohamedRashad/mgb2-arabic",
+   "track": "clean",
+   "license": "QCRI MGB-2 agreement"
+  },
+  "sada": {
+   "dialect": "Gulf (Saudi)",
+   "domain": "tv shows",
+   "source": "MohamedRashad/SADA22",
+   "track": "clean",
+   "license": "CC-BY-NC-SA-4.0"
+  },
+  "casablanca": {
+   "dialect": "8 dialects",
+   "domain": "tv series",
+   "source": "UBC-NLP/Casablanca",
+   "track": "clean",
+   "license": "CC-BY-NC-ND-4.0"
+  },
+  "mgb3_egy": {
+   "dialect": "Egyptian",
+   "domain": "youtube",
+   "source": "ArabicSpeech/MGB-3",
+   "track": "clean",
+   "license": "unspecified"
+  },
+  "mgb5_mor": {
+   "dialect": "Moroccan (Darija)",
+   "domain": "youtube",
+   "source": "ArabicSpeech/MGB-5",
+   "track": "clean",
+   "license": "unspecified"
+  },
+  "mixat_cs": {
+   "dialect": "Emirati + English",
+   "domain": "podcast",
+   "source": "sqrk/mixat-tri",
+   "track": "codeswitch",
+   "license": "CC-BY-NC-SA-4.0"
+  },
+  "algerian_cs": {
+   "dialect": "Algerian + French",
+   "domain": "conversational",
+   "source": "oist/algerian-code-switched-asr-eval",
+   "track": "codeswitch",
+   "license": "controlled-access terms"
+  },
+  "masc_noisy": {
+   "dialect": "mixed",
+   "domain": "youtube (noisy)",
+   "source": "MohamedRashad/MASC-Arabic",
+   "track": "noisy",
+   "license": "CC-BY-4.0"
+  },
+  "nadi_robust": {
+   "dialect": "8 dialects",
+   "domain": "noisy dialectal",
+   "source": "UBC-NLP/NADI2026_subtask1.1_Robust_ASR",
+   "track": "noisy",
+   "license": "unspecified"
+  }
+ },
+ "models": [
+  {
+   "model": "cohere-transcribe-arabic-07-2026",
+   "hf_id": "CohereLabs/cohere-transcribe-arabic-07-2026",
+   "params_b": 2.07,
+   "license": "Apache-2.0",
+   "kind": "open",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.04810695989004123,
+     "cer": 0.02259591266985103,
+     "rtfx": 405.08,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.047117296222664015,
+     "cer": 0.013968510294711344,
+     "rtfx": 370.85,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.051510714761080795,
+     "cer": 0.03798038430744596,
+     "rtfx": 316.83,
+     "n": 1000
+    },
+    "mgb2/clean": {
+     "wer": 0.12862484420440382,
+     "cer": 0.07282076172852614,
+     "rtfx": 394.13,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.3611355782912121,
+     "cer": 0.2544986083937281,
+     "rtfx": 208.19,
+     "n": 1000
+    },
+    "casablanca/clean": {
+     "wer": 0.4226936088506903,
+     "cer": 0.17906669601584857,
+     "rtfx": 243.45,
+     "n": 994
+    },
+    "mgb3_egy/clean": {
+     "wer": 0.24658050619278407,
+     "cer": 0.14530261149827645,
+     "rtfx": 322.79,
+     "n": 1000
+    },
+    "mgb5_mor/clean": {
+     "wer": 0.46625214759060785,
+     "cer": 0.2021977675474554,
+     "rtfx": 305.53,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.1779004227336778,
+     "cer": 0.08247081620114372,
+     "rtfx": 434.6,
+     "n": 1000
+    },
+    "algerian_cs/clean": {
+     "wer": 0.4668205424120023,
+     "cer": 0.28398841086754495,
+     "rtfx": 247.39,
+     "n": 316
+    },
+    "masc_noisy/clean": {
+     "wer": 0.1638608305274972,
+     "cer": 0.07484474554399548,
+     "rtfx": 370.96,
+     "n": 1000
+    },
+    "nadi_robust/clean": {
+     "wer": 0.5548606147248034,
+     "cer": 0.299272563987427,
+     "rtfx": 286.71,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.0678391959798995,
+     "cer": 0.030738922417836705,
+     "rtfx": 401.85,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.13324450366422386,
+     "cer": 0.06790291791655303,
+     "rtfx": 374.13,
+     "n": 300
+    },
+    "mgb2/noisy": {
+     "wer": 0.16529152915291528,
+     "cer": 0.09245911418203509,
+     "rtfx": 408.99,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.48392381732541473,
+     "cer": 0.33212530200783136,
+     "rtfx": 245.69,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.059224694903086864,
+     "cer": 0.02670502517276963,
+     "rtfx": 414.77,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.08927381745502998,
+     "cer": 0.03190619034633215,
+     "rtfx": 376.39,
+     "n": 300
+    },
+    "mgb2/telephony": {
+     "wer": 0.13476347634763478,
+     "cer": 0.07451409255853259,
+     "rtfx": 427.88,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.40323571574851524,
+     "cer": 0.24377239023577438,
+     "rtfx": 349.75,
+     "n": 300
+    },
+    "casablanca/telephony": {
+     "wer": 0.45772409408773046,
+     "cer": 0.2155091871691062,
+     "rtfx": 257.3,
+     "n": 296
+    },
+    "mgb3_egy/telephony": {
+     "wer": 0.28191489361702127,
+     "cer": 0.15500526487781852,
+     "rtfx": 401.48,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.1615218951902369,
+     "cer": 0.07714437599674787,
+     "rtfx": 397.08,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.29247168554297137,
+     "cer": 0.16539405508590127,
+     "rtfx": 385.44,
+     "n": 300
+    },
+    "mgb2/callcenter": {
+     "wer": 0.2670517051705171,
+     "cer": 0.1684644827757618,
+     "rtfx": 429.0,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.6252303911529797,
+     "cer": 0.47250687328167956,
+     "rtfx": 225.45,
+     "n": 300
+    },
+    "casablanca/callcenter": {
+     "wer": 0.654481881754609,
+     "cer": 0.38505138586110244,
+     "rtfx": 279.53,
+     "n": 296
+    },
+    "mgb3_egy/callcenter": {
+     "wer": 0.4917461482024945,
+     "cer": 0.34864384009295235,
+     "rtfx": 320.55,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": 0.22150270700043553,
+     "cer": 0.11605390655698038,
+     "done": 8,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": 0.32236048257284006,
+     "cer": 0.18322961353434433,
+     "done": 2,
+     "total": 2
+    },
+    "noisy": {
+     "wer": 0.2615034152291257,
+     "cer": 0.14955726100927977,
+     "done": 6,
+     "total": 6
+    },
+    "telephony": {
+     "wer": 0.23768944869316977,
+     "cer": 0.12456869172672225,
+     "done": 6,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": 0.4154172845023014,
+     "cer": 0.2695341688490242,
+     "done": 6,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.13",
+    "host": "kadir",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "transformers": "5.19.0"
+   },
+   "arena_wer": 0.2796088546308995,
+   "arena_cer": 0.16019598991491882,
+   "rtfx": 330.4,
+   "audio_hours": 27.71
+  },
+  {
+   "model": "qwen3-asr-1.7b",
+   "hf_id": "Qwen/Qwen3-ASR-1.7B-hf",
+   "params_b": 2.04,
+   "license": "Apache-2.0",
+   "kind": "open",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.09234037236036487,
+     "cer": 0.036642020545704375,
+     "rtfx": 205.8,
+     "n": 428
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": null,
+     "cer": null,
+     "done": 1,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": null,
+     "cer": null,
+     "done": 0,
+     "total": 2
+    },
+    "noisy": {
+     "wer": null,
+     "cer": null,
+     "done": 0,
+     "total": 6
+    },
+    "telephony": {
+     "wer": null,
+     "cer": null,
+     "done": 0,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": null,
+     "cer": null,
+     "done": 0,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.13",
+    "host": "kadir",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "transformers": "5.19.0"
+   },
+   "arena_wer": null,
+   "arena_cer": null,
+   "rtfx": 205.8,
+   "audio_hours": 1.3
+  }
+ ]
+}

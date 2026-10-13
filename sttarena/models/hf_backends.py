@@ -84,14 +84,11 @@ class VoxtralRealtime(ASRModel):
     def transcribe(self, audios, language):
         import torch
 
-        outs = []
-        # The realtime processor pads each stream with its own look-ahead; run one stream at a time.
-        for a in audios:
-            inputs = self.processor(a, return_tensors="pt").to(self.device, dtype=self.model.dtype)
-            with torch.inference_mode():
-                ids = self.model.generate(**inputs, do_sample=False)
-            outs.append(self.processor.batch_decode(ids, skip_special_tokens=True)[0])
-        return outs
+        # Batches are length-sorted by the runner, so right-padding with silence is short.
+        inputs = self.processor(list(audios), return_tensors="pt", padding=True).to(self.device, dtype=self.model.dtype)
+        with torch.inference_mode():
+            ids = self.model.generate(**inputs, do_sample=False)
+        return self.processor.batch_decode(ids, skip_special_tokens=True)
 
 
 class SeamlessM4T(ASRModel):

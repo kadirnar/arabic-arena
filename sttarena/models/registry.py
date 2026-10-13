@@ -35,9 +35,9 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        batch_size=32),
     # --- Mistral Voxtral ----------------------------------------------------------------------
     _M("voxtral-mini-4b-realtime-arabic", "voxtral_realtime", "mistralai/Voxtral-Mini-4B-Realtime-Arabic", 4.43,
-       "Apache-2.0", languages=("ar",), batch_size=8),
+       "Apache-2.0", languages=("ar",), batch_size=16),
     _M("voxtral-mini-4b-realtime-2602", "voxtral_realtime", "mistralai/Voxtral-Mini-4B-Realtime-2602", 4.43,
-       "Apache-2.0", batch_size=8),
+       "Apache-2.0", batch_size=16),
     # --- Meta ---------------------------------------------------------------------------------
     _M("seamless-m4t-v2-large", "seamless", "facebook/seamless-m4t-v2-large", 2.31, "CC-BY-NC-4.0", batch_size=16),
     _M("mms-1b-all", "ctc_hf", "facebook/mms-1b-all", 0.96, "CC-BY-NC-4.0", batch_size=16, kwargs={"mms": True}),
