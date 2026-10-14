@@ -83,6 +83,8 @@ def breakdown(suite_name: str) -> dict:
     payload = json.dumps(result, indent=1, ensure_ascii=False)
     (LB_DIR / f"{lang}_breakdown.json").write_text(payload)
     (SITE_DATA / f"{lang}_breakdown.json").write_text(payload)
+    (SITE_DATA / f"{lang}_breakdown.js").write_text(
+        f"window.ARENA_BREAKDOWN = window.ARENA_BREAKDOWN || {{}};\nwindow.ARENA_BREAKDOWN[{lang!r}] = {payload};\n")
     return result
 
 

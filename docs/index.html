@@ -37,7 +37,8 @@ header p { margin: 0; color: var(--ink-2); max-width: 760px; }
 .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 24px 0 16px; }
 .filters .label { color: var(--muted); font-size: 13px; margin-right: 4px; }
 .seg { display: inline-flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; background: var(--surface); }
-.seg button { border: 0; background: transparent; color: var(--ink-2); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+.seg { max-width: 100%; overflow-x: auto; }
+.seg button { white-space: nowrap; border: 0; background: transparent; color: var(--ink-2); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
 .seg button + button { border-left: 1px solid var(--ring); }
 .seg button[aria-pressed="true"] { background: var(--hover); color: var(--ink); font-weight: 600; }
 .seg button:disabled { color: var(--muted); cursor: not-allowed; }
@@ -74,6 +75,11 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
 .method { color: var(--ink-2); font-size: 14px; }
 .method li { margin: 4px 0; }
 .empty { color: var(--muted); padding: 24px 0; text-align: center; }
+.inline-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; }
+.chart-wide { overflow-x: auto; }
+.chart-wide svg { min-width: 720px; }
+.ramp { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.ramp i { display: block; width: 160px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--ramp)); }
 </style>
 </head>
 <body>
@@ -109,7 +115,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
   <section class="card">
     <h2 id="rank-title">Arena WER</h2>
     <p class="sub" id="rank-sub">Lower is better.</p>
-    <div id="rank"></div>
+    <div id="rank" class="chart-wide"></div>
   </section>
 
   <div class="grid2">
@@ -127,6 +133,20 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
   </div>
 
   <section class="card">
+    <h2>Where models break</h2>
+    <p class="sub" id="heat-sub"></p>
+    <div class="inline-filters"><div class="seg" id="dim"></div></div>
+    <div id="heat" class="chart-wide"></div>
+    <div class="ramp"><span id="ramp-lo">0%</span><i id="ramp-bar"></i><span id="ramp-hi"></span></div>
+  </section>
+
+  <section class="card">
+    <h2>Hallucination on noise-only audio</h2>
+    <p class="sub">Share of 300 clips with no target speech (line silence, hold hiss, mains hum, distant babble, office, street and transport noise; half sent through a phone codec) for which the model still wrote words. Lower is better. Not part of the Arena score.</p>
+    <div id="halluc" class="chart-wide"></div>
+  </section>
+
+  <section class="card">
     <h2>All results</h2>
     <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score.</p>
     <div class="table-wrap"><table id="tbl"></table></div>
@@ -140,17 +160,36 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
-      <li><b>Decoding</b>: greedy, language forced to Arabic, batch inference on one RTX 5070 Ti (16 GB).</li>
+      <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
+      <li><b>Models</b>: open-weight models only, all run locally.</li>
     </ul>
   </section>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script src="data/ar.js"></script>
+<script src="data/ar_breakdown.js"></script>
+<script src="data/en.js"></script>
+<script src="data/en_breakdown.js"></script>
 <script>
-const TRACKS = [["arena", "Arena"], ["clean", "Clean"], ["noisy", "Noisy"], ["codeswitch", "Code-switch"],
-  ["telephony", "Telephony"], ["callcenter", "Call-center"]];
-const state = { lang: "ar", track: "arena", metric: "wer", sort: null, data: null };
+const TRACK_NAMES = { arena: "Arena", clean: "Clean", accented: "Accented", noisy: "Noisy", codeswitch: "Code-switch",
+  telephony: "Telephony", callcenter: "Call-center" };
+let TRACKS = [];
+const DIMS = [["codec", "Codec"], ["packet_loss", "Packet loss"], ["noise:callcenter", "Call-center noise"],
+  ["snr:noisy", "SNR"], ["dialect", "Dialect"]];
+const DIM_SUB = {
+  codec: "WER on the telephony and call-center sets, grouped by the speech codec each utterance went through.",
+  packet_loss: "WER on the telephony and call-center sets, grouped by the simulated packet-loss rate.",
+  "noise:callcenter": "WER on the call-center sets, grouped by the background noise mixed in at the caller.",
+  "snr:noisy": "WER on the noisy sets, grouped by signal-to-noise ratio.",
+  dialect: "WER on Casablanca (TV series), grouped by country.",
+};
+const CODEC_NAMES = { g711_mulaw: "G.711 μ-law", g711_alaw: "G.711 A-law", gsm_fr: "GSM-FR", amr_nb_12k2: "AMR-NB 12.2k",
+  amr_nb_7k4: "AMR-NB 7.4k", amr_nb_4k75: "AMR-NB 4.75k", g726_32k: "G.726 32k", g726_16k: "G.726 16k", opus_nb_10k: "Opus-NB 10k" };
+const SNR_ORDER = ["≥15 dB", "10–15 dB", "5–10 dB", "<5 dB"];
+const RAMP = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf",
+  "#1c5cab", "#184f95", "#104281", "#0d366b"];
+const state = { lang: "ar", track: "arena", metric: "wer", dim: "codec", sort: null, data: null, bd: null };
 const NS = "http://www.w3.org/2000/svg";
 const tip = document.getElementById("tip");
 
@@ -258,12 +297,24 @@ function drawScatter() {
   }
   el("text", { x: W - R, y: H - 2, "text-anchor": "end", class: "muted" }, svg).textContent = "RTFx (faster →)";
   const best = new Set([...ms].sort((a, b) => score(a) - score(b)).slice(0, 4).map((m) => m.model));
+  const placed = [];  // label boxes already drawn, to nudge colliding labels apart
   for (const m of ms) {
     const cx = X(m.rtfx), cy = Y(score(m));
     el("circle", { cx, cy, r: 5, fill: "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
     if (best.has(m.model)) {
-      const anchor = cx > W * 0.7 ? "end" : "start";
-      el("text", { x: cx + (anchor === "end" ? -9 : 9), y: cy + 4, "text-anchor": anchor }, svg).textContent = m.model;
+      const t = el("text", { x: cx + 9, y: cy + 4 }, svg); t.textContent = m.model;
+      const w = t.getComputedTextLength() || m.model.length * 7.5, pref = cx > W * 0.6 ? ["end", "start"] : ["start", "end"];
+      const cands = [0, -14, 14].flatMap((dy) => pref.map((anchor) => ({ anchor, dy })));
+      const box = ({ anchor, dy }) => ({ x0: anchor === "end" ? cx - 9 - w : cx + 9, w, y: cy + 4 + dy });
+      const fits = (c) => { const b = box(c);
+        return b.x0 >= L && b.x0 + w <= W && !placed.some((p) => b.x0 < p.x0 + p.w + 4 && b.x0 + w + 4 > p.x0 && Math.abs(b.y - p.y) < 15); };
+      const c = cands.find(fits);
+      if (!c) t.remove();  // no free spot next to the point: leave it to the tooltip
+      else {
+        const bx = box(c);
+        placed.push(bx);
+        t.setAttribute("x", c.anchor === "end" ? cx - 9 : cx + 9); t.setAttribute("y", bx.y); t.setAttribute("text-anchor", c.anchor);
+      }
     }
     const hit = el("circle", { cx, cy, r: 12, fill: "transparent" }, svg);
     bindHover(hit, (e) => showTip(e, m.model, [[state.metric.toUpperCase(), pct(score(m)) + "%"], ["RTFx", String(m.rtfx)]]));
@@ -273,7 +324,7 @@ function drawScatter() {
 // ---- dumbbell: clean -> telephony -> callcenter on the same source sets --------------------
 function drawDumbbell() {
   const box = document.getElementById("dumbbell"); box.replaceChildren();
-  const d = state.data, keys = d.tracks.telephony || [];
+  const d = state.data, keys = (d.tracks.telephony || []).filter((k) => k.endsWith("/telephony"));
   const sources = keys.map((k) => k.split("/")[0]);
   const rows = d.models.map((m) => {
     const get = (cond) => {
@@ -303,6 +354,93 @@ function drawDumbbell() {
     bindHover(hit, (e) => showTip(e, r.m.model, [["Clean", pct(r.clean) + "%", "var(--s1)"],
       ["Telephony", pct(r.tel) + "%", "var(--s2)"], ["Call-center", pct(r.cc) + "%", "var(--s3)"],
       ["Call-center vs clean", "+" + ((r.cc - r.clean) * 100).toFixed(1) + " pts", "var(--axis)"]]));
+  });
+}
+
+
+// ---- heatmap: WER by degradation factor ---------------------------------------------------
+const isDark = () => getComputedStyle(document.documentElement).colorScheme === "dark";
+function rampColor(t) {
+  const steps = isDark() ? [...RAMP].reverse() : RAMP;
+  const f = Math.max(0, Math.min(1, t)) * (steps.length - 1), i = Math.min(Math.floor(f), steps.length - 2), u = f - i;
+  const a = steps[i].match(/\w\w/g).map((x) => parseInt(x, 16)), b = steps[i + 1].match(/\w\w/g).map((x) => parseInt(x, 16));
+  const c = a.map((v, k) => Math.round(v + (b[k] - v) * u));
+  const lum = (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
+  return { fill: `rgb(${c.join(",")})`, text: lum > 0.55 ? "#0b0b0b" : "#ffffff" };
+}
+function dimColumns(dim, rows) {
+  const vals = {};
+  for (const r of rows) for (const [v, x] of Object.entries(r.bd[dim])) {
+    if (dim === "dialect" && !v.startsWith("casablanca:")) continue;
+    (vals[v] ||= []).push(x);
+  }
+  let cols = Object.entries(vals).filter(([, xs]) => Math.max(...xs.map((x) => x.n)) >= 30).map(([v, xs]) =>
+    ({ v, mean: xs.reduce((a, x) => a + x[state.metric], 0) / xs.length }));
+  if (dim === "snr:noisy") cols.sort((a, b) => SNR_ORDER.indexOf(a.v) - SNR_ORDER.indexOf(b.v));
+  else if (dim === "packet_loss") cols.sort((a, b) => parseFloat(a.v) - parseFloat(b.v));
+  else cols.sort((a, b) => a.mean - b.mean);
+  const label = (v) => dim === "codec" ? (CODEC_NAMES[v] || v) : dim === "dialect" ? v.split(":")[1]
+    : dim === "packet_loss" ? v + " loss" : v[0].toUpperCase() + v.slice(1);
+  return cols.map((c) => ({ ...c, label: label(c.v) }));
+}
+function drawHeat() {
+  const box = document.getElementById("heat"); box.replaceChildren();
+  document.getElementById("heat-sub").textContent = DIM_SUB[state.dim] + " Columns are ordered from easiest to hardest.";
+  const bd = state.bd || {};
+  const rows = state.data.models.filter((m) => bd[m.model]?.[state.dim] && Object.keys(bd[m.model][state.dim]).length)
+    .map((m) => ({ m, bd: bd[m.model] }));
+  if (!rows.length) { h("div", "No breakdown for this factor yet.", box, "empty"); return; }
+  const cols = dimColumns(state.dim, rows);
+  const W = 1000, L = 250, T = 28, row = 26, cw = (W - L) / cols.length, H = T + rows.length * row + 4;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `WER by ${state.dim}` }, box);
+  const all = rows.flatMap((r) => cols.map((c) => r.bd[state.dim][c.v]?.[state.metric]).filter((v) => v != null));
+  const vmax = Math.min(niceMax(Math.max(...all) * 100), 100);
+  cols.forEach((c, j) => {
+    el("text", { x: L + j * cw + cw / 2, y: T - 10, "text-anchor": "middle" }, svg).textContent = c.label;
+  });
+  rows.forEach((r, i) => {
+    const y = T + i * row;
+    el("text", { x: L - 10, y: y + row / 2 + 4, "text-anchor": "end" }, svg).textContent = r.m.model;
+    cols.forEach((c, j) => {
+      const cell = r.bd[state.dim][c.v], x = L + j * cw;
+      if (!cell) return;
+      const v = cell[state.metric], col = rampColor((v * 100) / vmax);
+      el("rect", { x: x + 1, y: y + 1, width: cw - 2, height: row - 2, rx: 3, fill: col.fill }, svg);
+      el("text", { x: x + cw / 2, y: y + row / 2 + 4, "text-anchor": "middle", fill: col.text, style: "fill:" + col.text }, svg)
+        .textContent = (v * 100).toFixed(1);
+      const hit = el("rect", { x, y, width: cw, height: row, fill: "transparent" }, svg);
+      bindHover(hit, (e) => showTip(e, `${r.m.model} · ${c.label}`, [[state.metric.toUpperCase(), pct(v) + "%", col.fill],
+        ["Utterances", String(cell.n), "var(--axis)"]]));
+    });
+  });
+  const steps = isDark() ? [...RAMP].reverse() : RAMP;
+  document.getElementById("ramp-bar").style.setProperty("--ramp", steps.join(","));
+  document.getElementById("ramp-hi").textContent = `${vmax}% ${state.metric.toUpperCase()}`;
+}
+
+// ---- hallucination bars -------------------------------------------------------------------
+function drawHalluc() {
+  const box = document.getElementById("halluc"); box.replaceChildren();
+  const ms = state.data.models.filter((m) => m.hallucination_rate != null)
+    .sort((a, b) => a.hallucination_rate - b.hallucination_rate || (a.inserted_wpm ?? 0) - (b.inserted_wpm ?? 0));
+  if (!ms.length) { h("div", "No hallucination results yet.", box, "empty"); return; }
+  const W = 1000, L = 270, row = 26, bar = 16, T = 8, R = 60, H = T + ms.length * row + 24;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Hallucination rate" }, box);
+  const X = (v) => L + v * (W - L - R);
+  for (let i = 0; i <= 4; i++) {
+    const gx = X(i / 4);
+    el("line", { x1: gx, x2: gx, y1: T, y2: H - 20, class: i ? "gridline" : "axis" }, svg);
+    el("text", { x: gx, y: H - 4, "text-anchor": "middle", class: "muted" }, svg).textContent = i * 25 + "%";
+  }
+  ms.forEach((m, i) => {
+    const y = T + i * row + (row - bar) / 2, v = m.hallucination_rate, r = 4, w = Math.max(X(v) - L, r);
+    el("text", { x: L - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg).textContent = m.model;
+    el("path", { d: `M${L},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
+      fill: "var(--s2)" }, svg);
+    el("text", { x: L + w + 6, y: y + bar / 2 + 4, fill: "var(--ink)" }, svg).textContent = (v * 100).toFixed(0) + "%";
+    const hit = el("rect", { x: 0, y: T + i * row, width: W, height: row, fill: "transparent" }, svg);
+    bindHover(hit, (e) => showTip(e, m.model, [["clips with output", pct(v) + "%", "var(--s2)"],
+      ["inserted words / min", m.inserted_wpm != null ? m.inserted_wpm.toFixed(1) : "—", "var(--axis)"]]));
   });
 }
 
@@ -352,7 +490,7 @@ function drawTable() {
   });
 }
 
-function drawAll() { drawRank(); drawScatter(); drawDumbbell(); drawTable(); }
+function drawAll() { drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); drawTable(); }
 
 function setupSeg(id, key, onChange) {
   document.getElementById(id).addEventListener("click", (e) => {
@@ -364,13 +502,26 @@ function setupSeg(id, key, onChange) {
 }
 
 (async function init() {
-  const tr = document.getElementById("track");
-  TRACKS.forEach(([k, l]) => { const b = h("button", l, tr); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === "arena")); });
+  const data = window.ARENA_DATA || {};
+  for (const b of document.querySelectorAll("#lang button")) {
+    if (data[b.dataset.v]) { b.disabled = false; b.removeAttribute("title"); }
+  }
+  const dm = document.getElementById("dim");
+  DIMS.forEach(([k, l]) => { const b = h("button", l, dm); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.dim)); });
   setupSeg("track", "track", () => { drawRank(); drawScatter(); });
   setupSeg("metric", "metric", drawAll);
+  setupSeg("dim", "dim", drawHeat);
   setupSeg("lang", "lang", load);
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => state.data && drawAll());
   await load();
 })();
+
+function buildTrackSeg() {
+  TRACKS = [["arena", "Arena"], ...Object.keys(state.data.tracks).map((k) => [k, TRACK_NAMES[k] || k])];
+  if (!TRACKS.some(([k]) => k === state.track)) state.track = "arena";
+  const tr = document.getElementById("track"); tr.replaceChildren();
+  TRACKS.forEach(([k, l]) => { const b = h("button", l, tr); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.track)); });
+}
 
 async function load() {
   try {
@@ -380,6 +531,9 @@ async function load() {
     document.getElementById("rank").replaceChildren(h("div", "Could not load results.", null, "empty"));
     return;
   }
+  state.bd = (window.ARENA_BREAKDOWN || {})[state.lang] || null;
+  state.sort = null;
+  buildTrackSeg();
   const w = state.data.weights, names = Object.fromEntries(TRACKS);
   document.getElementById("weights").textContent =
     "the weighted mean of the track scores: " + Object.entries(w).map(([k, v]) => `${names[k]} ${Math.round(v * 100)}%`).join(", ");

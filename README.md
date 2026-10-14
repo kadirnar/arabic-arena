@@ -3,6 +3,9 @@
 **A multi-dataset WER/CER benchmark for Arabic and English speech-to-text, built for real-world
 conditions, especially phone calls.**
 
+**Interactive leaderboard:** [Hugging Face Space](https://huggingface.co/spaces/kadirnar/arabic-arena) ·
+[GitHub Pages](https://kadirnar.github.io/arabic-arena/)
+
 A single test set is a poor predictor of how an STT model behaves in production: models that
 lead on read MSA can fall apart on Gulf TV dialogue, Darija, code-switching or an 8 kHz
 call-center line. Arabic Arena scores every model on **many** public test sets plus **simulated
