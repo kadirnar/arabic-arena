@@ -12,7 +12,8 @@ class WhisperHF(ASRModel):
         super().__init__(spec, device)
         from transformers import AutoProcessor, WhisperForConditionalGeneration
 
-        self.processor = AutoProcessor.from_pretrained(spec.hf_id)
+        # some fine-tunes ship weights only; their tokenizer is the base model's
+        self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
         self.model = WhisperForConditionalGeneration.from_pretrained(
             spec.hf_id, dtype=torch_dtype("float16"), attn_implementation="sdpa"
         ).to(device).eval()
@@ -54,7 +55,7 @@ class CohereASR(ASRModel):
         super().__init__(spec, device)
         from transformers import AutoProcessor, CohereAsrForConditionalGeneration
 
-        self.processor = AutoProcessor.from_pretrained(spec.hf_id)
+        self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
         self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
 
     def transcribe(self, audios, language):

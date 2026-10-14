@@ -23,6 +23,8 @@ class ModelSpec:
     batch_size: int = 16
     kwargs: dict[str, Any] = field(default_factory=dict)
     notes: str = ""
+    finetune_of: str | None = None  # base checkpoint, for fine-tunes
+    in_domain: tuple[str, ...] = ()  # benchmark corpora whose *train* split the model was trained on
 
 
 class ASRModel:

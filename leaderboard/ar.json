@@ -349,6 +349,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": 0.2796088546308995,
@@ -571,6 +574,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "4.57.6"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": 0.31642129402682156,
@@ -799,6 +805,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 0.66,
    "inserted_wpm": 17.96,
    "arena_wer": 0.3624364560723889,
@@ -1027,6 +1036,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 52.01,
    "arena_wer": 0.3881921811838845,
@@ -1249,6 +1261,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": 0.4009535986800592,
@@ -1477,12 +1492,240 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "4.57.6"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 0.27666666666666667,
    "inserted_wpm": 35.92,
    "arena_wer": 0.41923123262288764,
    "arena_cer": 0.228446295097205,
    "rtfx": 52.3,
    "audio_hours": 28.46
+  },
+  {
+   "model": "gemma-4-e2b-it",
+   "hf_id": "google/gemma-4-E2B-it",
+   "params_b": 5.1,
+   "license": "Apache-2.0",
+   "kind": "open",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.13469948769211545,
+     "cer": 0.08004536631115182,
+     "rtfx": 48.47,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.24990059642147117,
+     "cer": 0.10500605571255552,
+     "rtfx": 54.65,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.17116997204844936,
+     "cer": 0.08659427542033626,
+     "rtfx": 40.92,
+     "n": 1000
+    },
+    "mgb2/clean": {
+     "wer": 0.20631491483174075,
+     "cer": 0.10124527901227078,
+     "rtfx": 43.27,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.4457619079883461,
+     "cer": 0.22845765934580728,
+     "rtfx": 38.93,
+     "n": 1000
+    },
+    "casablanca/clean": {
+     "wer": 0.5761177653835604,
+     "cer": 0.26489470980996405,
+     "rtfx": 30.31,
+     "n": 994
+    },
+    "mgb3_egy/clean": {
+     "wer": 0.2994614970382337,
+     "cer": 0.1547368758070885,
+     "rtfx": 35.74,
+     "n": 1000
+    },
+    "mgb5_mor/clean": {
+     "wer": 0.6518039761106111,
+     "cer": 0.3085703474806079,
+     "rtfx": 35.55,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.27779082511351183,
+     "cer": 0.13928667076263843,
+     "rtfx": 48.27,
+     "n": 1000
+    },
+    "algerian_cs/clean": {
+     "wer": 0.5242354298903635,
+     "cer": 0.27185262122123216,
+     "rtfx": 37.33,
+     "n": 316
+    },
+    "masc_noisy/clean": {
+     "wer": 0.287317620650954,
+     "cer": 0.13111272414442024,
+     "rtfx": 35.9,
+     "n": 1000
+    },
+    "nadi_robust/clean": {
+     "wer": 0.7397248034310222,
+     "cer": 0.4148361023798833,
+     "rtfx": 34.17,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.17785355348169418,
+     "cer": 0.09171643891303669,
+     "rtfx": 48.05,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.5416389073950699,
+     "cer": 0.3366512135260431,
+     "rtfx": 47.62,
+     "n": 300
+    },
+    "mgb2/noisy": {
+     "wer": 0.32453245324532454,
+     "cer": 0.1715464532484963,
+     "rtfx": 43.38,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.6463239811591235,
+     "cer": 0.36078480379905026,
+     "rtfx": 33.75,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.17121320890165112,
+     "cer": 0.08189749523124551,
+     "rtfx": 48.62,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.43837441705529645,
+     "cer": 0.22184346877556585,
+     "rtfx": 54.84,
+     "n": 300
+    },
+    "mgb2/telephony": {
+     "wer": 0.28465346534653463,
+     "cer": 0.14172093254461401,
+     "rtfx": 43.15,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.5457710423919722,
+     "cer": 0.28459551778721986,
+     "rtfx": 42.06,
+     "n": 300
+    },
+    "casablanca/telephony": {
+     "wer": 0.6659249841068023,
+     "cer": 0.342074120211772,
+     "rtfx": 32.57,
+     "n": 296
+    },
+    "mgb3_egy/telephony": {
+     "wer": 0.4053558327219369,
+     "cer": 0.22511891361969427,
+     "rtfx": 38.5,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.4886934673366834,
+     "cer": 0.2774320647925201,
+     "rtfx": 47.66,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 1.0299800133244503,
+     "cer": 0.6797109353695119,
+     "rtfx": 29.87,
+     "n": 300
+    },
+    "mgb2/callcenter": {
+     "wer": 0.5869086908690869,
+     "cer": 0.34811353581547944,
+     "rtfx": 43.0,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.9297562973581814,
+     "cer": 0.5993918187119887,
+     "rtfx": 24.18,
+     "n": 300
+    },
+    "casablanca/callcenter": {
+     "wer": 0.8277177368086459,
+     "cer": 0.5053254437869823,
+     "rtfx": 24.16,
+     "n": 296
+    },
+    "mgb3_egy/callcenter": {
+     "wer": 0.667094644167278,
+     "cer": 0.4252205802258451,
+     "rtfx": 31.32,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": 0.341903764689316,
+     "cer": 0.16619382111247277,
+     "done": 8,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": 0.4010131275019377,
+     "cer": 0.20556964599193528,
+     "done": 2,
+     "total": 2
+    },
+    "noisy": {
+     "wer": 0.4528985532271981,
+     "cer": 0.2511079560018216,
+     "done": 6,
+     "total": 6
+    },
+    "telephony": {
+     "wer": 0.41854882508736563,
+     "cer": 0.21620840802835192,
+     "done": 6,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": 0.7550251416440544,
+     "cer": 0.47253239645038786,
+     "done": 6,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.13",
+    "host": "kadir",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "transformers": "5.19.0"
+   },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
+   "hallucination_rate": null,
+   "inserted_wpm": null,
+   "arena_wer": 0.4624172067218181,
+   "arena_cer": 0.25413915628458017,
+   "rtfx": 39.6,
+   "audio_hours": 27.71
   },
   {
    "model": "qwen3-asr-0.6b",
@@ -1705,6 +1948,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 0.48333333333333334,
    "inserted_wpm": 25.77,
    "arena_wer": 0.5033059601724924,
@@ -1927,6 +2173,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": 0.5045182116523271,
@@ -2155,6 +2404,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 63.73,
    "arena_wer": 0.6257955229665003,
@@ -2383,6 +2635,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 0.49666666666666665,
    "inserted_wpm": 19.05,
    "arena_wer": 0.637263267734811,
@@ -2611,6 +2866,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 136.65,
    "arena_wer": 0.7382495732602163,
@@ -2839,6 +3097,9 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 0.77,
    "inserted_wpm": 39.56,
    "arena_wer": 0.7774528430971707,
@@ -3067,216 +3328,15 @@
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 650.66,
    "arena_wer": 1.0740404067248117,
    "arena_cer": 0.7436157824256385,
    "rtfx": 117.4,
    "audio_hours": 28.46
-  },
-  {
-   "model": "gemma-4-e2b-it",
-   "hf_id": "google/gemma-4-E2B-it",
-   "params_b": 5.1,
-   "license": "Apache-2.0",
-   "kind": "open",
-   "sets": {
-    "fleurs_ar/clean": {
-     "wer": 0.13469948769211545,
-     "cer": 0.08004536631115182,
-     "rtfx": 48.47,
-     "n": 428
-    },
-    "cv18_ar/clean": {
-     "wer": 0.24990059642147117,
-     "cer": 0.10500605571255552,
-     "rtfx": 54.65,
-     "n": 1000
-    },
-    "masc_clean/clean": {
-     "wer": 0.17116997204844936,
-     "cer": 0.08659427542033626,
-     "rtfx": 40.92,
-     "n": 1000
-    },
-    "mgb2/clean": {
-     "wer": 0.20623182384711258,
-     "cer": 0.10158749412460388,
-     "rtfx": 43.27,
-     "n": 1000
-    },
-    "sada/clean": {
-     "wer": 0.4457619079883461,
-     "cer": 0.22845765934580728,
-     "rtfx": 38.93,
-     "n": 1000
-    },
-    "casablanca/clean": {
-     "wer": 0.5761177653835604,
-     "cer": 0.26489470980996405,
-     "rtfx": 30.31,
-     "n": 994
-    },
-    "mgb3_egy/clean": {
-     "wer": 0.2994614970382337,
-     "cer": 0.1547368758070885,
-     "rtfx": 35.74,
-     "n": 1000
-    },
-    "mgb5_mor/clean": {
-     "wer": 0.6518039761106111,
-     "cer": 0.3085703474806079,
-     "rtfx": 35.55,
-     "n": 1000
-    },
-    "mixat_cs/clean": {
-     "wer": 0.27779082511351183,
-     "cer": 0.13928667076263843,
-     "rtfx": 48.27,
-     "n": 1000
-    },
-    "algerian_cs/clean": {
-     "wer": 0.5242354298903635,
-     "cer": 0.27185262122123216,
-     "rtfx": 37.33,
-     "n": 316
-    },
-    "masc_noisy/clean": {
-     "wer": 0.287317620650954,
-     "cer": 0.13111272414442024,
-     "rtfx": 35.9,
-     "n": 1000
-    },
-    "nadi_robust/clean": {
-     "wer": 0.7397248034310222,
-     "cer": 0.4148361023798833,
-     "rtfx": 34.17,
-     "n": 1000
-    },
-    "fleurs_ar/noisy": {
-     "wer": 0.17785355348169418,
-     "cer": 0.09171643891303669,
-     "rtfx": 48.05,
-     "n": 300
-    },
-    "cv18_ar/noisy": {
-     "wer": 0.5416389073950699,
-     "cer": 0.3366512135260431,
-     "rtfx": 47.62,
-     "n": 300
-    },
-    "mgb2/noisy": {
-     "wer": 0.32453245324532454,
-     "cer": 0.1715464532484963,
-     "rtfx": 43.38,
-     "n": 300
-    },
-    "sada/noisy": {
-     "wer": 0.6463239811591235,
-     "cer": 0.36078480379905026,
-     "rtfx": 33.75,
-     "n": 300
-    },
-    "fleurs_ar/telephony": {
-     "wer": 0.17121320890165112,
-     "cer": 0.08189749523124551,
-     "rtfx": 48.62,
-     "n": 300
-    },
-    "cv18_ar/telephony": {
-     "wer": 0.43837441705529645,
-     "cer": 0.22184346877556585,
-     "rtfx": 54.84,
-     "n": 300
-    },
-    "mgb2/telephony": {
-     "wer": 0.28465346534653463,
-     "cer": 0.14172093254461401,
-     "rtfx": 43.15,
-     "n": 300
-    },
-    "sada/telephony": {
-     "wer": 0.5457710423919722,
-     "cer": 0.28459551778721986,
-     "rtfx": 42.06,
-     "n": 300
-    },
-    "casablanca/telephony": {
-     "wer": 0.6659249841068023,
-     "cer": 0.342074120211772,
-     "rtfx": 32.57,
-     "n": 296
-    },
-    "mgb3_egy/telephony": {
-     "wer": 0.4053558327219369,
-     "cer": 0.22511891361969427,
-     "rtfx": 38.5,
-     "n": 300
-    },
-    "fleurs_ar/callcenter": {
-     "wer": 0.4886934673366834,
-     "cer": 0.2774320647925201,
-     "rtfx": 47.66,
-     "n": 300
-    },
-    "cv18_ar/callcenter": {
-     "wer": 1.0299800133244503,
-     "cer": 0.6797109353695119,
-     "rtfx": 29.87,
-     "n": 300
-    },
-    "mgb2/callcenter": {
-     "wer": 0.5869086908690869,
-     "cer": 0.34811353581547944,
-     "rtfx": 43.0,
-     "n": 300
-    }
-   },
-   "tracks": {
-    "clean": {
-     "wer": 0.3418933783162375,
-     "cer": 0.1662365980015144,
-     "done": 8,
-     "total": 8
-    },
-    "codeswitch": {
-     "wer": 0.4010131275019377,
-     "cer": 0.20556964599193528,
-     "done": 2,
-     "total": 2
-    },
-    "noisy": {
-     "wer": 0.4528985532271981,
-     "cer": 0.2511079560018216,
-     "done": 6,
-     "total": 6
-    },
-    "telephony": {
-     "wer": 0.41854882508736563,
-     "cer": 0.21620840802835192,
-     "done": 6,
-     "total": 6
-    },
-    "callcenter": {
-     "wer": null,
-     "cer": null,
-     "done": 3,
-     "total": 6
-    }
-   },
-   "env": {
-    "python": "3.12.13",
-    "host": "kadir",
-    "torch": "2.11.0+cu128",
-    "gpu": "NVIDIA GeForce RTX 5070 Ti",
-    "transformers": "5.19.0"
-   },
-   "hallucination_rate": null,
-   "inserted_wpm": null,
-   "arena_wer": null,
-   "arena_cer": null,
-   "rtfx": 40.9,
-   "audio_hours": 26.1
   }
  ]
 }

@@ -45,7 +45,13 @@ class NeMoASR(ASRModel):
         super().__init__(spec, device)
         import nemo.collections.asr as nemo_asr
 
-        self.model = nemo_asr.models.ASRModel.from_pretrained(spec.hf_id).to(device).eval()
+        if spec.kwargs.get("nemo_file"):  # HF repos whose .nemo is not named after the repo
+            from huggingface_hub import hf_hub_download
+
+            path = hf_hub_download(spec.hf_id, spec.kwargs["nemo_file"])
+            self.model = nemo_asr.models.ASRModel.restore_from(path, map_location=device).eval()
+        else:
+            self.model = nemo_asr.models.ASRModel.from_pretrained(spec.hf_id).to(device).eval()
         if spec.kwargs.get("decoder") and hasattr(self.model, "change_decoding_strategy"):
             self.model.change_decoding_strategy(decoder_type=spec.kwargs["decoder"])
 

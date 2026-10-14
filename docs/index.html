@@ -71,6 +71,7 @@ td.model a:hover { text-decoration: underline; }
 td.best { font-weight: 700; }
 tr:hover td { background: var(--hover); }
 .pending { color: var(--muted); }
+.tag { color: var(--muted); font-size: 11px; font-weight: 400; margin-left: 4px; }
 details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin: 8px 0; }
 .method { color: var(--ink-2); font-size: 14px; }
 .method li { margin: 4px 0; }
@@ -148,7 +149,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
 
   <section class="card">
     <h2>All results</h2>
-    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score.</p>
+    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score. "fine-tune" marks community fine-tunes; "† in-domain" marks models trained on the train split of one of the benchmark corpora, so their score on that corpus is not zero-shot (hover for details).</p>
     <div class="table-wrap"><table id="tbl"></table></div>
     <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
   </section>
@@ -466,6 +467,11 @@ function drawTable() {
     h("td", String(r + 1), row);
     const td = h("td", null, row, "model");
     const a = h("a", m.model, td); a.href = `https://huggingface.co/${m.hf_id}`;
+    if (m.finetune_of || (m.in_domain || []).length) {
+      const tag = h("span", m.in_domain?.length ? " † in-domain" : " fine-tune", td, "tag");
+      tag.title = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
+        + (m.in_domain?.length ? ` Trained on the train split of: ${m.in_domain.join(", ")}.` : "");
+    }
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([k], j) => {
       const v = score(m, k), t = m.tracks[k];

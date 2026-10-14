@@ -14,6 +14,7 @@ import json
 import re
 
 from .data import ROOT, Suite
+from .models.registry import get_spec
 from .runner import RESULTS_DIR
 
 LB_DIR = ROOT / "leaderboard"
@@ -41,6 +42,11 @@ def collect(suite: Suite) -> dict:
         row = {"model": s["model"], "hf_id": s.get("hf_id"), "params_b": s.get("params_b"),
                "license": s.get("license"), "kind": s.get("kind", "open"), "sets": {}, "tracks": {},
                "env": s.get("env", {})}
+        try:
+            spec = get_spec(s["model"])
+            row.update(finetune_of=spec.finetune_of, in_domain=list(spec.in_domain), notes=spec.notes)
+        except KeyError:
+            row.update(finetune_of=None, in_domain=[], notes="")
         for key, r in res.items():
             row["sets"][key] = {"wer": r["wer"], "cer": r["cer"], "rtfx": r.get("rtfx"), "n": r["num_utterances"]}
         h = res.get("noise_only/clean")
@@ -87,7 +93,8 @@ def to_markdown(lb: dict) -> str:
     head.insert(-1, "Halluc. %")
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for i, r in enumerate(lb["models"], 1):
-        cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']})",
+        mark = " †" if r.get("in_domain") else ""
+        cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']}){mark}",
                  f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(r['arena_wer'])}**", _pct(r["arena_cer"])]
         for t in tracks:
             tr = r["tracks"][t]
@@ -100,6 +107,10 @@ def to_markdown(lb: dict) -> str:
     lines.append(f"WER/CER in %, lower is better. Arena = weighted mean of track WERs ({weights}). "
                  "Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which "
                  "the model output any words; not part of the Arena score.")
+    flagged = [f"{r['model']} ({', '.join(r['in_domain'])})" for r in lb["models"] if r.get("in_domain")]
+    if flagged:
+        lines.append("")
+        lines.append("† Trained on the train split of a benchmark corpus (in-domain, not zero-shot): " + "; ".join(flagged) + ".")
 
     # Per-set detail
     keys = [k for t in tracks for k in lb["tracks"][t]]
