@@ -327,7 +327,7 @@ function drawTable() {
     const row = h("tr", null, tb);
     h("td", String(r + 1), row);
     const td = h("td", null, row, "model");
-    const a = h("a", m.model, td); a.href = m.kind === "open" ? `https://huggingface.co/${m.hf_id}` : "#";
+    const a = h("a", m.model, td); a.href = `https://huggingface.co/${m.hf_id}`;
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([k], j) => {
       const v = score(m, k), t = m.tracks[k];

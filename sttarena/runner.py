@@ -47,6 +47,23 @@ def _clean_hyp(text: str) -> str:
     return " ".join((text or "").split())
 
 
+def _transcribe(model, batch: list, lang: str) -> list[str]:
+    """Transcribe a batch; on CUDA OOM, halve it and retry instead of losing the whole batch."""
+    try:
+        return model.transcribe(batch, lang)
+    except Exception as e:
+        if "out of memory" not in str(e).lower() or len(batch) == 1:
+            raise
+        try:
+            import torch
+
+            torch.cuda.empty_cache()
+        except ImportError:
+            pass
+        h = len(batch) // 2
+        return _transcribe(model, batch[:h], lang) + _transcribe(model, batch[h:], lang)
+
+
 def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditions: list[str] | None = None,
         limit: int | None = None, batch_size: int | None = None, force: bool = False) -> dict:
     suite = Suite.load(suite_name)
@@ -101,7 +118,7 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
             cuda_sync()
             t0 = time.perf_counter()
             try:
-                out = model.transcribe(batch, lang)
+                out = _transcribe(model, batch, lang)
             except Exception as e:  # keep going; a failed batch scores as deletions
                 print(f"[error] {key} batch {start}: {type(e).__name__}: {e}")
                 out = [""] * len(idx)
@@ -127,8 +144,7 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
                 f.write(json.dumps({"id": r["id"], "ref": r["text"], "hyp": h, "ref_norm": rn, "hyp_norm": hn,
                                     "wer": round(utterance_wer(rn, hn), 4), "duration": r["duration"]},
                                    ensure_ascii=False) + "\n")
-        speed = model.pop_speed_factor() if hasattr(model, "pop_speed_factor") else None
-        res = {**score, "track": track, "speed_factor": speed, "set": name, "condition": cond,
+        res = {**score, "track": track, "set": name, "condition": cond,
                "audio_hours": round(audio_sec / 3600, 4), "seconds": round(elapsed, 2),
                "rtfx": round(audio_sec / elapsed, 2) if elapsed else None, "limit": limit,
                "date": datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -136,6 +152,6 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
         if limit is None:
             summary["results"][key] = res
             summary.update(model=model_key, hf_id=spec.hf_id, params_b=spec.params_b, license=spec.license,
-                           kind=spec.kind, usd_per_min=spec.kwargs.get("usd_per_min"), language=lang, env=_env_info(), batch_size=bs)
+                           kind=spec.kind, language=lang, env=_env_info(), batch_size=bs)
             summary_path.write_text(json.dumps(summary, indent=1, ensure_ascii=False))
     return summary

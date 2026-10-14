@@ -17,12 +17,6 @@ BACKENDS = {
     "faster_whisper": "sttarena.models.extra_backends:FasterWhisper",
     "nemo": "sttarena.models.extra_backends:NeMoASR",
     "omniasr": "sttarena.models.extra_backends:OmniASR",
-    "openai_api": "sttarena.models.api_backends:OpenAITranscribe",
-    "elevenlabs_api": "sttarena.models.api_backends:ElevenLabsScribe",
-    "deepgram_api": "sttarena.models.api_backends:DeepgramListen",
-    "mistral_api": "sttarena.models.api_backends:MistralTranscribe",
-    "gemini_api": "sttarena.models.api_backends:GeminiTranscribe",
-    "assemblyai_api": "sttarena.models.api_backends:AssemblyAITranscribe",
 }
 
 _M = ModelSpec
@@ -75,23 +69,6 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
 
 
 
-
-def _api(key, backend, model_id, usd_per_min, notes=""):
-    return ModelSpec(key, backend, model_id, None, "commercial", kind="api", batch_size=8,
-                     kwargs={"usd_per_min": usd_per_min}, notes=notes)
-
-
-# List prices (USD / audio minute) as of 2026-10; see docs/ROADMAP.md M4. Keys: env vars per backend.
-MODELS.update({m.key: m for m in [
-    _api("openai/gpt-4o-transcribe", "openai_api", "gpt-4o-transcribe", 0.006),
-    _api("openai/gpt-4o-mini-transcribe", "openai_api", "gpt-4o-mini-transcribe", 0.003),
-    _api("openai/whisper-1", "openai_api", "whisper-1", 0.006),
-    _api("elevenlabs/scribe-v2", "elevenlabs_api", "scribe_v2", 0.0037),
-    _api("deepgram/nova-3", "deepgram_api", "nova-3", 0.0043),
-    _api("mistral/voxtral-mini-transcribe", "mistral_api", "voxtral-mini-latest", 0.003),
-    _api("google/gemini-2.5-flash", "gemini_api", "gemini-2.5-flash", 0.0025, "prompted, token-billed estimate"),
-    _api("assemblyai/universal", "assemblyai_api", "universal", 0.0025),
-]})
 
 
 def get_spec(key: str) -> ModelSpec:

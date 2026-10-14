@@ -30,14 +30,11 @@ Every item below is tracked as a GitHub issue; milestones group them.
 - [ ] Same simulated telephony / call-center tracks as Arabic
 - [ ] English models: Parakeet-TDT v3, Canary-1B-v2, Canary-Qwen-2.5B, Granite-Speech, distil-whisper
 
-## M4 — API models (Artificial-Analysis style)
-- [ ] Common async API runner with retries, caching and cost accounting
-- [ ] OpenAI, ElevenLabs Scribe v2, Deepgram Nova-3, AssemblyAI, Google Chirp 3 / Gemini,
-      Azure, AWS Transcribe, Speechmatics, Soniox, Gladia, Mistral Voxtral, Rev.ai
-- [ ] Price per 1,000 audio minutes and speed factor (end-to-end) columns
+## M4 — API models (dropped)
+Out of scope: the arena evaluates open-weight models only.
 
 ## M5 — Leaderboard UX
-- [ ] Interactive site: WER vs speed, WER vs price, per-dialect, per-condition charts
+- [ ] Interactive site: WER vs speed, per-dialect, per-condition charts
 - [ ] HF Space mirror; model submission flow (PR with summary.json, or request issue)
 - [ ] Per-dialect breakdown (Casablanca / NADI countries)
 

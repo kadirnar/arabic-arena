@@ -33,6 +33,11 @@ telephony and call-center channels**, and averages them into one Arena score, in
 | 7 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **50.33** | 24.85 | 42.50 | 45.88 | 45.69 | 49.70 | 70.38 | 48.33 | 100.5 |
 | 8 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **50.45** | 31.29 | 40.44 | 49.26 | 47.06 | 44.48 | 77.09 | — | 45.1 |
 | 9 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **62.58** | 40.41 | 47.70 | 56.88 | 52.09 | 58.78 | 103.16 | 100.00 | 105.1 |
+| 10 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) | 0.96 | **63.73** | 32.12 | 56.59 | 68.13 | 58.21 | 62.57 | 79.31 | 49.67 | 445.5 |
+| 11 | [whisper-medium](https://huggingface.co/openai/whisper-medium) | 0.76 | **73.83** | 51.43 | 58.29 | 75.95 | 64.35 | 69.54 | 111.35 | 100.00 | 56.8 |
+| 12 | [wav2vec2-large-xlsr-53-arabic](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-arabic) | 0.32 | **77.75** | 48.19 | 69.52 | 87.17 | 75.25 | 77.72 | 89.32 | 77.00 | 1186.0 |
+| 13 | [whisper-small](https://huggingface.co/openai/whisper-small) | 0.24 | **107.41** | 74.36 | 77.44 | 88.45 | 90.49 | 88.88 | 200.54 | 100.00 | 117.4 |
+| 14 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **—** | — | 34.19 | (0/2) | (0/6) | (0/6) | (0/6) | — | 39.5 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Noisy 15%, Code-switch 10%, Telephony 20%, Call-center 20%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score.
 
@@ -49,6 +54,11 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 | qwen3-asr-0.6b | 18.07 | 27.36 | 20.24 | 25.08 | 52.18 | 67.79 | 47.87 | 81.39 | 28.49 | 63.27 | 34.19 | 78.42 | 22.45 | 39.51 | 34.93 | 64.63 | 25.86 | 39.64 | 32.73 | 64.04 | 78.89 | 57.04 | 51.42 | 71.22 | 57.89 | 79.34 | 88.72 | 73.72 |
 | whisper-large-v3 | 9.48 | 15.01 | 10.54 | 16.20 | 69.02 | 62.67 | 37.22 | 103.40 | 28.41 | 70.11 | 23.79 | 96.89 | 13.12 | 28.11 | 22.11 | 98.32 | 13.17 | 26.38 | 18.89 | 81.00 | 72.76 | 54.70 | 34.49 | 74.55 | 51.24 | 88.22 | 143.42 | 70.62 |
 | whisper-large-v3-turbo | 10.13 | 23.02 | 10.34 | 17.19 | 85.47 | 85.55 | 42.88 | 106.98 | 24.58 | 89.18 | 26.21 | 115.33 | 14.23 | 37.77 | 29.26 | 89.72 | 14.50 | 30.98 | 21.48 | 95.31 | 110.33 | 80.06 | 45.85 | 103.00 | 64.63 | 124.14 | 156.68 | 124.63 |
+| mms-1b-all | 23.62 | 26.26 | 34.62 | 39.34 | 80.87 | 85.20 | 73.62 | 89.16 | 61.34 | 74.93 | 52.08 | 92.14 | 29.61 | 40.71 | 47.85 | 86.89 | 31.05 | 38.71 | 46.42 | 87.69 | 91.80 | 79.75 | 58.58 | 66.76 | 70.27 | 94.78 | 96.03 | 89.45 |
+| whisper-medium | 16.22 | 27.77 | 16.04 | 33.53 | 103.24 | 88.27 | 59.02 | 122.27 | 70.31 | 81.59 | 32.83 | 123.36 | 20.78 | 56.96 | 44.80 | 107.39 | 25.70 | 40.24 | 34.74 | 129.92 | 104.42 | 82.21 | 54.11 | 107.93 | 72.77 | 152.77 | 166.02 | 114.49 |
+| wav2vec2-large-xlsr-53-arabic | 69.19 | 22.96 | 41.78 | 55.89 | 93.84 | 91.51 | 85.93 | 95.10 | 86.94 | 87.39 | 63.95 | 96.47 | 76.15 | 48.03 | 70.38 | 96.54 | 75.50 | 38.91 | 68.12 | 96.97 | 96.57 | 90.24 | 85.64 | 71.02 | 85.75 | 98.98 | 98.95 | 95.56 |
+| whisper-small | 27.74 | 41.37 | 26.18 | 46.98 | 122.43 | 104.75 | 69.35 | 180.68 | 64.44 | 112.46 | 46.96 | 168.00 | 36.06 | 90.21 | 62.82 | 138.93 | 39.43 | 76.48 | 47.61 | 151.46 | 129.18 | 89.10 | 90.49 | 321.65 | 142.16 | 238.87 | 230.07 | 179.99 |
+| gemma-4-e2b-it | 13.47 | 24.99 | 17.12 | 20.63 | 44.58 | 57.61 | 29.95 | 65.18 | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — | — |
 
 </details>
 <!-- LEADERBOARD:ar:END -->
@@ -114,31 +124,10 @@ sttarena leaderboard --suite arabic                # refresh tables
 Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
 [`scripts/setup_envs.sh`](scripts/setup_envs.sh).
 
-### Commercial APIs
+### Scope: open-weight models only
 
-The following backends are registered:
-
-| Provider | Model key(s) | Key variable |
-|---|---|---|
-| OpenAI | `openai/gpt-4o-transcribe`, `openai/gpt-4o-mini-transcribe`, `openai/whisper-1` | `OPENAI_API_KEY` |
-| ElevenLabs | `elevenlabs/scribe-v2` | `ELEVENLABS_API_KEY` |
-| Deepgram | `deepgram/nova-3` | `DEEPGRAM_API_KEY` |
-| Mistral | `mistral/voxtral-mini-transcribe` | `MISTRAL_API_KEY` |
-| Google | `google/gemini-2.5-flash` | `GEMINI_API_KEY` |
-| AssemblyAI | `assemblyai/universal` | `ASSEMBLYAI_API_KEY` |
-
-Export the key, then run the model the same way as an open one:
-
-```bash
-export DEEPGRAM_API_KEY=...
-sttarena run -m deepgram/nova-3 --suite arabic
-```
-
-- Requests run concurrently and retry with backoff.
-- Responses are cached by audio hash, so a re-run is never billed twice.
-- The leaderboard adds two columns for these models, measured the way Artificial Analysis does:
-  - **speed factor**: audio duration ÷ end-to-end latency, as the median per request.
-  - **$ / 1000 min**: the list price.
+The arena only evaluates models whose weights are public and that run locally. Closed
+commercial APIs are out of scope.
 
 ### Adding a model
 
