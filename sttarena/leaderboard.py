@@ -6,6 +6,7 @@ Per track: macro average over the track's sets (each set weighs the same, as on 
 Arena WER: weighted mean of track scores, weights from the suite's `scoring` block.
 RTFx:      total audio seconds / total transcription seconds over every set (batch inference
            on the local GPU, model loading excluded).
+95% CI:    paired bootstrap over utterances (see bootstrap.py), for Arena WER and the rank.
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ from __future__ import annotations
 import json
 import re
 
+from . import bootstrap
 from .data import ROOT, Suite
 from .models.registry import get_spec
 from .runner import RESULTS_DIR
@@ -35,6 +37,7 @@ def collect(suite: Suite) -> dict:
         if track != "hallucination":
             tracks.setdefault(track, []).append(f"{name}/{cond}")
     weights = {t: v["weight"] for t, v in suite.scoring.get("tracks", {}).items()}
+    boot = bootstrap.load(lang)["models"]
     rows = []
     for path in sorted((RESULTS_DIR / lang).glob("*/summary.json")):
         s = json.loads(path.read_text())
@@ -66,6 +69,12 @@ def collect(suite: Suite) -> dict:
             row["arena_cer"] = sum(row["tracks"][t]["cer"] * w for t, w in tw.items()) / z
         else:
             row["arena_wer"] = row["arena_cer"] = None
+        b = boot.get(s["model"], {})
+        row["arena_ci"] = b.get("arena_wer") if row["arena_wer"] is not None else None
+        row["rank_range"] = b.get("rank") if row["arena_wer"] is not None else None
+        for t, ci in b.get("tracks", {}).items():
+            if t in row["tracks"] and row["tracks"][t]["wer"] is not None:
+                row["tracks"][t]["ci"] = ci
         secs = sum(r.get("seconds") or 0 for r in res.values())
         hours = sum(r.get("audio_hours") or 0 for r in res.values())
         row["rtfx"] = round(hours * 3600 / secs, 1) if secs else None
@@ -89,13 +98,17 @@ def _pct(x):
 
 def to_markdown(lb: dict) -> str:
     tracks = list(lb["tracks"])
-    head = ["#", "Model", "Params (B)", "**Arena WER**", "Arena CER", *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
+    head = ["#", "Model", "Params (B)", "**Arena WER**", "95% CI", "Rank range", "Arena CER",
+            *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
     head.insert(-1, "Halluc. %")
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for i, r in enumerate(lb["models"], 1):
         mark = " †" if r.get("in_domain") else ""
         cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']}){mark}",
-                 f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(r['arena_wer'])}**", _pct(r["arena_cer"])]
+                 f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(r['arena_wer'])}**",
+                 f"{_pct(r['arena_ci'][0])}–{_pct(r['arena_ci'][1])}" if r.get("arena_ci") else "—",
+                 (lambda rr: "—" if not rr else str(rr[0]) if rr[0] == rr[1] else f"{rr[0]}–{rr[1]}")(r.get("rank_range")),
+                 _pct(r["arena_cer"])]
         for t in tracks:
             tr = r["tracks"][t]
             cells.append(_pct(tr["wer"]) if tr["wer"] is not None else f"({tr['done']}/{tr['total']})")
@@ -106,7 +119,9 @@ def to_markdown(lb: dict) -> str:
     lines.append("")
     lines.append(f"WER/CER in %, lower is better. Arena = weighted mean of track WERs ({weights}). "
                  "Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which "
-                 "the model output any words; not part of the Arena score.")
+                 "the model output any words; not part of the Arena score. 95% CI and rank range: paired "
+                 "bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not "
+                 "reliably separated by this benchmark.")
     flagged = [f"{r['model']} ({', '.join(r['in_domain'])})" for r in lb["models"] if r.get("in_domain")]
     if flagged:
         lines.append("")
@@ -124,6 +139,8 @@ def to_markdown(lb: dict) -> str:
 
 def build(suite_name: str) -> dict:
     suite = Suite.load(suite_name)
+    if any((RESULTS_DIR / suite.language).glob("*/predictions")):
+        bootstrap.save(suite_name)  # otherwise keep the committed bootstrap.json
     lb = collect(suite)
     lang = suite.language
     LB_DIR.mkdir(exist_ok=True)

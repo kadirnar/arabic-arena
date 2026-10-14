@@ -72,6 +72,9 @@ td.best { font-weight: 700; }
 tr:hover td { background: var(--hover); }
 .pending { color: var(--muted); }
 .tag { color: var(--muted); font-size: 11px; font-weight: 400; margin-left: 4px; }
+.ci { display: block; color: var(--muted); font-size: 11px; font-weight: 400; }
+svg .halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+svg .whisker { stroke: var(--ink-2); stroke-width: 1.5; }
 details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin: 8px 0; }
 .method { color: var(--ink-2); font-size: 14px; }
 .method li { margin: 4px 0; }
@@ -149,7 +152,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
 
   <section class="card">
     <h2>All results</h2>
-    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score. "fine-tune" marks community fine-tunes; "† in-domain" marks models trained on the train split of one of the benchmark corpora, so their score on that corpus is not zero-shot (hover for details).</p>
+    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Small grey numbers are 95% bootstrap intervals (WER) and, under the rank, the rank range. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score. "fine-tune" marks community fine-tunes; "† in-domain" marks models trained on the train split of one of the benchmark corpora, so their score on that corpus is not zero-shot (hover for details).</p>
     <div class="table-wrap"><table id="tbl"></table></div>
     <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
   </section>
@@ -157,9 +160,10 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
   <section class="card method">
     <h2>How scores are computed</h2>
     <ul>
-      <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same Arabic normalization is applied to references and hypotheses.</li>
+      <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same normalization is applied to references and hypotheses (Arabic: diacritics, alef/hamza/ta-marbuta spellings and punctuation are unified and digits are written out as words).</li>
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
+      <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
       <li><b>Models</b>: open-weight models only, all run locally.</li>
@@ -213,6 +217,13 @@ function score(m, track = state.track, metric = state.metric) {
   const t = m.tracks[track];
   return t ? t[metric] : null;
 }
+// 95% bootstrap interval (WER only; CER intervals are not computed).
+function ciOf(m, track = state.track, metric = state.metric) {
+  if (metric !== "wer") return null;
+  return track === "arena" ? m.arena_ci : m.tracks[track]?.ci ?? null;
+}
+const ciText = (c) => (c ? `${pct(c[0])}–${pct(c[1])}` : "—");
+const rankText = (r) => (!r ? "—" : r[0] === r[1] ? String(r[0]) : `${r[0]}–${r[1]}`);
 function showTip(evt, title, rows) {
   tip.replaceChildren();
   h("div", title, tip, "t");
@@ -253,7 +264,7 @@ function drawRank() {
   const W = 1000, labelW = 270, row = 28, bar = 18, top = 8, right = 60;
   const H = top + ms.length * row + 24;
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${label} ranking` }, box);
-  const max = niceMax(Math.max(...ms.map((m) => score(m))) * 100);
+  const max = niceMax(Math.max(...ms.map((m) => Math.max(score(m), ciOf(m)?.[1] ?? 0))) * 100);
   const x = (v) => labelW + (v * 100 / max) * (W - labelW - right);
   for (let i = 0; i <= 4; i++) {
     const v = (max / 4) * i, gx = labelW + (v / max) * (W - labelW - right);
@@ -267,9 +278,17 @@ function drawRank() {
     const w = Math.max(x1 - x0, r);
     el("path", { d: `M${x0},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
       fill: "var(--s1)" }, svg);
-    el("text", { x: x0 + w + 6, y: y + bar / 2 + 4, fill: "var(--ink)" }, svg).textContent = pct(v);
+    const c = ciOf(m), cy = y + bar / 2;
+    if (c) {
+      el("line", { x1: x(c[0]), x2: x(c[1]), y1: cy, y2: cy, class: "whisker" }, svg);
+      for (const cx of [x(c[0]), x(c[1])]) el("line", { x1: cx, x2: cx, y1: cy - 4, y2: cy + 4, class: "whisker" }, svg);
+    }
+    el("text", { x: Math.max(x0 + w, c ? x(c[1]) : 0) + 6, y: cy + 4, fill: "var(--ink)" }, svg).textContent = pct(v);
     const hit = el("rect", { x: 0, y: top + i * row, width: W, height: row, fill: "transparent" }, svg);
-    bindHover(hit, (e) => showTip(e, m.model, [[`${label} ${state.metric.toUpperCase()}`, pct(v) + "%"],
+    const rows = [[`${label} ${state.metric.toUpperCase()}`, pct(v) + "%"]];
+    if (c) rows.push(["95% CI", ciText(c) + "%"]);
+    if (state.track === "arena" && m.rank_range) rows.push(["Rank range (95%)", rankText(m.rank_range)]);
+    bindHover(hit, (e) => showTip(e, m.model, [...rows,
       ["RTFx", String(m.rtfx ?? "—")], ["Params", m.params_b ? m.params_b + "B" : "—"]]));
   });
 }
@@ -298,27 +317,29 @@ function drawScatter() {
   }
   el("text", { x: W - R, y: H - 2, "text-anchor": "end", class: "muted" }, svg).textContent = "RTFx (faster →)";
   const best = new Set([...ms].sort((a, b) => score(a) - score(b)).slice(0, 4).map((m) => m.model));
-  const placed = [];  // label boxes already drawn, to nudge colliding labels apart
-  for (const m of ms) {
-    const cx = X(m.rtfx), cy = Y(score(m));
+  const pts = ms.map((m) => ({ m, cx: X(m.rtfx), cy: Y(score(m)) }));
+  for (const { m, cx, cy } of pts) {
     el("circle", { cx, cy, r: 5, fill: "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
-    if (best.has(m.model)) {
-      const t = el("text", { x: cx + 9, y: cy + 4 }, svg); t.textContent = m.model;
-      const w = t.getComputedTextLength() || m.model.length * 7.5, pref = cx > W * 0.6 ? ["end", "start"] : ["start", "end"];
-      const cands = [0, -14, 14].flatMap((dy) => pref.map((anchor) => ({ anchor, dy })));
-      const box = ({ anchor, dy }) => ({ x0: anchor === "end" ? cx - 9 - w : cx + 9, w, y: cy + 4 + dy });
-      const fits = (c) => { const b = box(c);
-        return b.x0 >= L && b.x0 + w <= W && !placed.some((p) => b.x0 < p.x0 + p.w + 4 && b.x0 + w + 4 > p.x0 && Math.abs(b.y - p.y) < 15); };
-      const c = cands.find(fits);
-      if (!c) t.remove();  // no free spot next to the point: leave it to the tooltip
-      else {
-        const bx = box(c);
-        placed.push(bx);
-        t.setAttribute("x", c.anchor === "end" ? cx - 9 : cx + 9); t.setAttribute("y", bx.y); t.setAttribute("text-anchor", c.anchor);
-      }
-    }
     const hit = el("circle", { cx, cy, r: 12, fill: "transparent" }, svg);
     bindHover(hit, (e) => showTip(e, m.model, [[state.metric.toUpperCase(), pct(score(m)) + "%"], ["RTFx", String(m.rtfx)]]));
+  }
+  // Direct labels for the best few, placed where they hit neither another label nor another point.
+  const placed = [];
+  for (const { m, cx, cy } of pts.filter((p) => best.has(p.m.model))) {
+    const t = el("text", { x: cx + 9, y: cy + 4, class: "halo", "pointer-events": "none" }, svg); t.textContent = m.model;
+    const w = t.getComputedTextLength() || m.model.length * 7.5, pref = cx > W * 0.6 ? ["end", "start"] : ["start", "end"];
+    const cands = [0, -14, 14, -28, 28].flatMap((dy) => pref.map((anchor) => ({ anchor, dy })));
+    const box = ({ anchor, dy }) => ({ x0: anchor === "end" ? cx - 9 - w : cx + 9, w, y: cy + 4 + dy });
+    const hitsPoint = (b) => pts.some((p) => !(p.cx === cx && p.cy === cy)
+      && p.cx + 6 > b.x0 && p.cx - 6 < b.x0 + b.w && p.cy + 6 > b.y - 11 && p.cy - 6 < b.y + 3);
+    const fits = (c) => { const b = box(c);
+      return b.x0 >= L && b.x0 + w <= W && b.y - 11 >= T && b.y + 3 <= H - B && !hitsPoint(b)
+        && !placed.some((p) => b.x0 < p.x0 + p.w + 4 && b.x0 + w + 4 > p.x0 && Math.abs(b.y - p.y) < 15); };
+    const c = cands.find(fits);
+    if (!c) { t.remove(); continue; }  // no free spot near the point: leave it to the tooltip
+    const bx = box(c);
+    placed.push(bx);
+    t.setAttribute("x", c.anchor === "end" ? cx - 9 : cx + 9); t.setAttribute("y", bx.y); t.setAttribute("text-anchor", c.anchor);
   }
 }
 
@@ -464,7 +485,10 @@ function drawTable() {
   const tb = h("tbody", null, tbl);
   ms.forEach((m, r) => {
     const row = h("tr", null, tb);
-    h("td", String(r + 1), row);
+    const rc = h("td", String(r + 1), row);
+    if (m.rank_range && m.rank_range[0] !== m.rank_range[1]) {
+      h("span", rankText(m.rank_range), rc, "ci").title = "95% bootstrap range of the Arena rank";
+    }
     const td = h("td", null, row, "model");
     const a = h("a", m.model, td); a.href = `https://huggingface.co/${m.hf_id}`;
     if (m.finetune_of || (m.in_domain || []).length) {
@@ -477,6 +501,8 @@ function drawTable() {
       const v = score(m, k), t = m.tracks[k];
       const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : "");
       if (v != null && v === best[3 + j]) c.classList.add("best");
+      const ci = ciOf(m, k);
+      if (v != null && ci) h("span", ciText(ci), c, "ci").title = "95% bootstrap confidence interval";
     });
     const hc = h("td", pct(m.hallucination_rate), row, m.hallucination_rate == null ? "pending" : "");
     if (m.hallucination_rate != null && m.hallucination_rate === best[3 + TRACKS.length]) hc.classList.add("best");

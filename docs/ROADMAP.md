@@ -34,12 +34,13 @@ Every item below is tracked as a GitHub issue; milestones group them.
 Out of scope: the arena evaluates open-weight models only.
 
 ## M5 — Leaderboard UX
-- [ ] Interactive site: WER vs speed, per-dialect, per-condition charts
+- [x] Interactive site: WER vs speed, per-dialect, per-condition charts
 - [ ] HF Space mirror; model submission flow (PR with summary.json, or request issue)
 - [ ] Per-dialect breakdown (Casablanca / NADI countries)
 
 ## M6 — Methodology quality
-- [ ] Bootstrap 95% confidence intervals per set and for the Arena score
+- [x] Bootstrap 95% confidence intervals per set, per track and for the Arena score, plus rank ranges (#40)
+- [x] Arabic number verbalization in the normalizer (#45)
 - [ ] Reference cleaning pass (AA "Cleaned" style) for noisy transcripts (SADA, MGB-2, MASC)
 - [ ] Multi-reference WER for MGB-3 (4 annotators)
 - [ ] Contamination audit: flag models trained on these corpora' train splits

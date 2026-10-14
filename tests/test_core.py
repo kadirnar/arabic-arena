@@ -11,7 +11,7 @@ ar = get_normalizer("ar")
 
 @pytest.mark.parametrize("raw, expected", [
     ("ذَهَبَ الوَلَدُ إلى المَدرَسةِ، وَ قالَ: «مرحباً»!", "ذهب الولد الي المدرسه وقال مرحبا"),
-    ("مسؤول رئيس شيء ٢٠٢٤", "مسوول رييس شي 2024"),
+    ("مسؤول رئيس شيء ٢٠٢٤", "مسوول رييس شي الفين واربعه وعشرين"),
     ("[ضحك] كلمة <noise> فى", "كلمه في"),
     ("جمـــيل Hello, World", "جميل hello world"),
     ("أإآٱ", "اااا"),
@@ -65,3 +65,33 @@ def test_degrade_is_deterministic(bank, cond, sr):
     np.testing.assert_array_equal(y1, y2)
     assert len(y1) == len(x) * sr // 16000
     assert np.isfinite(y1).all() and np.abs(y1).max() <= 1.0
+
+
+@pytest.mark.parametrize("raw, expected", [
+    ("25 سنة", "خمسه وعشرين سنه"),
+    ("خمسة وعشرون سنة", "خمسه وعشرين سنه"),
+    ("عام 1963", "عام الف وتسعميه وثلاثه وستين"),
+    ("ألف وتسعمائة وثلاثة وستون", "الف وتسعميه وثلاثه وستين"),
+    ("ثلاث مئة", "ثلاثميه"),
+    ("مائتان", "ميتين"),
+    ("1,500,000", "مليون وخمسميه الف"),
+    ("3000", "ثلاثه الاف"),
+    ("12", "اثني عشر"),
+    ("0501", "صفر خمسه صفر واحد"),
+])
+def test_arabic_numbers_are_verbalized(raw, expected):
+    assert ar(raw) == expected
+
+
+def test_bootstrap_utterance_errors_sum_to_corpus_wer(tmp_path):
+    import json
+
+    from sttarena.bootstrap import _utterance_errors
+
+    rows = [("a", "x y z", "x y"), ("b", "p q", "p q r s"), ("c", "u v w", ""), ("d", "", "noise")]
+    f = tmp_path / "s.jsonl"
+    f.write_text("\n".join(json.dumps({"id": i, "ref_norm": r, "hyp_norm": h}) for i, r, h in rows))
+    errs = _utterance_errors(f)
+    assert set(errs) == {"a", "b", "c"}  # empty reference dropped, as in corpus_error_rates
+    s = corpus_error_rates([r for _, r, _ in rows], [h for _, _, h in rows])
+    assert sum(e for e, _ in errs.values()) / sum(n for _, n in errs.values()) == pytest.approx(s.wer)

@@ -54,7 +54,13 @@ would do.
     ؤ→و, ئ→ي, ى→ي, ة→ه, پ→ب, ڤ→ف, and delete ء. Convert digits to ASCII, turn punctuation
     into spaces, lowercase Latin text, remove `[...]`/`<...>` annotation tags, and attach a
     standalone و to the next word.
-  - **English:** the Whisper English normalizer.
+  - **Arabic numbers:** digits are written out as words ("25" → "خمسه وعشرين", "1963" →
+    "الف وتسعميه وثلاثه وستين"), because references almost always spell numbers out while many
+    models write digits. Nominative MSA forms are folded to the spoken genitive form on both
+    sides (عشرون→عشرين, ألفان→الفين, مائة/مئة→ميه, ثلاث مئة→ثلاثميه). Digit strings with a
+    leading zero or more than 12 digits are read digit by digit. Feminine counting forms
+    (ثلاث عشرة) and dialect-only spellings (تلاتين) are not folded.
+  - **English:** the Whisper English normalizer, which also maps spelled-out numbers to digits.
 - **WER and CER** are computed at corpus level with jiwer: total errors divided by total
   reference words (or characters, spaces included). An empty hypothesis counts as all deletions.
 - **Track score:** the unweighted mean over the sets in the track.
@@ -72,7 +78,9 @@ would do.
   re-scores the saved predictions without re-running any model.
 
 ## Known limitations
-- Number formats are not verbalized: "2024" and "ألفين وأربعة وعشرين" do not match.
+- Arabic number folding covers MSA and the common genitive forms, not every dialect spelling.
+  Arabic numbers are scored as spoken words and English numbers as digits, so a missed year
+  costs about four errors in Arabic and one in English.
 - Reference quality varies. SADA and MGB-2 use light supervision, and MASC is weakly
   normalised. A cleaning pass is on the roadmap.
 - Contamination: some fine-tunes (e.g. Lemura, oddadmix) train on the train splits of these
