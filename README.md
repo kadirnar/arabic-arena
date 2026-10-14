@@ -100,6 +100,32 @@ sttarena leaderboard --suite arabic                # refresh tables
 Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
 [`scripts/setup_envs.sh`](scripts/setup_envs.sh).
 
+### Commercial APIs
+
+The following backends are registered:
+
+| Provider | Model key(s) | Key variable |
+|---|---|---|
+| OpenAI | `openai/gpt-4o-transcribe`, `openai/gpt-4o-mini-transcribe`, `openai/whisper-1` | `OPENAI_API_KEY` |
+| ElevenLabs | `elevenlabs/scribe-v2` | `ELEVENLABS_API_KEY` |
+| Deepgram | `deepgram/nova-3` | `DEEPGRAM_API_KEY` |
+| Mistral | `mistral/voxtral-mini-transcribe` | `MISTRAL_API_KEY` |
+| Google | `google/gemini-2.5-flash` | `GEMINI_API_KEY` |
+| AssemblyAI | `assemblyai/universal` | `ASSEMBLYAI_API_KEY` |
+
+Export the key, then run the model the same way as an open one:
+
+```bash
+export DEEPGRAM_API_KEY=...
+sttarena run -m deepgram/nova-3 --suite arabic
+```
+
+- Requests run concurrently and retry with backoff.
+- Responses are cached by audio hash, so a re-run is never billed twice.
+- The leaderboard adds two columns for these models, measured the way Artificial Analysis does:
+  - **speed factor**: audio duration ÷ end-to-end latency, as the median per request.
+  - **$ / 1000 min**: the list price.
+
 ### Adding a model
 
 1. Add a `ModelSpec` to [`sttarena/models/registry.py`](sttarena/models/registry.py).

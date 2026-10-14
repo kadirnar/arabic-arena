@@ -54,7 +54,7 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
     spec = get_spec(model_key)
     if lang not in spec.languages:
         raise ValueError(f"{model_key} does not support {lang}")
-    out_dir = RESULTS_DIR / lang / model_key
+    out_dir = RESULTS_DIR / lang / model_key.replace("/", "__")
     pred_dir = out_dir / "predictions"
     pred_dir.mkdir(parents=True, exist_ok=True)
     summary_path = out_dir / "summary.json"
@@ -119,7 +119,8 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
                 f.write(json.dumps({"id": r["id"], "ref": r["text"], "hyp": h, "ref_norm": rn, "hyp_norm": hn,
                                     "wer": round(utterance_wer(rn, hn), 4), "duration": r["duration"]},
                                    ensure_ascii=False) + "\n")
-        res = {**stats.to_dict(), "track": track, "set": name, "condition": cond,
+        speed = model.pop_speed_factor() if hasattr(model, "pop_speed_factor") else None
+        res = {**stats.to_dict(), "track": track, "speed_factor": speed, "set": name, "condition": cond,
                "audio_hours": round(audio_sec / 3600, 4), "seconds": round(elapsed, 2),
                "rtfx": round(audio_sec / elapsed, 2) if elapsed else None, "limit": limit,
                "date": datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -128,6 +129,6 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
         if limit is None:
             summary["results"][key] = res
             summary.update(model=model_key, hf_id=spec.hf_id, params_b=spec.params_b, license=spec.license,
-                           kind=spec.kind, language=lang, env=_env_info(), batch_size=bs)
+                           kind=spec.kind, usd_per_min=spec.kwargs.get("usd_per_min"), language=lang, env=_env_info(), batch_size=bs)
             summary_path.write_text(json.dumps(summary, indent=1, ensure_ascii=False))
     return summary

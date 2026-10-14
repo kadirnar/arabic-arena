@@ -18,7 +18,7 @@ from .runner import RESULTS_DIR
 
 LB_DIR = ROOT / "leaderboard"
 SITE_DATA = ROOT / "docs" / "data"
-TRACK_LABEL = {"clean": "Clean", "noisy": "Noisy", "codeswitch": "Code-switch", "telephony": "Telephony",
+TRACK_LABEL = {"accented": "Accented", "clean": "Clean", "noisy": "Noisy", "codeswitch": "Code-switch", "telephony": "Telephony",
                "callcenter": "Call-center"}
 
 
@@ -59,6 +59,9 @@ def collect(suite: Suite) -> dict:
         secs = sum(r.get("seconds") or 0 for r in res.values())
         hours = sum(r.get("audio_hours") or 0 for r in res.values())
         row["rtfx"] = round(hours * 3600 / secs, 1) if secs else None
+        sfs = sorted(r["speed_factor"] for r in res.values() if r.get("speed_factor"))
+        row["speed_factor"] = sfs[len(sfs) // 2] if sfs else None
+        row["usd_per_1000_min"] = round(s["usd_per_min"] * 1000, 2) if s.get("usd_per_min") else None
         row["audio_hours"] = round(hours, 2)
         rows.append(row)
 
@@ -79,7 +82,10 @@ def _pct(x):
 
 def to_markdown(lb: dict) -> str:
     tracks = list(lb["tracks"])
+    has_api = any(r["kind"] == "api" for r in lb["models"])
     head = ["#", "Model", "Params (B)", "**Arena WER**", "Arena CER", *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
+    if has_api:
+        head += ["Speed factor", "$ / 1000 min"]
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for i, r in enumerate(lb["models"], 1):
         cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']})" if r["kind"] == "open" else r["model"],
@@ -87,7 +93,9 @@ def to_markdown(lb: dict) -> str:
         for t in tracks:
             tr = r["tracks"][t]
             cells.append(_pct(tr["wer"]) if tr["wer"] is not None else f"({tr['done']}/{tr['total']})")
-        cells.append(str(r["rtfx"] or "—"))
+        cells.append(str(r["rtfx"] or "—") if r["kind"] == "open" else "—")
+        if has_api:
+            cells += [str(r["speed_factor"] or "—"), str(r["usd_per_1000_min"] or "—")]
         lines.append("| " + " | ".join(cells) + " |")
     weights = ", ".join(f"{TRACK_LABEL.get(t, t)} {w:.0%}" for t, w in lb["weights"].items())
     lines.append("")

@@ -71,7 +71,7 @@ Columns: `id`, `audio`, `sampling_rate`, `text` (raw reference), `duration`, `me
 
 ```python
 from datasets import load_dataset
-ds = load_dataset("{suite.hf_repo}", "sada-callcenter", split="test")
+ds = load_dataset("{suite.hf_repo}", "{published[-1][0]}-{published[-1][1]}", split="test")
 ```
 
 | Config | Dialect | Domain | Condition | Utterances | Hours | Licence | Source |
