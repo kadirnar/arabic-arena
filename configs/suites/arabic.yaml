@@ -153,6 +153,9 @@ datasets:
     license: unspecified
     redistribute: false
 
+# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py).
+hallucination: true
+
 # Simulated acoustic conditions built from the clean sets above.
 degraded:
   noisy:

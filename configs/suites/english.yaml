@@ -161,6 +161,9 @@ datasets:
     license: CC-BY-SA-3.0
     redistribute: true
 
+# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py).
+hallucination: true
+
 degraded:
   noisy:
     from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22]

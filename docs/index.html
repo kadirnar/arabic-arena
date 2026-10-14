@@ -128,7 +128,7 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
 
   <section class="card">
     <h2>All results</h2>
-    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far.</p>
+    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score.</p>
     <div class="table-wrap"><table id="tbl"></table></div>
     <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
   </section>
@@ -310,7 +310,8 @@ function drawDumbbell() {
 function drawTable() {
   const d = state.data, tbl = document.getElementById("tbl"); tbl.replaceChildren();
   const cols = [["#", null], ["Model", null], ["Params (B)", (m) => m.params_b],
-    ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]), ["RTFx", (m) => m.rtfx]];
+    ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]),
+    ["Halluc. %", (m) => m.hallucination_rate], ["RTFx", (m) => m.rtfx]];
   let ms = [...d.models];
   const sc = state.sort ?? 3, dir = sc === cols.length - 1 ? -1 : 1;
   if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
@@ -333,6 +334,8 @@ function drawTable() {
       const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : "");
       if (v != null && v === best[3 + j]) c.classList.add("best");
     });
+    const hc = h("td", pct(m.hallucination_rate), row, m.hallucination_rate == null ? "pending" : "");
+    if (m.hallucination_rate != null && m.hallucination_rate === best[3 + TRACKS.length]) hc.classList.add("best");
     h("td", m.rtfx != null ? String(m.rtfx) : "—", row);
   });
 

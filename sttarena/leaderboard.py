@@ -31,7 +31,8 @@ def collect(suite: Suite) -> dict:
     expected = suite.eval_sets()
     tracks = {}
     for name, cond, track in expected:
-        tracks.setdefault(track, []).append(f"{name}/{cond}")
+        if track != "hallucination":
+            tracks.setdefault(track, []).append(f"{name}/{cond}")
     weights = {t: v["weight"] for t, v in suite.scoring.get("tracks", {}).items()}
     rows = []
     for path in sorted((RESULTS_DIR / lang).glob("*/summary.json")):
@@ -42,6 +43,9 @@ def collect(suite: Suite) -> dict:
                "env": s.get("env", {})}
         for key, r in res.items():
             row["sets"][key] = {"wer": r["wer"], "cer": r["cer"], "rtfx": r.get("rtfx"), "n": r["num_utterances"]}
+        h = res.get("noise_only/clean")
+        row["hallucination_rate"] = h["hallucination_rate"] if h else None
+        row["inserted_wpm"] = round(h["inserted_wpm"], 2) if h else None
         for t, keys in tracks.items():
             have = [res[k] for k in keys if k in res]
             row["tracks"][t] = {
@@ -86,6 +90,7 @@ def to_markdown(lb: dict) -> str:
     head = ["#", "Model", "Params (B)", "**Arena WER**", "Arena CER", *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
     if has_api:
         head += ["Speed factor", "$ / 1000 min"]
+    head.insert(-1 if not has_api else -3, "Halluc. %")
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for i, r in enumerate(lb["models"], 1):
         cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']})" if r["kind"] == "open" else r["model"],
@@ -93,13 +98,16 @@ def to_markdown(lb: dict) -> str:
         for t in tracks:
             tr = r["tracks"][t]
             cells.append(_pct(tr["wer"]) if tr["wer"] is not None else f"({tr['done']}/{tr['total']})")
+        cells.append(_pct(r["hallucination_rate"]))
         cells.append(str(r["rtfx"] or "—") if r["kind"] == "open" else "—")
         if has_api:
             cells += [str(r["speed_factor"] or "—"), str(r["usd_per_1000_min"] or "—")]
         lines.append("| " + " | ".join(cells) + " |")
     weights = ", ".join(f"{TRACK_LABEL.get(t, t)} {w:.0%}" for t, w in lb["weights"].items())
     lines.append("")
-    lines.append(f"WER/CER in %, lower is better. Arena = weighted mean of track WERs ({weights}).")
+    lines.append(f"WER/CER in %, lower is better. Arena = weighted mean of track WERs ({weights}). "
+                 "Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which "
+                 "the model output any words; not part of the Arena score.")
 
     # Per-set detail
     keys = [k for t in tracks for k in lb["tracks"][t]]

@@ -112,20 +112,27 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
 
         refs_n = [normalize(r["text"]) for r in rows]
         hyps_n = [normalize(h) for h in hyps]
-        stats = corpus_error_rates(refs_n, hyps_n)
         audio_sec = sum(r["duration"] for r in rows)
+        if track == "hallucination":  # noise-only clips: every output word is an insertion
+            words = sum(len(h.split()) for h in hyps_n)
+            score = {"hallucination_rate": sum(1 for h in hyps_n if h) / len(rows),
+                     "inserted_wpm": words / (audio_sec / 60), "num_utterances": len(rows), "wer": None, "cer": None}
+            line = f"halluc {score['hallucination_rate'] * 100:6.2f}%  ins/min {score['inserted_wpm']:6.2f}"
+        else:
+            stats = corpus_error_rates(refs_n, hyps_n)
+            score = stats.to_dict()
+            line = f"WER {stats.wer * 100:6.2f}  CER {stats.cer * 100:6.2f}"
         with open(pred_dir / f"{name}__{cond}.jsonl", "w") as f:
             for r, h, rn, hn in zip(rows, hyps, refs_n, hyps_n):
                 f.write(json.dumps({"id": r["id"], "ref": r["text"], "hyp": h, "ref_norm": rn, "hyp_norm": hn,
                                     "wer": round(utterance_wer(rn, hn), 4), "duration": r["duration"]},
                                    ensure_ascii=False) + "\n")
         speed = model.pop_speed_factor() if hasattr(model, "pop_speed_factor") else None
-        res = {**stats.to_dict(), "track": track, "speed_factor": speed, "set": name, "condition": cond,
+        res = {**score, "track": track, "speed_factor": speed, "set": name, "condition": cond,
                "audio_hours": round(audio_sec / 3600, 4), "seconds": round(elapsed, 2),
                "rtfx": round(audio_sec / elapsed, 2) if elapsed else None, "limit": limit,
                "date": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        print(f"{model_key:34s} {key:28s} WER {stats.wer * 100:6.2f}  CER {stats.cer * 100:6.2f}  "
-              f"RTFx {res['rtfx']}")
+        print(f"{model_key:34s} {key:28s} {line}  RTFx {res['rtfx']}")
         if limit is None:
             summary["results"][key] = res
             summary.update(model=model_key, hf_id=spec.hf_id, params_b=spec.params_b, license=spec.license,

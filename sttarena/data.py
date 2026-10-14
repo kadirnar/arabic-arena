@@ -52,6 +52,7 @@ class Suite:
     sets: dict[str, SetSpec]
     degraded: dict[str, dict]
     scoring: dict
+    hallucination: bool = False
 
     @classmethod
     def load(cls, name_or_path: str) -> "Suite":
@@ -60,13 +61,16 @@ class Suite:
             path = SUITES_DIR / f"{name_or_path}.yaml"
         cfg = yaml.safe_load(path.read_text())
         sets = {k: SetSpec(name=k, **v) for k, v in cfg["datasets"].items()}
-        return cls(cfg["language"], cfg["hf_repo"], sets, cfg.get("degraded", {}), cfg.get("scoring", {}))
+        return cls(cfg["language"], cfg["hf_repo"], sets, cfg.get("degraded", {}), cfg.get("scoring", {}),
+                   cfg.get("hallucination", False))
 
     def eval_sets(self) -> list[tuple[str, str, str]]:
         """All (set, condition, track) pairs that make up the suite."""
         out = [(s.name, "clean", s.track) for s in self.sets.values()]
         for cond, d in self.degraded.items():
             out += [(name, cond, cond) for name in d["from"]]
+        if self.hallucination:  # noise-only clips (scripts/build_hallucination_set.py), not in the Arena score
+            out.append(("noise_only", "clean", "hallucination"))
         return out
 
 
