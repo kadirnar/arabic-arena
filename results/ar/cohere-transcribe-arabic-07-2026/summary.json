@@ -559,6 +559,21 @@
    "rtfx": 320.55,
    "limit": null,
    "date": "2026-10-13T23:27:51+00:00"
+  },
+  "noise_only/clean": {
+   "hallucination_rate": 1.0,
+   "inserted_wpm": 43.26331316179199,
+   "num_utterances": 300,
+   "wer": null,
+   "cer": null,
+   "track": "hallucination",
+   "set": "noise_only",
+   "condition": "clean",
+   "audio_hours": 0.7508,
+   "seconds": 8.18,
+   "rtfx": 330.43,
+   "limit": null,
+   "date": "2026-10-14T08:27:39+00:00"
   }
  },
  "model": "cohere-transcribe-arabic-07-2026",

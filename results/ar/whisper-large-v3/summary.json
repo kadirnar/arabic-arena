@@ -559,6 +559,21 @@
    "rtfx": 33.65,
    "limit": null,
    "date": "2026-10-14T00:20:56+00:00"
+  },
+  "noise_only/clean": {
+   "hallucination_rate": 1.0,
+   "inserted_wpm": 29.767112852726044,
+   "num_utterances": 300,
+   "wer": null,
+   "cer": null,
+   "track": "hallucination",
+   "set": "noise_only",
+   "condition": "clean",
+   "audio_hours": 0.7508,
+   "seconds": 43.67,
+   "rtfx": 61.89,
+   "limit": null,
+   "date": "2026-10-14T08:30:32+00:00"
   }
  },
  "model": "whisper-large-v3",

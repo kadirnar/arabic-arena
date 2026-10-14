@@ -64,14 +64,14 @@
    "date": "2026-10-14T02:53:44+00:00"
   },
   "mgb2/clean": {
-   "wer": 0.20631491483174075,
-   "cer": 0.10124527901227078,
-   "substitutions": 1718,
+   "wer": 0.20623182384711258,
+   "cer": 0.10158749412460388,
+   "substitutions": 1717,
    "deletions": 392,
    "insertions": 373,
    "ref_words": 12035,
-   "ref_chars": 65929,
-   "char_errors": 6675,
+   "ref_chars": 65953,
+   "char_errors": 6700,
    "num_utterances": 1000,
    "num_empty_hyp": 0,
    "track": "clean",
@@ -587,6 +587,22 @@
    "rtfx": 31.32,
    "limit": null,
    "date": "2026-10-14T03:31:20+00:00"
+  },
+  "noise_only/clean": {
+   "hallucination_rate": 1.0,
+   "inserted_wpm": 77.0260116323336,
+   "num_utterances": 300,
+   "wer": null,
+   "cer": null,
+   "track": "hallucination",
+   "speed_factor": null,
+   "set": "noise_only",
+   "condition": "clean",
+   "audio_hours": 0.7508,
+   "seconds": 99.93,
+   "rtfx": 27.05,
+   "limit": null,
+   "date": "2026-10-14T03:33:00+00:00"
   }
  },
  "model": "gemma-4-e2b-it",

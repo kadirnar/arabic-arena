@@ -559,6 +559,21 @@
    "rtfx": 67.23,
    "limit": null,
    "date": "2026-10-13T23:43:19+00:00"
+  },
+  "noise_only/clean": {
+   "hallucination_rate": 1.0,
+   "inserted_wpm": 39.91146078240226,
+   "num_utterances": 300,
+   "wer": null,
+   "cer": null,
+   "track": "hallucination",
+   "set": "noise_only",
+   "condition": "clean",
+   "audio_hours": 0.7508,
+   "seconds": 83.17,
+   "rtfx": 32.5,
+   "limit": null,
+   "date": "2026-10-14T08:29:25+00:00"
   }
  },
  "model": "qwen3-asr-1.7b",

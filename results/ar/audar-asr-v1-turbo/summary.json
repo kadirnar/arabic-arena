@@ -587,6 +587,21 @@
    "rtfx": 37.86,
    "limit": null,
    "date": "2026-10-14T00:40:37+00:00"
+  },
+  "noise_only/clean": {
+   "hallucination_rate": 0.8766666666666667,
+   "inserted_wpm": 59.489830309698576,
+   "num_utterances": 300,
+   "wer": null,
+   "cer": null,
+   "track": "hallucination",
+   "set": "noise_only",
+   "condition": "clean",
+   "audio_hours": 0.7508,
+   "seconds": 103.55,
+   "rtfx": 26.1,
+   "limit": null,
+   "date": "2026-10-14T08:32:38+00:00"
   }
  },
  "model": "audar-asr-v1-turbo",
