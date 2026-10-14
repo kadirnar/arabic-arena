@@ -57,6 +57,9 @@ datasets:
     domain: broadcast news
     license: QCRI MGB-2 agreement
     redistribute: false
+    # The mirror matches the official QCRI/mgb2 test set segment for segment; 6 references whose
+    # English words were garbled in the mirror are restored from the official transcripts.
+    text_fixes: configs/fixes/mgb2_refs.json
 
   sada:
     source: MohamedRashad/SADA22

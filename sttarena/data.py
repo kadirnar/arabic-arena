@@ -43,6 +43,14 @@ class SetSpec:
     domain: str = ""
     license: str = ""
     redistribute: bool = False
+    # JSON {"key": <meta field>, "texts": {<value>: <corrected reference>}} applied on top of the source text
+    text_fixes: str | None = None
+
+    def load_text_fixes(self) -> tuple[str, dict[str, str]] | None:
+        if not self.text_fixes:
+            return None
+        cfg = json.loads((ROOT / self.text_fixes).read_text())
+        return cfg["key"], cfg["texts"]
 
 
 @dataclass

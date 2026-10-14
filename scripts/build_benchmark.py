@@ -80,6 +80,7 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
     configs = spec.configs or [spec.config]
     per_config = [spec.n // len(configs) + (1 if i < spec.n % len(configs) else 0) for i in range(len(configs))]
     rows: list[dict] = []
+    fixes = spec.load_text_fixes()
     for config, quota in zip(configs, per_config):
         ds, audio_col = _load_source(spec, config)
         cols = [spec.text, *spec.filter]
@@ -115,7 +116,7 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
                 "id": f"{spec.name}/{uid}",
                 "audio": {"bytes": encode_flac(audio, sr), "path": None},
                 "sampling_rate": sr,
-                "text": _prepare_text(r[spec.text], spec),
+                "text": (fixes and fixes[1].get(str(meta.get(fixes[0])))) or _prepare_text(r[spec.text], spec),
                 "duration": round(dur, 3),
                 "meta": json.dumps(meta, ensure_ascii=False, default=str),
             })

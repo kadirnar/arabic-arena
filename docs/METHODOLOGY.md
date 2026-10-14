@@ -63,6 +63,14 @@ would do.
 - **RTFx:** audio seconds divided by transcription seconds, over all sets, after a warm-up.
   Model loading is excluded.
 
+## Reference fixes
+- **MGB-2:** the parquet mirror (`MohamedRashad/mgb2-arabic`) was checked against the official
+  gated `QCRI/mgb2` test set (`text.non_overlap_speech`). All 1000 selected segments are official
+  test segments. Six references had their English words garbled by a Buckwalter round trip in the
+  mirror; they are restored from the official transcripts (`configs/fixes/mgb2_refs.json`).
+- A fix is applied when a set is built, and `sttarena rescore` patches already-built sets and
+  re-scores the saved predictions without re-running any model.
+
 ## Known limitations
 - Number formats are not verbalized: "2024" and "ألفين وأربعة وعشرين" do not match.
 - Reference quality varies. SADA and MGB-2 use light supervision, and MASC is weakly

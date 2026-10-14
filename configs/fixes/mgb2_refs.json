@@ -1,0 +1,13 @@
+{
+ "key": "segment_id",
+ "source": "QCRI/mgb2 test/text.non_overlap_speech (official MGB-2 test references)",
+ "reason": "the parquet mirror garbled Latin-script words through a Buckwalter round trip",
+ "texts": {
+  "E6B9059F-852F-49F3-98E3-E1CB2750F3CF_spk-0001_seg-0092678:0093328": "ضرورة أنك تلاقي identity اللغة مش بتديها لك آه",
+  "CD93A8FF-C3ED-4AD4-95A6-8363CCB93B90_spk-0001_seg-0092598:0093338": "أولا نوع الحروب الذي تحدثت عنه هو ما يسمى asymmetric warfare",
+  "44F7C864-62B5-48C3-83AC-F77822B57535_spk-0001_seg-0037009:0037821": "شخص ناشط سياسيا يعني النشاط السياسي أو political activism دي مرحلة تمر فيها الشعوب",
+  "44F7C864-62B5-48C3-83AC-F77822B57535_spk-0001_seg-0137445:0138124": "فيعني زي ما التعبير الإنجليزي بيقول the jury is still on هيئة المحلفين ما زالت منعقدة",
+  "532D9FF8-A631-4D0C-84F1-E98C66285FF4_spk-0001_seg-0060121:0060952": "التقرير التالي من إعداد برنامج listening post على الجزيرة الانجليزية يستقصي عن مهنة الموت والمتاعب في المكسيك",
+  "46833227-C0CB-4908-88E7-B08491B7A7E2_spk-0001_seg-0066482:0067098": "ما هي النقاط الأساسية التي يريد الرئيس تغييرها في الدستور one, two, three, four"
+ }
+}

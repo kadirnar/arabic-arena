@@ -19,6 +19,10 @@ def main(argv: list[str] | None = None) -> None:
     lb = sub.add_parser("leaderboard", help="aggregate results into leaderboard files")
     lb.add_argument("--suite", "-s", nargs="+", default=["arabic"])
 
+    rs = sub.add_parser("rescore", help="re-score saved predictions (after a reference or normalizer fix)")
+    rs.add_argument("--suite", "-s", default="arabic")
+    rs.add_argument("--sets", nargs="*")
+
     sub.add_parser("models", help="list registered models")
 
     args = ap.parse_args(argv)
@@ -33,6 +37,10 @@ def main(argv: list[str] | None = None) -> None:
 
         for s in args.suite:
             build(s)
+    elif args.cmd == "rescore":
+        from .rescore import rescore
+
+        rescore(args.suite, args.sets)
     elif args.cmd == "models":
         from .models.registry import MODELS
 
