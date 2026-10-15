@@ -15,7 +15,6 @@ BACKENDS = {
     "nemotron_rnnt": "sttarena.models.hf_backends:NemotronRNNT",
     "moonshine": "sttarena.models.hf_backends:MoonshineHF",
     "kyutai": "sttarena.models.hf_backends:KyutaiSTT",
-    "vibevoice_asr": "sttarena.models.hf_backends:VibeVoiceASR",
     "fun_asr_nano": "sttarena.models.hf_backends:FunASRNano",
     "phi4mm": "sttarena.models.hf_backends:Phi4Multimodal",
     "parakeet_tdt_hf": "sttarena.models.hf_backends:ParakeetTDTHF",
@@ -56,15 +55,13 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        repo="facebook/omniASR-LLM-3B"),
     _M("omniasr-llm-300m", "omniasr", "omniASR_LLM_300M", 1.63, "Apache-2.0", env="omniasr", batch_size=8,
        repo="facebook/omniASR-LLM-300M"),
-    # omniASR-LLM-7B (7.8 B, ~15.6 GB in bf16) does not fit a 16 GB card; see #50.
+    # omniASR-LLM-7B and CTC-7B (fp32 checkpoints of 31 and 26 GB) do not fit a 16 GB card; see #50.
     _M("omniasr-ctc-300m", "omniasr", "omniASR_CTC_300M", 0.33, "Apache-2.0", env="omniasr", batch_size=32,
        repo="facebook/omniASR-CTC-300M"),
     _M("omniasr-ctc-1b", "omniasr", "omniASR_CTC_1B", 0.98, "Apache-2.0", env="omniasr", batch_size=32,
        repo="facebook/omniASR-CTC-1B"),
     _M("omniasr-ctc-3b", "omniasr", "omniASR_CTC_3B", 3.08, "Apache-2.0", env="omniasr", batch_size=16,
        repo="facebook/omniASR-CTC-3B"),
-    _M("omniasr-ctc-7b", "omniasr", "omniASR_CTC_7B", 6.5, "Apache-2.0", env="omniasr", batch_size=1,
-       repo="facebook/omniASR-CTC-7B"),
     # --- Google -------------------------------------------------------------------------------
     _M("gemma-4-e2b-it", "gemma_audio", "google/gemma-4-E2B-it", 5.1, "Apache-2.0", batch_size=8),
     # --- NVIDIA -------------------------------------------------------------------------------
@@ -94,8 +91,6 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        batch_size=32, kwargs={"processor": "nvidia/parakeet-tdt-0.6b-v3"},
        finetune_of="nvidia/parakeet-tdt-0.6b-v3", notes="Moondream re-training of Parakeet-TDT v3"),
     # --- Microsoft ------------------------------------------------------------------------------
-    _M("vibevoice-asr", "vibevoice_asr", "microsoft/VibeVoice-ASR-HF", 8.33, "MIT", batch_size=4,
-       kwargs={"int8": True}, notes="run in 8-bit (bitsandbytes) to fit 16 GB"),
     _M("phi-4-multimodal-instruct", "phi4mm", "microsoft/Phi-4-multimodal-instruct", 5.57, "MIT", languages=("en",),
        batch_size=16, kwargs={"revision": "refs/pr/94"}),
     # --- Kyutai ---------------------------------------------------------------------------------

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .base import LANG_NAMES, SR, ASRModel, ModelSpec, torch_dtype
+from .base import LANG_NAMES, NATIVE, SR, ASRModel, ModelSpec
 
 
 class WhisperHF(ASRModel):
@@ -16,7 +16,7 @@ class WhisperHF(ASRModel):
         self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
         base = spec.kwargs.get("lora_base")  # LoRA fine-tunes: load the base model and merge the adapter
         self.model = WhisperForConditionalGeneration.from_pretrained(
-            base or spec.hf_id, dtype=torch_dtype("float16"), attn_implementation="sdpa"
+            base or spec.hf_id, dtype=NATIVE, attn_implementation="sdpa"
         )
         if base:
             from peft import PeftModel
@@ -30,7 +30,7 @@ class WhisperHF(ASRModel):
         feats = self.processor(audios, sampling_rate=SR, return_tensors="pt").input_features
         with torch.inference_mode():
             ids = self.model.generate(
-                feats.to(self.device, torch.float16), language=language, task="transcribe",
+                feats.to(self.device, self.model.dtype), language=language, task="transcribe",
                 num_beams=self.spec.kwargs.get("num_beams", 1),
             )
         return self.processor.batch_decode(ids, skip_special_tokens=True)
@@ -42,7 +42,7 @@ class Qwen3ASRHF(ASRModel):
         from transformers import AutoModelForMultimodalLM, AutoProcessor
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -62,7 +62,7 @@ class CohereASR(ASRModel):
         from transformers import AutoProcessor, CohereAsrForConditionalGeneration
 
         self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
-        self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -85,7 +85,7 @@ class VoxtralRealtime(ASRModel):
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
         self.model = VoxtralRealtimeForConditionalGeneration.from_pretrained(
-            spec.hf_id, dtype=torch_dtype()
+            spec.hf_id, dtype=NATIVE
         ).to(device).eval()
 
     def transcribe(self, audios, language):
@@ -106,13 +106,13 @@ class SeamlessM4T(ASRModel):
         from transformers import AutoProcessor, SeamlessM4Tv2ForSpeechToText
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        self.model = SeamlessM4Tv2ForSpeechToText.from_pretrained(spec.hf_id, dtype=torch_dtype("float16")).to(device).eval()
+        self.model = SeamlessM4Tv2ForSpeechToText.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
 
         inputs = self.processor(audio=list(audios), sampling_rate=SR, return_tensors="pt").to(self.device)
-        inputs["input_features"] = inputs["input_features"].half()
+        inputs["input_features"] = inputs["input_features"].to(self.model.dtype)
         with torch.inference_mode():
             ids = self.model.generate(**inputs, tgt_lang=self.LANG[language], max_new_tokens=440)
         return self.processor.batch_decode(ids, skip_special_tokens=True)
@@ -151,7 +151,7 @@ class CTCHF(ASRModel):
             self.model.load_adapter(self.MMS_LANG[language])
             self._lang = language
         inputs = self.processor(list(audios), sampling_rate=SR, return_tensors="pt", padding=True)
-        with torch.inference_mode(), torch.autocast("cuda", dtype=torch.float16):
+        with torch.inference_mode():
             logits = self.model(**{k: v.to(self.device) for k, v in inputs.items()}).logits
         texts = self.processor.batch_decode(logits.argmax(-1))
         if self.spec.kwargs.get("buckwalter"):
@@ -170,7 +170,7 @@ class GemmaAudio(ASRModel):
         from transformers import AutoModelForMultimodalLM, AutoProcessor
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id, padding_side="left")
-        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -196,7 +196,7 @@ class NemotronRNNT(ASRModel):
         from transformers import AutoModelForRNNT, AutoProcessor
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        self.model = AutoModelForRNNT.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = AutoModelForRNNT.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -217,7 +217,7 @@ class MoonshineHF(ASRModel):
         from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        self.model = AutoModelForSpeechSeq2Seq.from_pretrained(spec.hf_id, dtype=torch_dtype("float32")).to(device).eval()
+        self.model = AutoModelForSpeechSeq2Seq.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -240,7 +240,7 @@ class KyutaiSTT(ASRModel):
 
         self.processor = KyutaiSpeechToTextProcessor.from_pretrained(spec.hf_id)
         self.model = KyutaiSpeechToTextForConditionalGeneration.from_pretrained(
-            spec.hf_id, dtype=torch_dtype()
+            spec.hf_id, dtype=NATIVE
         ).to(device).eval()
 
     def transcribe(self, audios, language):
@@ -254,49 +254,6 @@ class KyutaiSTT(ASRModel):
         return self.processor.batch_decode(ids, skip_special_tokens=True)
 
 
-class VibeVoiceASR(ASRModel):
-    """VibeVoice-ASR (diarized JSON output; we keep the text only). 8-bit by default to fit 16 GB."""
-
-    def __init__(self, spec: ModelSpec, device: str = "cuda"):
-        super().__init__(spec, device)
-        from transformers import AutoProcessor, BitsAndBytesConfig, VibeVoiceAsrForConditionalGeneration
-
-        self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        # only the language model is quantized; the audio encoders and projector stay in bf16
-        quant = BitsAndBytesConfig(load_in_8bit=True, llm_int8_skip_modules=[
-            "model.acoustic_tokenizer_encoder", "model.semantic_tokenizer_encoder", "model.multi_modal_projector",
-            "lm_head",
-        ]) if spec.kwargs.get("int8") else None
-        self.model = VibeVoiceAsrForConditionalGeneration.from_pretrained(
-            spec.hf_id, dtype=torch_dtype(), device_map=device, quantization_config=quant
-        ).eval()
-
-    def transcribe(self, audios, language):
-        import soxr
-        import torch
-
-        n = len(audios)
-        if n == 1:  # a batch of one decodes garbage (transformers 5.19); run it as a batch of two
-            audios = [audios[0], audios[0]]
-        sr = self.processor.feature_extractor.sampling_rate  # 24 kHz
-        inputs = self.processor.apply_transcription_request(audio=[soxr.resample(a, SR, sr) for a in audios]).to(
-            self.device, self.model.dtype
-        )
-        with torch.inference_mode():
-            out = self.model.generate(**inputs, max_new_tokens=600, do_sample=False)
-        raw = self.processor.batch_decode(out[:, inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-        return [self._content(r) for r in raw][:n]
-
-    @staticmethod
-    def _content(raw: str) -> str:
-        """Join the "Content" fields of the segment list; tolerant of a truncated last segment, which the
-        processor's json.loads-based parser rejects."""
-        import re
-
-        parts = re.findall(r'"Content"\s*:\s*"((?:[^"\\]|\\.)*)', raw)
-        return " ".join(p.replace('\\"', '"') for p in parts) if parts else raw.strip()
-
-
 class FunASRNano(ASRModel):
     """Fun-ASR-Nano (transformers port): zh / en / ja only."""
 
@@ -305,7 +262,7 @@ class FunASRNano(ASRModel):
         from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
         self.processor = AutoProcessor.from_pretrained(spec.hf_id)
-        self.model = AutoModelForSpeechSeq2Seq.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = AutoModelForSpeechSeq2Seq.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
@@ -332,7 +289,7 @@ class Phi4Multimodal(ASRModel):
         rev = spec.kwargs.get("revision")
         self.processor = AutoProcessor.from_pretrained(spec.hf_id, revision=rev)
         self.processor.tokenizer.padding_side = "left"
-        self.model = AutoModelForCausalLM.from_pretrained(spec.hf_id, revision=rev, dtype=torch_dtype()).to(device)
+        self.model = AutoModelForCausalLM.from_pretrained(spec.hf_id, revision=rev, dtype=NATIVE).to(device)
         self.model.load_adapter(spec.hf_id, adapter_name="speech",
                                 adapter_kwargs={"subfolder": "speech-lora", "revision": rev})
         self.model.set_adapter("speech")
@@ -358,7 +315,7 @@ class ParakeetTDTHF(ASRModel):
 
         base = spec.kwargs.get("processor", spec.hf_id)  # re-trainings may ship weights + tokenizer only
         self.processor = AutoProcessor.from_pretrained(base)
-        self.model = ParakeetForTDT.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
+        self.model = ParakeetForTDT.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
         if base != spec.hf_id:
             self.model.generation_config = GenerationConfig.from_pretrained(base)
 

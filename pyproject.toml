@@ -30,7 +30,6 @@ gpu = [
   "mistral-common",
   "sentencepiece",
   "faster-whisper",
-  "bitsandbytes",  # VibeVoice-ASR language model in 8-bit
   "peft",  # LoRA fine-tunes
 ]
 dev = ["pytest", "ruff"]

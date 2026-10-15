@@ -24,11 +24,10 @@ class QwenASRPackage(ASRModel):
 
     def __init__(self, spec: ModelSpec, device: str = "cuda"):
         super().__init__(spec, device)
-        import torch
         from qwen_asr import Qwen3ASRModel
 
         self.model = Qwen3ASRModel.from_pretrained(
-            _unzipped(spec) if spec.kwargs.get("zip") else spec.hf_id, dtype=torch.bfloat16, device_map=device,
+            _unzipped(spec) if spec.kwargs.get("zip") else spec.hf_id, dtype="auto", device_map=device,
             max_inference_batch_size=spec.batch_size, max_new_tokens=440,
         )
 
@@ -84,7 +83,10 @@ class OmniASR(ASRModel):
         super().__init__(spec, device)
         from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
 
-        self.pipe = ASRInferencePipeline(model_card=spec.hf_id)
+        import torch
+
+        # the released checkpoints are fp32; the pipeline would default to bf16
+        self.pipe = ASRInferencePipeline(model_card=spec.hf_id, dtype=torch.float32)
 
     def transcribe(self, audios, language):
         inp = [{"waveform": a, "sample_rate": SR} for a in audios]

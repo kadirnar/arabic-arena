@@ -39,10 +39,8 @@ class ASRModel:
         raise NotImplementedError
 
 
-def torch_dtype(name: str = "bfloat16"):
-    import torch
-
-    return getattr(torch, name)
+# Every model runs in the precision its weights were released in: no down-casting, no quantization.
+NATIVE = "auto"
 
 
 def cuda_sync():
