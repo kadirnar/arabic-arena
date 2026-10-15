@@ -25,6 +25,7 @@ class ModelSpec:
     notes: str = ""
     finetune_of: str | None = None  # base checkpoint, for fine-tunes
     in_domain: tuple[str, ...] = ()  # benchmark corpora whose *train* split the model was trained on
+    repo: str | None = None  # HF model page, when hf_id is a loader name rather than a repo id
 
 
 class ASRModel:

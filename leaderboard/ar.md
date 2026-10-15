@@ -5,13 +5,13 @@
 | 3 | [voxtral-mini-4b-realtime-arabic](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-Arabic) | 4.43 | **34.91** | 34.39–35.40 | 3–4 | 20.80 | 25.86 | 28.40 | 32.11 | 33.23 | 57.78 | 7.00 | 28.6 |
 | 4 | [lemura-arabic-asr-qwen3](https://huggingface.co/lemuralabs/lemura-arabic-asr-qwen3) | 2.04 | **35.21** | 34.45–36.05 | 3–5 | 18.34 | 27.15 | 34.96 | 30.27 | 31.63 | 56.70 | 100.00 | 55.8 |
 | 5 | [nvidia-fastconformer-ar-pc](https://huggingface.co/nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0) | 0.12 | **35.73** | 35.30–36.20 | 4–5 | 19.60 | 29.68 | 42.57 | 31.03 | 31.72 | 50.42 | 66.00 | 2404.9 |
-| 6 | [omniasr-llm-3b](https://huggingface.co/omniASR_LLM_3B) | 4.38 | **36.76** | 36.13–37.46 | 6–7 | 20.75 | 29.42 | 37.16 | 30.86 | 31.58 | 59.02 | 100.00 | 35.4 |
-| 7 | [omniasr-llm-1b](https://huggingface.co/omniASR_LLM_1B) | 2.28 | **36.88** | 36.27–37.48 | 6–7 | 20.49 | 29.77 | 39.60 | 31.54 | 31.28 | 57.56 | 100.00 | 39.0 |
+| 6 | [omniasr-llm-3b](https://huggingface.co/facebook/omniASR-LLM-3B) | 4.38 | **36.76** | 36.13–37.46 | 6–7 | 20.75 | 29.42 | 37.16 | 30.86 | 31.58 | 59.02 | 100.00 | 35.4 |
+| 7 | [omniasr-llm-1b](https://huggingface.co/facebook/omniASR-LLM-1B) | 2.28 | **36.88** | 36.27–37.48 | 6–7 | 20.49 | 29.77 | 39.60 | 31.54 | 31.28 | 57.56 | 100.00 | 39.0 |
 | 8 | [lemura-arabic-asr-lite](https://huggingface.co/lemuralabs/lemura-arabic-asr-lite) | 0.11 | **37.44** | 36.99–37.91 | 8 | 19.72 | 29.74 | 49.76 | 33.00 | 32.54 | 53.00 | 66.67 | 3412.7 |
 | 9 | [cohere-transcribe-03-2026](https://huggingface.co/CohereLabs/cohere-transcribe-03-2026) | 2.07 | **38.76** | 37.70–39.90 | 9 | 23.72 | 31.17 | 54.99 | 33.30 | 34.39 | 52.39 | 100.00 | 306.3 |
 | 10 | [qwen3-asr-1.7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B-hf) | 2.04 | **39.94** | 39.22–40.77 | 10 | 19.46 | 33.01 | 38.03 | 35.63 | 37.04 | 59.17 | 100.00 | 105.6 |
 | 11 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **41.62** | 40.77–42.47 | 11–12 | 22.46 | 33.67 | 42.20 | 38.34 | 38.42 | 60.89 | 27.67 | 52.3 |
-| 12 | [omniasr-llm-300m](https://huggingface.co/omniASR_LLM_300M) | 1.63 | **42.46** | 41.74–43.18 | 11–12 | 23.39 | 32.60 | 41.29 | 36.65 | 37.79 | 69.33 | 100.00 | 40.7 |
+| 12 | [omniasr-llm-300m](https://huggingface.co/facebook/omniASR-LLM-300M) | 1.63 | **42.46** | 41.74–43.18 | 11–12 | 23.39 | 32.60 | 41.29 | 36.65 | 37.79 | 69.33 | 100.00 | 40.7 |
 | 13 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **44.65** | 44.03–45.26 | 13–14 | 30.77 | 34.89 | 36.79 | 40.90 | 43.75 | 69.38 | 8.67 | 28.1 |
 | 14 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **45.38** | 43.75–47.08 | 13–20 | 27.19 | 35.36 | 51.84 | 38.76 | 38.43 | 71.62 | 91.00 | 75.1 |
 | 15 | [qwen3-asr-arabic-ksa](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-ksa) | 2.04 | **45.63** | 45.02–46.24 | 14–18 | 23.38 | 38.10 | 42.43 | 41.46 | 42.17 | 66.97 | 100.00 | 87.8 |

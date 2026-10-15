@@ -1432,7 +1432,7 @@ window.ARENA_DATA['ar'] = {
   },
   {
    "model": "omniasr-llm-3b",
-   "hf_id": "omniASR_LLM_3B",
+   "hf_id": "facebook/omniASR-LLM-3B",
    "params_b": 4.38,
    "license": "Apache-2.0",
    "kind": "open",
@@ -1690,7 +1690,7 @@ window.ARENA_DATA['ar'] = {
   },
   {
    "model": "omniasr-llm-1b",
-   "hf_id": "omniASR_LLM_1B",
+   "hf_id": "facebook/omniASR-LLM-1B",
    "params_b": 2.28,
    "license": "Apache-2.0",
    "kind": "open",
@@ -2984,7 +2984,7 @@ window.ARENA_DATA['ar'] = {
   },
   {
    "model": "omniasr-llm-300m",
-   "hf_id": "omniASR_LLM_300M",
+   "hf_id": "facebook/omniASR-LLM-300M",
    "params_b": 1.63,
    "license": "Apache-2.0",
    "kind": "open",
