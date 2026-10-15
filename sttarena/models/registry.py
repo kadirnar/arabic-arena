@@ -51,11 +51,9 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     _M("mms-1b-all", "ctc_hf", "facebook/mms-1b-all", 0.96, "CC-BY-NC-4.0", batch_size=16, kwargs={"mms": True}),
     _M("omniasr-llm-1b", "omniasr", "omniASR_LLM_1B", 2.28, "Apache-2.0", env="omniasr", batch_size=8,
        repo="facebook/omniASR-LLM-1B"),
-    _M("omniasr-llm-3b", "omniasr", "omniASR_LLM_3B", 4.38, "Apache-2.0", env="omniasr", batch_size=8,
-       repo="facebook/omniASR-LLM-3B"),
     _M("omniasr-llm-300m", "omniasr", "omniASR_LLM_300M", 1.63, "Apache-2.0", env="omniasr", batch_size=8,
        repo="facebook/omniASR-LLM-300M"),
-    # omniASR-LLM-7B and CTC-7B (fp32 checkpoints of 31 and 26 GB) do not fit a 16 GB card; see #50.
+    # omniASR-LLM-3B / LLM-7B / CTC-7B (fp32 checkpoints of 17.5, 31 and 26 GB) do not fit a 16 GB card; see #50.
     _M("omniasr-ctc-300m", "omniasr", "omniASR_CTC_300M", 0.33, "Apache-2.0", env="omniasr", batch_size=32,
        repo="facebook/omniASR-CTC-300M"),
     _M("omniasr-ctc-1b", "omniasr", "omniASR_CTC_1B", 0.98, "Apache-2.0", env="omniasr", batch_size=32,

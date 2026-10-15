@@ -44,7 +44,11 @@ would do.
 ## Inference
 - The language is forced (Whisper `ar`, Qwen `Arabic`, Cohere `ar`, Seamless `arb`, MMS `ara`,
   omniASR `arb_Arab`).
-- Decoding is greedy (`num_beams=1`, `do_sample=False`), in bf16/fp16 with SDPA attention.
+- Decoding is greedy (`num_beams=1`, `do_sample=False`).
+- Every model runs as released, in the precision of its published weights (fp32, fp16 or bf16).
+  We never down-cast, autocast or quantize. Quantized or otherwise optimized re-releases
+  (int8/int4, CPU builds, ternary/BitNet) are out of scope. A model whose original weights do
+  not fit a 16 GB GPU is left out (omniASR-LLM-3B/7B, omniASR-CTC-7B, VibeVoice-ASR).
 - Batches are sorted by length.
 - Promptable LLMs get a verbatim-transcription prompt.
 
