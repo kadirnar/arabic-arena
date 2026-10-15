@@ -139,11 +139,13 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
             stats = corpus_error_rates(refs_n, hyps_n)
             score = stats.to_dict()
             line = f"WER {stats.wer * 100:6.2f}  CER {stats.cer * 100:6.2f}"
-        with open(pred_dir / f"{name}__{cond}.jsonl", "w") as f:
-            for r, h, rn, hn in zip(rows, hyps, refs_n, hyps_n):
-                f.write(json.dumps({"id": r["id"], "ref": r["text"], "hyp": h, "ref_norm": rn, "hyp_norm": hn,
-                                    "wer": round(utterance_wer(rn, hn), 4), "duration": r["duration"]},
-                                   ensure_ascii=False) + "\n")
+        # smoke tests (--limit) must not overwrite full predictions: the bootstrap intersects utterance ids
+        if limit is None:
+            with open(pred_dir / f"{name}__{cond}.jsonl", "w") as f:
+                for r, h, rn, hn in zip(rows, hyps, refs_n, hyps_n):
+                    f.write(json.dumps({"id": r["id"], "ref": r["text"], "hyp": h, "ref_norm": rn, "hyp_norm": hn,
+                                        "wer": round(utterance_wer(rn, hn), 4), "duration": r["duration"]},
+                                       ensure_ascii=False) + "\n")
         res = {**score, "track": track, "set": name, "condition": cond,
                "audio_hours": round(audio_sec / 3600, 4), "seconds": round(elapsed, 2),
                "rtfx": round(audio_sec / elapsed, 2) if elapsed else None, "limit": limit,

@@ -40,12 +40,6 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     # --- Cohere Transcribe --------------------------------------------------------------------
     _M("cohere-transcribe-arabic-07-2026", "cohere_asr", "CohereLabs/cohere-transcribe-arabic-07-2026", 2.07,
        "Apache-2.0", languages=("ar", "en"), batch_size=32),
-    _M("cohere-transcribe-arabic-07-2026-int8", "cohere_asr", "NAMAA-Space/cohere-transcribe-arabic-07-2026-int8",
-       2.07, "Apache-2.0", languages=("ar", "en"), batch_size=32, kwargs={"bnb": True},
-       notes="bitsandbytes int8 of cohere-transcribe-arabic-07-2026"),
-    _M("cohere-transcribe-arabic-07-2026-int4", "cohere_asr", "NAMAA-Space/cohere-transcribe-arabic-07-2026-int4",
-       2.07, "Apache-2.0", languages=("ar", "en"), batch_size=32, kwargs={"bnb": True},
-       notes="bitsandbytes NF4 of cohere-transcribe-arabic-07-2026"),
     _M("cohere-transcribe-03-2026", "cohere_asr", "CohereLabs/cohere-transcribe-03-2026", 2.07, "Apache-2.0",
        batch_size=32),
     # --- Mistral Voxtral ----------------------------------------------------------------------
@@ -62,8 +56,7 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        repo="facebook/omniASR-LLM-3B"),
     _M("omniasr-llm-300m", "omniasr", "omniASR_LLM_300M", 1.63, "Apache-2.0", env="omniasr", batch_size=8,
        repo="facebook/omniASR-LLM-300M"),
-    _M("omniasr-llm-7b", "omniasr", "omniASR_LLM_7B", 7.8, "Apache-2.0", env="omniasr", batch_size=4,
-       repo="facebook/omniASR-LLM-7B"),
+    # omniASR-LLM-7B (7.8 B, ~15.6 GB in bf16) does not fit a 16 GB card; see #50.
     _M("omniasr-ctc-300m", "omniasr", "omniASR_CTC_300M", 0.33, "Apache-2.0", env="omniasr", batch_size=32,
        repo="facebook/omniASR-CTC-300M"),
     _M("omniasr-ctc-1b", "omniasr", "omniASR_CTC_1B", 0.98, "Apache-2.0", env="omniasr", batch_size=32,

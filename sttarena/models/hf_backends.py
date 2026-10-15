@@ -62,14 +62,7 @@ class CohereASR(ASRModel):
         from transformers import AutoProcessor, CohereAsrForConditionalGeneration
 
         self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
-        if spec.kwargs.get("bnb"):  # bitsandbytes int8/int4 checkpoints are placed on load and cannot be moved
-            self.model = CohereAsrForConditionalGeneration.from_pretrained(
-                spec.hf_id, dtype=torch_dtype(), device_map=device
-            ).eval()
-        else:
-            self.model = CohereAsrForConditionalGeneration.from_pretrained(
-                spec.hf_id, dtype=torch_dtype()
-            ).to(device).eval()
+        self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, dtype=torch_dtype()).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
