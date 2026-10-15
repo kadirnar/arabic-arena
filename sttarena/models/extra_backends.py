@@ -5,6 +5,20 @@ from __future__ import annotations
 from .base import LANG_NAMES, SR, ASRModel, ModelSpec
 
 
+def _unzipped(spec: ModelSpec) -> str:
+    """Repos that ship the checkpoint as a zip: extract once next to the HF cache, return the model dir."""
+    import zipfile
+    from pathlib import Path
+
+    from huggingface_hub import hf_hub_download
+
+    out = Path.home() / ".cache" / "sttarena" / spec.hf_id.replace("/", "--")
+    if not out.exists():
+        with zipfile.ZipFile(hf_hub_download(spec.hf_id, spec.kwargs["zip"])) as z:
+            z.extractall(out)
+    return str(next(out.rglob("config.json")).parent)
+
+
 class QwenASRPackage(ASRModel):
     """`qwen-asr` package: Qwen3-ASR checkpoints and fine-tunes such as Audar-ASR."""
 
@@ -14,7 +28,7 @@ class QwenASRPackage(ASRModel):
         from qwen_asr import Qwen3ASRModel
 
         self.model = Qwen3ASRModel.from_pretrained(
-            spec.hf_id, dtype=torch.bfloat16, device_map=device,
+            _unzipped(spec) if spec.kwargs.get("zip") else spec.hf_id, dtype=torch.bfloat16, device_map=device,
             max_inference_batch_size=spec.batch_size, max_new_tokens=440,
         )
 
@@ -75,3 +89,33 @@ class OmniASR(ASRModel):
     def transcribe(self, audios, language):
         inp = [{"waveform": a, "sample_rate": SR} for a in audios]
         return self.pipe.transcribe(inp, lang=[self.LANG[language]] * len(audios), batch_size=len(audios))
+
+
+class FunASRMLT(ASRModel):
+    """Fun-ASR-MLT-Nano via the funasr package and the model code of github.com/FunAudioLLM/Fun-ASR,
+    cloned into .venvs/funasr/src/Fun-ASR by scripts/setup_envs.sh."""
+
+    LANG = {"ar": "阿拉伯语", "en": "英文"}  # the prompt names languages in Chinese
+
+    def __init__(self, spec: ModelSpec, device: str = "cuda"):
+        super().__init__(spec, device)
+        import sys
+        from pathlib import Path
+
+        src = Path(sys.prefix) / "src" / "Fun-ASR"
+        sys.path.insert(0, str(src))
+        from model import FunASRNano
+
+        self.model, self.kwargs = FunASRNano.from_pretrained(model=spec.hf_id, hub="hf", device=f"{device}:0")
+        self.model.eval()
+        self.kwargs["llm_kwargs"] = {"do_sample": False}
+
+    def transcribe(self, audios, language):
+        import torch
+
+        out = []
+        for a in audios:  # the reference inference code decodes one utterance at a time
+            res = self.model.inference(data_in=[torch.from_numpy(a)], language=self.LANG[language], itn=False,
+                                       **self.kwargs)
+            out.append(res[0][0]["text"])
+        return out

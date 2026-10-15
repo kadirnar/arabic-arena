@@ -30,6 +30,8 @@ gpu = [
   "mistral-common",
   "sentencepiece",
   "faster-whisper",
+  "bitsandbytes",  # int8/int4 checkpoints
+  "peft",  # LoRA fine-tunes
 ]
 dev = ["pytest", "ruff"]
 

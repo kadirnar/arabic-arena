@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import os
+
+# Less fragmentation on 16 GB cards (needed for omniASR-CTC-7B); set before torch is imported.
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 
 def main(argv: list[str] | None = None) -> None:
