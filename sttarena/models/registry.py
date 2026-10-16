@@ -23,10 +23,15 @@ BACKENDS = {
     "nemo": "sttarena.models.extra_backends:NeMoASR",
     "omniasr": "sttarena.models.extra_backends:OmniASR",
     "fun_asr_mlt": "sttarena.models.extra_backends:FunASRMLT",
+    "soniox_api": "sttarena.models.api_backends:SonioxAPI",
 }
 
 _M = ModelSpec
 MODELS: dict[str, ModelSpec] = {m.key: m for m in [
+    # --- Closed APIs (internal comparison only; out of the public board's scope) ---------------
+    _M("soniox-stt-async-v5", "soniox_api", "soniox/stt-async-v5", None, "proprietary API", kind="api",
+       batch_size=400, kwargs={"model_id": "stt-async-v5", "language_hints": ("ar", "en"), "workers": 32},
+       notes="closed commercial API; RTFx is API wall-clock time", repo="https://soniox.com"),
     # --- Whisper family ---------------------------------------------------------------------
     _M("whisper-large-v3", "whisper_hf", "openai/whisper-large-v3", 1.54, "Apache-2.0", batch_size=32),
     _M("whisper-large-v3-turbo", "whisper_hf", "openai/whisper-large-v3-turbo", 0.81, "MIT", batch_size=32),

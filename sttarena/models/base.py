@@ -17,7 +17,7 @@ class ModelSpec:
     hf_id: str
     params_b: float | None = None
     license: str = ""
-    kind: str = "open"  # open-weights only (closed APIs are out of scope)
+    kind: str = "open"  # "open" (ranked) or "api" (closed API, unranked reference)
     env: str = "main"  # which virtualenv can run it (see scripts/setup_envs.sh)
     languages: tuple[str, ...] = ("ar", "en")
     batch_size: int = 16

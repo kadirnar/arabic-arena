@@ -483,14 +483,17 @@ function drawTable() {
   });
   const best = cols.map(([, f], i) => (f && i > 2 && i < cols.length - 1) ? Math.min(...ms.map(f).filter((v) => v != null)) : null);
   const tb = h("tbody", null, tbl);
-  ms.forEach((m, r) => {
+  let rank = 0;
+  ms.forEach((m) => {
     const row = h("tr", null, tb);
-    const rc = h("td", String(r + 1), row);
+    const api = m.kind === "api";  // closed APIs are unranked references
+    const rc = h("td", api ? "—" : String(++rank), row);
     if (m.rank_range && m.rank_range[0] !== m.rank_range[1]) {
       h("span", rankText(m.rank_range), rc, "ci").title = "95% bootstrap range of the Arena rank";
     }
     const td = h("td", null, row, "model");
-    const a = h("a", m.model, td); a.href = `https://huggingface.co/${m.hf_id}`;
+    const a = h("a", m.model, td); a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`;
+    if (api) h("span", " API", td, "tag").title = "Closed commercial API: unranked reference, scored on the re-hosted sets only";
     if (m.finetune_of || (m.in_domain || []).length) {
       const tag = h("span", m.in_domain?.length ? " † in-domain" : " fine-tune", td, "tag");
       tag.title = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")

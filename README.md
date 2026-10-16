@@ -76,6 +76,55 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 </details>
 <!-- LEADERBOARD:ar:END -->
 
+<!-- API:ar:START -->
+### Closed-API reference: scores on the re-hosted sets only
+
+`soniox-stt-async-v5` is a closed commercial API, so it is outside the ranked board above. It was run, one request per clip, on the 15 sets that are re-hosted on the Hub (cv18_ar/callcenter, cv18_ar/clean, cv18_ar/noisy, cv18_ar/telephony, fleurs_ar/callcenter, fleurs_ar/clean, fleurs_ar/noisy, fleurs_ar/telephony, masc_clean/clean, masc_noisy/clean, mixat_cs/clean, sada/callcenter, sada/clean, sada/noisy, sada/telephony), with language hints `ar, en`. With those hints it sometimes answers in English on short or noisy Arabic clips (about 3 % of SADA clips, 10 % of SADA call-center clips), and those count as errors. The other sets need gated sources, so it has no Arena score. For a like-for-like view, this table scores every model on those same sets: track means over the re-hosted sets, combined with the Arena weights. RTFx for an API is wall-clock time of the API calls, which is not comparable with local GPU runs.
+
+| # | Model | Kind | Subset WER | Clean | Noisy | Code-switch | Telephony | Callcenter |
+|---|---|---|---|---|---|---|---|---|
+| 1 | cohere-transcribe-arabic-07-2026 | open | **20.05** | 12.39 | 20.85 | 17.73 | 18.28 | 35.78 |
+| 2 | **soniox-stt-async-v5** | api | **20.65** | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
+| 3 | audar-asr-v1-turbo | open | **21.90** | 11.73 | 22.61 | 15.33 | 20.06 | 44.31 |
+| 4 | nvidia-fastconformer-ar-pc | open | **24.90** | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
+| 5 | lemura-arabic-asr-qwen3 | open | **27.51** | 16.14 | 26.69 | 23.40 | 24.77 | 52.81 |
+| 6 | voxtral-mini-4b-realtime-arabic | open | **27.54** | 15.43 | 27.29 | 17.61 | 27.25 | 54.19 |
+| 7 | lemura-arabic-asr-lite | open | **28.27** | 15.49 | 27.46 | 43.76 | 24.35 | 47.42 |
+| 8 | qwen3-asr-1.7b | open | **29.96** | 19.31 | 30.40 | 21.00 | 29.38 | 53.36 |
+| 9 | cohere-transcribe-03-2026 | open | **30.78** | 17.53 | 28.40 | 49.45 | 29.69 | 47.50 |
+| 10 | audar-asr-v1-flash | open | **32.46** | 20.68 | 34.12 | 21.98 | 32.07 | 57.49 |
+| 11 | qwen3-asr-arabic-ksa | open | **35.79** | 23.67 | 37.15 | 23.01 | 34.78 | 63.40 |
+| 12 | voxtral-mini-4b-realtime-2602 | open | **35.95** | 21.42 | 34.81 | 23.97 | 37.81 | 66.37 |
+| 13 | qwen3-asr-arabic-uae | open | **37.51** | 25.49 | 38.30 | 23.94 | 37.42 | 64.83 |
+| 14 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
+| 15 | whisper-large-v3 | open | **38.96** | 25.59 | 40.45 | 28.26 | 40.00 | 65.53 |
+| 16 | qwen3-asr-0.6b | open | **41.10** | 29.30 | 40.05 | 28.47 | 42.90 | 67.05 |
+| 17 | gemma-4-e2b-it | open | **41.49** | 24.72 | 40.96 | 27.65 | 38.24 | 81.39 |
+| 18 | qwencleo-asr | open | **42.93** | 27.67 | 44.18 | 28.78 | 41.42 | 77.27 |
+| 19 | whisper-large-v3-turbo | open | **47.34** | 31.82 | 41.57 | 24.44 | 46.79 | 90.81 |
+| 20 | moulsot-v0.3 | open | **56.64** | 37.18 | 53.83 | 41.72 | 55.35 | 101.55 |
+
+Per-set WER (%) of `soniox-stt-async-v5` next to the top two ranked models:
+
+| Set | soniox-stt-async-v5 | cohere-transcribe-arabic-07-2026 | audar-asr-v1-turbo |
+|---|---|---|---|
+| cv18_ar/callcenter | 45.70 | **29.25** | 39.24 |
+| cv18_ar/clean | 9.40 | **4.71** | 7.65 |
+| cv18_ar/noisy | 20.12 | **13.32** | 17.79 |
+| cv18_ar/telephony | 15.46 | **8.93** | 13.72 |
+| fleurs_ar/callcenter | **14.68** | 15.69 | 28.20 |
+| fleurs_ar/clean | **4.23** | 4.62 | 5.89 |
+| fleurs_ar/noisy | 6.93 | **6.61** | 8.61 |
+| fleurs_ar/telephony | 5.97 | **5.72** | 8.49 |
+| masc_clean/clean | 5.46 | **4.33** | 5.69 |
+| masc_noisy/clean | 16.65 | **15.33** | 18.00 |
+| mixat_cs/clean | 16.80 | 17.73 | **15.33** |
+| sada/callcenter | **52.20** | 62.40 | 65.49 |
+| sada/clean | 31.05 | 35.90 | **27.69** |
+| sada/noisy | **40.61** | 48.15 | 46.04 |
+| sada/telephony | **37.29** | 40.20 | 37.97 |
+<!-- API:ar:END -->
+
 Hardware: 1× RTX 5070 Ti (16 GB), batch inference, greedy decoding, language forced to Arabic.
 Models that only fit with quantization are not included yet.
 
@@ -137,10 +186,11 @@ sttarena leaderboard --suite arabic                # refresh tables
 Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
 [`scripts/setup_envs.sh`](scripts/setup_envs.sh).
 
-### Scope: open-weight models only
+### Scope: open-weight models are ranked
 
-The arena only evaluates models whose weights are public and that run locally. Closed
-commercial APIs are out of scope.
+The ranked board only includes models whose weights are public and that run locally. Closed
+commercial APIs are not ranked: when one is run, it appears as an unranked reference under the
+board, scored on the re-hosted sets only (see "Closed-API reference").
 Models run unmodified, in the precision of their released weights: no down-casting and no
 quantization. Quantized or otherwise optimized variants are not evaluated.
 

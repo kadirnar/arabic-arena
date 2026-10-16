@@ -5055,6 +5055,155 @@ window.ARENA_DATA['ar'] = {
    ],
    "rtfx": 105.1,
    "audio_hours": 28.46
+  },
+  {
+   "model": "soniox-stt-async-v5",
+   "hf_id": "https://soniox.com",
+   "params_b": null,
+   "license": "proprietary API",
+   "kind": "api",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.04225352112676056,
+     "cer": 0.019127444659359553,
+     "rtfx": 9.43,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.09403578528827038,
+     "cer": 0.03161081953976585,
+     "rtfx": 3.94,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.05463752665245203,
+     "cer": 0.019219700192697513,
+     "rtfx": 4.03,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.31047567421059763,
+     "cer": 0.14492194496879177,
+     "rtfx": 5.63,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.16799749491153906,
+     "cer": 0.07052948311987019,
+     "rtfx": 10.39,
+     "n": 1000
+    },
+    "masc_noisy/clean": {
+     "wer": 0.16652625666947488,
+     "cer": 0.06523258940575423,
+     "rtfx": 2.69,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.06930166607585962,
+     "cer": 0.03681944017225469,
+     "rtfx": 9.34,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.20119920053297802,
+     "cer": 0.1153531497136624,
+     "rtfx": 3.96,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.406102805652263,
+     "cer": 0.22685995167874698,
+     "rtfx": 6.37,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.0597305919886565,
+     "cer": 0.028237465395262996,
+     "rtfx": 9.3,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.15456362425049966,
+     "cer": 0.06585764930460868,
+     "rtfx": 3.21,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.3729264796231825,
+     "cer": 0.184703824043989,
+     "rtfx": 5.42,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.1467564693371145,
+     "cer": 0.0766533374346355,
+     "rtfx": 9.34,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.4570286475682878,
+     "cer": 0.29547313880556314,
+     "rtfx": 3.8,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.5220151546180627,
+     "cer": 0.30638173789885864,
+     "rtfx": 6.48,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": null,
+     "cer": null,
+     "done": 1,
+     "total": 2
+    },
+    "noisy": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 6
+    },
+    "telephony": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.15",
+    "host": "86c83ed0473a",
+    "torch": "2.13.0+cu130",
+    "gpu": "NVIDIA H100 NVL",
+    "transformers": "5.17.0"
+   },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "closed commercial API; RTFx is API wall-clock time",
+   "hallucination_rate": null,
+   "inserted_wpm": null,
+   "arena_wer": null,
+   "arena_cer": null,
+   "arena_ci": null,
+   "rank_range": null,
+   "rtfx": 5.9,
+   "audio_hours": 15.87
   }
  ]
 };
