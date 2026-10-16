@@ -39,6 +39,11 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     _M("whisper-small", "whisper_hf", "openai/whisper-small", 0.24, "Apache-2.0", batch_size=64),
     _M("whisper-large-v2", "whisper_hf", "openai/whisper-large-v2", 1.54, "Apache-2.0", batch_size=32),
     # --- Qwen3-ASR ----------------------------------------------------------------------------
+    _M("arabic-stt-qwen3-asr-1.7b", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run3", 2.04, "private weights",
+       kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada"),
+       notes="Arabic-STT run 3: full fine-tune with private weights; trained on the train splits of CV18 and MASC "
+             "and on MGB-2/SADA train rows (rows overlapping their test sets excluded)"),
     _M("qwen3-asr-1.7b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-1.7B-hf", 2.04, "Apache-2.0", batch_size=32),
     _M("qwen3-asr-0.6b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-0.6B-hf", 0.94, "Apache-2.0", batch_size=32),
     # --- Cohere Transcribe --------------------------------------------------------------------
