@@ -5359,6 +5359,161 @@ window.ARENA_DATA['ar'] = {
    "rank_range": null,
    "rtfx": 159.7,
    "audio_hours": 15.87
+  },
+  {
+   "model": "arabic-stt-qwen3-asr-1.7b-run5",
+   "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run5",
+   "params_b": 2.04,
+   "license": "private weights",
+   "kind": "private",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.05695576970595503,
+     "cer": 0.02336127229744251,
+     "rtfx": 148.19,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.07157057654075547,
+     "cer": 0.020306822769479208,
+     "rtfx": 253.39,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.05503731343283582,
+     "cer": 0.019920418428889614,
+     "rtfx": 193.11,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.24773004472150698,
+     "cer": 0.1072102732270554,
+     "rtfx": 121.43,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.17320338186942227,
+     "cer": 0.0838965294516124,
+     "rtfx": 236.75,
+     "n": 1000
+    },
+    "masc_noisy/clean": {
+     "wer": 0.15276607694467847,
+     "cer": 0.058456574347943,
+     "rtfx": 184.41,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.07196029776674938,
+     "cer": 0.02922177791448785,
+     "rtfx": 255.14,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.11392405063291139,
+     "cer": 0.04417780201799836,
+     "rtfx": 290.76,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.29858693426172433,
+     "cer": 0.14429725901857868,
+     "rtfx": 116.59,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.06823821339950373,
+     "cer": 0.029283297446939402,
+     "rtfx": 262.05,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.10059960026648901,
+     "cer": 0.03258794655031361,
+     "rtfx": 310.26,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.28855211959860744,
+     "cer": 0.13100891443805715,
+     "rtfx": 194.8,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.14480680609712868,
+     "cer": 0.06364195632113195,
+     "rtfx": 259.37,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.24516988674217188,
+     "cer": 0.12407962912462503,
+     "rtfx": 292.55,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.42965390129019043,
+     "cer": 0.22856785803549112,
+     "rtfx": 107.38,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": null,
+     "cer": null,
+     "done": 1,
+     "total": 2
+    },
+    "noisy": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 6
+    },
+    "telephony": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.15",
+    "host": "86c83ed0473a",
+    "torch": "2.13.0+cu130",
+    "gpu": "NVIDIA H100 NVL",
+    "transformers": "5.17.0"
+   },
+   "finetune_of": "Qwen/Qwen3-ASR-1.7B",
+   "in_domain": [
+    "cv18_ar",
+    "masc_clean",
+    "masc_noisy",
+    "mgb2",
+    "sada"
+   ],
+   "notes": "Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; same in-domain train rows as run 3 (rows overlapping the test sets excluded)",
+   "hallucination_rate": null,
+   "inserted_wpm": null,
+   "arena_wer": null,
+   "arena_cer": null,
+   "arena_ci": null,
+   "rank_range": null,
+   "rtfx": 188.3,
+   "audio_hours": 15.87
   }
  ]
 };
