@@ -8,91 +8,116 @@
 <style>
 :root {
   color-scheme: light;
-  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
-  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
-  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --accent: #2a78d6; --hover: rgba(42,120,214,0.08);
+  --bg: #ffffff; --fg: #111827; --muted: #6b7280; --line: #e5e7eb; --head: #f9fafb; --card: #ffffff;
+  --best: #047857; --bestbg: #ecfdf5; --open: #065f46; --openbg: #d1fae5; --api: #92400e; --apibg: #fef3c7;
+  --priv: #5b21b6; --privbg: #ede9fe; --accent: #2563eb;
+  /* chart tokens */
+  --page: var(--bg); --surface: var(--card); --ink: var(--fg); --ink-2: #374151; --grid: #eef0f3; --axis: #d1d5db;
+  --ring: var(--line); --s1: #2563eb; --s2: #ea580c; --s3: #059669; --hover: rgba(37, 99, 235, 0.06);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
-    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
-    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --accent: #3987e5; --hover: rgba(57,135,229,0.12);
+    --bg: #0b0f17; --fg: #e5e7eb; --muted: #9ca3af; --line: #1f2937; --head: #111827; --card: #0f141d;
+    --best: #34d399; --bestbg: #052e22; --open: #6ee7b7; --openbg: #064e3b; --api: #fcd34d; --apibg: #451a03;
+    --priv: #c4b5fd; --privbg: #2e1065; --accent: #60a5fa;
+    --ink-2: #cbd5e1; --grid: #1a2230; --axis: #2b3646; --s1: #60a5fa; --s2: #fb923c; --s3: #34d399;
+    --hover: rgba(96, 165, 250, 0.08);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
-  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
-  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --accent: #3987e5; --hover: rgba(57,135,229,0.12);
+  --bg: #0b0f17; --fg: #e5e7eb; --muted: #9ca3af; --line: #1f2937; --head: #111827; --card: #0f141d;
+  --best: #34d399; --bestbg: #052e22; --open: #6ee7b7; --openbg: #064e3b; --api: #fcd34d; --apibg: #451a03;
+  --priv: #c4b5fd; --privbg: #2e1065; --accent: #60a5fa;
+  --ink-2: #cbd5e1; --grid: #1a2230; --axis: #2b3646; --s1: #60a5fa; --s2: #fb923c; --s3: #34d399;
+  --hover: rgba(96, 165, 250, 0.08);
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--page); color: var(--ink);
-  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 a { color: var(--accent); }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 32px 16px 64px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 32px 16px 56px; }
 header h1 { font-size: 28px; margin: 0 0 4px; letter-spacing: -0.01em; }
-header p { margin: 0; color: var(--ink-2); max-width: 760px; }
-.links { margin-top: 8px; font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 24px 0 16px; }
-.filters .label { color: var(--muted); font-size: 13px; margin-right: 4px; }
-.seg { display: inline-flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; background: var(--surface); }
-.seg { max-width: 100%; overflow-x: auto; }
-.seg button { white-space: nowrap; border: 0; background: transparent; color: var(--ink-2); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
-.seg button + button { border-left: 1px solid var(--ring); }
-.seg button[aria-pressed="true"] { background: var(--hover); color: var(--ink); font-weight: 600; }
+header p { margin: 0; color: var(--muted); max-width: 780px; }
+.links { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.links a { font-size: 13px; text-decoration: none; color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; background: var(--head); }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+.bar { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 24px 0 12px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.filters .label { color: var(--muted); font-size: 13px; margin: 0 2px 0 6px; }
+.filters .label:first-child { margin-left: 0; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; max-width: 100%; overflow-x: auto; }
+.seg button { white-space: nowrap; border: 0; background: transparent; color: var(--fg); padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
 .seg button:disabled { color: var(--muted); cursor: not-allowed; }
+.legend { color: var(--muted); font-size: 13px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+#tbl { min-width: 980px; }
+th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+#tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2) { text-align: left; }
+th { background: var(--head); color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; position: sticky; top: 0; }
+th.sorted::after { content: " ▲"; font-size: 10px; }
+tbody tr:hover td { background: var(--head); }
+td.rank { color: var(--muted); width: 48px; }
+td.model a { color: var(--fg); text-decoration: none; font-weight: 600; }
+td.model a:hover { color: var(--accent); text-decoration: underline; }
+td.best { color: var(--best); background: var(--bestbg); font-weight: 700; }
+tbody tr:hover td.best { background: var(--bestbg); }
+td.arena { font-weight: 700; }
+.pending { color: var(--muted); }
+.ci { display: block; color: var(--muted); font-size: 11.5px; font-weight: 400; }
+td.best .ci { color: var(--best); opacity: 0.8; }
+.badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.b-open { color: var(--open); background: var(--openbg); }
+.b-api { color: var(--api); background: var(--apibg); }
+.b-private { color: var(--priv); background: var(--privbg); }
+.dag { color: var(--muted); margin-left: 4px; cursor: help; }
+.tag { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; cursor: help; }
+.note { color: var(--muted); font-size: 13px; margin: 10px 2px 0; }
+details { border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; margin-top: 16px; }
+details > summary { cursor: pointer; font-weight: 600; }
+details .table-wrap { margin: 12px 0 4px; }
+h2.section { font-size: 18px; margin: 36px 0 12px; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 860px) { .grid2 { grid-template-columns: 1fr; } }
-.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 16px 16px 12px; margin-bottom: 16px; min-width: 0; }
-.card h2 { font-size: 16px; margin: 0; }
-.card .sub { color: var(--ink-2); font-size: 13px; margin: 2px 0 12px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 16px 12px; margin-bottom: 16px; min-width: 0; }
+.card h3 { font-size: 15px; margin: 0; }
+.card .sub { color: var(--muted); font-size: 13px; margin: 2px 0 12px; }
 svg { display: block; width: 100%; height: auto; overflow: visible; }
 svg text { fill: var(--ink-2); font-size: 12px; font-family: inherit; }
 svg .muted { fill: var(--muted); }
 svg .gridline { stroke: var(--grid); stroke-width: 1; }
 svg .axis { stroke: var(--axis); stroke-width: 1; }
-.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
-.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
-.tip { position: fixed; pointer-events: none; z-index: 10; background: var(--surface); border: 1px solid var(--ring);
-  border-radius: 8px; padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: none; max-width: 280px; }
-.tip .t { color: var(--ink-2); margin-bottom: 4px; }
-.tip .r { display: flex; align-items: center; gap: 8px; }
-.tip .r b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.tip .k { width: 12px; height: 2px; background: var(--c); }
-.table-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
-th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
-th:nth-child(-n+2), td:nth-child(-n+2) { text-align: left; }
-th { color: var(--muted); font-weight: 500; cursor: pointer; user-select: none; position: sticky; top: 0; background: var(--surface); }
-th[aria-sort] { color: var(--ink); }
-td.model a { color: var(--ink); text-decoration: none; font-weight: 500; }
-td.model a:hover { text-decoration: underline; }
-td.best { font-weight: 700; }
-tr:hover td { background: var(--hover); }
-.pending { color: var(--muted); }
-.tag { color: var(--muted); font-size: 11px; font-weight: 400; margin-left: 4px; }
-.ci { display: block; color: var(--muted); font-size: 11px; font-weight: 400; }
 svg .halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
 svg .whisker { stroke: var(--ink-2); stroke-width: 1.5; }
-details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin: 8px 0; }
-.method { color: var(--ink-2); font-size: 14px; }
-.method li { margin: 4px 0; }
+.chart-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
+.chart-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.tip { position: fixed; pointer-events: none; z-index: 10; background: var(--card); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 10px; font-size: 13px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14); display: none; max-width: 280px; }
+.tip .t { color: var(--ink-2); margin-bottom: 4px; font-weight: 600; }
+.tip .r { display: flex; align-items: center; gap: 8px; }
+.tip .r b { color: var(--fg); font-variant-numeric: tabular-nums; }
+.tip .k { width: 12px; height: 2px; background: var(--c); }
+.method li { margin: 6px 0; color: var(--fg); font-size: 14px; }
 .empty { color: var(--muted); padding: 24px 0; text-align: center; }
 .inline-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; }
 .chart-wide { overflow-x: auto; }
 .chart-wide svg { min-width: 720px; }
 .ramp { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-top: 8px; }
 .ramp i { display: block; width: 160px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--ramp)); }
+footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap">
   <header>
     <h1>Arabic Arena</h1>
-    <p>A speech-to-text leaderboard scored on many test sets at once: MSA, Gulf, Egyptian,
-      Levantine, Maghrebi, code-switching, noisy speech, and simulated 8 kHz telephone and
-      call-center channels. One test set can mislead; the average of many is harder to game.</p>
+    <p>A speech-to-text leaderboard scored on many test sets at once: MSA, Gulf, Egyptian, Levantine, Maghrebi,
+      code-switching, noisy speech, and simulated 8 kHz telephone and call-center channels. One test set can mislead;
+      the average of many is harder to game. Lower is better.</p>
     <div class="links">
       <a href="https://github.com/kadirnar/arabic-arena">GitHub</a>
       <a href="https://huggingface.co/datasets/kadirnar/arabic-arena-ar">Datasets on HF</a>
@@ -101,43 +126,60 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
     </div>
   </header>
 
-  <div class="filters" role="toolbar" aria-label="Filters">
-    <span class="label">Language</span>
-    <div class="seg" id="lang">
-      <button data-v="ar" aria-pressed="true">Arabic</button>
-      <button data-v="en" disabled title="Coming soon">English</button>
+  <div class="bar">
+    <div class="filters" role="toolbar" aria-label="Filters">
+      <span class="label">Language</span>
+      <div class="seg" id="lang">
+        <button data-v="ar" aria-pressed="true">Arabic</button>
+        <button data-v="en" disabled title="Coming soon">English</button>
+      </div>
+      <span class="label">Score</span>
+      <div class="seg" id="track"></div>
+      <span class="label">Metric</span>
+      <div class="seg" id="metric">
+        <button data-v="wer" aria-pressed="true">WER</button>
+        <button data-v="cer">CER</button>
+      </div>
     </div>
-    <span class="label" style="margin-left:12px">Score</span>
-    <div class="seg" id="track"></div>
-    <span class="label" style="margin-left:12px">Metric</span>
-    <div class="seg" id="metric">
-      <button data-v="wer" aria-pressed="true">WER</button>
-      <button data-v="cer">CER</button>
+    <div class="legend">
+      <span class="badge b-open">Open</span> open weights
+      <span class="badge b-api">API</span> closed API
+      <span class="badge b-private">Private</span> private weights
+      <span>† in-domain</span>
     </div>
   </div>
 
+  <div class="table-wrap"><table id="tbl"></table></div>
+  <p class="note">Click a column to sort; the best value in each column is highlighted. Small grey numbers are 95 % bootstrap
+    intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
+    Closed APIs and private-weight models are unranked references, scored on the re-hosted sets only. † marks models
+    trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
+    Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
+  <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
+
+  <h2 class="section">Charts</h2>
   <section class="card">
-    <h2 id="rank-title">Arena WER</h2>
+    <h3 id="rank-title">Arena WER</h3>
     <p class="sub" id="rank-sub">Lower is better.</p>
     <div id="rank" class="chart-wide"></div>
   </section>
 
   <div class="grid2">
     <section class="card">
-      <h2>Accuracy vs speed</h2>
+      <h3>Accuracy vs speed</h3>
       <p class="sub" id="scatter-sub">RTFx on one RTX 5070 Ti (log scale). Down and to the right is better.</p>
       <div id="scatter"></div>
     </section>
     <section class="card">
-      <h2>Phone-channel robustness</h2>
+      <h3>Phone-channel robustness</h3>
       <p class="sub">WER on the same source sets: clean audio, then the telephony channel, then the call-center condition.</p>
-      <div class="legend"><span style="--c:var(--s1)">Clean</span><span style="--c:var(--s2)">Telephony</span><span style="--c:var(--s3)">Call-center</span></div>
+      <div class="chart-legend"><span style="--c:var(--s1)">Clean</span><span style="--c:var(--s2)">Telephony</span><span style="--c:var(--s3)">Call-center</span></div>
       <div id="dumbbell"></div>
     </section>
   </div>
 
   <section class="card">
-    <h2>Where models break</h2>
+    <h3>Where models break</h3>
     <p class="sub" id="heat-sub"></p>
     <div class="inline-filters"><div class="seg" id="dim"></div></div>
     <div id="heat" class="chart-wide"></div>
@@ -145,20 +187,13 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
   </section>
 
   <section class="card">
-    <h2>Hallucination on noise-only audio</h2>
+    <h3>Hallucination on noise-only audio</h3>
     <p class="sub">Share of 300 clips with no target speech (line silence, hold hiss, mains hum, distant babble, office, street and transport noise; half sent through a phone codec) for which the model still wrote words. Lower is better. Not part of the Arena score.</p>
     <div id="halluc" class="chart-wide"></div>
   </section>
 
-  <section class="card">
-    <h2>All results</h2>
-    <p class="sub">Click a column to sort. The best value in each column is bold. Values in parentheses are the number of sets finished so far. Small grey numbers are 95% bootstrap intervals (WER) and, under the rank, the rank range. Halluc. % is the share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; it is not part of the Arena score. "fine-tune" marks community fine-tunes; "† in-domain" marks models trained on the train split of one of the benchmark corpora, so their score on that corpus is not zero-shot (hover for details).</p>
-    <div class="table-wrap"><table id="tbl"></table></div>
-    <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
-  </section>
-
-  <section class="card method">
-    <h2>How scores are computed</h2>
+  <details class="method">
+    <summary>How scores are computed</summary>
     <ul>
       <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same normalization is applied to references and hypotheses (Arabic: diacritics, alef/hamza/ta-marbuta spellings and punctuation are unified and digits are written out as words).</li>
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
@@ -166,10 +201,11 @@ details summary { cursor: pointer; color: var(--ink-2); font-size: 14px; margin:
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
-      <li><b>Models</b>: open-weight models only, all run locally.</li>
+      <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and private-weight models are listed as unranked references.</li>
     </ul>
-  </section>
-</div>
+  </details>
+  <footer>Arabic Arena · <a href="https://github.com/kadirnar/arabic-arena">github.com/kadirnar/arabic-arena</a></footer>
+</main>
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script src="data/ar.js"></script>
@@ -194,6 +230,7 @@ const CODEC_NAMES = { g711_mulaw: "G.711 μ-law", g711_alaw: "G.711 A-law", gsm_
 const SNR_ORDER = ["≥15 dB", "10–15 dB", "5–10 dB", "<5 dB"];
 const RAMP = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf",
   "#1c5cab", "#184f95", "#104281", "#0d366b"];
+const KIND = { open: ["Open", "b-open"], api: ["API", "b-api"], private: ["Private", "b-private"] };
 const state = { lang: "ar", track: "arena", metric: "wer", dim: "codec", sort: null, data: null, bd: null };
 const NS = "http://www.w3.org/2000/svg";
 const tip = document.getElementById("tip");
@@ -276,8 +313,9 @@ function drawRank() {
     const t = el("text", { x: labelW - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg);
     t.textContent = `${i + 1}. ${m.model}`;
     const w = Math.max(x1 - x0, r);
+    const fill = (m.kind || "open") === "open" ? "var(--s1)" : m.kind === "api" ? "var(--s2)" : "var(--priv)";
     el("path", { d: `M${x0},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
-      fill: "var(--s1)" }, svg);
+      fill }, svg);
     const c = ciOf(m), cy = y + bar / 2;
     if (c) {
       el("line", { x1: x(c[0]), x2: x(c[1]), y1: cy, y2: cy, class: "whisker" }, svg);
@@ -467,49 +505,51 @@ function drawHalluc() {
 }
 
 // ---- tables ------------------------------------------------------------------------------
+const FIRST_TRACK = 4;  // column index of the first score column (#, Model, Type, Params, ...)
 function drawTable() {
   const d = state.data, tbl = document.getElementById("tbl"); tbl.replaceChildren();
-  const cols = [["#", null], ["Model", null], ["Params (B)", (m) => m.params_b],
+  const cols = [["#", null], ["Model", null], ["Type", null], ["Params (B)", (m) => m.params_b],
     ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]),
     ["Halluc. %", (m) => m.hallucination_rate], ["RTFx", (m) => m.rtfx]];
   let ms = [...d.models];
-  const sc = state.sort ?? 3, dir = sc === cols.length - 1 ? -1 : 1;
+  const sc = state.sort ?? FIRST_TRACK, dir = sc === cols.length - 1 ? -1 : 1;
   if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
   const tr = h("tr", null, h("thead", null, tbl));
   cols.forEach(([l], i) => {
     const th = h("th", l, tr);
-    if (i === sc) th.setAttribute("aria-sort", "ascending");
+    if (i === sc) { th.setAttribute("aria-sort", "ascending"); th.classList.add("sorted"); }
     if (cols[i][1]) th.addEventListener("click", () => { state.sort = i; drawTable(); });
   });
-  const best = cols.map(([, f], i) => (f && i > 2 && i < cols.length - 1) ? Math.min(...ms.map(f).filter((v) => v != null)) : null);
+  const best = cols.map(([, f], i) => (f && i >= FIRST_TRACK && i < cols.length - 1) ? Math.min(...ms.map(f).filter((v) => v != null)) : null);
   const tb = h("tbody", null, tbl);
   let rank = 0;
   ms.forEach((m) => {
     const row = h("tr", null, tb);
-    const unranked = (m.kind || "open") !== "open";  // closed APIs and private weights are unranked references
-    const rc = h("td", unranked ? "—" : String(++rank), row);
+    const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and private weights are unranked references
+    const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
     if (m.rank_range && m.rank_range[0] !== m.rank_range[1]) {
       h("span", rankText(m.rank_range), rc, "ci").title = "95% bootstrap range of the Arena rank";
     }
     const td = h("td", null, row, "model");
     const a = h("a", m.model, td); a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`;
-    if (unranked) h("span", m.kind === "api" ? " API" : " private weights", td, "tag").title =
-      (m.kind === "api" ? "Closed commercial API" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
-    if (m.finetune_of || (m.in_domain || []).length) {
-      const tag = h("span", m.in_domain?.length ? " † in-domain" : " fine-tune", td, "tag");
-      tag.title = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
-        + (m.in_domain?.length ? ` Trained on the train split of: ${m.in_domain.join(", ")}.` : "");
-    }
+    a.target = "_blank"; a.rel = "noopener";
+    const info = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
+      + (m.in_domain?.length ? ` Trained on the train split of: ${m.in_domain.join(", ")}.` : "");
+    if (m.in_domain?.length) h("span", "†", td, "dag").title = info;
+    else if (m.finetune_of) h("span", "fine-tune", td, "tag").title = info;
+    const k = KIND[kind] || [kind, "b-open"];
+    const badge = h("span", k[0], h("td", null, row), "badge " + k[1]);
+    if (unranked) badge.title = (kind === "api" ? "Closed commercial API" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
-    TRACKS.forEach(([k], j) => {
-      const v = score(m, k), t = m.tracks[k];
-      const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : "");
-      if (v != null && v === best[3 + j]) c.classList.add("best");
-      const ci = ciOf(m, k);
+    TRACKS.forEach(([key], j) => {
+      const v = score(m, key), t = m.tracks[key];
+      const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : (key === "arena" ? "arena" : ""));
+      if (v != null && v === best[FIRST_TRACK + j]) c.classList.add("best");
+      const ci = ciOf(m, key);
       if (v != null && ci) h("span", ciText(ci), c, "ci").title = "95% bootstrap confidence interval";
     });
     const hc = h("td", pct(m.hallucination_rate), row, m.hallucination_rate == null ? "pending" : "");
-    if (m.hallucination_rate != null && m.hallucination_rate === best[3 + TRACKS.length]) hc.classList.add("best");
+    if (m.hallucination_rate != null && m.hallucination_rate === best[FIRST_TRACK + TRACKS.length]) hc.classList.add("best");
     h("td", m.rtfx != null ? String(m.rtfx) : "—", row);
   });
 
@@ -519,14 +559,15 @@ function drawTable() {
   h("th", "#", hr); h("th", "Model", hr);
   keys.forEach((k) => h("th", k.replace("/clean", "").replace("/", " · "), hr));
   const sb = h("tbody", null, st);
+  const setBest = Object.fromEntries(keys.map((k) => [k, Math.min(...ms.map((m) => m.sets[k]?.[state.metric]).filter((v) => v != null))]));
   ms.forEach((m, r) => {
     const row = h("tr", null, sb);
-    h("td", String(r + 1), row); h("td", m.model, row, "model");
-    keys.forEach((k) => h("td", pct(m.sets[k]?.[state.metric]), row));
+    h("td", String(r + 1), row, "rank"); h("td", m.model, row, "model");
+    keys.forEach((k) => { const v = m.sets[k]?.[state.metric]; const c = h("td", pct(v), row); if (v != null && v === setBest[k]) c.classList.add("best"); });
   });
 }
 
-function drawAll() { drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); drawTable(); }
+function drawAll() { drawTable(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
 
 function setupSeg(id, key, onChange) {
   document.getElementById(id).addEventListener("click", (e) => {
@@ -564,7 +605,7 @@ async function load() {
     state.data = (window.ARENA_DATA || {})[state.lang]
       || await (await fetch(`data/${state.lang}.json`, { cache: "no-store" })).json();
   } catch (e) {
-    document.getElementById("rank").replaceChildren(h("div", "Could not load results.", null, "empty"));
+    document.getElementById("tbl").replaceChildren(h("caption", "Could not load results.", null, "empty"));
     return;
   }
   state.bd = (window.ARENA_BREAKDOWN || {})[state.lang] || null;
