@@ -82,17 +82,17 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 These models are not on the ranked board above: the board ranks open-weight models run on every set.
 
 - `soniox-stt-async-v5`: a closed commercial API, run one request per clip with language hints `ar, en` (with those hints it sometimes answers in English on short or noisy Arabic clips: about 3 % of SADA clips, 10 % of SADA call-center clips, counted as errors); its RTFx is the wall-clock time of the API calls.
-- `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
-- `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
-- `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
+- `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
+- `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
+- `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
 
 They were run on the 15 sets that are re-hosted on the Hub; the other sets need gated sources, so they have no Arena score. For a like-for-like view, the table scores every model on those same sets: track means over the re-hosted sets, combined with the Arena weights.
 
 | # | Model | Kind | Subset WER | Clean | Noisy | Code-switch | Telephony | Call-center |
 |---|---|---|---|---|---|---|---|---|
-| 1 | **arabic-stt-qwen3-asr-1.7b-run5** † | private weights | **16.41** | 10.78 | 15.93 | 17.32 | 15.25 | 27.32 |
-| 2 | **arabic-stt-qwen3-asr-1.7b-run5base** † | private weights | **18.64** | 11.75 | 16.89 | 19.70 | 16.08 | 34.02 |
-| 3 | **arabic-stt-qwen3-asr-1.7b** † | private weights | **18.67** | 10.88 | 23.60 | 17.19 | 15.56 | 32.46 |
+| 1 | **arabic-stt-qwen3-asr-1.7b-run5** † | gated weights | **16.41** | 10.78 | 15.93 | 17.32 | 15.25 | 27.32 |
+| 2 | **arabic-stt-qwen3-asr-1.7b-run5base** † | gated weights | **18.64** | 11.75 | 16.89 | 19.70 | 16.08 | 34.02 |
+| 3 | **arabic-stt-qwen3-asr-1.7b** † | gated weights | **18.67** | 10.88 | 23.60 | 17.19 | 15.56 | 32.46 |
 | 4 | cohere-transcribe-arabic-07-2026 | open | **20.05** | 12.39 | 20.85 | 17.73 | 18.28 | 35.78 |
 | 5 | **soniox-stt-async-v5** | closed API | **20.65** | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
 | 6 | audar-asr-v1-turbo | open | **21.90** | 11.73 | 22.61 | 15.33 | 20.06 | 44.31 |
@@ -200,7 +200,7 @@ Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
 
 The ranked board only includes models whose weights are public and that run locally. Closed
 commercial APIs are not ranked: when one is run, it appears as an unranked reference under the
-board, scored on the re-hosted sets only (see "Unranked references"). Models with private weights are listed the same way.
+board, scored on the re-hosted sets only (see "Unranked references"). Fine-tunes with gated weights are listed the same way.
 Models run unmodified, in the precision of their released weights: no down-casting and no
 quantization. Quantized or otherwise optimized variants are not evaluated.
 

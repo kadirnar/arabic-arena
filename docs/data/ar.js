@@ -5209,8 +5209,8 @@ window.ARENA_DATA['ar'] = {
    "model": "arabic-stt-qwen3-asr-1.7b",
    "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run3",
    "params_b": 2.04,
-   "license": "private weights",
-   "kind": "private",
+   "license": "gated weights",
+   "kind": "gated",
    "sets": {
     "fleurs_ar/clean": {
      "wer": 0.058438349394613294,
@@ -5350,7 +5350,7 @@ window.ARENA_DATA['ar'] = {
     "mgb2",
     "sada"
    ],
-   "notes": "Arabic-STT run 3: full fine-tune with private weights; trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows overlapping their test sets excluded)",
+   "notes": "Arabic-STT run 3: full fine-tune, weights gated on the Hub; trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows overlapping their test sets excluded)",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": null,
@@ -5364,8 +5364,8 @@ window.ARENA_DATA['ar'] = {
    "model": "arabic-stt-qwen3-asr-1.7b-run5",
    "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run5",
    "params_b": 2.04,
-   "license": "private weights",
-   "kind": "private",
+   "license": "gated weights",
+   "kind": "gated",
    "sets": {
     "fleurs_ar/clean": {
      "wer": 0.05695576970595503,
@@ -5519,8 +5519,8 @@ window.ARENA_DATA['ar'] = {
    "model": "arabic-stt-qwen3-asr-1.7b-run5base",
    "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run5base",
    "params_b": 2.04,
-   "license": "private weights",
-   "kind": "private",
+   "license": "gated weights",
+   "kind": "gated",
    "sets": {
     "fleurs_ar/clean": {
      "wer": 0.05794415616506054,

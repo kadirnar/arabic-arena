@@ -39,18 +39,18 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     _M("whisper-small", "whisper_hf", "openai/whisper-small", 0.24, "Apache-2.0", batch_size=64),
     _M("whisper-large-v2", "whisper_hf", "openai/whisper-large-v2", 1.54, "Apache-2.0", batch_size=32),
     # --- Qwen3-ASR ----------------------------------------------------------------------------
-    _M("arabic-stt-qwen3-asr-1.7b", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run3", 2.04, "private weights",
-       kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+    _M("arabic-stt-qwen3-asr-1.7b", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run3", 2.04, "gated weights",
+       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada"),
-       notes="Arabic-STT run 3: full fine-tune with private weights; trained on the train splits of CV18 and MASC "
+       notes="Arabic-STT run 3: full fine-tune, weights gated on the Hub; trained on the train splits of CV18 and MASC "
              "and on MGB-2/SADA train rows (rows overlapping their test sets excluded)"),
-    _M("arabic-stt-qwen3-asr-1.7b-run5", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5", 2.04, "private weights",
-       kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+    _M("arabic-stt-qwen3-asr-1.7b-run5", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5", 2.04, "gated weights",
+       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada"),
        notes="Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; "
              "same in-domain train rows as run 3 (rows overlapping the test sets excluded)"),
-    _M("arabic-stt-qwen3-asr-1.7b-run5base", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5base", 2.04, "private weights",
-       kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+    _M("arabic-stt-qwen3-asr-1.7b-run5base", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5base", 2.04, "gated weights",
+       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada"),
        notes="Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); "
              "same in-domain train rows as run 3 (rows overlapping the test sets excluded)"),

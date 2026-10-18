@@ -304,8 +304,8 @@
  "model": "arabic-stt-qwen3-asr-1.7b-run5base",
  "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run5base",
  "params_b": 2.04,
- "license": "private weights",
- "kind": "private",
+ "license": "gated weights",
+ "kind": "gated",
  "language": "ar",
  "env": {
   "python": "3.12.15",

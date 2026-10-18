@@ -74,6 +74,7 @@ td.best .ci { color: var(--best); opacity: 0.8; }
 .b-open { color: var(--open); background: var(--openbg); }
 .b-api { color: var(--api); background: var(--apibg); }
 .b-private { color: var(--priv); background: var(--privbg); }
+.b-gated { color: var(--priv); background: var(--privbg); }
 .dag { color: var(--muted); margin-left: 4px; cursor: help; }
 .tag { color: var(--muted); font-size: 12px; font-weight: 400; margin-left: 6px; cursor: help; }
 .note { color: var(--muted); font-size: 13px; margin: 10px 2px 0; }
@@ -144,7 +145,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     <div class="legend">
       <span class="badge b-open">Open</span> open weights
       <span class="badge b-api">API</span> closed API
-      <span class="badge b-private">Private</span> private weights
+      <span class="badge b-gated">Gated</span> gated weights (on the Hub, access on request)
       <span>† in-domain</span>
     </div>
   </div>
@@ -152,7 +153,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
   <div class="table-wrap"><table id="tbl"></table></div>
   <p class="note">Click a column to sort; the best value in each column is highlighted. Small grey numbers are 95 % bootstrap
     intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
-    Closed APIs and private-weight models are unranked references, scored on the re-hosted sets only. † marks models
+    Closed APIs and fine-tunes with gated weights are unranked references, scored on the re-hosted sets only. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
     Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
   <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
@@ -201,7 +202,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
-      <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and private-weight models are listed as unranked references.</li>
+      <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and fine-tunes with gated weights are listed as unranked references.</li>
     </ul>
   </details>
   <footer>Arabic Arena · <a href="https://github.com/kadirnar/arabic-arena">github.com/kadirnar/arabic-arena</a></footer>
@@ -230,7 +231,7 @@ const CODEC_NAMES = { g711_mulaw: "G.711 μ-law", g711_alaw: "G.711 A-law", gsm_
 const SNR_ORDER = ["≥15 dB", "10–15 dB", "5–10 dB", "<5 dB"];
 const RAMP = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf",
   "#1c5cab", "#184f95", "#104281", "#0d366b"];
-const KIND = { open: ["Open", "b-open"], api: ["API", "b-api"], private: ["Private", "b-private"] };
+const KIND = { open: ["Open", "b-open"], api: ["API", "b-api"], gated: ["Gated", "b-gated"], private: ["Private", "b-private"] };
 const state = { lang: "ar", track: "arena", metric: "wer", dim: "codec", sort: null, data: null, bd: null };
 const NS = "http://www.w3.org/2000/svg";
 const tip = document.getElementById("tip");
@@ -525,7 +526,7 @@ function drawTable() {
   let rank = 0;
   ms.forEach((m) => {
     const row = h("tr", null, tb);
-    const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and private weights are unranked references
+    const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and gated or private weights are unranked references
     const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
     if (m.rank_range && m.rank_range[0] !== m.rank_range[1]) {
       h("span", rankText(m.rank_range), rc, "ci").title = "95% bootstrap range of the Arena rank";
@@ -539,7 +540,7 @@ function drawTable() {
     else if (m.finetune_of) h("span", "fine-tune", td, "tag").title = info;
     const k = KIND[kind] || [kind, "b-open"];
     const badge = h("span", k[0], h("td", null, row), "badge " + k[1]);
-    if (unranked) badge.title = (kind === "api" ? "Closed commercial API" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
+    if (unranked) badge.title = (kind === "api" ? "Closed commercial API" : kind === "gated" ? "Weights gated on the Hub (access on request)" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([key], j) => {
       const v = score(m, key), t = m.tracks[key];
