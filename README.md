@@ -84,53 +84,55 @@ These models are not on the ranked board above: the board ranks open-weight mode
 - `soniox-stt-async-v5`: a closed commercial API, run one request per clip with language hints `ar, en` (with those hints it sometimes answers in English on short or noisy Arabic clips: about 3 % of SADA clips, 10 % of SADA call-center clips, counted as errors); its RTFx is the wall-clock time of the API calls.
 - `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
 - `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
+- `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are not public, run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
 
 They were run on the 15 sets that are re-hosted on the Hub; the other sets need gated sources, so they have no Arena score. For a like-for-like view, the table scores every model on those same sets: track means over the re-hosted sets, combined with the Arena weights.
 
 | # | Model | Kind | Subset WER | Clean | Noisy | Code-switch | Telephony | Call-center |
 |---|---|---|---|---|---|---|---|---|
 | 1 | **arabic-stt-qwen3-asr-1.7b-run5** † | private weights | **16.41** | 10.78 | 15.93 | 17.32 | 15.25 | 27.32 |
-| 2 | **arabic-stt-qwen3-asr-1.7b** † | private weights | **18.67** | 10.88 | 23.60 | 17.19 | 15.56 | 32.46 |
-| 3 | cohere-transcribe-arabic-07-2026 | open | **20.05** | 12.39 | 20.85 | 17.73 | 18.28 | 35.78 |
-| 4 | **soniox-stt-async-v5** | closed API | **20.65** | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
-| 5 | audar-asr-v1-turbo | open | **21.90** | 11.73 | 22.61 | 15.33 | 20.06 | 44.31 |
-| 6 | nvidia-fastconformer-ar-pc | open | **24.90** | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
-| 7 | lemura-arabic-asr-qwen3 | open | **27.51** | 16.14 | 26.69 | 23.40 | 24.77 | 52.81 |
-| 8 | voxtral-mini-4b-realtime-arabic | open | **27.54** | 15.43 | 27.29 | 17.61 | 27.25 | 54.19 |
-| 9 | lemura-arabic-asr-lite | open | **28.27** | 15.49 | 27.46 | 43.76 | 24.35 | 47.42 |
-| 10 | qwen3-asr-1.7b | open | **29.96** | 19.31 | 30.40 | 21.00 | 29.38 | 53.36 |
-| 11 | cohere-transcribe-03-2026 | open | **30.78** | 17.53 | 28.40 | 49.45 | 29.69 | 47.50 |
-| 12 | audar-asr-v1-flash | open | **32.46** | 20.68 | 34.12 | 21.98 | 32.07 | 57.49 |
-| 13 | qwen3-asr-arabic-ksa | open | **35.79** | 23.67 | 37.15 | 23.01 | 34.78 | 63.40 |
-| 14 | voxtral-mini-4b-realtime-2602 | open | **35.95** | 21.42 | 34.81 | 23.97 | 37.81 | 66.37 |
-| 15 | qwen3-asr-arabic-uae | open | **37.51** | 25.49 | 38.30 | 23.94 | 37.42 | 64.83 |
-| 16 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
-| 17 | whisper-large-v3 | open | **38.96** | 25.59 | 40.45 | 28.26 | 40.00 | 65.53 |
-| 18 | qwen3-asr-0.6b | open | **41.10** | 29.30 | 40.05 | 28.47 | 42.90 | 67.05 |
-| 19 | gemma-4-e2b-it | open | **41.49** | 24.72 | 40.96 | 27.65 | 38.24 | 81.39 |
-| 20 | qwencleo-asr | open | **42.93** | 27.67 | 44.18 | 28.78 | 41.42 | 77.27 |
-| 21 | whisper-large-v3-turbo | open | **47.34** | 31.82 | 41.57 | 24.44 | 46.79 | 90.81 |
-| 22 | moulsot-v0.3 | open | **56.64** | 37.18 | 53.83 | 41.72 | 55.35 | 101.55 |
+| 2 | **arabic-stt-qwen3-asr-1.7b-run5base** † | private weights | **18.64** | 11.75 | 16.89 | 19.70 | 16.08 | 34.02 |
+| 3 | **arabic-stt-qwen3-asr-1.7b** † | private weights | **18.67** | 10.88 | 23.60 | 17.19 | 15.56 | 32.46 |
+| 4 | cohere-transcribe-arabic-07-2026 | open | **20.05** | 12.39 | 20.85 | 17.73 | 18.28 | 35.78 |
+| 5 | **soniox-stt-async-v5** | closed API | **20.65** | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
+| 6 | audar-asr-v1-turbo | open | **21.90** | 11.73 | 22.61 | 15.33 | 20.06 | 44.31 |
+| 7 | nvidia-fastconformer-ar-pc | open | **24.90** | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
+| 8 | lemura-arabic-asr-qwen3 | open | **27.51** | 16.14 | 26.69 | 23.40 | 24.77 | 52.81 |
+| 9 | voxtral-mini-4b-realtime-arabic | open | **27.54** | 15.43 | 27.29 | 17.61 | 27.25 | 54.19 |
+| 10 | lemura-arabic-asr-lite | open | **28.27** | 15.49 | 27.46 | 43.76 | 24.35 | 47.42 |
+| 11 | qwen3-asr-1.7b | open | **29.96** | 19.31 | 30.40 | 21.00 | 29.38 | 53.36 |
+| 12 | cohere-transcribe-03-2026 | open | **30.78** | 17.53 | 28.40 | 49.45 | 29.69 | 47.50 |
+| 13 | audar-asr-v1-flash | open | **32.46** | 20.68 | 34.12 | 21.98 | 32.07 | 57.49 |
+| 14 | qwen3-asr-arabic-ksa | open | **35.79** | 23.67 | 37.15 | 23.01 | 34.78 | 63.40 |
+| 15 | voxtral-mini-4b-realtime-2602 | open | **35.95** | 21.42 | 34.81 | 23.97 | 37.81 | 66.37 |
+| 16 | qwen3-asr-arabic-uae | open | **37.51** | 25.49 | 38.30 | 23.94 | 37.42 | 64.83 |
+| 17 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
+| 18 | whisper-large-v3 | open | **38.96** | 25.59 | 40.45 | 28.26 | 40.00 | 65.53 |
+| 19 | qwen3-asr-0.6b | open | **41.10** | 29.30 | 40.05 | 28.47 | 42.90 | 67.05 |
+| 20 | gemma-4-e2b-it | open | **41.49** | 24.72 | 40.96 | 27.65 | 38.24 | 81.39 |
+| 21 | qwencleo-asr | open | **42.93** | 27.67 | 44.18 | 28.78 | 41.42 | 77.27 |
+| 22 | whisper-large-v3-turbo | open | **47.34** | 31.82 | 41.57 | 24.44 | 46.79 | 90.81 |
+| 23 | moulsot-v0.3 | open | **56.64** | 37.18 | 53.83 | 41.72 | 55.35 | 101.55 |
 
 Per-set WER (%) of the references next to the top two ranked models:
 
-| Set | soniox-stt-async-v5 | arabic-stt-qwen3-asr-1.7b | arabic-stt-qwen3-asr-1.7b-run5 | cohere-transcribe-arabic-07-2026 | audar-asr-v1-turbo |
-|---|---|---|---|---|---|
-| cv18_ar/callcenter | 45.70 | 32.45 | **24.52** | 29.25 | 39.24 |
-| cv18_ar/clean | 9.40 | 7.69 | 7.16 | **4.71** | 7.65 |
-| cv18_ar/noisy | 20.12 | 24.85 | **11.39** | 13.32 | 17.79 |
-| cv18_ar/telephony | 15.46 | 10.73 | 10.06 | **8.93** | 13.72 |
-| fleurs_ar/callcenter | 14.68 | 18.40 | **14.48** | 15.69 | 28.20 |
-| fleurs_ar/clean | **4.23** | 5.84 | 5.70 | 4.62 | 5.89 |
-| fleurs_ar/noisy | 6.93 | 9.55 | 7.20 | **6.61** | 8.61 |
-| fleurs_ar/telephony | 5.97 | 7.13 | 6.82 | **5.72** | 8.49 |
-| masc_clean/clean | 5.46 | 5.78 | 5.50 | **4.33** | 5.69 |
-| masc_noisy/clean | 16.65 | 16.15 | **15.28** | 15.33 | 18.00 |
-| mixat_cs/clean | 16.80 | 17.19 | 17.32 | 17.73 | **15.33** |
-| sada/callcenter | 52.20 | 46.53 | **42.97** | 62.40 | 65.49 |
-| sada/clean | 31.05 | **24.22** | 24.77 | 35.90 | 27.69 |
-| sada/noisy | 40.61 | 43.85 | **29.86** | 48.15 | 46.04 |
-| sada/telephony | 37.29 | **28.81** | 28.86 | 40.20 | 37.97 |
+| Set | soniox-stt-async-v5 | arabic-stt-qwen3-asr-1.7b | arabic-stt-qwen3-asr-1.7b-run5 | arabic-stt-qwen3-asr-1.7b-run5base | cohere-transcribe-arabic-07-2026 | audar-asr-v1-turbo |
+|---|---|---|---|---|---|---|
+| cv18_ar/callcenter | 45.70 | 32.45 | **24.52** | 40.97 | 29.25 | 39.24 |
+| cv18_ar/clean | 9.40 | 7.69 | 7.16 | 7.69 | **4.71** | 7.65 |
+| cv18_ar/noisy | 20.12 | 24.85 | **11.39** | 12.19 | 13.32 | 17.79 |
+| cv18_ar/telephony | 15.46 | 10.73 | 10.06 | 10.33 | **8.93** | 13.72 |
+| fleurs_ar/callcenter | 14.68 | 18.40 | **14.48** | 15.03 | 15.69 | 28.20 |
+| fleurs_ar/clean | **4.23** | 5.84 | 5.70 | 5.79 | 4.62 | 5.89 |
+| fleurs_ar/noisy | 6.93 | 9.55 | 7.20 | 6.98 | **6.61** | 8.61 |
+| fleurs_ar/telephony | 5.97 | 7.13 | 6.82 | 7.02 | **5.72** | 8.49 |
+| masc_clean/clean | 5.46 | 5.78 | 5.50 | 6.25 | **4.33** | 5.69 |
+| masc_noisy/clean | 16.65 | 16.15 | 15.28 | **15.21** | 15.33 | 18.00 |
+| mixat_cs/clean | 16.80 | 17.19 | 17.32 | 19.70 | 17.73 | **15.33** |
+| sada/callcenter | 52.20 | 46.53 | **42.97** | 46.06 | 62.40 | 65.49 |
+| sada/clean | 31.05 | **24.22** | 24.77 | 27.26 | 35.90 | 27.69 |
+| sada/noisy | 40.61 | 43.85 | **29.86** | 33.20 | 48.15 | 46.04 |
+| sada/telephony | 37.29 | **28.81** | 28.86 | 30.88 | 40.20 | 37.97 |
 <!-- API:ar:END -->
 
 Hardware: 1× RTX 5070 Ti (16 GB), batch inference, greedy decoding, language forced to Arabic.

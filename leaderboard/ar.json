@@ -5513,6 +5513,161 @@
    "rank_range": null,
    "rtfx": 188.3,
    "audio_hours": 15.87
+  },
+  {
+   "model": "arabic-stt-qwen3-asr-1.7b-run5base",
+   "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run5base",
+   "params_b": 2.04,
+   "license": "private weights",
+   "kind": "private",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.05794415616506054,
+     "cer": 0.025983236621534494,
+     "rtfx": 146.62,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.07693836978131213,
+     "cer": 0.02248687928946306,
+     "rtfx": 255.87,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.0625,
+     "cer": 0.02089641882930003,
+     "rtfx": 192.96,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.27259791299634095,
+     "cer": 0.1217603372969398,
+     "rtfx": 140.07,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.19696258024111477,
+     "cer": 0.10427398900389118,
+     "rtfx": 237.78,
+     "n": 1000
+    },
+    "masc_noisy/clean": {
+     "wer": 0.15206402695871946,
+     "cer": 0.054396343102984676,
+     "rtfx": 186.79,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.06983339241403758,
+     "cer": 0.02959089510919717,
+     "rtfx": 258.97,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.12191872085276483,
+     "cer": 0.045268611944368695,
+     "rtfx": 304.05,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.3319680524267868,
+     "cer": 0.16616679163542447,
+     "rtfx": 117.03,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.07018787663948954,
+     "cer": 0.03195939710858198,
+     "rtfx": 264.31,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.10326449033977349,
+     "cer": 0.03558767384783201,
+     "rtfx": 316.6,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.30882654106082325,
+     "cer": 0.14288094643005916,
+     "rtfx": 120.5,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.15030131159163418,
+     "cer": 0.06782528452783759,
+     "rtfx": 255.11,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.4097268487674883,
+     "cer": 0.29697300245432234,
+     "rtfx": 103.02,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.4605775138234692,
+     "cer": 0.2430225776889111,
+     "rtfx": 111.38,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": null,
+     "cer": null,
+     "done": 1,
+     "total": 2
+    },
+    "noisy": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 6
+    },
+    "telephony": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.15",
+    "host": "86c83ed0473a",
+    "torch": "2.13.0+cu130",
+    "gpu": "NVIDIA H100 NVL",
+    "transformers": "5.17.0"
+   },
+   "finetune_of": "Qwen/Qwen3-ASR-1.7B",
+   "in_domain": [
+    "cv18_ar",
+    "masc_clean",
+    "masc_noisy",
+    "mgb2",
+    "sada"
+   ],
+   "notes": "Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); same in-domain train rows as run 3 (rows overlapping the test sets excluded)",
+   "hallucination_rate": null,
+   "inserted_wpm": null,
+   "arena_wer": null,
+   "arena_cer": null,
+   "arena_ci": null,
+   "rank_range": null,
+   "rtfx": 184.4,
+   "audio_hours": 15.87
   }
  ]
 }
