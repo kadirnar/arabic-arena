@@ -12,7 +12,8 @@ v2 (needs results scored by the v2 scorer: a fresh run or `sttarena rescore`):
              space-insensitive alignment, multi-reference where the set has several transcriptions,
              errors capped per utterance. The strict L1 WER is kept next to it.
   Arena:     weighted geometric mean of the set scores, each set weighing track weight / sets in
-             the track. A geometric mean is scale-free per set, so the nominal track weights are
+             the track. The v2 board has its own track weights and set-to-track moves (suite
+             `scoring.v2`); the v1 board keeps `scoring.tracks`. A geometric mean is scale-free per set, so the nominal track weights are
              close to the weights actually in effect (with an arithmetic mean the high-WER
              call-center sets carried ~34 % of the ranking signal for a nominal 20 %). The
              arithmetic mean is reported next to it.
@@ -40,7 +41,7 @@ from .scoring import HEADLINE
 LB_DIR = ROOT / "leaderboard"
 SITE_DATA = ROOT / "docs" / "data"
 TRACK_LABEL = {"accented": "Accented", "clean": "Clean", "noisy": "Noisy", "codeswitch": "Code-switch", "telephony": "Telephony",
-               "callcenter": "Call-center"}
+               "callcenter": "Call-center", "bandlimited": "Band-limited"}
 
 
 def _mean(xs):
@@ -118,15 +119,26 @@ def collect(suite: Suite) -> dict:
 FLOOR = 0.005  # geometric aggregation: a set score below 0.5 % WER counts as 0.5 %
 
 
-def set_weights(suite: Suite) -> dict[str, float]:
-    """Per (set/condition) weight: track weight split evenly over the track's sets, normalized."""
+def v2_layout(suite: Suite) -> tuple[dict[str, list[str]], dict[str, float]]:
+    """The v2 board's tracks ({track: set/condition keys}) and normalized track weights.
+
+    `scoring.v2.tracks` replaces the v1 track weights and `scoring.v2.set_tracks` moves a set's clean
+    condition to another track; a track without a weight is a diagnostic, scored but outside the Arena."""
+    v2 = suite.scoring.get("v2") or {}
+    moved = v2.get("set_tracks") or {}
     tracks: dict[str, list[str]] = {}
     for name, cond, track in suite.eval_sets():
         if track != "hallucination":
-            tracks.setdefault(track, []).append(f"{name}/{cond}")
-    tw = {t: v["weight"] for t, v in suite.scoring.get("tracks", {}).items() if t in tracks}
+            tracks.setdefault(moved.get(name, track) if cond == "clean" else track, []).append(f"{name}/{cond}")
+    tw = {t: v["weight"] for t, v in (v2.get("tracks") or suite.scoring.get("tracks", {})).items() if t in tracks}
     z = sum(tw.values()) or 1.0
-    return {k: tw[t] / z / len(keys) for t, keys in tracks.items() if t in tw for k in keys}
+    return tracks, {t: w / z for t, w in tw.items()}
+
+
+def set_weights(suite: Suite) -> dict[str, float]:
+    """Per (set/condition) weight in the v2 Arena: track weight split evenly over the track's sets."""
+    tracks, tw = v2_layout(suite)
+    return {k: tw[t] / len(keys) for t, keys in tracks.items() if t in tw for k in keys}
 
 
 def combine(values: dict[str, float], weights: dict[str, float], how: str = "geometric") -> float | None:
@@ -155,8 +167,9 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
     """Add the v2 view to a v1 leaderboard dict (in place) and return it."""
     head = suite.scoring.get("headline", HEADLINE)
     how = suite.scoring.get("aggregate", "geometric")
+    layout, track_weights = v2_layout(suite)
     weights = set_weights(suite)
-    track_of = {f"{n}/{c}": t for n, c, t in suite.eval_sets()}
+    track_of = {k: t for t, keys in layout.items() for k in keys}
     source_of = {f"{n}/{c}": n for n, c, _ in suite.eval_sets()}
     ranked_in_domain: set[str] = set()
     for row in lb["models"]:
@@ -174,7 +187,7 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
         cer = {k: v["cer"] for k, v in complete.items()}
         strict = {k: v["strict_wer"] for k, v in complete.items()}
         tracks = {}
-        for t in lb["tracks"]:
+        for t in track_weights:
             tw = {k: w for k, w in weights.items() if track_of[k] == t}
             tracks[t] = {"wer": combine(wer, tw, how), "cer": combine(cer, tw, how), "wer_arith": combine(wer, tw, "arithmetic"),
                          "done": sum(k in complete for k in tw), "total": len(tw)}
@@ -204,8 +217,12 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
                     key=lambda r: r["v2"]["arena"])
     for i, r in enumerate(ranked, 1):
         r["v2"]["rank"] = i
-    lb["v2"] = {"headline": head, "aggregate": how, "weights": weights, "zero_shot_sets": sorted(zero_shot),
-                "real_audio_sets": sorted(real),
+    lb["v2"] = {"headline": head, "aggregate": how, "weights": weights, "track_weights": track_weights,
+                "tracks": {t: layout[t] for t in track_weights},
+                # sets moved to a track without a weight (suite scoring.v2.set_tracks): scored, not in the Arena
+                "diagnostic_sets": sorted(k for t, keys in layout.items() if t not in track_weights
+                                          for k in keys if k.endswith("/clean")),
+                "zero_shot_sets": sorted(zero_shot), "real_audio_sets": sorted(real),
                 "floors": {s.name: s.floor for s in suite.sets.values() if s.floor},
                 "bag_of_hallucinations": bag[:30], "num_ranked": len(ranked)}
     return lb
@@ -240,8 +257,8 @@ def bootstrap_v2(suite: Suite, lb: dict, n_boot: int = 2000) -> dict | None:
     if len(data) != len(lb["v2"]["weights"]) or len(models) < 2:
         return None
     boot = stats.joint_cluster_bootstrap(data, n_boot=n_boot)
-    tracks = {t: [k for k in keys if k in boot.draws] for t, keys in lb["tracks"].items()}
-    weights = lb["weights"]
+    tracks = {t: [k for k in keys if k in boot.draws] for t, keys in lb["v2"]["tracks"].items()}
+    weights = lb["v2"]["track_weights"]
     est, est_tr = stats.aggregate(boot.estimates, tracks, weights, geometric=geometric)
     draws, draws_tr = stats.aggregate(boot.draws, tracks, weights, geometric=geometric)
     ci, lo_hi = stats.percentile_ci(draws), stats.rank_sets(est, draws)
@@ -267,12 +284,13 @@ def _attach_v2_stats(suite: Suite, lb: dict) -> None:
     if len(ranked) >= 2:
         keys = list(lb["v2"]["weights"])
         est = {k: np.array([r["v2"]["sets"].get(k, {}).get("wer") or np.nan for r in ranked]) for k in keys}
-        tracks = {t: list(ks) for t, ks in lb["tracks"].items()}
+        tracks = {t: list(ks) for t, ks in lb["v2"]["tracks"].items()}
+        tw = lb["v2"]["track_weights"]
         try:
             lb["v2"]["effective_weights"] = {
-                how: stats.effective_weights(est, tracks, lb["weights"], geometric=how == "geometric")["tracks"]
+                how: stats.effective_weights(est, tracks, tw, geometric=how == "geometric")["tracks"]
                 for how in ("geometric", "arithmetic")}
-            loso = stats.leave_one_set_out(est, tracks, lb["weights"],
+            loso = stats.leave_one_set_out(est, tracks, tw,
                                            geometric=lb["v2"]["aggregate"] == "geometric")
             lb["v2"]["leave_one_set_out"] = {"mean_moved": round(sum(v["moved"] for v in loso.values()) / len(loso), 2),
                                             "max_shift": max(v["max_shift"] for v in loso.values()), "sets": loso}
@@ -302,7 +320,7 @@ def _pct(x):
 
 def to_markdown_v2(lb: dict) -> str:
     """The v2 board (models with complete v2 results), then the per-set view with floors."""
-    tracks = list(lb["tracks"])
+    tracks = list(lb["v2"]["tracks"])
     rows = _ranked_v2(lb)
     if not rows:
         return ""
@@ -326,7 +344,9 @@ def to_markdown_v2(lb: dict) -> str:
     lines += ["", f"WER/CER in %, lower is better. Per set: profile `{meta['headline']}` (dialect-lenient "
               "normalization, space-insensitive alignment, multi-reference where available, errors capped per "
               f"utterance). Arena: weighted {meta['aggregate']} mean over sets (track weight split evenly over its "
-              "sets). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over "
+              "sets; " + ", ".join(f"{TRACK_LABEL.get(t, t)} {w:.0%}" for t, w in meta["track_weights"].items())
+              + (", not weighted: " + ", ".join(k.split("/")[0] for k in meta["diagnostic_sets"])
+                 if meta["diagnostic_sets"] else "") + "). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over "
               "the clean sets whose audio is not simulated (no telephony, call-center, added noise or "
               "band-limiting). Zero-shot: Arena over the sets no "
               "ranked model trained on (" + (", ".join(sorted({k.split('/')[0] for k in meta['zero_shot_sets']}))
@@ -343,7 +363,7 @@ def to_markdown_v2(lb: dict) -> str:
     flags = meta.get("bootstrap", {}).get("flags")
     if flags:
         lines.append("Intervals likely too narrow on: " + ", ".join(f"{k} ({v})" for k, v in sorted(flags.items())) + ".")
-    keys = [k for t in tracks for k in lb["tracks"][t]]
+    keys = [k for t in tracks for k in meta["tracks"][t]] + meta["diagnostic_sets"]
     floors = meta.get("floors", {})
     lines += ["", "<details><summary>Per-set WER v2 (%)</summary>", "",
               "| Model | " + " | ".join(keys) + " |", "|---|" + "---|" * len(keys)]

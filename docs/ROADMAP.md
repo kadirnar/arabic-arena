@@ -29,6 +29,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
       views, exposure per model, human floor per set
 - [x] Registry: contamination flags as set keys, `training_data: undisclosed`, Jais-ASR, Gemma-4-E4B,
       omniASR v2, more dialect fine-tunes
+- [x] v2 Arena weights: simulated channels halved (telephony and call-center 10 % each), the freed weight
+      on real recordings; `nadi_robust` scored as an unweighted diagnostic ([RESEARCH.md §11](RESEARCH.md))
 - [ ] Re-score every published model with `sttarena rescore` and publish the v2 board (v1 → v2 rank-change table)
 - [ ] Error budget next to WER (scoring artefacts / reference / hallucination / genuine) on every set
 
@@ -38,8 +40,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [ ] Double-transcribe 200 utterances per dialect set to measure floors beyond Egyptian and Moroccan
 - [ ] Variant-proposal programme for single-reference dialect sets (OIWER-style: LLM proposes
       same-word spellings, native speakers post-edit)
-- [ ] Contamination checks on every set (n-gram coverage, MinHash, id and audio overlap); drop or flag
-      the 37 FLEURS rows found in a training bundle; re-check NADI val against Casablanca
+- [ ] Contamination checks on every set (n-gram coverage, MinHash, id and audio overlap); re-check NADI
+      val against Casablanca (the 37 FLEURS rows found in a training bundle stay flagged, not dropped)
 - [ ] Episode/show keys for SADA, Mixat, Casablanca and NADI (clustered intervals)
 - [ ] Private held-out Arabic set (dialects, real calls, numbers/entities), aggregates only
 - [ ] Benchmark-fitting probes (does a model reproduce a corpus's reference errors and spelling conventions?)
@@ -52,7 +54,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [x] Hallucination set v2 (network tones, DTMF, office, environment, non-target speech) and padded utterances
 - [ ] Build the v2 conditions and run the models on them; competing-talker condition; hold music, vocal sounds
 - [ ] Uplink noise suppression / AGC artefacts, jitter-buffer warping, measured room and handset responses
-- [ ] Real-channel validation set by re-transmission (2G/3G, VoLTE, WhatsApp, SIP, landline, handset)
+- [ ] Real-channel validation set by re-transmission (2G/3G, VoLTE, WhatsApp, SIP, landline, handset);
+      then revisit the simulated tracks' weight and move the Arena to the chain-v2 conditions
 - [ ] Real Arabic call-center speech (LDC CTS builder, commissioned role-play calls, partners)
 - [ ] Stereo call (agent + customer) long-form evaluation; streaming latency track
 

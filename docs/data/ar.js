@@ -448,7 +448,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -760,7 +760,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -1072,7 +1072,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -1391,7 +1391,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -1414,7 +1414,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.5854,
+    "exposure": 0.5658,
     "incomplete": []
    }
   },
@@ -1708,7 +1708,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -1731,7 +1731,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.3396,
+    "exposure": 0.3442,
     "incomplete": []
    }
   },
@@ -2025,7 +2025,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -2048,7 +2048,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.3396,
+    "exposure": 0.3442,
     "incomplete": []
    }
   },
@@ -2337,7 +2337,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -2649,7 +2649,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -2961,7 +2961,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -3273,7 +3273,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -3585,7 +3585,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -3897,7 +3897,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -4209,7 +4209,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -4521,7 +4521,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -4833,7 +4833,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -5145,7 +5145,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -5457,7 +5457,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -5769,7 +5769,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6081,7 +6081,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6291,7 +6291,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6314,7 +6314,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.7208,
+    "exposure": 0.6917,
     "incomplete": []
    }
   },
@@ -6501,7 +6501,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6524,7 +6524,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.7208,
+    "exposure": 0.6917,
     "incomplete": []
    }
   },
@@ -6711,7 +6711,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6734,7 +6734,7 @@ window.ARENA_DATA['ar'] = {
     "arena_strict": null,
     "zero_shot": null,
     "arena_real": null,
-    "exposure": 0.7208,
+    "exposure": 0.6917,
     "incomplete": []
    }
   },
@@ -6913,7 +6913,7 @@ window.ARENA_DATA['ar'] = {
       "cer": null,
       "wer_arith": null,
       "done": 0,
-      "total": 6
+      "total": 5
      },
      "telephony": {
       "wer": null,
@@ -6945,43 +6945,90 @@ window.ARENA_DATA['ar'] = {
   "headline": "L2sp",
   "aggregate": "geometric",
   "weights": {
-   "fleurs_ar/clean": 0.04375,
-   "cv18_ar/clean": 0.04375,
-   "masc_clean/clean": 0.04375,
-   "mgb2/clean": 0.04375,
-   "sada/clean": 0.04375,
-   "casablanca/clean": 0.04375,
-   "mgb3_egy/clean": 0.04375,
-   "mgb5_mor/clean": 0.04375,
-   "mixat_cs/clean": 0.05,
-   "algerian_cs/clean": 0.05,
-   "masc_noisy/clean": 0.024999999999999998,
-   "nadi_robust/clean": 0.024999999999999998,
-   "fleurs_ar/noisy": 0.024999999999999998,
-   "cv18_ar/noisy": 0.024999999999999998,
-   "mgb2/noisy": 0.024999999999999998,
-   "sada/noisy": 0.024999999999999998,
-   "fleurs_ar/telephony": 0.03333333333333333,
-   "cv18_ar/telephony": 0.03333333333333333,
-   "mgb2/telephony": 0.03333333333333333,
-   "sada/telephony": 0.03333333333333333,
-   "casablanca/telephony": 0.03333333333333333,
-   "mgb3_egy/telephony": 0.03333333333333333,
-   "fleurs_ar/callcenter": 0.03333333333333333,
-   "cv18_ar/callcenter": 0.03333333333333333,
-   "mgb2/callcenter": 0.03333333333333333,
-   "sada/callcenter": 0.03333333333333333,
-   "casablanca/callcenter": 0.03333333333333333,
-   "mgb3_egy/callcenter": 0.03333333333333333
+   "fleurs_ar/clean": 0.0625,
+   "cv18_ar/clean": 0.0625,
+   "masc_clean/clean": 0.0625,
+   "mgb2/clean": 0.0625,
+   "sada/clean": 0.0625,
+   "casablanca/clean": 0.0625,
+   "mgb3_egy/clean": 0.0625,
+   "mgb5_mor/clean": 0.0625,
+   "mixat_cs/clean": 0.075,
+   "algerian_cs/clean": 0.075,
+   "masc_noisy/clean": 0.03,
+   "fleurs_ar/noisy": 0.03,
+   "cv18_ar/noisy": 0.03,
+   "mgb2/noisy": 0.03,
+   "sada/noisy": 0.03,
+   "fleurs_ar/telephony": 0.016666666666666666,
+   "cv18_ar/telephony": 0.016666666666666666,
+   "mgb2/telephony": 0.016666666666666666,
+   "sada/telephony": 0.016666666666666666,
+   "casablanca/telephony": 0.016666666666666666,
+   "mgb3_egy/telephony": 0.016666666666666666,
+   "fleurs_ar/callcenter": 0.016666666666666666,
+   "cv18_ar/callcenter": 0.016666666666666666,
+   "mgb2/callcenter": 0.016666666666666666,
+   "sada/callcenter": 0.016666666666666666,
+   "casablanca/callcenter": 0.016666666666666666,
+   "mgb3_egy/callcenter": 0.016666666666666666
   },
+  "track_weights": {
+   "clean": 0.5,
+   "codeswitch": 0.15,
+   "noisy": 0.15,
+   "telephony": 0.1,
+   "callcenter": 0.1
+  },
+  "tracks": {
+   "clean": [
+    "fleurs_ar/clean",
+    "cv18_ar/clean",
+    "masc_clean/clean",
+    "mgb2/clean",
+    "sada/clean",
+    "casablanca/clean",
+    "mgb3_egy/clean",
+    "mgb5_mor/clean"
+   ],
+   "codeswitch": [
+    "mixat_cs/clean",
+    "algerian_cs/clean"
+   ],
+   "noisy": [
+    "masc_noisy/clean",
+    "fleurs_ar/noisy",
+    "cv18_ar/noisy",
+    "mgb2/noisy",
+    "sada/noisy"
+   ],
+   "telephony": [
+    "fleurs_ar/telephony",
+    "cv18_ar/telephony",
+    "mgb2/telephony",
+    "sada/telephony",
+    "casablanca/telephony",
+    "mgb3_egy/telephony"
+   ],
+   "callcenter": [
+    "fleurs_ar/callcenter",
+    "cv18_ar/callcenter",
+    "mgb2/callcenter",
+    "sada/callcenter",
+    "casablanca/callcenter",
+    "mgb3_egy/callcenter"
+   ]
+  },
+  "diagnostic_sets": [
+   "nadi_robust/clean"
+  ],
   "zero_shot_sets": [
    "algerian_cs/clean",
    "mgb3_egy/callcenter",
    "mgb3_egy/clean",
    "mgb3_egy/telephony",
    "mgb5_mor/clean",
-   "mixat_cs/clean",
-   "nadi_robust/clean"
+   "mixat_cs/clean"
   ],
   "real_audio_sets": [
    "algerian_cs/clean",

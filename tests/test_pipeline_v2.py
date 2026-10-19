@@ -66,9 +66,25 @@ def _hyp(model: int, row: dict, i: int) -> str:
     return " ".join(words)
 
 
-@pytest.fixture()
-def toy(tmp_path, monkeypatch):
-    (tmp_path / "toy.yaml").write_text(SUITE)
+# the same suite with a simulated set that the v2 board moves out of the Arena, and v2 track weights
+SUITE_V2 = SUITE.replace("degraded:", """  band:
+    source: none/band
+    split: test
+    text: text
+    n: 40
+    track: clean
+    simulated: true
+degraded:""") + """  v2:
+    tracks:
+      clean: {weight: 0.6}
+      codeswitch: {weight: 0.3}
+      telephony: {weight: 0.1}
+    set_tracks: {band: bandlimited}
+"""
+
+
+def _build(tmp_path, monkeypatch, text: str):
+    (tmp_path / "toy.yaml").write_text(text)
     suite = Suite.load(str(tmp_path / "toy.yaml"))
     results = tmp_path / "results"
     for mod in (runner, leaderboard, bootstrap, rescore):
@@ -85,6 +101,16 @@ def toy(tmp_path, monkeypatch):
             runner.write_predictions(out / "predictions" / f"{name}__{cond}.jsonl", scored)
         (out / "summary.json").write_text(json.dumps(summary, ensure_ascii=False))
     return suite, results
+
+
+@pytest.fixture()
+def toy(tmp_path, monkeypatch):
+    return _build(tmp_path, monkeypatch, SUITE)
+
+
+@pytest.fixture()
+def toy_v2(tmp_path, monkeypatch):
+    return _build(tmp_path, monkeypatch, SUITE_V2)
 
 
 def test_v2_board_from_runner_records(toy):
@@ -116,3 +142,31 @@ def test_rescore_upgrades_and_keeps_scores(toy):
         assert after["results"][key]["wer_v2"] == pytest.approx(res["wer_v2"])
         assert after["results"][key]["seconds"] == res["seconds"]  # timing of the original run is kept
     assert after["schema"] == runner.RESULT_SCHEMA
+
+
+def test_v2_weights_and_set_moves_leave_v1_alone(toy_v2):
+    suite, _ = toy_v2
+    tracks, tw = leaderboard.v2_layout(suite)
+    assert tracks["bandlimited"] == ["band/clean"] and "band/clean" not in tracks["clean"]
+    assert tw == pytest.approx({"clean": 0.6, "codeswitch": 0.3, "telephony": 0.1})
+    w = {"read/clean": 0.6, "talk/clean": 0.3, "read/telephony": 0.1}
+    assert leaderboard.set_weights(suite) == pytest.approx(w)
+    lb = leaderboard.collect(suite)  # v1: the sets' own tracks and scoring.tracks
+    assert lb["tracks"]["clean"] == ["read/clean", "band/clean"]
+    assert lb["weights"] == {"clean": 0.5, "codeswitch": 0.2, "telephony": 0.3}
+    leaderboard.collect_v2(suite, lb)
+    leaderboard._attach_v2_stats(suite, lb)
+    assert lb["v2"]["diagnostic_sets"] == ["band/clean"] and set(lb["v2"]["tracks"]) == set(tw)
+    for r in lb["models"]:
+        v1 = {k: r["sets"][k]["wer"] for k in r["sets"]}
+        want_v1 = (0.5 * (v1["read/clean"] + v1["band/clean"]) / 2 + 0.2 * v1["talk/clean"]
+                   + 0.3 * v1["read/telephony"])
+        assert r["arena_wer"] == pytest.approx(want_v1)
+        v2 = r["v2"]
+        assert "band/clean" in v2["sets"]  # still scored
+        sets = {k: v2["sets"][k]["wer"] for k in w}
+        assert v2["arena"] == pytest.approx(leaderboard.combine(sets, w))
+        assert v2.get("arena_ci")  # the bootstrap uses the same v2 weights, so its intervals attach
+    assert set(lb["v2"]["effective_weights"]["geometric"]) == set(tw)
+    md = leaderboard.to_markdown_v2(lb)
+    assert "Clean 60%" in md and "not weighted: band" in md and "band/clean" in md

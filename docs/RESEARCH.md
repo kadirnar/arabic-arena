@@ -242,19 +242,30 @@ depending on between-cluster spread; adding utterances from the same few videos 
   translation about as well as a harmless spelling variant. No LLM judge has been validated for
   verbatim fidelity on dialectal Arabic.
 
-## 11. Decisions left to the maintainer
+## 11. Decisions (2026-10-19)
 
-1. **Weight of the simulated tracks** (telephony + call-center = 40 % of the Arena) while the
-   simulation is unvalidated: keep, cap at 20 %, or headline the real-audio Arena.
-2. **`nadi_robust`**: move it out of "noisy" (it is band-limited Casablanca audio, partly overlapping
-   our `casablanca` set), demote it to a diagnostic, or drop it.
-3. **Casablanca**: keep with a contamination flag (NADI-2026 train contains its test), down-weight,
-   or move to a legacy track.
-4. **Transcription style**: whether fillers, repetitions and fragments count (v2 drops fillers on both
-   sides; a verbatim track would keep them as optional words).
-5. **API results**: several vendors' terms forbid publishing benchmark results without consent
-   (Deepgram, AssemblyAI, Cohere's hosted API, NVIDIA NIM); Soniox's current terms are ambiguous.
-6. **The 37 FLEURS rows** seen by the Arabic-STT runs: flag (done) or drop from FLEURS scoring.
+1. **Simulated tracks: halved in the v2 Arena.** Telephony and call-center weigh 10 % each (v1: 20 %
+   each); the freed weight goes to real recordings (clean 35 → 50 %, code-switching 10 → 15 %), so
+   simulated audio falls from 52.5 % to 32 % of the v2 Arena. The simulation is not validated
+   (finding 9), but it does measure channel robustness, which matters for MENA deployments, so it
+   stays in the Arena at a lower weight, with the real-audio Arena next to it. To revisit once the
+   re-transmission validation set exists (ROADMAP M4). The chain-v2 conditions replace the v1 ones
+   in the Arena once every ranked model has results on them.
+2. **`nadi_robust`: a diagnostic.** The v2 board scores it in its own unweighted track
+   (`bandlimited`). Its audio is simulated (4 kHz band-limiting), it partly repeats `casablanca`
+   utterances, and narrowband speech is already covered by the telephony track. v1 keeps it in
+   "noisy".
+3. **Casablanca: kept at full weight.** Contamination belongs to models, not to the set: a model that
+   trained on NADI-2026 train or on Casablanca lists `casablanca` in `in_domain`, which marks it (†),
+   moves the set out of its zero-shot Arena and into its exposure. Down-weighting the set would cost
+   every model the only eight-country dialect set.
+4. **Transcription style: v2 as built.** Fillers are dropped on both sides at L2/L2sp and kept in the
+   strict L1 column. There is no verbatim track: the single-reference sets do not mark fillers
+   consistently, so a verbatim score would measure annotation conventions. To revisit with the
+   double-transcribed sets (ROADMAP M3).
+5. **API results** stay on the board as unranked references on the re-hosted sets.
+6. **The 37 FLEURS rows seen by the Arabic-STT runs: flagged, not dropped.** The FLEURS set stays the
+   same for every model and for v1; those runs are unranked and list `fleurs_ar` in `in_domain` (†).
 
 ## Sources (selected)
 

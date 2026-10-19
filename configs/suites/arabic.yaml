@@ -254,8 +254,8 @@ degraded:
     fillers: {silence: 0.25, comfort_noise: 0.25, tones: 0.25, office: 0.25}
     max_total_s: 30  # stays inside a 30 s model window
 
-# Leaderboard aggregation: each track is the macro-average WER over its sets; the
-# Arena score is a weighted mean of track scores (telephony matters for real deployments).
+# Leaderboard aggregation: each track is the macro-average WER over its sets; the v1 Arena is a
+# weighted mean of track scores, the v2 Arena a weighted geometric mean of set scores (below).
 scoring:
   # v2: per-set score = profile `headline` (sttarena/scoring.py): L2 dialect-lenient normalization,
   # space-insensitive alignment, multi-reference where a set has several transcriptions, and every
@@ -264,9 +264,22 @@ scoring:
   version: 2
   headline: L2sp
   aggregate: geometric
-  tracks:
+  tracks:  # v1 Arena: the published v1 board (unchanged)
     clean: {weight: 0.35}
     noisy: {weight: 0.15}
     codeswitch: {weight: 0.1}
     telephony: {weight: 0.2}
     callcenter: {weight: 0.2}
+  # v2 Arena (docs/RESEARCH.md, section 11): the simulated channels are unvalidated (in English they add no
+  # ranking information about real calls beyond clean speech), so telephony and call-center weigh 10 % each
+  # instead of 20 %, and the freed 20 % goes to real recordings (clean +15, code-switching +5). Simulated
+  # audio falls from 52.5 % to 32 % of the Arena. nadi_robust is Casablanca audio band-limited to 4 kHz
+  # (simulated, partly the same utterances as `casablanca`): it is scored as a diagnostic, outside the Arena.
+  v2:
+    tracks:
+      clean: {weight: 0.5}
+      codeswitch: {weight: 0.15}
+      noisy: {weight: 0.15}
+      telephony: {weight: 0.1}
+      callcenter: {weight: 0.1}
+    set_tracks: {nadi_robust: bandlimited}  # clean-condition track moves; a track without a weight is not in the Arena

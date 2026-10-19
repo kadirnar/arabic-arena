@@ -579,7 +579,8 @@ function drawTable() {
   });
 
   const st = document.getElementById("sets"); st.replaceChildren();
-  const keys = Object.values(d.tracks).flat();
+  const keys = isV2() && d.v2?.tracks ? [...Object.values(d.v2.tracks).flat(), ...(d.v2.diagnostic_sets || [])]
+    : Object.values(d.tracks).flat();
   const hr = h("tr", null, h("thead", null, st));
   h("th", "#", hr); h("th", "Model", hr);
   keys.forEach((k) => h("th", k.replace("/clean", "").replace("/", " · "), hr));
@@ -592,7 +593,17 @@ function drawTable() {
   });
 }
 
-function drawAll() { drawTable(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
+function drawWeights() {
+  const d = state.data, names = Object.fromEntries(TRACKS), v2 = isV2() && d.v2?.track_weights;
+  const list = (w) => Object.entries(w).map(([k, v]) => `${names[k] || k} ${Math.round(v * 100)}%`).join(", ");
+  document.getElementById("weights").textContent = v2
+    ? "the weighted geometric mean of the set scores, each set weighing its track's weight split over the track's sets: "
+      + list(d.v2.track_weights) + (d.v2.diagnostic_sets?.length
+        ? `; scored but not weighted: ${d.v2.diagnostic_sets.map((k) => k.split("/")[0]).join(", ")}` : "")
+    : "the weighted mean of the track scores: " + list(d.weights);
+}
+
+function drawAll() { drawWeights(); drawTable(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
 
 function setupSeg(id, key, onChange) {
   document.getElementById(id).addEventListener("click", (e) => {
@@ -644,9 +655,6 @@ async function load() {
     for (const x of document.querySelectorAll("#scorer button")) x.setAttribute("aria-pressed", String(x.dataset.v === "v1"));
   }
   buildTrackSeg();
-  const w = state.data.weights, names = Object.fromEntries(TRACKS);
-  document.getElementById("weights").textContent =
-    "the weighted mean of the track scores: " + Object.entries(w).map(([k, v]) => `${names[k]} ${Math.round(v * 100)}%`).join(", ");
   drawAll();
 }
 </script>

@@ -88,9 +88,9 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 These models are not on the ranked board above: the board ranks open-weight models run on every set.
 
 - `soniox-stt-async-v5`: a closed commercial API, run one request per clip with language hints `ar, en` (with those hints it sometimes answers in English on short or noisy Arabic clips: about 3 % of SADA clips, 10 % of SADA call-center clips, counted as errors); its RTFx is the wall-clock time of the API calls.
-- `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
-- `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
-- `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†).
+- `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA/MGB-3 train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†). One of its training streams also holds 20 FLEURS ar_eg test sentences (37 of the 428 fleurs_ar rows), so FLEURS is in-domain too; that stream's labels come from `soniox-stt-async-v5`.
+- `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 3 continued twice with more call, dialect and code-switching data, so it has the same in-domain sets (CV18, MASC, MGB-2, SADA, MGB-3 and the 20 FLEURS test sentences) and was also trained on clips of the lahgtna-v3-small test split (†).
+- `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 5's data trained from the base model, so it has the same in-domain sets as run 5 (†).
 
 They were run on the 15 sets that are re-hosted on the Hub; the other sets need gated sources, so they have no Arena score. For a like-for-like view, the table scores every model on those same sets: track means over the re-hosted sets, combined with the Arena weights.
 
@@ -182,13 +182,18 @@ without a GPU.
 
 ## Tracks and scoring
 
-| Track | Weight | What it measures | Sets |
-|---|---|---|---|
-| Clean | 35% | Studio, broadcast and TV speech across dialects | FLEURS, CV18, MASC-clean, MGB-2, SADA, Casablanca, MGB-3, MGB-5 |
-| Noisy | 15% | Real noisy recordings and synthetic noise (0–15 dB SNR) | MASC-noisy, NADI-2026 Robust, and 4 sets with added noise |
-| Code-switch | 10% | Arabic–English and Arabic–French mixing | Mixat, Algerian CS |
-| Telephony | 20% | Phone channel: 8 kHz, 300–3400 Hz, codec, packet loss | 6 sets |
-| Call-center | 20% | Noisy caller environment, then the phone channel | 6 sets |
+| Track | Weight v1 | Weight v2 | What it measures | Sets |
+|---|---|---|---|---|
+| Clean | 35% | 50% | Studio, broadcast and TV speech across dialects | FLEURS, CV18, MASC-clean, MGB-2, SADA, Casablanca, MGB-3, MGB-5 |
+| Noisy | 15% | 15% | Real noisy recordings and synthetic noise (0–15 dB SNR) | MASC-noisy and 4 sets with added noise (v1 also NADI-2026 Robust) |
+| Code-switch | 10% | 15% | Arabic–English and Arabic–French mixing | Mixat, Algerian CS |
+| Telephony | 20% | 10% | Simulated phone channel: 8 kHz, 300–3400 Hz, codec, packet loss | 6 sets |
+| Call-center | 20% | 10% | Simulated noisy caller environment, then the phone channel | 6 sets |
+
+The v2 weights halve the two simulated channel tracks: the simulation has not been validated
+against real calls (in English it adds no ranking information about real telephone speech beyond
+clean speech), so simulated audio falls from 52.5 % to 32 % of the Arena. NADI-2026 Robust is
+Casablanca audio band-limited to 4 kHz; v2 scores it as a diagnostic, outside the Arena.
 
 - **Within each set**: errors are summed over all utterances. This is corpus WER, not the mean
   of per-utterance WERs.

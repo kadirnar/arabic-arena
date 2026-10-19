@@ -65,14 +65,15 @@ previous frame. Models always receive 16 kHz input; 8 kHz telephony audio is ups
 deployed system would do.
 
 Known issues of the v1 chain, measured in the robustness study: the synthetic room response is
-extreme far-field (direct-to-reverberant ratio −23 to −29 dB); the packet-loss `rate` is the good→bad
-transition probability, so nominal 1/2/5 % are 1.9/3.8/9.1 % frame loss; µ-law is weighted above
-A-law although MENA networks use A-law; there is no wideband (VoLTE, WhatsApp) or tandem coding; the
-call-center babble is 3–6 intelligible near-field talkers, so some models transcribe it and others go
-silent. On the English suite, simulated telephony WER adds no ranking information beyond clean WER
-when compared with real telephone sets (partial Spearman 0.03, n = 10). The simulated tracks therefore
-appear next to a **real-audio Arena** on the v2 board. The v1 conditions are kept bit-for-bit, so the
-published sets stay reproducible.
+extreme far-field (direct-to-reverberant ratio −23 to −29 dB); the packet-loss `rate` is the
+good→bad transition probability, so nominal 1/2/5 % are 1.9/3.8/9.1 % frame loss; µ-law is weighted
+above A-law although MENA networks use A-law; there is no wideband (VoLTE, WhatsApp) or tandem
+coding; the call-center babble is 3–6 intelligible near-field talkers, so some models transcribe it
+and others go silent. On the English suite, simulated telephony WER adds no ranking information
+beyond clean WER when compared with real telephone sets (partial Spearman 0.03, n = 10). The
+simulated tracks therefore weigh half as much in the v2 Arena and appear next to a **real-audio
+Arena** on the v2 board. The v1 conditions are kept bit-for-bit, so the published sets stay
+reproducible.
 
 **Chain v2** (`version: 2` conditions, [`sttarena/degrade/chain_v2.py`](../sttarena/degrade/chain_v2.py);
 not in the Arena score, reported per group):
@@ -184,11 +185,18 @@ From the headline alignment of every utterance:
 
 - **Per set**: the headline profile's capped corpus WER.
 - **Arena WER v2**: weighted **geometric** mean over sets, each set weighing its track's weight
-  divided by the number of sets in the track, with a floor of 0.5 % WER. A geometric mean is
-  scale-free per set: a 10 % relative gain counts the same on FLEURS (4.6 → 4.1) as on MGB-5
-  (46 → 41). With the arithmetic mean the high-WER call-center sets carried about 34 % of the
-  ranking signal for a nominal 20 %. The board shows the **effective weights** (each track's share of
-  the between-model spread) and a leave-one-set-out stability check.
+  divided by the number of sets in the track, with a floor of 0.5 % WER. Track weights (suite
+  `scoring.v2`): clean 50 %, code-switching 15 %, noisy 15 %, telephony 10 %, call-center 10 %. The
+  simulated channel tracks weigh half their v1 weight because the simulation is not validated
+  against real calls: on the English suite, simulated-telephony WER adds no information about WER on
+  real telephone sets once clean WER is known (partial Spearman 0.03, 10 models). Simulated audio is
+  32 % of the v2 Arena (52.5 % with the v1 weights). `nadi_robust` (Casablanca audio band-limited to
+  4 kHz, partly the same utterances as `casablanca`) is scored but not weighted. The telephony and
+  call-center tracks keep the v1 chain until every ranked model has results on the chain-v2
+  conditions. A geometric mean is scale-free per set: a 10 % relative gain counts the same on FLEURS
+  (4.6 → 4.1) as on MGB-5 (46 → 41). With the arithmetic mean the high-WER call-center sets carried
+  about 34 % of the ranking signal for a nominal 20 %. The board shows the **effective weights**
+  (each track's share of the between-model spread) and a leave-one-set-out stability check.
 - **Arithmetic** column: the weighted arithmetic mean of the same set scores.
 - **Strict (L1)**: the same aggregation over L1 WER, comparable with orthography-only boards.
 - **Real audio**: the Arena over clean sets whose audio is not simulated.
