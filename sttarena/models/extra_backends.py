@@ -41,8 +41,8 @@ class FasterWhisper(ASRModel):
         super().__init__(spec, device)
         from faster_whisper import WhisperModel
 
-        # INT8 kernels are disabled on Blackwell (sm_120) in CTranslate2; use fp16.
-        self.model = WhisperModel(spec.hf_id, device=device, compute_type="float16")
+        # "default" keeps the dtype the CTranslate2 checkpoint was converted with (released precision)
+        self.model = WhisperModel(spec.hf_id, device=device, compute_type="default")
 
     def transcribe(self, audios, language):
         out = []

@@ -95,3 +95,12 @@ def test_bootstrap_utterance_errors_sum_to_corpus_wer(tmp_path):
     assert set(errs) == {"a", "b", "c"}  # empty reference dropped, as in corpus_error_rates
     s = corpus_error_rates([r for _, r, _ in rows], [h for _, _, h in rows])
     assert sum(e for e, _ in errs.values()) / sum(n for _, n in errs.values()) == pytest.approx(s.wer)
+
+
+def test_registry_in_domain_uses_set_keys():
+    from sttarena.data import Suite
+    from sttarena.models.registry import MODELS
+
+    keys = {k for suite in ("arabic", "english") for k in Suite.load(suite).sets}
+    bad = {m.key: [d for d in m.in_domain if d not in keys] for m in MODELS.values()}
+    assert not {k: v for k, v in bad.items() if v}, "in_domain must list suite set keys"

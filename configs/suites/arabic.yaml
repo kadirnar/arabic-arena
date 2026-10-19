@@ -23,6 +23,7 @@ datasets:
     domain: read
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: id}  # 428 clips of 283 sentences: a sentence read twice is one cluster
 
   cv18_ar:
     source: MohamedRashad/common-voice-18-arabic
@@ -34,6 +35,7 @@ datasets:
     domain: read (crowd-sourced)
     license: CC0-1.0
     redistribute: true
+    cluster: {field: client_id}  # speaker
 
   masc_clean:
     source: MohamedRashad/MASC-Arabic
@@ -46,6 +48,7 @@ datasets:
     domain: youtube
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: video_id}
 
   mgb2:
     source: MohamedRashad/mgb2-arabic
@@ -60,6 +63,7 @@ datasets:
     # The mirror matches the official QCRI/mgb2 test set segment for segment; 6 references whose
     # English words were garbled in the mirror are restored from the official transcripts.
     text_fixes: configs/fixes/mgb2_refs.json
+    cluster: {field: recording_id}  # 1,000 rows from 17 recordings
 
   sada:
     source: MohamedRashad/SADA22
@@ -71,6 +75,7 @@ datasets:
     domain: tv shows
     license: CC-BY-NC-SA-4.0
     redistribute: true
+    # no show or episode column in the mirror, so the bootstrap cannot cluster SADA (CIs too narrow)
 
   casablanca:
     source: UBC-NLP/Casablanca
@@ -83,6 +88,7 @@ datasets:
     domain: tv series
     license: CC-BY-NC-ND-4.0
     redistribute: false
+    stratum: {field: source_config}  # country
 
   mgb3_egy:
     source: ArabicSpeech/MGB-3
@@ -95,6 +101,13 @@ datasets:
     domain: youtube
     license: unspecified
     redistribute: false
+    # four independent transcriptions per segment: scored as multi-reference (annotator 1 is the
+    # stored text, 2-4 come from meta); humans disagree on 13 % of words here
+    references: [text_annotater_2, text_annotater_3, text_annotater_4]
+    cluster: {field: id, regex: '^(.*)_[0-9.]+_[0-9.]+$'}  # programme
+    # human floor: v1 = annotators 2-4 scored against annotator 1 on these 1,000 ids; L2sp = one
+    # annotator against the other three (multi-reference, L2) on these ids, as the set is scored
+    floor: {v1: 0.1365, L2sp: 0.0348, source: "MGB-3 inter-annotator study (sttarena audit floor), 2026-10-18"}
 
   mgb5_mor:
     source: ArabicSpeech/MGB-5
@@ -106,6 +119,19 @@ datasets:
     domain: youtube
     license: unspecified
     redistribute: false
+    # The HF test split holds every recording four times, one segmentation per annotator: the v1 subset
+    # scored the same speech 2-3 times (492 of 1,000 rows overlapped another annotator's row). v2 keeps
+    # one segmentation per recording and scores it against the other annotators' overlapping text
+    # (multi-reference); tag-only segments (@@@فراغ) go to the non-speech evaluation instead.
+    multi_annotator:
+      field: id
+      regex: '^(?P<rec>.*)_annotator_(?P<ann>\d+)_(?P<start>[0-9.]+)_(?P<end>[0-9.]+)$'
+      min_overlap: 0.5
+    references: [alt_ref_1, alt_ref_2, alt_ref_3]
+    cluster: {field: id, regex: '^(.*)_annotator_'}  # 14 recordings
+    # human floor: v1 = annotator pairs at recording level (MGB-5 paper: ~45 %); L2sp = the pivot
+    # annotator scored against the other annotators' overlapping segments, as the v2 set is scored
+    floor: {v1: 0.4586, L2sp: 0.2286, source: "MGB-5 inter-annotator study, 2026-10-18"}
 
   # ---- code-switching -------------------------------------------------------------------
   mixat_cs:
@@ -119,6 +145,8 @@ datasets:
     domain: podcast
     license: CC-BY-NC-SA-4.0
     redistribute: true
+    # the same utterance with English written in Arabic script: a second reference
+    references: [transliteration]
 
   algerian_cs:
     source: oist/algerian-code-switched-asr-eval
@@ -130,6 +158,8 @@ datasets:
     domain: conversational
     license: controlled-access terms
     redistribute: false
+    cluster: {field: video}  # 8 videos
+    stratum: {field: type}  # MSA / DI / MSA-DI / FR / CS
 
   # ---- real noisy speech ----------------------------------------------------------------
   masc_noisy:
@@ -143,7 +173,10 @@ datasets:
     domain: youtube (noisy)
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: video_id}
 
+  # NADI-2026 1.1 is Casablanca audio "downsampled to 4 kHz and then resampled up to 16 kHz, to mimic
+  # extremely low bandwidth connections" (arXiv 2609.27086): band-limited, not real noise.
   nadi_robust:
     source: UBC-NLP/NADI2026_subtask1.1_Robust_ASR
     configs: [Algeria, Egypt, Jordan, Mauritania, Morocco, Palestine, UAE, Yemen]
@@ -152,12 +185,27 @@ datasets:
     n: 1000
     track: noisy
     dialect: 8 dialects
-    domain: noisy dialectal
+    domain: band-limited (4 kHz) TV series
     license: unspecified
     redistribute: false
+    simulated: true
+    stratum: {field: source_config}  # country
 
-# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py).
-hallucination: true
+# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py). v1 (data/ar/noise_only,
+# 300 clips) is the published set; v2 (--version 2 -> data/ar/noise_only_v2) has groups G1-G3, G5, G7 and
+# non-target speech NT, with meta.group / meta.kind (sttarena/degrade/nonspeech.py).
+hallucination:
+  v2:
+    n: 830
+    # talkers for babble_v2 and speech-shaped noise, disjoint from every test set (sttarena/degrade/pool.py)
+    babble_pool: &babble_pool
+      source: MohamedRashad/common-voice-18-arabic
+      split: train  # Common Voice splits are speaker-disjoint; cv18_ar speakers and sentences are dropped too
+      max_files: 1  # first parquet shard only (346 MB)
+      speaker: client_id
+      text: sentence
+      n: 600
+      per_speaker: 3
 
 # Simulated acoustic conditions built from the clean sets above.
 degraded:
@@ -170,10 +218,52 @@ degraded:
   callcenter:
     from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
     n: 300
+  # ---- degradation chain v2 (sttarena/degrade/chain_v2.py): new conditions, not in the Arena score ------
+  # `version: 2` builds with chain v2 (default 1: the published sets above, rebuilt bit-for-bit); `chain` names
+  # the v2 chain; `group_by` makes the runner score each value of these meta.degradation fields separately.
+  telephony_v2:  # device x network x storage profiles: MENA codec mix, tandem to G.711 A-law, wideband paths
+    version: 2
+    chain: telephony
+    from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
+    n: 300
+    group_by: [network]
+  callcenter_v2:  # caller-side room IR and environment noise (babble_v2 0.15), then telephony v2
+    version: 2
+    chain: callcenter
+    from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
+    n: 300
+    group_by: [noise]
+    babble_pool: *babble_pool
+  sweep:  # paired SNR grid, rows "<clean id>#<noise>@<snr>": 150 x 3 noises x 5 SNRs = 2,250 per set
+    version: 2
+    chain: sweep
+    from: [fleurs_ar, masc_clean]  # MSA read + mixed dialects, both redistributable
+    n: 150
+    noises: [ssn, babble_v2, ambient]  # speech-shaped stationary, unintelligible babble, a noise-bank ambience
+    ambient: [cafe, street, transport]
+    snrs: [20, 10, 5, 0, -5]
+    group_by: [noise, snr_db]
+    babble_pool: *babble_pool
+  padded:  # hallucination inside speech, rows "<clean id>#pad" paired with the clean rows
+    version: 2
+    chain: padded
+    from: [fleurs_ar, cv18_ar, masc_clean, sada]
+    n: 100
+    positions: [lead, trail, both]
+    pad_s: [2, 8, 20]
+    fillers: {silence: 0.25, comfort_noise: 0.25, tones: 0.25, office: 0.25}
+    max_total_s: 30  # stays inside a 30 s model window
 
 # Leaderboard aggregation: each track is the macro-average WER over its sets; the
 # Arena score is a weighted mean of track scores (telephony matters for real deployments).
 scoring:
+  # v2: per-set score = profile `headline` (sttarena/scoring.py): L2 dialect-lenient normalization,
+  # space-insensitive alignment, multi-reference where a set has several transcriptions, and every
+  # utterance's errors capped at its reference length. Arena = weighted geometric mean of the set
+  # scores (track weight split evenly over the track's sets); the arithmetic mean is shown next to it.
+  version: 2
+  headline: L2sp
+  aggregate: geometric
   tracks:
     clean: {weight: 0.35}
     noisy: {weight: 0.15}

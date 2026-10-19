@@ -141,6 +141,11 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
         <button data-v="wer" aria-pressed="true">WER</button>
         <button data-v="cer">CER</button>
       </div>
+      <span class="label">Scorer</span>
+      <div class="seg" id="scorer">
+        <button data-v="v2" aria-pressed="true" title="Dialect-lenient normalization, space-insensitive alignment, multi-reference sets, errors capped per utterance, geometric Arena, cluster bootstrap">v2</button>
+        <button data-v="v1" title="The previous scorer: one reference, orthographic normalization, uncapped WER, arithmetic Arena">v1</button>
+      </div>
     </div>
     <div class="legend">
       <span class="badge b-open">Open</span> open weights
@@ -189,7 +194,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
 
   <section class="card">
     <h3>Hallucination on noise-only audio</h3>
-    <p class="sub">Share of 300 clips with no target speech (line silence, hold hiss, mains hum, distant babble, office, street and transport noise; half sent through a phone codec) for which the model still wrote words. Lower is better. Not part of the Arena score.</p>
+    <p class="sub">Share of 300 clips with no target speech (line silence, hold hiss, mains hum, distant babble, office, street and transport noise; half sent through a phone codec) for which the model still wrote words (v2: three or more words, so a short filler does not count). Lower is better. Not part of the Arena score.</p>
     <div id="halluc" class="chart-wide"></div>
   </section>
 
@@ -199,13 +204,14 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same normalization is applied to references and hypotheses (Arabic: diacritics, alef/hamza/ta-marbuta spellings and punctuation are unified and digits are written out as words).</li>
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
+      <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
       <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and fine-tunes with gated weights are listed as unranked references.</li>
     </ul>
   </details>
-  <footer>Arabic Arena · <a href="https://github.com/kadirnar/arabic-arena">github.com/kadirnar/arabic-arena</a></footer>
+  <footer>Arabic Arena · <a href="https://github.com/kadirnar/arabic-arena">github.com/kadirnar/arabic-arena</a><br>MGB-2: QCRI-AL Jazeera Corpus, used by Arabic Arena, was developed by Qatar Computing Research Institute ("QCRI"), an institute within the Hamad Bin Khalifa University ("HBKU") a member of the Qatar Foundation for Education, Science and Community Development and the Data provided courtesy of Al Jazeera.</footer>
 </main>
 <div class="tip" id="tip" role="tooltip"></div>
 
@@ -232,7 +238,7 @@ const SNR_ORDER = ["≥15 dB", "10–15 dB", "5–10 dB", "<5 dB"];
 const RAMP = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#256abf",
   "#1c5cab", "#184f95", "#104281", "#0d366b"];
 const KIND = { open: ["Open", "b-open"], api: ["API", "b-api"], gated: ["Gated", "b-gated"], private: ["Private", "b-private"] };
-const state = { lang: "ar", track: "arena", metric: "wer", dim: "codec", sort: null, data: null, bd: null };
+const state = { lang: "ar", track: "arena", metric: "wer", scorer: "v2", dim: "codec", sort: null, data: null, bd: null };
 const NS = "http://www.w3.org/2000/svg";
 const tip = document.getElementById("tip");
 
@@ -250,14 +256,31 @@ function h(tag, text, parent, cls) {
   return n;
 }
 const pct = (x) => (x == null ? "—" : (x * 100).toFixed(2));
+const isV2 = () => state.scorer === "v2";
 function score(m, track = state.track, metric = state.metric) {
+  if (isV2()) {
+    if (!m.v2) return null;
+    if (track === "arena") return metric === "wer" ? m.v2.arena : m.v2.arena_cer;
+    const t = m.v2.tracks?.[track];
+    return t ? t[metric] : null;
+  }
   if (track === "arena") return metric === "wer" ? m.arena_wer : m.arena_cer;
   const t = m.tracks[track];
   return t ? t[metric] : null;
 }
+const trackOf = (m, track) => (isV2() ? m.v2?.tracks?.[track] : m.tracks[track]);
+function setVal(m, key, metric = state.metric) {
+  if (!isV2()) return m.sets[key]?.[metric];
+  const s = m.v2?.sets?.[key];
+  return s ? s[metric] : null;
+}
+const rankOf = (m) => (isV2() ? m.v2?.rank_set : m.rank_range);
+// v2: share of noise-only clips with three or more words; v1: with any output
+const halluc = (m) => (isV2() ? m.v2?.halluc_3plus ?? null : m.hallucination_rate);
 // 95% bootstrap interval (WER only; CER intervals are not computed).
 function ciOf(m, track = state.track, metric = state.metric) {
   if (metric !== "wer") return null;
+  if (isV2()) return track === "arena" ? m.v2?.arena_ci ?? null : m.v2?.tracks?.[track]?.ci ?? null;
   return track === "arena" ? m.arena_ci : m.tracks[track]?.ci ?? null;
 }
 const ciText = (c) => (c ? `${pct(c[0])}–${pct(c[1])}` : "—");
@@ -326,7 +349,7 @@ function drawRank() {
     const hit = el("rect", { x: 0, y: top + i * row, width: W, height: row, fill: "transparent" }, svg);
     const rows = [[`${label} ${state.metric.toUpperCase()}`, pct(v) + "%"]];
     if (c) rows.push(["95% CI", ciText(c) + "%"]);
-    if (state.track === "arena" && m.rank_range) rows.push(["Rank range (95%)", rankText(m.rank_range)]);
+    if (state.track === "arena" && rankOf(m)) rows.push([isV2() ? "Rank set (95%)" : "Rank range (95%)", rankText(rankOf(m))]);
     bindHover(hit, (e) => showTip(e, m.model, [...rows,
       ["RTFx", String(m.rtfx ?? "—")], ["Params", m.params_b ? m.params_b + "B" : "—"]]));
   });
@@ -389,7 +412,7 @@ function drawDumbbell() {
   const sources = keys.map((k) => k.split("/")[0]);
   const rows = d.models.map((m) => {
     const get = (cond) => {
-      const v = sources.map((s) => m.sets[`${s}/${cond}`]?.[state.metric]);
+      const v = sources.map((s) => setVal(m, `${s}/${cond}`));
       return v.every((x) => x != null) ? v.reduce((a, b) => a + b, 0) / v.length : null;
     };
     return { m, clean: get("clean"), tel: get("telephony"), cc: get("callcenter") };
@@ -482,8 +505,8 @@ function drawHeat() {
 // ---- hallucination bars -------------------------------------------------------------------
 function drawHalluc() {
   const box = document.getElementById("halluc"); box.replaceChildren();
-  const ms = state.data.models.filter((m) => m.hallucination_rate != null)
-    .sort((a, b) => a.hallucination_rate - b.hallucination_rate || (a.inserted_wpm ?? 0) - (b.inserted_wpm ?? 0));
+  const ms = state.data.models.filter((m) => halluc(m) != null)
+    .sort((a, b) => halluc(a) - halluc(b) || (a.inserted_wpm ?? 0) - (b.inserted_wpm ?? 0));
   if (!ms.length) { h("div", "No hallucination results yet.", box, "empty"); return; }
   const W = 1000, L = 270, row = 26, bar = 16, T = 8, R = 60, H = T + ms.length * row + 24;
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Hallucination rate" }, box);
@@ -494,7 +517,7 @@ function drawHalluc() {
     el("text", { x: gx, y: H - 4, "text-anchor": "middle", class: "muted" }, svg).textContent = i * 25 + "%";
   }
   ms.forEach((m, i) => {
-    const y = T + i * row + (row - bar) / 2, v = m.hallucination_rate, r = 4, w = Math.max(X(v) - L, r);
+    const y = T + i * row + (row - bar) / 2, v = halluc(m), r = 4, w = Math.max(X(v) - L, r);
     el("text", { x: L - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg).textContent = m.model;
     el("path", { d: `M${L},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
       fill: "var(--s2)" }, svg);
@@ -511,7 +534,7 @@ function drawTable() {
   const d = state.data, tbl = document.getElementById("tbl"); tbl.replaceChildren();
   const cols = [["#", null], ["Model", null], ["Type", null], ["Params (B)", (m) => m.params_b],
     ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]),
-    ["Halluc. %", (m) => m.hallucination_rate], ["RTFx", (m) => m.rtfx]];
+    [isV2() ? "Halluc. ≥3 words %" : "Halluc. %", (m) => halluc(m)], ["RTFx", (m) => m.rtfx]];
   let ms = [...d.models];
   const sc = state.sort ?? FIRST_TRACK, dir = sc === cols.length - 1 ? -1 : 1;
   if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
@@ -528,8 +551,9 @@ function drawTable() {
     const row = h("tr", null, tb);
     const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and gated or private weights are unranked references
     const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
-    if (m.rank_range && m.rank_range[0] !== m.rank_range[1]) {
-      h("span", rankText(m.rank_range), rc, "ci").title = "95% bootstrap range of the Arena rank";
+    const rr = rankOf(m);
+    if (rr && rr[0] !== rr[1]) {
+      h("span", rankText(rr), rc, "ci").title = isV2() ? "95% simultaneous rank confidence set" : "95% bootstrap range of the Arena rank";
     }
     const td = h("td", null, row, "model");
     const a = h("a", m.model, td); a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`;
@@ -543,14 +567,14 @@ function drawTable() {
     if (unranked) badge.title = (kind === "api" ? "Closed commercial API" : kind === "gated" ? "Weights gated on the Hub (access on request)" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([key], j) => {
-      const v = score(m, key), t = m.tracks[key];
+      const v = score(m, key), t = trackOf(m, key);
       const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : (key === "arena" ? "arena" : ""));
       if (v != null && v === best[FIRST_TRACK + j]) c.classList.add("best");
       const ci = ciOf(m, key);
       if (v != null && ci) h("span", ciText(ci), c, "ci").title = "95% bootstrap confidence interval";
     });
-    const hc = h("td", pct(m.hallucination_rate), row, m.hallucination_rate == null ? "pending" : "");
-    if (m.hallucination_rate != null && m.hallucination_rate === best[FIRST_TRACK + TRACKS.length]) hc.classList.add("best");
+    const hv = halluc(m), hc = h("td", pct(hv), row, hv == null ? "pending" : "");
+    if (hv != null && hv === best[FIRST_TRACK + TRACKS.length]) hc.classList.add("best");
     h("td", m.rtfx != null ? String(m.rtfx) : "—", row);
   });
 
@@ -560,11 +584,11 @@ function drawTable() {
   h("th", "#", hr); h("th", "Model", hr);
   keys.forEach((k) => h("th", k.replace("/clean", "").replace("/", " · "), hr));
   const sb = h("tbody", null, st);
-  const setBest = Object.fromEntries(keys.map((k) => [k, Math.min(...ms.map((m) => m.sets[k]?.[state.metric]).filter((v) => v != null))]));
+  const setBest = Object.fromEntries(keys.map((k) => [k, Math.min(...ms.map((m) => setVal(m, k)).filter((v) => v != null))]));
   ms.forEach((m, r) => {
     const row = h("tr", null, sb);
     h("td", String(r + 1), row, "rank"); h("td", m.model, row, "model");
-    keys.forEach((k) => { const v = m.sets[k]?.[state.metric]; const c = h("td", pct(v), row); if (v != null && v === setBest[k]) c.classList.add("best"); });
+    keys.forEach((k) => { const v = setVal(m, k); const c = h("td", pct(v), row); if (v != null && v === setBest[k]) c.classList.add("best"); });
   });
 }
 
@@ -588,6 +612,7 @@ function setupSeg(id, key, onChange) {
   DIMS.forEach(([k, l]) => { const b = h("button", l, dm); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.dim)); });
   setupSeg("track", "track", () => { drawRank(); drawScatter(); });
   setupSeg("metric", "metric", drawAll);
+  setupSeg("scorer", "scorer", () => { state.sort = null; drawAll(); });
   setupSeg("dim", "dim", drawHeat);
   setupSeg("lang", "lang", load);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => state.data && drawAll());
@@ -611,6 +636,13 @@ async function load() {
   }
   state.bd = (window.ARENA_BREAKDOWN || {})[state.lang] || null;
   state.sort = null;
+  const hasV2 = state.data.models.some((m) => m.v2?.arena != null);
+  const v2b = document.querySelector('#scorer button[data-v="v2"]');
+  v2b.disabled = !hasV2;
+  if (!hasV2 && state.scorer === "v2") {
+    state.scorer = "v1";
+    for (const x of document.querySelectorAll("#scorer button")) x.setAttribute("aria-pressed", String(x.dataset.v === "v1"));
+  }
   buildTrackSeg();
   const w = state.data.weights, names = Object.fromEntries(TRACKS);
   document.getElementById("weights").textContent =

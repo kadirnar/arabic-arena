@@ -4,6 +4,7 @@
 #   .venvs/qwenasr   qwen-asr package (Audar-ASR and other Qwen3-ASR fine-tunes)
 #   .venvs/nemo      NVIDIA NeMo (FastConformer Arabic, Nemotron streaming)
 #   .venvs/omniasr   Meta omnilingual-asr (fairseq2)
+#   .venvs/jais      IFM Jais-ASR (custom code pinned to transformers 5.16.1)
 #   .venvs/funasr    funasr + the Fun-ASR model code (Fun-ASR-MLT-Nano)
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -21,7 +22,8 @@ case "${1:-all}" in
                uv pip install --python .venv -e ".[gpu,dev]" --index-strategy unsafe-best-match ;;&
   qwenasr|all) mk qwenasr qwen-asr ;;&
   nemo|all)    mk nemo "nemo_toolkit[asr] @ git+https://github.com/NVIDIA/NeMo.git" ;;&
-  omniasr|all) mk omniasr omnilingual-asr ;;&
+  omniasr|all) mk omniasr "omnilingual-asr>=0.2.0" ;;&
+  jais|all)    mk jais "transformers==5.16.1" accelerate ;;&
   funasr|all)  mk funasr "funasr>=1.4.1"
                git clone --depth 1 https://github.com/FunAudioLLM/Fun-ASR.git .venvs/funasr/src/Fun-ASR ;;
 esac

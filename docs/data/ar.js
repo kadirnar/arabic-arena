@@ -41,6 +41,34 @@ window.ARENA_DATA['ar'] = {
    "mgb3_egy/callcenter"
   ]
  },
+ "extra_tracks": {
+  "telephony_v2": [
+   "fleurs_ar/telephony_v2",
+   "cv18_ar/telephony_v2",
+   "mgb2/telephony_v2",
+   "sada/telephony_v2",
+   "casablanca/telephony_v2",
+   "mgb3_egy/telephony_v2"
+  ],
+  "callcenter_v2": [
+   "fleurs_ar/callcenter_v2",
+   "cv18_ar/callcenter_v2",
+   "mgb2/callcenter_v2",
+   "sada/callcenter_v2",
+   "casablanca/callcenter_v2",
+   "mgb3_egy/callcenter_v2"
+  ],
+  "sweep": [
+   "fleurs_ar/sweep",
+   "masc_clean/sweep"
+  ],
+  "padded": [
+   "fleurs_ar/padded",
+   "cv18_ar/padded",
+   "masc_clean/padded",
+   "sada/padded"
+  ]
+ },
  "weights": {
   "clean": 0.35,
   "noisy": 0.15,
@@ -128,7 +156,7 @@ window.ARENA_DATA['ar'] = {
   },
   "nadi_robust": {
    "dialect": "8 dialects",
-   "domain": "noisy dialectal",
+   "domain": "band-limited (4 kHz) TV series",
    "source": "UBC-NLP/NADI2026_subtask1.1_Robust_ASR",
    "track": "noisy",
    "license": "unspecified"
@@ -379,6 +407,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "undisclosed",
    "hallucination_rate": 1.0,
    "inserted_wpm": 43.26,
    "arena_wer": 0.276899123975205,
@@ -392,7 +421,59 @@ window.ARENA_DATA['ar'] = {
     1
    ],
    "rtfx": 330.4,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "audar-asr-v1-turbo",
@@ -635,9 +716,10 @@ window.ARENA_DATA['ar'] = {
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "4.57.6"
    },
-   "finetune_of": null,
+   "finetune_of": "Qwen/Qwen3-ASR-1.7B",
    "in_domain": [],
    "notes": "",
+   "training_data": "undisclosed",
    "hallucination_rate": 0.8766666666666667,
    "inserted_wpm": 59.49,
    "arena_wer": 0.3137806622947005,
@@ -651,7 +733,59 @@ window.ARENA_DATA['ar'] = {
     2
    ],
    "rtfx": 82.5,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "voxtral-mini-4b-realtime-arabic",
@@ -896,7 +1030,8 @@ window.ARENA_DATA['ar'] = {
    },
    "finetune_of": null,
    "in_domain": [],
-   "notes": "",
+   "notes": "run at the default 480 ms delay (its card: FLEURS-ar 22.53 at 480 ms, 14.71 at 2400 ms)",
+   "training_data": "undisclosed",
    "hallucination_rate": 0.07,
    "inserted_wpm": 5.19,
    "arena_wer": 0.349092806328868,
@@ -910,7 +1045,59 @@ window.ARENA_DATA['ar'] = {
     4
    ],
    "rtfx": 28.6,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "lemura-arabic-asr-qwen3",
@@ -1154,8 +1341,16 @@ window.ARENA_DATA['ar'] = {
     "transformers": "4.57.6"
    },
    "finetune_of": "Qwen/Qwen3-ASR-1.7B",
-   "in_domain": [],
-   "notes": "multi-dialect; training data not disclosed",
+   "in_domain": [
+    "cv18_ar",
+    "masc_clean",
+    "masc_noisy",
+    "mgb2",
+    "sada",
+    "casablanca"
+   ],
+   "notes": "multi-dialect; its card labels every result on these sets in-domain",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 64.77,
    "arena_wer": 0.3520603032807148,
@@ -1169,7 +1364,59 @@ window.ARENA_DATA['ar'] = {
     5
    ],
    "rtfx": 55.8,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.5854,
+    "incomplete": []
+   }
   },
   {
    "model": "nvidia-fastconformer-ar-pc",
@@ -1413,8 +1660,14 @@ window.ARENA_DATA['ar'] = {
     "transformers": "5.19.0"
    },
    "finetune_of": null,
-   "in_domain": [],
-   "notes": "",
+   "in_domain": [
+    "masc_clean",
+    "masc_noisy",
+    "cv18_ar",
+    "fleurs_ar"
+   ],
+   "notes": "trained on MASC (690 h), Common Voice 17 (65 h) and FLEURS (5 h), per its card",
+   "training_data": "",
    "hallucination_rate": 0.66,
    "inserted_wpm": 17.96,
    "arena_wer": 0.3572583829297724,
@@ -1428,7 +1681,59 @@ window.ARENA_DATA['ar'] = {
     5
    ],
    "rtfx": 2404.9,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.3396,
+    "incomplete": []
+   }
   },
   {
    "model": "lemura-arabic-asr-lite",
@@ -1671,9 +1976,15 @@ window.ARENA_DATA['ar'] = {
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "5.19.0"
    },
-   "finetune_of": "NVIDIA FastConformer",
-   "in_domain": [],
-   "notes": "multi-dialect, ~2,900 h",
+   "finetune_of": "nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0",
+   "in_domain": [
+    "masc_clean",
+    "masc_noisy",
+    "cv18_ar",
+    "fleurs_ar"
+   ],
+   "notes": "multi-dialect, ~2,900 h undisclosed data on top of the NVIDIA base",
+   "training_data": "undisclosed",
    "hallucination_rate": 0.6666666666666666,
    "inserted_wpm": 9.08,
    "arena_wer": 0.37443315419539025,
@@ -1687,7 +1998,59 @@ window.ARENA_DATA['ar'] = {
     6
    ],
    "rtfx": 3412.7,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.3396,
+    "incomplete": []
+   }
   },
   {
    "model": "cohere-transcribe-03-2026",
@@ -1933,6 +2296,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "undisclosed",
    "hallucination_rate": 1.0,
    "inserted_wpm": 52.01,
    "arena_wer": 0.38759180703999835,
@@ -1946,7 +2310,59 @@ window.ARENA_DATA['ar'] = {
     7
    ],
    "rtfx": 306.3,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "qwen3-asr-1.7b",
@@ -2192,6 +2608,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 39.91,
    "arena_wer": 0.39942834056733867,
@@ -2205,7 +2622,59 @@ window.ARENA_DATA['ar'] = {
     8
    ],
    "rtfx": 105.6,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "audar-asr-v1-flash",
@@ -2448,9 +2917,10 @@ window.ARENA_DATA['ar'] = {
     "gpu": "NVIDIA GeForce RTX 5070 Ti",
     "transformers": "4.57.6"
    },
-   "finetune_of": null,
+   "finetune_of": "Qwen/Qwen3-ASR-0.6B",
    "in_domain": [],
    "notes": "",
+   "training_data": "undisclosed",
    "hallucination_rate": 0.27666666666666667,
    "inserted_wpm": 35.92,
    "arena_wer": 0.416170886353488,
@@ -2464,7 +2934,59 @@ window.ARENA_DATA['ar'] = {
     9
    ],
    "rtfx": 52.3,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "voxtral-mini-4b-realtime-2602",
@@ -2710,6 +3232,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "",
    "hallucination_rate": 0.08666666666666667,
    "inserted_wpm": 6.3,
    "arena_wer": 0.4465052720171186,
@@ -2723,7 +3246,59 @@ window.ARENA_DATA['ar'] = {
     10
    ],
    "rtfx": 28.1,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "qwen3-asr-arabic-ksa",
@@ -2969,6 +3544,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": "vadimbelsky/qwen3-asr-arabic-uae",
    "in_domain": [],
    "notes": "Saudi",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 94.03,
    "arena_wer": 0.4562669461326488,
@@ -2982,7 +3558,59 @@ window.ARENA_DATA['ar'] = {
     13
    ],
    "rtfx": 87.8,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "nemotron-3.5-asr-arabic-dialectal-v2",
@@ -3228,6 +3856,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": "nvidia/nemotron-3.5-asr-streaming-0.6b",
    "in_domain": [],
    "notes": "lahgtna-v3 (13 dialects)",
+   "training_data": "",
    "hallucination_rate": 0.21,
    "inserted_wpm": 12.52,
    "arena_wer": 0.4584480481024415,
@@ -3241,7 +3870,59 @@ window.ARENA_DATA['ar'] = {
     13
    ],
    "rtfx": 773.4,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "gemma-4-e2b-it",
@@ -3486,7 +4167,8 @@ window.ARENA_DATA['ar'] = {
    },
    "finetune_of": null,
    "in_domain": [],
-   "notes": "",
+   "notes": "results before 2026-10-18 used a generic prompt with the audio first",
+   "training_data": "undisclosed",
    "hallucination_rate": 1.0,
    "inserted_wpm": 77.03,
    "arena_wer": 0.4594452463228373,
@@ -3500,7 +4182,59 @@ window.ARENA_DATA['ar'] = {
     14
    ],
    "rtfx": 39.1,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "qwen3-asr-arabic-uae",
@@ -3746,6 +4480,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": "Qwen/Qwen3-ASR-1.7B",
    "in_domain": [],
    "notes": "Emirati",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 74.54,
    "arena_wer": 0.46751115986904446,
@@ -3759,7 +4494,59 @@ window.ARENA_DATA['ar'] = {
     14
    ],
    "rtfx": 108.7,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "whisper-large-v3",
@@ -4005,6 +4792,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 29.77,
    "arena_wer": 0.5011903812319387,
@@ -4018,7 +4806,59 @@ window.ARENA_DATA['ar'] = {
     17
    ],
    "rtfx": 45.4,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "qwencleo-asr",
@@ -4264,6 +5104,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": "Qwen/Qwen3-ASR-1.7B",
    "in_domain": [],
    "notes": "Egyptian + code-switching",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 161.36,
    "arena_wer": 0.5013750085515462,
@@ -4277,7 +5118,59 @@ window.ARENA_DATA['ar'] = {
     17
    ],
    "rtfx": 48.2,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "qwen3-asr-0.6b",
@@ -4523,6 +5416,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "",
    "hallucination_rate": 0.48333333333333334,
    "inserted_wpm": 25.77,
    "arena_wer": 0.5015011867104137,
@@ -4536,7 +5430,59 @@ window.ARENA_DATA['ar'] = {
     17
    ],
    "rtfx": 100.5,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "moulsot-v0.3",
@@ -4782,6 +5728,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": "Qwen/Qwen3-ASR-1.7B",
    "in_domain": [],
    "notes": "Moroccan Darija",
+   "training_data": "",
    "hallucination_rate": 0.9866666666666667,
    "inserted_wpm": 60.07,
    "arena_wer": 0.6203278333852092,
@@ -4795,7 +5742,59 @@ window.ARENA_DATA['ar'] = {
     19
    ],
    "rtfx": 41.1,
-   "audio_hours": 28.46
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "whisper-large-v3-turbo",
@@ -5041,6 +6040,7 @@ window.ARENA_DATA['ar'] = {
    "finetune_of": null,
    "in_domain": [],
    "notes": "",
+   "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 63.73,
    "arena_wer": 0.6225479727795318,
@@ -5054,156 +6054,59 @@ window.ARENA_DATA['ar'] = {
     19
    ],
    "rtfx": 105.1,
-   "audio_hours": 28.46
-  },
-  {
-   "model": "soniox-stt-async-v5",
-   "hf_id": "https://soniox.com",
-   "params_b": null,
-   "license": "proprietary API",
-   "kind": "api",
-   "sets": {
-    "fleurs_ar/clean": {
-     "wer": 0.04225352112676056,
-     "cer": 0.019127444659359553,
-     "rtfx": 9.43,
-     "n": 428
+   "audio_hours": 28.46,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
     },
-    "cv18_ar/clean": {
-     "wer": 0.09403578528827038,
-     "cer": 0.03161081953976585,
-     "rtfx": 3.94,
-     "n": 1000
-    },
-    "masc_clean/clean": {
-     "wer": 0.05463752665245203,
-     "cer": 0.019219700192697513,
-     "rtfx": 4.03,
-     "n": 1000
-    },
-    "sada/clean": {
-     "wer": 0.31047567421059763,
-     "cer": 0.14492194496879177,
-     "rtfx": 5.63,
-     "n": 1000
-    },
-    "mixat_cs/clean": {
-     "wer": 0.16799749491153906,
-     "cer": 0.07052948311987019,
-     "rtfx": 10.39,
-     "n": 1000
-    },
-    "masc_noisy/clean": {
-     "wer": 0.16652625666947488,
-     "cer": 0.06523258940575423,
-     "rtfx": 2.69,
-     "n": 1000
-    },
-    "fleurs_ar/noisy": {
-     "wer": 0.06930166607585962,
-     "cer": 0.03681944017225469,
-     "rtfx": 9.34,
-     "n": 300
-    },
-    "cv18_ar/noisy": {
-     "wer": 0.20119920053297802,
-     "cer": 0.1153531497136624,
-     "rtfx": 3.96,
-     "n": 300
-    },
-    "sada/noisy": {
-     "wer": 0.406102805652263,
-     "cer": 0.22685995167874698,
-     "rtfx": 6.37,
-     "n": 300
-    },
-    "fleurs_ar/telephony": {
-     "wer": 0.0597305919886565,
-     "cer": 0.028237465395262996,
-     "rtfx": 9.3,
-     "n": 300
-    },
-    "cv18_ar/telephony": {
-     "wer": 0.15456362425049966,
-     "cer": 0.06585764930460868,
-     "rtfx": 3.21,
-     "n": 300
-    },
-    "sada/telephony": {
-     "wer": 0.3729264796231825,
-     "cer": 0.184703824043989,
-     "rtfx": 5.42,
-     "n": 300
-    },
-    "fleurs_ar/callcenter": {
-     "wer": 0.1467564693371145,
-     "cer": 0.0766533374346355,
-     "rtfx": 9.34,
-     "n": 300
-    },
-    "cv18_ar/callcenter": {
-     "wer": 0.4570286475682878,
-     "cer": 0.29547313880556314,
-     "rtfx": 3.8,
-     "n": 300
-    },
-    "sada/callcenter": {
-     "wer": 0.5220151546180627,
-     "cer": 0.30638173789885864,
-     "rtfx": 6.48,
-     "n": 300
-    }
-   },
-   "tracks": {
-    "clean": {
-     "wer": null,
-     "cer": null,
-     "done": 4,
-     "total": 8
-    },
-    "codeswitch": {
-     "wer": null,
-     "cer": null,
-     "done": 1,
-     "total": 2
-    },
-    "noisy": {
-     "wer": null,
-     "cer": null,
-     "done": 4,
-     "total": 6
-    },
-    "telephony": {
-     "wer": null,
-     "cer": null,
-     "done": 3,
-     "total": 6
-    },
-    "callcenter": {
-     "wer": null,
-     "cer": null,
-     "done": 3,
-     "total": 6
-    }
-   },
-   "env": {
-    "python": "3.12.15",
-    "host": "86c83ed0473a",
-    "torch": "2.13.0+cu130",
-    "gpu": "NVIDIA H100 NVL",
-    "transformers": "5.17.0"
-   },
-   "finetune_of": null,
-   "in_domain": [],
-   "notes": "closed commercial API; RTFx is API wall-clock time",
-   "hallucination_rate": null,
-   "inserted_wpm": null,
-   "arena_wer": null,
-   "arena_cer": null,
-   "arena_ci": null,
-   "rank_range": null,
-   "rtfx": 5.9,
-   "audio_hours": 15.87
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   },
   {
    "model": "arabic-stt-qwen3-asr-1.7b",
@@ -5348,9 +6251,12 @@ window.ARENA_DATA['ar'] = {
     "masc_clean",
     "masc_noisy",
     "mgb2",
-    "sada"
+    "sada",
+    "mgb3_egy",
+    "fleurs_ar"
    ],
-   "notes": "Arabic-STT run 3: full fine-tune, weights gated on the Hub; trained on the train splits of CV18 and MASC and on MGB-2/SADA train rows (rows overlapping their test sets excluded)",
+   "notes": "Arabic-STT run 3: full fine-tune, weights gated on the Hub; trained on the train splits of CV18 and MASC and on MGB-2/SADA/MGB-3 train rows (rows overlapping their test sets excluded). Its kejue-common-voice stream also holds 20 FLEURS ar_eg *test* sentences (37 of our 428 fleurs_ar rows), which the contamination guard did not cover; labels of that stream come from Soniox stt-async-v5",
+   "training_data": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": null,
@@ -5358,7 +6264,59 @@ window.ARENA_DATA['ar'] = {
    "arena_ci": null,
    "rank_range": null,
    "rtfx": 159.7,
-   "audio_hours": 15.87
+   "audio_hours": 15.87,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.7208,
+    "incomplete": []
+   }
   },
   {
    "model": "arabic-stt-qwen3-asr-1.7b-run5",
@@ -5503,9 +6461,12 @@ window.ARENA_DATA['ar'] = {
     "masc_clean",
     "masc_noisy",
     "mgb2",
-    "sada"
+    "sada",
+    "mgb3_egy",
+    "fleurs_ar"
    ],
-   "notes": "Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; same in-domain train rows as run 3 (rows overlapping the test sets excluded)",
+   "notes": "Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; same in-domain train rows as run 3, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; also trained on clips of the lahgtna-v3-small test split",
+   "training_data": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": null,
@@ -5513,7 +6474,59 @@ window.ARENA_DATA['ar'] = {
    "arena_ci": null,
    "rank_range": null,
    "rtfx": 188.3,
-   "audio_hours": 15.87
+   "audio_hours": 15.87,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.7208,
+    "incomplete": []
+   }
   },
   {
    "model": "arabic-stt-qwen3-asr-1.7b-run5base",
@@ -5658,9 +6671,12 @@ window.ARENA_DATA['ar'] = {
     "masc_clean",
     "masc_noisy",
     "mgb2",
-    "sada"
+    "sada",
+    "mgb3_egy",
+    "fleurs_ar"
    ],
-   "notes": "Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); same in-domain train rows as run 3 (rows overlapping the test sets excluded)",
+   "notes": "Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "training_data": "",
    "hallucination_rate": null,
    "inserted_wpm": null,
    "arena_wer": null,
@@ -5668,7 +6684,331 @@ window.ARENA_DATA['ar'] = {
    "arena_ci": null,
    "rank_range": null,
    "rtfx": 184.4,
-   "audio_hours": 15.87
+   "audio_hours": 15.87,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0.7208,
+    "incomplete": []
+   }
+  },
+  {
+   "model": "soniox-stt-async-v5",
+   "hf_id": "https://soniox.com",
+   "params_b": null,
+   "license": "proprietary API",
+   "kind": "api",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.04225352112676056,
+     "cer": 0.019127444659359553,
+     "rtfx": 9.43,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.09403578528827038,
+     "cer": 0.03161081953976585,
+     "rtfx": 3.94,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.05463752665245203,
+     "cer": 0.019219700192697513,
+     "rtfx": 4.03,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.31047567421059763,
+     "cer": 0.14492194496879177,
+     "rtfx": 5.63,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.16799749491153906,
+     "cer": 0.07052948311987019,
+     "rtfx": 10.39,
+     "n": 1000
+    },
+    "masc_noisy/clean": {
+     "wer": 0.16652625666947488,
+     "cer": 0.06523258940575423,
+     "rtfx": 2.69,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.06930166607585962,
+     "cer": 0.03681944017225469,
+     "rtfx": 9.34,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.20119920053297802,
+     "cer": 0.1153531497136624,
+     "rtfx": 3.96,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.406102805652263,
+     "cer": 0.22685995167874698,
+     "rtfx": 6.37,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.0597305919886565,
+     "cer": 0.028237465395262996,
+     "rtfx": 9.3,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.15456362425049966,
+     "cer": 0.06585764930460868,
+     "rtfx": 3.21,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.3729264796231825,
+     "cer": 0.184703824043989,
+     "rtfx": 5.42,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.1467564693371145,
+     "cer": 0.0766533374346355,
+     "rtfx": 9.34,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.4570286475682878,
+     "cer": 0.29547313880556314,
+     "rtfx": 3.8,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.5220151546180627,
+     "cer": 0.30638173789885864,
+     "rtfx": 6.48,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 8
+    },
+    "codeswitch": {
+     "wer": null,
+     "cer": null,
+     "done": 1,
+     "total": 2
+    },
+    "noisy": {
+     "wer": null,
+     "cer": null,
+     "done": 4,
+     "total": 6
+    },
+    "telephony": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    },
+    "callcenter": {
+     "wer": null,
+     "cer": null,
+     "done": 3,
+     "total": 6
+    }
+   },
+   "env": {
+    "python": "3.12.15",
+    "host": "86c83ed0473a",
+    "torch": "2.13.0+cu130",
+    "gpu": "NVIDIA H100 NVL",
+    "transformers": "5.17.0"
+   },
+   "finetune_of": null,
+   "in_domain": [],
+   "notes": "closed commercial API; RTFx is API wall-clock time",
+   "training_data": "",
+   "hallucination_rate": null,
+   "inserted_wpm": null,
+   "arena_wer": null,
+   "arena_cer": null,
+   "arena_ci": null,
+   "rank_range": null,
+   "rtfx": 5.9,
+   "audio_hours": 15.87,
+   "v2": {
+    "halluc_any": null,
+    "halluc_3plus": null,
+    "halluc_3plus_ci": null,
+    "inserted_wpm": null,
+    "sets": {},
+    "tracks": {
+     "clean": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 8
+     },
+     "codeswitch": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 2
+     },
+     "noisy": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "telephony": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     },
+     "callcenter": {
+      "wer": null,
+      "cer": null,
+      "wer_arith": null,
+      "done": 0,
+      "total": 6
+     }
+    },
+    "arena": null,
+    "arena_arith": null,
+    "arena_cer": null,
+    "arena_strict": null,
+    "zero_shot": null,
+    "arena_real": null,
+    "exposure": 0,
+    "incomplete": []
+   }
   }
- ]
+ ],
+ "v2": {
+  "headline": "L2sp",
+  "aggregate": "geometric",
+  "weights": {
+   "fleurs_ar/clean": 0.04375,
+   "cv18_ar/clean": 0.04375,
+   "masc_clean/clean": 0.04375,
+   "mgb2/clean": 0.04375,
+   "sada/clean": 0.04375,
+   "casablanca/clean": 0.04375,
+   "mgb3_egy/clean": 0.04375,
+   "mgb5_mor/clean": 0.04375,
+   "mixat_cs/clean": 0.05,
+   "algerian_cs/clean": 0.05,
+   "masc_noisy/clean": 0.024999999999999998,
+   "nadi_robust/clean": 0.024999999999999998,
+   "fleurs_ar/noisy": 0.024999999999999998,
+   "cv18_ar/noisy": 0.024999999999999998,
+   "mgb2/noisy": 0.024999999999999998,
+   "sada/noisy": 0.024999999999999998,
+   "fleurs_ar/telephony": 0.03333333333333333,
+   "cv18_ar/telephony": 0.03333333333333333,
+   "mgb2/telephony": 0.03333333333333333,
+   "sada/telephony": 0.03333333333333333,
+   "casablanca/telephony": 0.03333333333333333,
+   "mgb3_egy/telephony": 0.03333333333333333,
+   "fleurs_ar/callcenter": 0.03333333333333333,
+   "cv18_ar/callcenter": 0.03333333333333333,
+   "mgb2/callcenter": 0.03333333333333333,
+   "sada/callcenter": 0.03333333333333333,
+   "casablanca/callcenter": 0.03333333333333333,
+   "mgb3_egy/callcenter": 0.03333333333333333
+  },
+  "zero_shot_sets": [
+   "algerian_cs/clean",
+   "mgb3_egy/callcenter",
+   "mgb3_egy/clean",
+   "mgb3_egy/telephony",
+   "mgb5_mor/clean",
+   "mixat_cs/clean",
+   "nadi_robust/clean"
+  ],
+  "real_audio_sets": [
+   "algerian_cs/clean",
+   "casablanca/clean",
+   "cv18_ar/clean",
+   "fleurs_ar/clean",
+   "masc_clean/clean",
+   "masc_noisy/clean",
+   "mgb2/clean",
+   "mgb3_egy/clean",
+   "mgb5_mor/clean",
+   "mixat_cs/clean",
+   "sada/clean"
+  ],
+  "floors": {
+   "mgb3_egy": {
+    "v1": 0.1365,
+    "L2sp": 0.0348,
+    "source": "MGB-3 inter-annotator study (sttarena audit floor), 2026-10-18"
+   },
+   "mgb5_mor": {
+    "v1": 0.4586,
+    "L2sp": 0.2286,
+    "source": "MGB-5 inter-annotator study, 2026-10-18"
+   }
+  },
+  "bag_of_hallucinations": [],
+  "num_ranked": 0
+ }
 };

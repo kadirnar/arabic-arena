@@ -25,8 +25,16 @@ from .runner import RESULTS_DIR
 
 
 def _utterance_errors(path) -> dict[str, tuple[int, int]]:
-    """id -> (word errors, reference words), from the normalized text saved with each prediction."""
+    """id -> (word errors, reference words) under the v1 scorer: from the v1 counts of a v2 record, or
+    from the normalized text saved with a v1 prediction."""
     preds = [json.loads(line) for line in path.open()]
+    if preds and "scores" in preds[0]:
+        out = {}
+        for p in preds:
+            v1 = p["scores"].get("v1", {})
+            if v1.get("n"):
+                out[p["id"]] = (v1["S"] + v1["D"] + v1["I"], int(v1["n"]))
+        return out
     preds = [p for p in preds if p["ref_norm"].strip()]  # corpus_error_rates drops empty references
     if not preds:
         return {}

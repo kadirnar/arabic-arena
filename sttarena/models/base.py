@@ -24,8 +24,11 @@ class ModelSpec:
     kwargs: dict[str, Any] = field(default_factory=dict)
     notes: str = ""
     finetune_of: str | None = None  # base checkpoint, for fine-tunes
-    in_domain: tuple[str, ...] = ()  # benchmark corpora whose *train* split the model was trained on
+    in_domain: tuple[str, ...] = ()  # set keys (suite YAML) whose *train* split the model was trained on
     repo: str | None = None  # HF model page, when hf_id is a loader name rather than a repo id
+    # "undisclosed" when the model card does not say what it was trained on: an empty in_domain then
+    # means "unknown", not "clean"
+    training_data: str = ""
 
 
 class ASRModel:

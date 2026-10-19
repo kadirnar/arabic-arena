@@ -160,10 +160,12 @@ class CTCHF(ASRModel):
 
 
 class GemmaAudio(ASRModel):
-    PROMPT = {
-        "ar": "Transcribe this audio verbatim in Arabic script. Output only the spoken words, without translation.",
-        "en": "Transcribe the audio verbatim, outputting only spoken words in sequence.",
-    }
+    # The ASR prompt of the Gemma 4 model card, with the text before the audio as the card shows it.
+    PROMPT = ("Transcribe the following speech segment in {lang} into {lang} text.\n\n"
+              "Follow these specific instructions for formatting the answer:\n"
+              "* Only output the transcription, with no newlines.\n"
+              "* When transcribing numbers, write the digits, i.e. write 1.7 and not one point seven, "
+              "and write 3 instead of three.")
 
     def __init__(self, spec: ModelSpec, device: str = "cuda"):
         super().__init__(spec, device)
@@ -175,10 +177,12 @@ class GemmaAudio(ASRModel):
     def transcribe(self, audios, language):
         import torch
 
-        msgs = [[{"role": "user", "content": [{"type": "audio", "audio": np.asarray(a)},
-                                              {"type": "text", "text": self.PROMPT[language]}]}] for a in audios]
+        prompt = self.PROMPT.format(lang=LANG_NAMES[language])
+        msgs = [[{"role": "user", "content": [{"type": "text", "text": prompt},
+                                              {"type": "audio", "audio": np.asarray(a)}]}] for a in audios]
         inputs = self.processor.apply_chat_template(
             msgs, add_generation_prompt=True, tokenize=True, return_dict=True, return_tensors="pt", padding=True,
+            enable_thinking=False,
         ).to(self.device, dtype=self.model.dtype)
         with torch.inference_mode():
             out = self.model.generate(**inputs, max_new_tokens=440, do_sample=False)
@@ -329,3 +333,38 @@ class ParakeetTDTHF(ASRModel):
             out = self.model.generate(**inputs)
         seqs = out.sequences if hasattr(out, "sequences") else out
         return self.processor.batch_decode(seqs, skip_special_tokens=True)
+
+
+class JaisASR(ASRModel):
+    """IFM Jais-ASR (custom code, `trust_remote_code`; its own env with transformers==5.16.1).
+
+    The language is "ar" (MSA and all 19 dialects); the model's non-speech answer
+    ([IFM-NoTranscript], `refused=True`) becomes an empty transcript.
+    """
+
+    LANG = {"ar": "ar", "en": "en"}
+
+    def __init__(self, spec: ModelSpec, device: str = "cuda"):
+        super().__init__(spec, device)
+        from transformers import AutoModelForCausalLM, AutoProcessor
+
+        rev = spec.kwargs.get("revision")
+        self.processor = AutoProcessor.from_pretrained(spec.hf_id, trust_remote_code=True, revision=rev)
+        self.processor.tokenizer.padding_side = "left"
+        self.model = AutoModelForCausalLM.from_pretrained(
+            spec.hf_id, trust_remote_code=True, revision=rev, dtype=NATIVE
+        ).to(device).eval()
+        self.prompt = self.processor.tokenizer.apply_chat_template(
+            [{"role": "user", "content": [{"type": "audio"}]}], tokenize=False, add_generation_prompt=True,
+            code_switch=spec.kwargs.get("code_switch", False),
+        )
+
+    def transcribe(self, audios, language):
+        import torch
+
+        inputs = self.processor(text=[self.prompt] * len(audios), audio=list(audios), sampling_rate=[SR] * len(audios),
+                                padding=True, return_tensors="pt").to(self.device)
+        with torch.inference_mode():
+            out = self.model.generate(**inputs, do_sample=False, max_new_tokens=440, language=self.LANG[language])
+        res = self.processor.post_process_transcription(out, input_lengths=inputs["input_ids"].shape[1])
+        return ["" if r.refused else r.text for r in res]

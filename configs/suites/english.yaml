@@ -161,8 +161,22 @@ datasets:
     license: CC-BY-SA-3.0
     redistribute: true
 
-# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py).
-hallucination: true
+# Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py). v1 (data/en/noise_only,
+# 300 clips) is the published set; v2 (--version 2 -> data/en/noise_only_v2) has groups G1-G3, G5, G7 and
+# non-target speech NT, with meta.group / meta.kind (sttarena/degrade/nonspeech.py).
+hallucination:
+  v2:
+    n: 830
+    # talkers for babble_v2 and speech-shaped noise, disjoint from every test set (sttarena/degrade/pool.py)
+    babble_pool: &babble_pool
+      source: openslr/librispeech_asr
+      config: clean
+      split: train.100  # speaker-disjoint from the LibriSpeech test sets
+      max_files: 1  # first parquet shard only (470 MB)
+      speaker: speaker_id
+      text: text
+      n: 600
+      per_speaker: 3
 
 degraded:
   noisy:
@@ -174,6 +188,41 @@ degraded:
   callcenter:
     from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22, common_voice_en, gigaspeech]
     n: 300
+  # ---- degradation chain v2 (sttarena/degrade/chain_v2.py): new conditions, not in the Arena score ------
+  # `version: 2` builds with chain v2 (default 1: the published sets above, rebuilt bit-for-bit); `chain` names
+  # the v2 chain; `group_by` makes the runner score each value of these meta.degradation fields separately.
+  telephony_v2:  # device x network x storage profiles: MENA codec mix, tandem to G.711 A-law, wideband paths
+    version: 2
+    chain: telephony
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22, common_voice_en, gigaspeech]
+    n: 300
+    group_by: [network]
+  callcenter_v2:  # caller-side room IR and environment noise (babble_v2 0.15), then telephony v2
+    version: 2
+    chain: callcenter
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, earnings22, common_voice_en, gigaspeech]
+    n: 300
+    group_by: [noise]
+    babble_pool: *babble_pool
+  sweep:  # paired SNR grid, rows "<clean id>#<noise>@<snr>": 150 x 3 noises x 5 SNRs = 2,250 per set
+    version: 2
+    chain: sweep
+    from: [librispeech_clean, fleurs_en]  # read audiobooks + read Wikipedia
+    n: 150
+    noises: [ssn, babble_v2, ambient]  # speech-shaped stationary, unintelligible babble, a noise-bank ambience
+    ambient: [cafe, street, transport]
+    snrs: [20, 10, 5, 0, -5]
+    group_by: [noise, snr_db]
+    babble_pool: *babble_pool
+  padded:  # hallucination inside speech, rows "<clean id>#pad" paired with the clean rows
+    version: 2
+    chain: padded
+    from: [librispeech_clean, fleurs_en, voxpopuli_en, common_voice_en]
+    n: 100
+    positions: [lead, trail, both]
+    pad_s: [2, 8, 20]
+    fillers: {silence: 0.25, comfort_noise: 0.25, tones: 0.25, office: 0.25}
+    max_total_s: 30  # stays inside a 30 s model window
 
 scoring:
   tracks:

@@ -5,10 +5,18 @@ A model that "transcribes" it produces insertions that ruin downstream analytics
 has an empty reference; scoring reports the share of clips with any output and inserted words
 per minute (see sttarena/runner.py).
 
-Clip types (seeded): line silence, low-level hiss/hum, distant babble (-25..-15 dBFS), office /
-street / transport / cafe noise. Half go through the telephony channel.
+v1 (the published data/<lang>/noise_only, the default): clip types (seeded) line silence, low-level
+hiss/hum, distant babble (-25..-15 dBFS), office / street / transport / cafe noise. Half go through
+the telephony channel.
+
+v2 (--version 2 -> data/<lang>/noise_only_v2; sttarena/degrade/nonspeech.py): groups G1 silence-like,
+G2 network tones of Arab networks, G3 DTMF, G5 office, G7 environment and NT non-target speech
+(babble_v2 from a talker pool disjoint from every test set), with meta.group / meta.kind for per-group
+rates and stratified 1-30 s durations; G1-G3 need no downloads. Settings come from the suite's
+`hallucination.v2` block (n, babble_pool).
 
     python scripts/build_hallucination_set.py --lang ar
+    python scripts/build_hallucination_set.py --lang ar --version 2
 """
 
 from __future__ import annotations
@@ -56,23 +64,18 @@ def phone(x: np.ndarray, rng: np.random.Generator) -> tuple[np.ndarray, str]:
     return packet_loss(y, rng, 8000, 0.01), codec
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--lang", default="ar")
-    ap.add_argument("--n", type=int, default=300)
-    args = ap.parse_args()
-    suite = Suite.load({"ar": "arabic", "en": "english"}[args.lang])
+def build_v1(lang: str, suite: Suite, n: int) -> None:
     bank = NoiseBank(DATA_DIR / "noise")
     # babble from this language's own test speech
     pool = []
     for name in list(suite.sets)[:6]:
-        t = pq.read_table(set_path(args.lang, name), columns=["audio"]).column("audio").to_pylist()[:40]
+        t = pq.read_table(set_path(lang, name), columns=["audio"]).column("audio").to_pylist()[:40]
         pool += [decode_audio(a, 16000)[0] for a in t]
     bank.add_speech_pool(pool)
     rows = []
     kinds, w = list(KINDS), np.array(list(KINDS.values()))
-    for i in range(args.n):
-        rng = np.random.default_rng(seed_for(args.lang, "noise_only", str(i)))
+    for i in range(n):
+        rng = np.random.default_rng(seed_for(lang, "noise_only", str(i)))
         kind = kinds[int(rng.choice(len(kinds), p=w / w.sum()))]
         sec = float(rng.uniform(3, 15))
         x, sr, meta = make_clip(rng, bank, kind, sec), 16000, {"kind": kind}
@@ -82,8 +85,44 @@ def main():
         rows.append({"id": f"noise_only/{i}", "audio": {"bytes": encode_flac(x, sr), "path": None},
                      "sampling_rate": sr, "text": "", "duration": round(sec, 3),
                      "meta": json.dumps({"degradation": meta})})
-    write_rows(set_path(args.lang, "noise_only"), rows)
-    print(f"wrote {len(rows)} clips to {set_path(args.lang, 'noise_only')}")
+    write_rows(set_path(lang, "noise_only"), rows)
+    print(f"wrote {len(rows)} clips to {set_path(lang, 'noise_only')}")
+
+
+def build_v2(lang: str, suite: Suite, n: int | None) -> None:
+    from sttarena.degrade import nonspeech
+    from sttarena.degrade.pool import build_babble_pool
+
+    cfg = (suite.hallucination if isinstance(suite.hallucination, dict) else {}).get("v2", {})
+    noise_root = DATA_DIR / "noise"
+    bank = NoiseBank(noise_root)
+    if cfg.get("babble_pool"):
+        bank.load_talkers(build_babble_pool(cfg["babble_pool"], lang, list(suite.sets), noise_root))
+    groups = nonspeech.available_groups(bank)
+    if skipped := [g for g in nonspeech.GROUPS if g not in groups]:
+        print(f"warning: no noise bank / talker pool for groups {skipped}; building {groups}")
+    rows, n = [], n or cfg.get("n", sum(nonspeech.GROUPS.values()))
+    for clip_id, group, sec in nonspeech.plan(lang, n, groups):
+        x, sr, meta = nonspeech.clip(lang, clip_id, group, sec, bank)
+        rows.append({"id": clip_id, "audio": {"bytes": encode_flac(x, sr), "path": None}, "sampling_rate": sr,
+                     "text": "", "duration": round(len(x) / sr, 3),
+                     "meta": json.dumps(meta, ensure_ascii=False)})
+    write_rows(set_path(lang, "noise_only_v2"), rows)
+    counts = {g: sum(r["id"].split("/")[1] == g for r in rows) for g in groups}
+    print(f"wrote {len(rows)} clips to {set_path(lang, 'noise_only_v2')}: {counts}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--lang", default="ar")
+    ap.add_argument("--n", type=int, help="v1: 300 clips; v2: the suite's hallucination.v2.n (830)")
+    ap.add_argument("--version", type=int, default=1, choices=(1, 2))
+    args = ap.parse_args()
+    suite = Suite.load({"ar": "arabic", "en": "english"}[args.lang])
+    if args.version == 1:
+        build_v1(args.lang, suite, args.n or 300)
+    else:
+        build_v2(args.lang, suite, args.n)
 
 
 if __name__ == "__main__":

@@ -21,6 +21,10 @@ telephony and call-center channels**, and averages them into one Arena score, in
 - 🇬🇧 **English suite**: in progress (see the [roadmap](docs/ROADMAP.md))
 - 📊 **Corpus-level WER and CER**, a per-track macro average, a weighted Arena score, and RTFx
   measured on a local GPU
+- 🧰 **Scoring v2 and a library that scores anything**: dialect-aware normalization levels,
+  space-insensitive and multi-reference alignment, hallucination / code-switching / MSA-ization
+  diagnostics, cluster-bootstrap intervals and rank sets, reference and contamination audits
+  ([how and why](docs/METHODOLOGY.md), [research](docs/RESEARCH.md))
 
 ## 🏆 Arabic leaderboard
 
@@ -30,9 +34,9 @@ telephony and call-center channels**, and averages them into one Arena score, in
 | 1 | [cohere-transcribe-arabic-07-2026](https://huggingface.co/CohereLabs/cohere-transcribe-arabic-07-2026) | 2.07 | **27.69** | 27.10–28.27 | 1 | 15.73 | 21.87 | 31.91 | 25.80 | 23.58 | 41.28 | 100.00 | 330.4 |
 | 2 | [audar-asr-v1-turbo](https://huggingface.co/audarai/Audar-ASR-V1-Turbo) | 2.35 | **31.38** | 30.59–32.28 | 2 | 16.44 | 23.46 | 33.70 | 27.48 | 27.69 | 50.69 | 87.67 | 82.5 |
 | 3 | [voxtral-mini-4b-realtime-arabic](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-Arabic) | 4.43 | **34.91** | 34.39–35.40 | 3–4 | 20.80 | 25.86 | 28.40 | 32.11 | 33.23 | 57.78 | 7.00 | 28.6 |
-| 4 | [lemura-arabic-asr-qwen3](https://huggingface.co/lemuralabs/lemura-arabic-asr-qwen3) | 2.04 | **35.21** | 34.45–36.05 | 3–5 | 18.34 | 27.15 | 34.96 | 30.27 | 31.63 | 56.70 | 100.00 | 55.8 |
-| 5 | [nvidia-fastconformer-ar-pc](https://huggingface.co/nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0) | 0.12 | **35.73** | 35.30–36.20 | 4–5 | 19.60 | 29.68 | 42.57 | 31.03 | 31.72 | 50.42 | 66.00 | 2404.9 |
-| 6 | [lemura-arabic-asr-lite](https://huggingface.co/lemuralabs/lemura-arabic-asr-lite) | 0.11 | **37.44** | 36.99–37.91 | 6 | 19.72 | 29.74 | 49.76 | 33.00 | 32.54 | 53.00 | 66.67 | 3412.7 |
+| 4 | [lemura-arabic-asr-qwen3](https://huggingface.co/lemuralabs/lemura-arabic-asr-qwen3) † | 2.04 | **35.21** | 34.45–36.05 | 3–5 | 18.34 | 27.15 | 34.96 | 30.27 | 31.63 | 56.70 | 100.00 | 55.8 |
+| 5 | [nvidia-fastconformer-ar-pc](https://huggingface.co/nvidia/stt_ar_fastconformer_hybrid_large_pc_v1.0) † | 0.12 | **35.73** | 35.30–36.20 | 4–5 | 19.60 | 29.68 | 42.57 | 31.03 | 31.72 | 50.42 | 66.00 | 2404.9 |
+| 6 | [lemura-arabic-asr-lite](https://huggingface.co/lemuralabs/lemura-arabic-asr-lite) † | 0.11 | **37.44** | 36.99–37.91 | 6 | 19.72 | 29.74 | 49.76 | 33.00 | 32.54 | 53.00 | 66.67 | 3412.7 |
 | 7 | [cohere-transcribe-03-2026](https://huggingface.co/CohereLabs/cohere-transcribe-03-2026) | 2.07 | **38.76** | 37.70–39.90 | 7 | 23.72 | 31.17 | 54.99 | 33.30 | 34.39 | 52.39 | 100.00 | 306.3 |
 | 8 | [qwen3-asr-1.7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B-hf) | 2.04 | **39.94** | 39.22–40.77 | 8 | 19.46 | 33.01 | 38.03 | 35.63 | 37.04 | 59.17 | 100.00 | 105.6 |
 | 9 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **41.62** | 40.77–42.47 | 9 | 22.46 | 33.67 | 42.20 | 38.34 | 38.42 | 60.89 | 27.67 | 52.3 |
@@ -48,6 +52,8 @@ telephony and call-center channels**, and averages them into one Arena score, in
 | 19 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **62.25** | 58.83–66.06 | 18–19 | 40.01 | 47.32 | 56.49 | 51.68 | 58.53 | 102.94 | 100.00 | 105.1 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Noisy 15%, Code-switch 10%, Telephony 20%, Call-center 20%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
+
+† Trained on the train split of a benchmark corpus (in-domain, not zero-shot): lemura-arabic-asr-qwen3 (cv18_ar, masc_clean, masc_noisy, mgb2, sada, casablanca); nvidia-fastconformer-ar-pc (masc_clean, masc_noisy, cv18_ar, fleurs_ar); lemura-arabic-asr-lite (masc_clean, masc_noisy, cv18_ar, fleurs_ar).
 
 <details><summary>Per-set WER (%)</summary>
 
@@ -138,6 +144,42 @@ Per-set WER (%) of the references next to the top two ranked models:
 Hardware: 1× RTX 5070 Ti (16 GB), batch inference, greedy decoding, language forced to Arabic.
 Models that only fit with quantization are not included yet.
 
+## 🧰 Score anything
+
+The scorer is a library and a CLI: point it at references and hypotheses in any common format and get
+the v2 scores, the v1-compatible number, diagnostics and an alignment report.
+
+```bash
+uv pip install -e .     # scoring needs no GPU
+# references and hypotheses as JSONL, CSV/TSV, Kaldi text, SCTK trn, SRT/VTT, STM/CTM or hf://repo/split
+sttarena score --ref refs.tsv --hyp hyps.jsonl --out-md report.md --out-html report.html
+sttarena score --hyp results/ar/<model>/predictions/sada__clean.jsonl     # one predictions file
+sttarena score --ref annot1/text --ref annot2/text --hyp decode/text     # Kaldi text, several references
+sttarena compare --ref refs.tsv --hyp a=model_a.jsonl --hyp b=model_b.jsonl   # paired tests, Holm
+```
+
+```python
+from sttarena.normalizers import ArabicNormalizer
+from sttarena.scoring import Scorer
+
+ArabicNormalizer("L2")("حيبقى برضو كدا")          # 'هيبقي برضه كده'
+res = Scorer("ar").score([{"id": "1", "ref": "ما فيش حد", "hyp": "مفيش حد"},
+                          {"id": "2", "refs": ["حتلاقي الترجمة", "هتلاقي الترجمه"], "hyp": "هتلاقي الترجمه"}])
+res.summary()["headline"]["wer"]                    # 0.0: a space and a spelling are not errors
+```
+
+| Profile | Normalization and alignment | Shown as |
+|---|---|---|
+| `v1` | the previous arena scorer: orthographic normalization, one reference, uncapped | v1 board |
+| `L1` | v1 + safe fixes (spoken times/decimals/%, Maghrebi and Persian letters, markup) | Strict WER |
+| `L2sp` | + dialect-lenient spelling (variant table and seven audited rules), space-insensitive merges, multi-reference, per-utterance cap | **Arena WER v2** |
+
+Audits: `sttarena audit floor` (human disagreement on multi-annotator data), `audit variants`
+(unintended merges of the spelling folds), `audit refs` (suspect references: model consensus,
+speaking rate, markup, duplicates, Qur'an), `audit contamination` (n-gram / MinHash / id overlap with
+training text, residual screen, exposure). `sttarena rescore` upgrades saved v1 predictions to v2
+without a GPU.
+
 ## Tracks and scoring
 
 | Track | Weight | What it measures | Sets |
@@ -150,11 +192,15 @@ Models that only fit with quantization are not included yet.
 
 - **Within each set**: errors are summed over all utterances. This is corpus WER, not the mean
   of per-utterance WERs.
-- **Track score**: the plain mean over that track's sets.
-- **Arena WER**: the weighted mean of the five track scores.
-- **Normalization**: identical for references and hypotheses. Diacritics, tatweel and punctuation
-  are removed, and alef/hamza/yaa/taa-marbuta forms are unified (see
-  [`sttarena/normalizers/arabic.py`](sttarena/normalizers/arabic.py)).
+- **v1**: track score = the plain mean over that track's sets; Arena = the weighted mean of the
+  five track scores; one normalizer that removes diacritics, tatweel and punctuation and unifies
+  alef/hamza/yaa/taa-marbuta forms.
+- **v2**: per set the `L2sp` profile above; Arena = the weighted geometric mean of the set scores
+  (each set weighs its track's weight split over the track's sets), next to the arithmetic mean, a
+  real-audio Arena, a zero-shot Arena (sets no ranked model trained on) and each model's exposure;
+  95 % intervals from a bootstrap that resamples whole speakers, videos or recordings, and
+  simultaneous rank sets. Two human transcribers of the same MGB-3 audio disagree on 13.2 % of
+  words under v1 and 7.0 % under v2, while system rankings do not change.
 - **Full methodology**: [docs/METHODOLOGY.md](docs/METHODOLOGY.md).
 
 ## Datasets
@@ -172,25 +218,27 @@ others, you rebuild them locally from the original source.
 | mgb2 | MGB-2 (Al Jazeera) | mostly MSA | broadcast | QCRI agreement |
 | sada | SADA 2022 | Saudi / Gulf | TV | CC-BY-NC-SA-4.0 |
 | casablanca | UBC-NLP/Casablanca (8 countries) | DZ, EG, JO, MR, MA, PS, AE, YE | TV series | CC-BY-NC-ND-4.0 |
-| mgb3_egy | MGB-3 | Egyptian | YouTube | unspecified |
-| mgb5_mor | MGB-5 | Moroccan | YouTube | unspecified |
-| mixat_cs | Mixat | Emirati + English | podcast | CC-BY-NC-SA-4.0 |
+| mgb3_egy | MGB-3 (4 annotators: multi-reference in v2) | Egyptian | YouTube | unspecified |
+| mgb5_mor | MGB-5 (v2: one segmentation per recording, other annotators as references) | Moroccan | YouTube | unspecified |
+| mixat_cs | Mixat (v2: + Arabic-script transliteration as a 2nd reference) | Emirati + English | podcast | CC-BY-NC-SA-4.0 |
 | algerian_cs | OIST Algerian CS | Algerian + French | conversation | controlled |
-| nadi_robust | NADI-2026 Robust ASR (validation) | 8 dialects | noisy | unspecified |
+| nadi_robust | NADI-2026 Robust ASR (validation): Casablanca audio band-limited to 4 kHz | 8 dialects | band-limited TV | unspecified |
 
-Noise for the degraded tracks comes from DEMAND and MUSAN (both CC-BY-4.0). Babble noise is
-synthesized from other test speakers.
+Noise for the degraded tracks comes from DEMAND (CC BY-SA 3.0) and MUSAN (CC-BY-4.0). Babble noise
+is synthesized from other test speakers.
 
 ## Quickstart
 
 ```bash
 uv venv --python 3.12 && uv pip install -e ".[gpu]"
 python scripts/build_noise_bank.py                 # DEMAND + MUSAN noise
-python scripts/build_benchmark.py --suite arabic   # build the clean and degraded sets
+python scripts/build_benchmark.py --suite arabic   # build the clean and degraded sets (v1 and chain-v2 conditions)
+python scripts/build_hallucination_set.py --lang ar --version 2   # noise-only clips v2 (tones, DTMF, office ...)
 sttarena models                                    # list registered models
 sttarena run -m whisper-large-v3 --suite arabic    # evaluate (cached per set)
 sttarena run -m qwen3-asr-1.7b --limit 32          # quick smoke test, not saved
-sttarena leaderboard --suite arabic                # refresh tables
+sttarena rescore --suite arabic                    # re-score saved predictions with the current scorer
+sttarena leaderboard --suite arabic                # refresh tables (v2 board + v1 board)
 ```
 
 Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
@@ -219,3 +267,11 @@ See [docs/ROADMAP.md](docs/ROADMAP.md) and the
 ## Licence
 
 Code: Apache-2.0. Each dataset keeps its own licence (table above). Results are CC-BY-4.0.
+
+MGB-2 is used under the QCRI-ALT Corpus research licence, which requires published results to
+carry this acknowledgement:
+
+> QCRI-AL Jazeera Corpus, used by Arabic Arena, was developed by Qatar Computing Research Institute
+> ("QCRI"), an institute within the Hamad Bin Khalifa University ("HBKU") a member of the Qatar
+> Foundation for Education, Science and Community Development and the Data provided courtesy of
+> Al Jazeera.
