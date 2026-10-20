@@ -3,7 +3,8 @@
 Every degradation is driven by a seed derived from (dataset, utterance id, condition), so the
 same input always produces the same degraded audio and the exact parameters are recorded.
 
-Conditions (v1, chain.py: the published sets; kept bit-for-bit)
+Conditions (v1, chain.py: the published sets; unchanged, bit-exact for a given ffmpeg build, but
+AMR-NB and Opus rows change with the encoder version)
 ----------
 noisy       wideband (16 kHz) speech + background noise at 0-15 dB SNR
 telephony   8 kHz narrowband phone channel: 300-3400 Hz band-pass, a random telephony codec

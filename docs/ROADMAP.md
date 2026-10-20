@@ -31,7 +31,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
       omniASR v2, more dialect fine-tunes
 - [x] v2 Arena weights: simulated channels halved (telephony and call-center 10 % each), the freed weight
       on real recordings; `nadi_robust` scored as an unweighted diagnostic ([RESEARCH.md §11](RESEARCH.md))
-- [ ] Re-score every published model with `sttarena rescore` and publish the v2 board (v1 → v2 rank-change table)
+- [x] Re-run every board model on one A10 and publish the v2 board (v1 → v2 rank-change table:
+      [RESEARCH.md §12](RESEARCH.md)); the Soniox API reference keeps its v1-only run
 - [ ] Error budget next to WER (scoring artefacts / reference / hallucination / genuine) on every set
 
 ## M3 — References and contamination

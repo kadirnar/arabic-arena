@@ -1,0 +1,650 @@
+{
+ "n_boot": 2000,
+ "headline": "L2sp",
+ "aggregate": "geometric",
+ "flags": {
+  "mgb2/clean": "few clusters: G=17",
+  "mgb2/noisy": "few clusters: G=17",
+  "mgb2/telephony": "few clusters: G=17",
+  "mgb2/callcenter": "few clusters: G=17",
+  "sada/clean": "iid: no cluster key",
+  "sada/noisy": "iid: no cluster key",
+  "sada/telephony": "iid: no cluster key",
+  "sada/callcenter": "iid: no cluster key",
+  "casablanca/clean": "iid: no cluster key",
+  "casablanca/telephony": "iid: no cluster key",
+  "casablanca/callcenter": "iid: no cluster key",
+  "mgb5_mor/clean": "few clusters: G=14",
+  "mixat_cs/clean": "iid: no cluster key",
+  "algerian_cs/clean": "few clusters: G=8"
+ },
+ "models": {
+  "cohere-transcribe-arabic-07-2026": {
+   "arena": 0.147566,
+   "arena_ci": [
+    0.13735,
+    0.15692
+   ],
+   "rank_set": [
+    1,
+    1
+   ],
+   "tracks": {
+    "clean": [
+     0.10261,
+     0.11889
+    ],
+    "codeswitch": [
+     0.19081,
+     0.29114
+    ],
+    "noisy": [
+     0.12114,
+     0.14979
+    ],
+    "telephony": [
+     0.13726,
+     0.16521
+    ],
+    "callcenter": [
+     0.31138,
+     0.34885
+    ]
+   }
+  },
+  "audar-asr-v1-turbo": {
+   "arena": 0.178629,
+   "arena_ci": [
+    0.16867,
+    0.18766
+   ],
+   "rank_set": [
+    2,
+    2
+   ],
+   "tracks": {
+    "clean": [
+     0.12746,
+     0.14359
+    ],
+    "codeswitch": [
+     0.20694,
+     0.30583
+    ],
+    "noisy": [
+     0.15031,
+     0.17822
+    ],
+    "telephony": [
+     0.18555,
+     0.2126
+    ],
+    "callcenter": [
+     0.40182,
+     0.43473
+    ]
+   }
+  },
+  "voxtral-mini-4b-realtime-arabic": {
+   "arena": 0.208079,
+   "arena_ci": [
+    0.19832,
+    0.21812
+   ],
+   "rank_set": [
+    3,
+    4
+   ],
+   "tracks": {
+    "clean": [
+     0.15145,
+     0.16973
+    ],
+    "codeswitch": [
+     0.19708,
+     0.26673
+    ],
+    "noisy": [
+     0.19323,
+     0.22471
+    ],
+    "telephony": [
+     0.23478,
+     0.26368
+    ],
+    "callcenter": [
+     0.51385,
+     0.55207
+    ]
+   }
+  },
+  "nvidia-fastconformer-ar-pc": {
+   "arena": 0.209913,
+   "arena_ci": [
+    0.19921,
+    0.22024
+   ],
+   "rank_set": [
+    3,
+    4
+   ],
+   "tracks": {
+    "clean": [
+     0.15001,
+     0.16783
+    ],
+    "codeswitch": [
+     0.31091,
+     0.43001
+    ],
+    "noisy": [
+     0.16478,
+     0.19519
+    ],
+    "telephony": [
+     0.20232,
+     0.23121
+    ],
+    "callcenter": [
+     0.41969,
+     0.45548
+    ]
+   }
+  },
+  "cohere-transcribe-03-2026": {
+   "arena": 0.225507,
+   "arena_ci": [
+    0.21462,
+    0.23589
+   ],
+   "rank_set": [
+    5,
+    6
+   ],
+   "tracks": {
+    "clean": [
+     0.15945,
+     0.18013
+    ],
+    "codeswitch": [
+     0.44954,
+     0.53525
+    ],
+    "noisy": [
+     0.16021,
+     0.18877
+    ],
+    "telephony": [
+     0.21464,
+     0.24425
+    ],
+    "callcenter": [
+     0.39402,
+     0.43108
+    ]
+   }
+  },
+  "lemura-arabic-asr-qwen3": {
+   "arena": 0.227373,
+   "arena_ci": [
+    0.21631,
+    0.23811
+   ],
+   "rank_set": [
+    5,
+    6
+   ],
+   "tracks": {
+    "clean": [
+     0.17103,
+     0.18896
+    ],
+    "codeswitch": [
+     0.23681,
+     0.34757
+    ],
+    "noisy": [
+     0.19918,
+     0.2291
+    ],
+    "telephony": [
+     0.23524,
+     0.26484
+    ],
+    "callcenter": [
+     0.47927,
+     0.51448
+    ]
+   }
+  },
+  "gemma-4-e2b-it": {
+   "arena": 0.251566,
+   "arena_ci": [
+    0.24184,
+    0.26182
+   ],
+   "rank_set": [
+    7,
+    8
+   ],
+   "tracks": {
+    "clean": [
+     0.18615,
+     0.20511
+    ],
+    "codeswitch": [
+     0.25321,
+     0.32949
+    ],
+    "noisy": [
+     0.24869,
+     0.27883
+    ],
+    "telephony": [
+     0.28319,
+     0.31063
+    ],
+    "callcenter": [
+     0.55109,
+     0.5822
+    ]
+   }
+  },
+  "lemura-arabic-asr-lite": {
+   "arena": 0.251903,
+   "arena_ci": [
+    0.2399,
+    0.26305
+   ],
+   "rank_set": [
+    7,
+    8
+   ],
+   "tracks": {
+    "clean": [
+     0.17854,
+     0.19694
+    ],
+    "codeswitch": [
+     0.39795,
+     0.55697
+    ],
+    "noisy": [
+     0.21354,
+     0.24598
+    ],
+    "telephony": [
+     0.23553,
+     0.26451
+    ],
+    "callcenter": [
+     0.47057,
+     0.50314
+    ]
+   }
+  },
+  "qwen3-asr-1.7b": {
+   "arena": 0.263766,
+   "arena_ci": [
+    0.25256,
+    0.27468
+   ],
+   "rank_set": [
+    9,
+    10
+   ],
+   "tracks": {
+    "clean": [
+     0.21448,
+     0.23312
+    ],
+    "codeswitch": [
+     0.25083,
+     0.3482
+    ],
+    "noisy": [
+     0.22067,
+     0.25234
+    ],
+    "telephony": [
+     0.28154,
+     0.31073
+    ],
+    "callcenter": [
+     0.50375,
+     0.5357
+    ]
+   }
+  },
+  "whisper-large-v3": {
+   "arena": 0.267243,
+   "arena_ci": [
+    0.25469,
+    0.27986
+   ],
+   "rank_set": [
+    9,
+    10
+   ],
+   "tracks": {
+    "clean": [
+     0.20664,
+     0.22814
+    ],
+    "codeswitch": [
+     0.28673,
+     0.41745
+    ],
+    "noisy": [
+     0.22418,
+     0.25764
+    ],
+    "telephony": [
+     0.27652,
+     0.30774
+    ],
+    "callcenter": [
+     0.51953,
+     0.55274
+    ]
+   }
+  },
+  "audar-asr-v1-flash": {
+   "arena": 0.277142,
+   "arena_ci": [
+    0.26564,
+    0.28877
+   ],
+   "rank_set": [
+    11,
+    12
+   ],
+   "tracks": {
+    "clean": [
+     0.22147,
+     0.24014
+    ],
+    "codeswitch": [
+     0.26996,
+     0.38429
+    ],
+    "noisy": [
+     0.24087,
+     0.27205
+    ],
+    "telephony": [
+     0.29887,
+     0.32745
+    ],
+    "callcenter": [
+     0.52647,
+     0.55913
+    ]
+   }
+  },
+  "voxtral-mini-4b-realtime-2602": {
+   "arena": 0.284234,
+   "arena_ci": [
+    0.27333,
+    0.29641
+   ],
+   "rank_set": [
+    11,
+    13
+   ],
+   "tracks": {
+    "clean": [
+     0.21743,
+     0.23876
+    ],
+    "codeswitch": [
+     0.27348,
+     0.35458
+    ],
+    "noisy": [
+     0.25677,
+     0.29524
+    ],
+    "telephony": [
+     0.32227,
+     0.36208
+    ],
+    "callcenter": [
+     0.63462,
+     0.67084
+    ]
+   }
+  },
+  "whisper-large-v3-turbo": {
+   "arena": 0.290273,
+   "arena_ci": [
+    0.27744,
+    0.30295
+   ],
+   "rank_set": [
+    12,
+    13
+   ],
+   "tracks": {
+    "clean": [
+     0.23032,
+     0.25349
+    ],
+    "codeswitch": [
+     0.28358,
+     0.40293
+    ],
+    "noisy": [
+     0.24795,
+     0.28242
+    ],
+    "telephony": [
+     0.31369,
+     0.34646
+    ],
+    "callcenter": [
+     0.55857,
+     0.59197
+    ]
+   }
+  },
+  "qwen3-asr-arabic-ksa": {
+   "arena": 0.305921,
+   "arena_ci": [
+    0.29383,
+    0.31754
+   ],
+   "rank_set": [
+    14,
+    14
+   ],
+   "tracks": {
+    "clean": [
+     0.25679,
+     0.27648
+    ],
+    "codeswitch": [
+     0.27947,
+     0.38857
+    ],
+    "noisy": [
+     0.2596,
+     0.29178
+    ],
+    "telephony": [
+     0.3233,
+     0.35207
+    ],
+    "callcenter": [
+     0.5526,
+     0.58335
+    ]
+   }
+  },
+  "qwen3-asr-arabic-uae": {
+   "arena": 0.318075,
+   "arena_ci": [
+    0.30595,
+    0.33014
+   ],
+   "rank_set": [
+    15,
+    15
+   ],
+   "tracks": {
+    "clean": [
+     0.26694,
+     0.28718
+    ],
+    "codeswitch": [
+     0.28807,
+     0.39736
+    ],
+    "noisy": [
+     0.27559,
+     0.30648
+    ],
+    "telephony": [
+     0.34059,
+     0.36928
+    ],
+    "callcenter": [
+     0.56865,
+     0.59942
+    ]
+   }
+  },
+  "qwencleo-asr": {
+   "arena": 0.328506,
+   "arena_ci": [
+    0.31743,
+    0.33997
+   ],
+   "rank_set": [
+    16,
+    17
+   ],
+   "tracks": {
+    "clean": [
+     0.26349,
+     0.2829
+    ],
+    "codeswitch": [
+     0.34339,
+     0.45832
+    ],
+    "noisy": [
+     0.30846,
+     0.34051
+    ],
+    "telephony": [
+     0.33058,
+     0.35918
+    ],
+    "callcenter": [
+     0.58329,
+     0.61689
+    ]
+   }
+  },
+  "nemotron-3.5-asr-arabic-dialectal-v2": {
+   "arena": 0.33734,
+   "arena_ci": [
+    0.32498,
+    0.35045
+   ],
+   "rank_set": [
+    16,
+    17
+   ],
+   "tracks": {
+    "clean": [
+     0.2768,
+     0.29625
+    ],
+    "codeswitch": [
+     0.29732,
+     0.42491
+    ],
+    "noisy": [
+     0.31728,
+     0.34846
+    ],
+    "telephony": [
+     0.37022,
+     0.39906
+    ],
+    "callcenter": [
+     0.61836,
+     0.6474
+    ]
+   }
+  },
+  "qwen3-asr-0.6b": {
+   "arena": 0.377914,
+   "arena_ci": [
+    0.36591,
+    0.39011
+   ],
+   "rank_set": [
+    18,
+    18
+   ],
+   "tracks": {
+    "clean": [
+     0.32488,
+     0.34494
+    ],
+    "codeswitch": [
+     0.33707,
+     0.44425
+    ],
+    "noisy": [
+     0.33035,
+     0.36362
+    ],
+    "telephony": [
+     0.41931,
+     0.44821
+    ],
+    "callcenter": [
+     0.64334,
+     0.67155
+    ]
+   }
+  },
+  "moulsot-v0.3": {
+   "arena": 0.415215,
+   "arena_ci": [
+    0.4023,
+    0.42913
+   ],
+   "rank_set": [
+    19,
+    19
+   ],
+   "tracks": {
+    "clean": [
+     0.3448,
+     0.37353
+    ],
+    "codeswitch": [
+     0.34948,
+     0.43628
+    ],
+    "noisy": [
+     0.39893,
+     0.43924
+    ],
+    "telephony": [
+     0.49639,
+     0.52984
+    ],
+    "callcenter": [
+     0.73321,
+     0.7634
+    ]
+   }
+  }
+ }
+}

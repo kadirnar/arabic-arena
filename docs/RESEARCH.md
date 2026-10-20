@@ -24,7 +24,7 @@ A WER on an Arabic set mixes recognition errors with five other things. Ranked b
 | 9 | **Simulated conditions taken at face value** | on the English suite, simulated telephony WER adds no ranking information beyond clean WER (partial Spearman 0.03 vs real phone sets, n = 10) | real-audio Arena next to the full Arena; degradation chain v2; validation plan |
 | 10 | **Missing conditions** | no public Arabic board has real telephony, long-form, streaming latency, children, or domain speech | roadmap (§9) |
 
-The net effect on our own board *(measured, 4 models × the 15 re-hosted set-conditions)*:
+The net effect on our own board *(measured 2026-10-18, 4 models × the 15 re-hosted set-conditions, before the §11 weights; the full re-run of every board model is in §12)*:
 
 | Model | v1 Arena | v2 Arena [95 % CI] | v2 rank set |
 |---|---|---|---|
@@ -266,6 +266,58 @@ depending on between-cluster spread; adding utterances from the same few videos 
 5. **API results** stay on the board as unranked references on the re-hosted sets.
 6. **The 37 FLEURS rows seen by the Arabic-STT runs: flagged, not dropped.** The FLEURS set stays the
    same for every model and for v1; those runs are unranked and list `fleurs_ar` in `in_domain` (†).
+
+## 12. Re-run of the board (2026-10-20)
+
+The predictions behind the published board were not on the machine that built v2, so every board
+model except the Soniox API was re-run on one NVIDIA A10 (24 GB) with the software the published runs
+recorded (torch 2.11.0+cu128; transformers 5.19.0, or 4.57.6 for the qwen-asr models; NeMo 3.1.0)
+and the current code. The six re-hosted sets are the Hub copies; the other six were rebuilt from
+source with identical ids, except MGB-5, now built as v2 defines it (one segmentation per recording,
+finding 7 in §1).
+
+**Reproducibility.** Seventeen of the 19 ranked models reproduce their published v1 Arena within 0.6
+points on another GPU, and no rank moves by more than one place. Per set the differences are small
+where WER is low (mean |Δ| 0.03 points for the NeMo models) and large where a decoder falls into a
+repetition loop: one 393-word output for a 10-word Algerian utterance moves lemura-arabic-asr-qwen3's
+v1 WER on algerian_cs by +11.8 points, and whisper-large-v3 on casablanca/callcenter moves from 143 to
+123 %. The v2 per-utterance cap removes this instability by construction. Two differences are not GPU
+noise: the published gemma-4-e2b-it run predates the model-card prompt and the released-precision
+change (2026-10-15) and is 3–6 points better on most sets now (v1 Arena 45.9 → 41.6); and the v1
+telephony and call-center audio depends on the ffmpeg build (METHODOLOGY), so on mgb2, casablanca and
+mgb3_egy, rebuilt here, the AMR-NB and Opus rows are not the original audio.
+
+**v1 → v2.** Arena WER in %; v1 = the v1 board formula, v2 = the headline:
+
+| Model | v1 published (rank) | v1 re-run (rank) | v2 Arena [95 % CI] | v2 rank set |
+|---|---|---|---|---|
+| cohere-transcribe-arabic-07-2026 | 27.69 (1) | 27.69 (1) | **14.76** [13.73–15.69] | 1 |
+| audar-asr-v1-turbo | 31.38 (2) | 31.75 (2) | **17.86** [16.87–18.77] | 2 |
+| voxtral-mini-4b-realtime-arabic | 34.91 (3) | 34.85 (3) | **20.81** [19.83–21.81] | 3–4 |
+| nvidia-fastconformer-ar-pc | 35.73 (5) | 35.69 (4) | **20.99** [19.92–22.02] | 3–4 |
+| cohere-transcribe-03-2026 | 38.76 (7) | 38.66 (7) | **22.55** [21.46–23.59] | 5–6 |
+| lemura-arabic-asr-qwen3 | 35.21 (4) | 35.84 (5) | **22.74** [21.63–23.81] | 5–6 |
+| gemma-4-e2b-it | 45.94 (13) | 41.59 (9) | **25.16** [24.18–26.18] | 7–8 |
+| lemura-arabic-asr-lite | 37.44 (6) | 37.43 (6) | **25.19** [23.99–26.30] | 7–8 |
+| qwen3-asr-1.7b | 39.94 (8) | 39.68 (8) | **26.38** [25.26–27.47] | 9–10 |
+| whisper-large-v3 | 50.12 (15) | 49.52 (15) | **26.72** [25.47–27.99] | 9–10 |
+| audar-asr-v1-flash | 41.62 (9) | 41.97 (10) | **27.71** [26.56–28.88] | 11–12 |
+| voxtral-mini-4b-realtime-2602 | 44.65 (10) | 44.60 (11) | **28.42** [27.33–29.64] | 11–13 |
+| whisper-large-v3-turbo | 62.25 (19) | 63.67 (19) | **29.03** [27.74–30.29] | 12–13 |
+| qwen3-asr-arabic-ksa | 45.63 (11) | 45.39 (12) | **30.59** [29.38–31.75] | 14 |
+| qwen3-asr-arabic-uae | 46.75 (14) | 46.59 (14) | **31.81** [30.59–33.01] | 15 |
+| qwencleo-asr | 50.14 (16) | 50.64 (17) | **32.85** [31.74–34.00] | 16–17 |
+| nemotron-3.5-asr-arabic-dialectal-v2 | 45.84 (12) | 45.83 (13) | **33.73** [32.50–35.05] | 16–17 |
+| qwen3-asr-0.6b | 50.15 (17) | 50.10 (16) | **37.79** [36.59–39.01] | 18 |
+| moulsot-v0.3 | 62.03 (18) | 61.81 (18) | **41.52** [40.23–42.91] | 19 |
+
+The top four keep their order. The scorer change lifts the models whose v1 errors were mostly runaway
+insertions (whisper-large-v3 15 → 10, whisper-large-v3-turbo 19 → 13) and moves
+nemotron-3.5-asr-arabic-dialectal-v2 (13 → 17) and the two Qwen3 dialect fine-tunes down. On the 15
+re-hosted set-conditions the in-domain Arabic-STT fine-tunes lead under v1 (run 5: 16.4 against 20.1
+for cohere-transcribe-arabic-07-2026) but not under v2 (10.45 against 10.21), consistent with part of
+their v1 lead coming from the spelling conventions of the sets they were trained on, which v2
+normalizes away.
 
 ## Sources (selected)
 

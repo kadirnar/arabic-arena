@@ -72,8 +72,13 @@ coding; the call-center babble is 3–6 intelligible near-field talkers, so some
 and others go silent. On the English suite, simulated telephony WER adds no ranking information
 beyond clean WER when compared with real telephone sets (partial Spearman 0.03, n = 10). The
 simulated tracks therefore weigh half as much in the v2 Arena and appear next to a **real-audio
-Arena** on the v2 board. The v1 conditions are kept bit-for-bit, so the published sets stay
-reproducible.
+Arena** on the v2 board. The v1 chain is kept unchanged. Its output is bit-exact for a given ffmpeg
+build, but the AMR-NB and Opus rows depend on the encoder build: rebuilt with ffmpeg 6.1.1 (Ubuntu
+24.04, libopencore-amrnb 0.1.6, libopus 1.4), every noisy row of the published fleurs_ar, cv18_ar and
+sada sets came out identical, while 33–40 % of their telephony and call-center rows differed (in
+fleurs_ar telephony: every AMR-NB and Opus row, and no G.711, G.726 or GSM-FR row). The board
+therefore runs on the published Hub copies where they exist; mgb2, casablanca and mgb3_egy, which
+cannot be re-hosted, were rebuilt with that ffmpeg for the 2026-10 re-run.
 
 **Chain v2** (`version: 2` conditions, [`sttarena/degrade/chain_v2.py`](../sttarena/degrade/chain_v2.py);
 not in the Arena score, reported per group):

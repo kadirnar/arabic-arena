@@ -173,7 +173,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
   <div class="grid2">
     <section class="card">
       <h3>Accuracy vs speed</h3>
-      <p class="sub" id="scatter-sub">RTFx on one RTX 5070 Ti (log scale). Down and to the right is better.</p>
+      <p class="sub" id="scatter-sub">RTFx on one NVIDIA A10 (log scale). Down and to the right is better.</p>
       <div id="scatter"></div>
     </section>
     <section class="card">
@@ -207,7 +207,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
-      <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one RTX 5070 Ti (16 GB).</li>
+      <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one NVIDIA A10 (24 GB).</li>
       <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and fine-tunes with gated weights are listed as unranked references.</li>
     </ul>
   </details>
