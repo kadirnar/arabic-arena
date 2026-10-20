@@ -144,6 +144,27 @@ def test_rescore_upgrades_and_keeps_scores(toy):
     assert after["schema"] == runner.RESULT_SCHEMA
 
 
+def test_v2_condition_tracks_swap_the_phone_chain(tmp_path):
+    text = SUITE.replace("degraded:", "degraded:\n  telephony_v2:\n    version: 2\n    chain: telephony\n"
+                                      "    from: [read, talk]\n    n: 20") + """
+  v2:
+    tracks:
+      clean: {weight: 0.6}
+      codeswitch: {weight: 0.2}
+      telephony: {weight: 0.2}
+    condition_tracks: {telephony: telephony_v1, telephony_v2: telephony}
+"""
+    (tmp_path / "swap.yaml").write_text(text)
+    suite = Suite.load(str(tmp_path / "swap.yaml"))
+    tracks, tw = leaderboard.v2_layout(suite)
+    assert tracks["telephony"] == ["read/telephony_v2", "talk/telephony_v2"]
+    assert tracks["telephony_v1"] == ["read/telephony"] and "telephony_v1" not in tw
+    assert leaderboard.set_weights(suite) == pytest.approx(
+        {"read/clean": 0.6, "talk/clean": 0.2, "read/telephony_v2": 0.1, "talk/telephony_v2": 0.1})
+    v1_tracks = {t for _, _, t in suite.eval_sets()}  # the v1 board keeps each condition in its own track
+    assert {"telephony", "telephony_v2"} <= v1_tracks
+
+
 def test_v2_weights_and_set_moves_leave_v1_alone(toy_v2):
     suite, _ = toy_v2
     tracks, tw = leaderboard.v2_layout(suite)

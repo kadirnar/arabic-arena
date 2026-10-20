@@ -25,6 +25,10 @@ COND_DESC = {
     "noisy": "+ background noise 0–15 dB SNR (16 kHz)",
     "telephony": "8 kHz phone channel: band-pass, codec, packet loss",
     "callcenter": "noise + reverb at the caller, then the phone channel (8 kHz)",
+    "telephony_v2": "phone channel v2: device × network × storage profiles, MENA codec mix, tandem to A-law",
+    "callcenter_v2": "caller-side room and environment noise, then the phone channel v2",
+    "sweep": "paired SNR grid: 3 noises × 5 SNRs per clip (16 kHz)",
+    "padded": "clips padded with silence, comfort noise, tones or office noise (16 kHz)",
 }
 
 
@@ -105,6 +109,8 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         for name, cond, _ in suite.eval_sets():
+            if name not in suite.sets:  # noise-only sets (v1 mixes in babble from mgb2 and casablanca)
+                continue
             if not suite.sets[name].redistribute:
                 if name not in withheld:
                     withheld.append(name)

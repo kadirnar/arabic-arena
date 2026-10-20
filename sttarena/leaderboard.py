@@ -122,14 +122,18 @@ FLOOR = 0.005  # geometric aggregation: a set score below 0.5 % WER counts as 0.
 def v2_layout(suite: Suite) -> tuple[dict[str, list[str]], dict[str, float]]:
     """The v2 board's tracks ({track: set/condition keys}) and normalized track weights.
 
-    `scoring.v2.tracks` replaces the v1 track weights and `scoring.v2.set_tracks` moves a set's clean
-    condition to another track; a track without a weight is a diagnostic, scored but outside the Arena."""
+    `scoring.v2.tracks` replaces the v1 track weights, `scoring.v2.set_tracks` moves a set's clean
+    condition to another track and `scoring.v2.condition_tracks` moves every set of a degraded condition
+    (the chain-v2 phone channel into "telephony", the v1 chain out of it); a track without a weight is a
+    diagnostic, scored but outside the Arena."""
     v2 = suite.scoring.get("v2") or {}
     moved = v2.get("set_tracks") or {}
+    by_cond = v2.get("condition_tracks") or {}
     tracks: dict[str, list[str]] = {}
     for name, cond, track in suite.eval_sets():
         if track != "hallucination":
-            tracks.setdefault(moved.get(name, track) if cond == "clean" else track, []).append(f"{name}/{cond}")
+            t = moved.get(name, track) if cond == "clean" else by_cond.get(cond, track)
+            tracks.setdefault(t, []).append(f"{name}/{cond}")
     tw = {t: v["weight"] for t, v in (v2.get("tracks") or suite.scoring.get("tracks", {})).items() if t in tracks}
     z = sum(tw.values()) or 1.0
     return tracks, {t: w / z for t, w in tw.items()}
