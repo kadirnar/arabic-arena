@@ -36,6 +36,7 @@ datasets:
     license: CC0-1.0
     redistribute: true
     cluster: {field: client_id}  # speaker
+    terms_file: configs/terms/cv18_ar_entities.json  # named entities of 233 rows (CV18-NER): term recall
 
   masc_clean:
     source: MohamedRashad/MASC-Arabic
@@ -190,6 +191,188 @@ datasets:
     redistribute: false
     simulated: true
     stratum: {field: source_config}  # country
+
+  # ---- added 2026-10-20: real phone noise and more dialects (docs/RESEARCH.md section 9) ----------------
+  # Google SVQ: spoken queries read on phones by 215 speakers with Egyptian, Gulf, Levantine and Maghrebi
+  # accents, each environment a separate recording. The clean environment joins the clean track; the
+  # noisy environments are real (not added) noise, which the noisy track otherwise lacks.
+  svq_ar:
+    source: google/svq
+    data_files: 1.0.0/audio/utts_ar_*_clean.parquet
+    split: train
+    text: text
+    n: 1000
+    track: clean
+    dialect: Egyptian, Gulf, Levantine, Maghrebi accents
+    domain: spoken queries on phones
+    license: CC-BY-4.0
+    redistribute: true
+    cluster: {field: speaker_id}
+    stratum: {field: locale}
+    terms: topk_salient_terms  # 3 salient terms per query: term recall next to WER
+    text_fixes: configs/fixes/svq_ar_truth.json  # 2.0.0 transcript_truth where speakers said it differently
+  svq_ar_noisy:
+    source: google/svq
+    data_files: 1.0.0/audio/utts_ar_*.parquet
+    filter: {environment: [background_speech, media_noise, traffic_noise]}
+    split: train
+    text: text
+    n: 1000
+    track: noisy
+    dialect: Egyptian, Gulf, Levantine, Maghrebi accents
+    domain: spoken queries on phones in real background speech, media and traffic noise
+    license: CC-BY-4.0
+    redistribute: true
+    cluster: {field: speaker_id}
+    stratum: {field: environment}
+    terms: topk_salient_terms
+    text_fixes: configs/fixes/svq_ar_truth.json
+  # Shams: Levantine with corrected orthography. Only its LangMedia rows (CC BY-SA 4.0): the
+  # Casablanca-linked rows repeat utterances of our casablanca set.
+  shams_lev:
+    source: shams-nlp/shams
+    split: test
+    text: transcription
+    filter: {source: langmedia}
+    n: 1000
+    track: clean
+    dialect: Levantine (Lebanon, Syria, Palestine, Jordan)
+    domain: conversations and interviews (LangMedia)
+    license: CC-BY-SA-4.0
+    redistribute: true
+    cluster: {field: original_file}  # 100 recordings
+    stratum: {field: country}
+  # Hassaniya (Mauritanian Arabic): YouTube programmes, model drafts corrected by native transcribers.
+  hassaniya:
+    source: MauriAI-lab/hassaniya-speech-test-v1
+    manifest: test.jsonl
+    audio_field: file
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: Hassaniya (Mauritania)
+    domain: youtube
+    license: CC-BY-NC-4.0
+    redistribute: true
+    cluster: {field: video_id}
+  # WASIL: spoken prompts to a chat assistant, in-the-wild, with gold transcriptions; the 31 English prompts
+  # are left out (and one row whose dialect label carries trailing spaces).
+  wasil:
+    source: QCRI/WASIL
+    manifest: WASIL/test/metadata.jsonl
+    split: test
+    text: prompt_transcription.gold_transcription
+    filter: {prompt_dialect: [MSA, EG, SD, DZ, MIX_EG, SY, MIX_MSA, MIX, MIX_SD, MIX_SY]}
+    n: 1000
+    track: clean
+    dialect: MSA, Egyptian, Sudanese, Algerian, Syrian
+    domain: spoken prompts to a chat assistant
+    license: CC-BY-NC-SA-4.0
+    redistribute: true
+    stratum: {field: prompt_dialect}
+  # Perle: Egyptian- and Saudi-Arabic code-switching with dense English (Latin script); human-annotated references.
+  perle_cs:
+    source: Perle-ai/ASR_Code_Switch
+    manifest: data/{config}/metadata.jsonl
+    configs: [egyptian_arabic_english, saudi_arabic_english]
+    split: test
+    text: transcript
+    n: 600
+    track: codeswitch
+    dialect: Egyptian and Saudi Arabic with English
+    domain: code-switched work and social speech
+    license: MIT
+    redistribute: true
+    stratum: {field: language_pair}
+  # EchoNova Arabic Dialect Benchmark (gated public subset): MSA and eight dialects, the only human-referenced
+  # Kuwaiti, Qatari and Omani speech we know of. Audio for research and evaluation only: never re-hosted.
+  echonova:
+    source: echonova-ai/arabic-dialect-asr-benchmark
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: MSA, Egyptian, Emirati, Saudi, Kuwaiti, Qatari, Omani, Syrian, Lebanese
+    domain: public recordings
+    license: transcripts CC-BY-4.0; audio research and evaluation only
+    redistribute: false
+    balance: dialect  # ~111 per variety: as many Omani or Qatari rows as MSA
+    cluster: {field: recording_id}
+    stratum: {field: dialect}
+
+  # Speech-MASSIVE (ar-SA test): voice-assistant commands read by speakers from across the Arab world and
+  # validated by crowd workers; unvalidated or reported recordings left out.
+  massive_ar:
+    source: FBK-MT/Speech-MASSIVE-test
+    config: ar-SA
+    split: test
+    text: utt
+    filter: {is_validated: true, is_transcript_reported: false}
+    n: 1000
+    track: clean
+    dialect: MSA and Gulf prompts, speakers from across the Arab world
+    domain: voice-assistant commands
+    license: CC-BY-NC-SA-4.0
+    redistribute: true
+    cluster: {field: speaker_id}
+    stratum: {field: scenario_str}
+  # TEDxTN test (the KBayoud/ASR_TEDx_Tunisie mirror carries its audio): Tunisian Arabic with French.
+  tedxtn_cs:
+    source: KBayoud/ASR_TEDx_Tunisie
+    split: test
+    text: transcription
+    n: 1000
+    track: codeswitch
+    dialect: Tunisian with French
+    domain: TEDx talks
+    license: CC-BY-NC-ND-4.0
+    redistribute: false
+    cluster: {field: youtube_video}
+  # Sudanese dialect speech (Zenodo 6721683 via arbml): two TV programmes, one transcriber; no test split exists.
+  sudanese_sdn:
+    source: arbml/sudanese_dialect_speech
+    split: train
+    text: text
+    n: 1000
+    track: clean
+    dialect: Sudanese
+    domain: TV programmes
+    license: CC-BY-4.0
+    redistribute: true
+    cluster: {field: path, regex: '.*/((?:hm|wb)_\d+)_'}  # episode (re.match: from the start of the path)
+  # mTEDx Arabic test: TEDx talks, mostly MSA; 7 talks only, and its train split is public.
+  mtedx_ar:
+    source: deepdml/mtedx
+    config: ar
+    split: test
+    text: transcript
+    n: 1000
+    track: clean
+    dialect: mostly MSA
+    domain: TEDx talks
+    license: CC-BY-NC-ND-4.0
+    redistribute: false
+    cluster: {field: talk_id}
+    markup_extra: [{pattern: '\((?:تصفيق|ضحك|موسيقى)[^)]*\)', repl: ' '}]
+  # GigaSpeechBench (low-resource Arabic): YouTube 2025-26, professionally transcribed, ~20 h per region. The
+  # Emirati (ARE) region is left out: GPT-4o-transcribe matches its references exactly on 58 % of segments
+  # (4-18 % elsewhere), so they were very likely drafted with it.
+  gsb_ar:
+    source: speechcolab/GigaSpeechBench
+    loader: gigaspeechbench
+    data_dir: Low-Resource-Languages/data
+    configs: [DZA, EGY, IRQ, MAR, SAU, SYR]
+    split: test
+    text: text
+    n: 1000
+    track: clean
+    dialect: Algerian, Egyptian, Iraqi, Moroccan, Saudi, Syrian
+    domain: youtube (2025-26)
+    license: unspecified (CC-licensed YouTube audio per the paper)
+    redistribute: false
+    cluster: {field: aid}  # recording
+    stratum: {field: source_config}  # region
 
 # Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py). v1 (data/ar/noise_only,
 # 300 clips) is the published set; v2 (--version 2 -> data/ar/noise_only_v2) has groups G1-G3, G5, G7 and

@@ -65,7 +65,7 @@ def _row_from_prediction(p: dict, built: dict[str, dict]) -> dict:
         return built[p["id"]]
     row = {"id": p["id"], "text": p.get("ref", ""), "duration": p.get("duration"), "meta": {},
            "refs": [p.get("ref", ""), *p.get("refs_extra", [])]}
-    for k in ("cluster", "stratum", "group"):
+    for k in ("cluster", "stratum", "group", "terms"):
         if k in p:
             row[k] = p[k]
     return row

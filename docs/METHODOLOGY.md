@@ -46,6 +46,12 @@ Per-set options in `configs/suites/<lang>.yaml` (v2):
 | `stratum` | design stratum for the bootstrap | Casablanca and NADI (country), Algerian CS (type) |
 | `floor` | measured human disagreement on this set, per profile | MGB-3, MGB-5 |
 | `simulated` | the audio is a simulation (NADI-2026 1.1 is Casablanca audio band-limited to 4 kHz) | NADI |
+| `text_fixes` | corrected references keyed by a meta field, applied on top of the source text (and to built sets by `sttarena rescore`) | MGB-2 (6 official transcripts), SVQ (2.0.0 `transcript_truth`: what the speaker said) |
+| `terms` / `terms_file` | each utterance's key terms, from a meta field or a side file keyed by a meta field, scored as key-term recall | SVQ (salient terms), CV18 (CV18-NER entities) |
+| `filter` | keep rows whose column equals a value or is in a list | Shams (LangMedia rows), WASIL (Arabic prompts), SVQ-noisy (noise environments) |
+| `balance` | equal quotas per value of a column (rare dialects get as many rows as common ones) | EchoNova (dialect) |
+| `loader` / `data_dir` | a source with its own layout; `gigaspeechbench`: per-region metadata.json and an archive of whole recordings, cut into segments (only the recordings the ranking can reach are extracted) | GigaSpeechBench |
+| `manifest` / `audio_field` | a JSON-lines manifest with relative audio paths, for repos that are not a loadable split; nested fields flatten with `.` | Hassaniya, WASIL, Perle |
 
 ## Degraded conditions
 
@@ -186,6 +192,11 @@ From the headline alignment of every utterance:
   and the share aligned to an MSA equivalent (ليس، أريد، ماذا …): a model that "translates" dialect
   speech into MSA keeps few markers.
 - Per-group scores when a condition declares `group_by` (e.g. an SNR sweep scored per noise × SNR).
+- **Key-term recall**: on sets with `terms`, the share of an utterance's key terms (SVQ salient terms:
+  names, places, question words; CV18-NER named entities) that the hypothesis contains after the same
+  normalization, matched as the aligner matches merges (canonical form, spaces ignored). Terms the
+  normalized reference does not contain are not counted. The board's *Terms missed* pools the real
+  recordings that have terms (`svq_ar`, `svq_ar_noisy`, `cv18_ar` clean); Wilson intervals per set.
 
 ## Aggregation (v2)
 

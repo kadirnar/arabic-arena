@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import sys
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
@@ -34,10 +35,17 @@ def _audio_column(ds) -> str:
     for k, f in ds.features.items():
         if isinstance(f, Audio):
             return k
-    for k in ("audio", "audio_filepath", "wav"):
+    for k in ("audio", "audio_filepath", "wav", "waveform"):  # waveform: google/svq (struct of bytes)
         if k in ds.column_names:
             return k
     raise KeyError(f"no audio column in {ds.column_names}")
+
+
+def _scalar_or_strings(feature) -> bool:
+    """Meta columns: scalar values, and lists of strings (e.g. google/svq's salient terms per query)."""
+    name = feature.__class__.__name__
+    inner = getattr(feature, "feature", None)
+    return name == "Value" or (name in ("List", "Sequence") and getattr(inner, "dtype", None) == "string")
 
 
 def _source_revision(repo: str) -> str | None:
@@ -49,9 +57,93 @@ def _source_revision(repo: str) -> str | None:
         return None
 
 
+def _load_manifest(spec: SetSpec, config: str | None):
+    """Rows of a JSON-lines manifest plus the audio files it names, downloaded from the dataset repo (or read
+    from a local directory). Scalar fields are kept; nested objects are flattened with '.'."""
+    from datasets import Audio, Dataset
+    from huggingface_hub import hf_hub_download, snapshot_download
+
+    man = spec.manifest.format(config=config) if config else spec.manifest
+    local = Path(spec.source).is_dir()
+    man_path = Path(spec.source) / man if local else Path(hf_hub_download(spec.source, man, repo_type="dataset"))
+    scalar = (str, int, float, bool, type(None))
+    recs = []
+    for line in man_path.open(encoding="utf-8"):
+        if not line.strip():
+            continue
+        flat = {}
+        for k, v in json.loads(line).items():
+            if isinstance(v, dict):
+                flat.update({f"{k}.{kk}": vv for kk, vv in v.items() if isinstance(vv, scalar)})
+            elif isinstance(v, scalar):
+                flat[k] = v
+        # audio paths are relative to the manifest; normpath resolves ../ without touching the disk
+        flat["audio"] = os.path.normpath(os.path.join(os.path.dirname(man), flat.pop(spec.audio_field)))
+        recs.append(flat)
+    root = Path(spec.source) if local else Path(snapshot_download(
+        spec.source, repo_type="dataset", allow_patterns=sorted({r["audio"] for r in recs})))
+    for r in recs:
+        r["audio"] = str(root / r["audio"])
+    return Dataset.from_list(recs).cast_column("audio", Audio(decode=False)), "audio"
+
+
+_TMP: list[str] = []  # per-config scratch directories, removed once the config's rows are encoded
+
+
+def _load_gigaspeech(spec: SetSpec, config: str):
+    """GigaSpeechBench: one region's segments (metadata.json) cut from its whole recordings (audio.tar.gz).
+    Only the recordings of the segments the hash ranking can reach are extracted (twice the quota)."""
+    import tarfile
+    import tempfile
+
+    from datasets import Audio, Dataset
+    from huggingface_hub import hf_hub_download
+
+    tmp = tempfile.mkdtemp(prefix=f"gsb_{config}_", dir=str(DATA_DIR))
+    _TMP.append(tmp)
+    meta = json.load(open(hf_hub_download(spec.source, f"{spec.data_dir}/{config}/metadata.json",
+                                          repo_type="dataset", local_dir=tmp)))
+    recs = []
+    for a in meta["audios"]:
+        for s in a.get("segments", []):
+            b, e = float(s["begin_time"]), float(s["end_time"])
+            if MIN_SEC <= e - b <= MAX_SEC and (s.get("text") or "").strip():
+                recs.append({"aid": a["aid"], "sid": s["sid"], "text": s["text"], "segment_begin": b, "segment_end": e,
+                             **{k: s.get(k) for k in ("speaker", "gender", "age_group", "emotion")}})
+    configs = spec.configs or [config]
+    k = configs.index(config)
+    quota = spec.n // len(configs) + (1 if k < spec.n % len(configs) else 0)
+    ranked = sorted(range(len(recs)), key=lambda i: rank_key(spec.source, f"{config}/{i}"))
+    # archive members may be named by the full aid (SYR#7fdb...) or by its hash part alone
+    wanted = {form: recs[i]["aid"] for i in ranked[: 2 * quota] for form in (recs[i]["aid"], recs[i]["aid"].split("#")[-1])}
+    archive = hf_hub_download(spec.source, f"{spec.data_dir}/{config}/audio.tar.gz", repo_type="dataset", local_dir=tmp)
+    paths = {}
+    with tarfile.open(archive, mode="r|gz") as tar:
+        for m in tar:
+            stem = Path(m.name).stem
+            if m.isfile() and stem in wanted:
+                out = Path(tmp) / f"rec_{len(paths)}{Path(m.name).suffix}"
+                with tar.extractfile(m) as src, open(out, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+                paths[wanted[stem]] = str(out)
+    os.remove(archive)
+    for r in recs:  # unextracted recordings get a missing path: the builder skips them if it ever reaches one
+        r["audio"] = paths.get(r["aid"], str(Path(tmp) / "missing.wav"))
+    return Dataset.from_list(recs).cast_column("audio", Audio(decode=False)), "audio"
+
+
+def _cleanup_tmp() -> None:
+    while _TMP:
+        shutil.rmtree(_TMP.pop(), ignore_errors=True)
+
+
 def _load_source(spec: SetSpec, config: str | None):
     from datasets import Audio, load_dataset
 
+    if spec.loader == "gigaspeechbench":
+        return _load_gigaspeech(spec, config)
+    if spec.manifest:
+        return _load_manifest(spec, config)
     if spec.data_files:
         ds = load_dataset("parquet", data_files=f"hf://datasets/{spec.source}/{spec.data_files}", split=spec.split)
     else:
@@ -78,9 +170,8 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
     for config, quota in zip(configs, per_config):
         ds, audio_col = _load_source(spec, config)
         ma = spec.multi_annotator
-        cols = [spec.text, *spec.filter, *([ma["field"]] if ma else [])]
-        meta_cols = [c for c in ds.column_names if c not in (audio_col, spec.text)
-                     and ds.features[c].__class__.__name__ == "Value"]
+        cols = [spec.text, *spec.filter, *([ma["field"]] if ma else []), *([spec.balance] if spec.balance else [])]
+        meta_cols = [c for c in ds.column_names if c not in (audio_col, spec.text) and _scalar_or_strings(ds.features[c])]
         light = ds.select_columns(sorted(set(cols)))
         alt_refs = None
         if ma:  # keep one annotator's segmentation; the others become alternative references
@@ -89,7 +180,7 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
         markup = MarkupSpec.parse(spec.markup).with_extra(spec.markup_extra)
         cand = []
         for i, r in enumerate(light):
-            if any(r[k] != v for k, v in spec.filter.items()):
+            if any((r[k] not in v) if isinstance(v, list) else (r[k] != v) for k, v in spec.filter.items()):
                 continue
             if not spec.prepare_text(r[spec.text]):
                 continue
@@ -98,22 +189,32 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
             uid = f"{config}/{i}" if config else str(i)
             cand.append((rank_key(spec.source, uid), i, uid))
         cand.sort()
+        # `balance`: an equal share of the quota per value of that column (rare dialects get as many rows as
+        # common ones); values with fewer rows leave their share unused
+        group_of = {i: light[i][spec.balance] for _, i, _ in cand} if spec.balance else {}
+        per_group = -(-quota // len(set(group_of.values()))) if group_of else None
+        taken_in: dict = {}
         taken = 0
         pbar = tqdm(total=quota, desc=f"{spec.name}:{config or 'default'}")
         for _, i, uid in cand:
             if taken >= quota:
                 break
+            if per_group and taken_in.get(group_of[i], 0) >= per_group:
+                continue
             r = ds[i]
             try:
                 audio, sr = decode_audio(r[audio_col], 16000)
             except Exception as e:  # corrupt files exist in some corpora
                 print(f"skip {uid}: {e}")
                 continue
+            if r.get("segment_begin") is not None:  # a segment of a longer recording (GigaSpeechBench)
+                audio = audio[int(r["segment_begin"] * sr): int(r["segment_end"] * sr)]
             dur = len(audio) / sr
             if not (MIN_SEC <= dur <= MAX_SEC) or np.max(np.abs(audio)) < 1e-4:
                 continue
             meta = {k: r[k] for k in meta_cols if r.get(k) is not None}
-            meta.update(source=spec.source, source_config=config, source_index=i, dialect=spec.dialect)
+            meta.update(source=spec.source, source_config=config, source_index=i)
+            meta.setdefault("dialect", spec.dialect)  # a per-row dialect column (echonova) wins over the set's label
             if alt_refs is not None:
                 meta.update({f"alt_ref_{k + 1}": t for k, t in enumerate(alt_refs[i])})
             rows.append({
@@ -125,8 +226,11 @@ def build_clean(spec: SetSpec, lang: str) -> list[dict]:
                 "meta": json.dumps(meta, ensure_ascii=False, default=str),
             })
             taken += 1
+            if per_group:
+                taken_in[group_of[i]] = taken_in.get(group_of[i], 0) + 1
             pbar.update(1)
         pbar.close()
+        _cleanup_tmp()  # GigaSpeechBench: this config's extracted recordings are encoded now
         if taken < quota:
             print(f"warning: {spec.name}:{config} only {taken}/{quota} usable rows")
     write_rows(set_path(lang, spec.name), rows)

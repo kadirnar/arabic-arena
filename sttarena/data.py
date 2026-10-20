@@ -6,6 +6,7 @@ Built sets live in ``data/<lang>/<set>/<condition>.parquet`` with columns
 
 from __future__ import annotations
 
+import functools
 import hashlib
 import io
 import json
@@ -37,8 +38,18 @@ class SetSpec:
     config: str | None = None
     configs: list[str] | None = None
     data_files: str | None = None
+    # a JSON-lines manifest with relative audio paths, for repos the datasets library cannot load as a
+    # split (path in the repo, `{config}` filled per config); `audio_field` is its audio-path field.
+    # Nested objects are flattened with '.', so `text` can name e.g. prompt_transcription.gold_transcription
+    manifest: str | None = None
+    # a source with its own layout: "gigaspeechbench" (speechcolab/GigaSpeechBench: <data_dir>/<config>/
+    # metadata.json + audio.tar.gz of whole recordings, cut into the listed segments)
+    loader: str | None = None
+    data_dir: str | None = None
+    audio_field: str = "file_name"
     max_files: int | None = None  # only read the first k shards of very large test splits
-    filter: dict[str, Any] = field(default_factory=dict)
+    filter: dict[str, Any] = field(default_factory=dict)  # {column: value or [allowed values]}
+    balance: str | None = None  # a source column: equal quotas per value (e.g. rare dialects)
     unbracket: bool = False
     dialect: str = ""
     domain: str = ""
@@ -53,6 +64,12 @@ class SetSpec:
     markup_extra: list[dict] = field(default_factory=list)
     # meta fields that hold further independent transcriptions (multi-reference scoring)
     references: list[str] = field(default_factory=list)
+    # meta field with each utterance's key terms (names, places, query words; a list of strings), scored
+    # as term recall next to WER (google/svq's topk_salient_terms)
+    terms: str | None = None
+    # or a side file {"key": <meta field>, "regex": <optional, first group>, "terms": {<value>: [terms]}}
+    # (e.g. the named entities of the CV18 test sentences), applied without rebuilding the set
+    terms_file: str | None = None
     # bootstrap cluster (speaker / video / recording / sentence) and stratum (dialect config):
     # {field: <meta field>, regex: <optional pattern whose first group is the label>}
     cluster: dict[str, str] | None = None
@@ -86,6 +103,20 @@ class SetSpec:
         """The stored reference followed by every non-empty extra reference from meta."""
         extra = [self.prepare_text(meta.get(f)) for f in self.references]
         return [text, *[e for e in extra if e]]
+
+    def terms_of(self, meta: dict) -> list[str] | None:
+        """Key terms of a row: its meta field `terms`, else its entry in `terms_file`."""
+        if self.terms and meta.get(self.terms):
+            return list(meta[self.terms])
+        if not self.terms_file:
+            return None
+        cfg = _terms_file(self.terms_file)
+        value = meta.get(cfg["key"])
+        if value is None:
+            return None
+        if cfg.get("regex") and (m := re.search(cfg["regex"], str(value))):
+            value = m.group(1)
+        return cfg["terms"].get(str(value))
 
     def label(self, which: str, meta: dict) -> str | None:
         """Cluster or stratum label of a row (None when the set declares none or the field is missing)."""
@@ -183,6 +214,11 @@ def encode_flac(x: np.ndarray, sr: int) -> bytes:
     buf = io.BytesIO()
     sf.write(buf, np.clip(x, -1, 1), sr, format="FLAC", subtype="PCM_16")
     return buf.getvalue()
+
+
+@functools.lru_cache(maxsize=None)
+def _terms_file(path: str) -> dict:
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
 def set_path(lang: str, name: str, condition: str = "clean") -> Path:

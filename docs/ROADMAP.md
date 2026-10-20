@@ -6,7 +6,7 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 ## M1 — Arabic v1 (open models, local GPU) ✅
 - [x] Core package: dataset builder, normalizers, corpus WER/CER, runner, leaderboard aggregation
 - [x] Arabic normalizer aligned with the Open Universal Arabic ASR Leaderboard (+ ة/ى folding)
-- [x] 12 Arabic test sets: MSA read (FLEURS, CV18), broadcast (MGB-2), YouTube (MASC clean/noisy),
+- [x] 12 Arabic test sets (18 since 2026-10-20, see M3): MSA read (FLEURS, CV18), broadcast (MGB-2), YouTube (MASC clean/noisy),
       Gulf (SADA), 8 dialects (Casablanca), Egyptian (MGB-3), Moroccan (MGB-5),
       code-switching (Mixat, Algerian), NADI-2026 (band-limited dialects)
 - [x] Simulated phone-channel tracks: telephony (codecs + band-limit + packet loss) and
@@ -46,6 +46,20 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [ ] Episode/show keys for SADA, Mixat, Casablanca and NADI (clustered intervals)
 - [ ] Private held-out Arabic set (dialects, real calls, numbers/entities), aggregates only
 - [ ] Benchmark-fitting probes (does a model reproduce a corpus's reference errors and spelling conventions?)
+
+## M3b — More Arabic data and harder tests (2026-10)
+- [x] Six new sets: SVQ clean and SVQ in real phone noise (Egyptian, Gulf, Levantine, Maghrebi accents),
+      Shams (Levantine, corrected orthography; its Casablanca rows left out), Hassaniya, WASIL (prompts to an
+      assistant, incl. Sudanese and Algerian), Perle (Egyptian- and Saudi-English code-switching)
+- [x] Key-term recall next to WER: SVQ salient terms per query, CV18 named entities (CV18-NER)
+- [x] Every board model and the Arabic-STT references on every set (the references were re-hosted-only)
+- [x] echonova dialect benchmark (Kuwaiti, Qatari, Omani, Syrian, Lebanese; gated; balanced 112 rows per variety)
+- [x] GigaSpeechBench (Iraqi, Syrian, Algerian, Moroccan, Egyptian, Saudi; the GPT-4o-drafted Emirati region left
+      out), Speech-MASSIVE ar-SA, Sudanese (SDN), mTEDx, TEDxTN (Tunisian-French code-switching)
+- [ ] DAI-ASR-I18N real two-channel conversations (gated, manual approval)
+- [x] Every registered Arabic model on the board: the 45 not run since the precision fix, incl. omniASR
+- [ ] Long-form track (whole programmes, 1–10 min): segmentation and long-context failures
+- [ ] Numbers, dates and currency as a separate probe; TEDxTN (Tunisian), UFAL North Levantine
 
 ## M4 — Telephony & robustness
 - [x] Degradation chain v2: realistic room responses, packet loss by (mean loss, burst) on encoded frames,

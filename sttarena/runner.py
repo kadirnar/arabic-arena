@@ -133,6 +133,9 @@ def score_rows(suite: Suite, name: str, rows: list[dict], hyps: list[str], faile
         # labels come from the built row's meta; a row rebuilt from a prediction record carries them itself
         for which in ("cluster", "stratum"):
             item[which] = r[which] if which in r else (spec.label(which, meta) if spec else None)
+        terms = r.get("terms") or (spec.terms_of(meta) if spec else None)
+        if terms:
+            item["terms"] = terms
         if "group" in r:
             item["group"] = r["group"]
         elif group_by:

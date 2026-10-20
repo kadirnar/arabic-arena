@@ -271,3 +271,17 @@ def test_variant_table_canonical_forms_are_fixed_points():
     fold = VariantFolder()
     unstable = {r.variant: r.canonical for r in load_table() if " " not in r.canonical and fold(r.canonical) != r.canonical}
     assert not unstable, "a canonical form must not be re-folded by the rules (idempotence)"
+
+
+def test_term_recall_counts_reference_terms_found_in_the_hypothesis():
+    s = Scorer().score([
+        {"ref": "أين تقع محافظة البقاع ؟", "hyp": "أين تقع محافظه البكاع", "terms": ["البقاع", "أين", "محافظة"]},
+        # spaces ignored as in the alignment (ما فيش = مفيش); a term the reference lacks is not counted
+        {"ref": "ما فيش مشكلة في الكنيسة", "hyp": "مفيش مشكله", "terms": ["ما فيش", "الكنيسة", "غائب"]},
+        {"ref": "نص بلا مصطلحات", "hyp": "نص بلا مصطلحات"},
+    ])
+    got = [(u["diag"].get("term_hit"), u["diag"].get("term_n")) for u in s.utterances]
+    assert got == [(2, 3), (1, 2), (None, None)]
+    terms = s.summary()["terms"]
+    assert terms["n"] == 5 and terms["recall"] == pytest.approx(3 / 5) and len(terms["recall_ci"]) == 2
+    assert s.utterances[0]["terms"] == ["البقاع", "أين", "محافظة"]  # kept, so a record can be re-scored

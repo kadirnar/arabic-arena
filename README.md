@@ -13,8 +13,11 @@ telephony and call-center channels**, and averages them into one Arena score, in
 [Artificial Analysis](https://artificialanalysis.ai/speech-to-text) and the
 [Open Universal Arabic ASR Leaderboard](https://huggingface.co/spaces/elmresearchcenter/open_universal_arabic_asr_leaderboard).
 
-- 🇸🇦 **Arabic suite**: 12 test sets covering MSA, Gulf, Egyptian, Levantine, Maghrebi and
-  code-switching, plus 16 degraded sets
+- 🇸🇦 **Arabic suite**: 24 test sets covering MSA and 20+ dialects (incl. Iraqi, Syrian, Sudanese,
+  Kuwaiti, Qatari, Omani, Tunisian, Hassaniya), code-switching, real phone noise (SVQ), assistant
+  commands, plus 16 degraded sets
+- 🔎 **Key-term recall**: names, places and query words the model misses (SVQ salient terms, CV18
+  named entities), next to WER
 - 📞 **Telephony and call-center tracks**: band-limited 8 kHz audio, G.711/GSM/AMR-NB/G.726/Opus
   codecs, packet loss, clipping, plus background babble/office/street noise and room reverb.
   Every degraded set is reproducible and records its parameters.
@@ -244,9 +247,9 @@ without a GPU.
 
 | Track | Weight v1 | Weight v2 | What it measures | Sets |
 |---|---|---|---|---|
-| Clean | 35% | 50% | Studio, broadcast and TV speech across dialects | FLEURS, CV18, MASC-clean, MGB-2, SADA, Casablanca, MGB-3, MGB-5 |
-| Noisy | 15% | 15% | Real noisy recordings and synthetic noise (0–15 dB SNR) | MASC-noisy and 4 sets with added noise (v1 also NADI-2026 Robust) |
-| Code-switch | 10% | 15% | Arabic–English and Arabic–French mixing | Mixat, Algerian CS |
+| Clean | 35% | 50% | Studio, broadcast, TV, phone and assistant speech across dialects | FLEURS, CV18, MASC-clean, MGB-2, SADA, Casablanca, MGB-3, MGB-5, SVQ, Shams, Hassaniya, WASIL, EchoNova, GigaSpeechBench, Speech-MASSIVE, Sudanese, mTEDx |
+| Noisy | 15% | 15% | Real noisy recordings and synthetic noise (0–15 dB SNR) | MASC-noisy, SVQ-noisy and 4 sets with added noise (v1 also NADI-2026 Robust) |
+| Code-switch | 10% | 15% | Arabic–English and Arabic–French mixing | Mixat, Algerian CS, Perle, TEDxTN |
 | Telephony | 20% | 10% | Simulated phone channel: 8 kHz, codec, packet loss (v2: chain v2) | 6 sets |
 | Call-center | 20% | 10% | Simulated noisy caller environment, then the phone channel (v2: chain v2) | 6 sets |
 
@@ -293,6 +296,21 @@ encoder.
 | mixat_cs | Mixat (v2: + Arabic-script transliteration as a 2nd reference) | Emirati + English | podcast | CC-BY-NC-SA-4.0 |
 | algerian_cs | OIST Algerian CS | Algerian + French | conversation | controlled |
 | nadi_robust | NADI-2026 Robust ASR (validation): Casablanca audio band-limited to 4 kHz | 8 dialects | band-limited TV | unspecified |
+| svq_ar | google/svq, clean environment; references = what was said (2.0.0 `transcript_truth`: 11 % differ from the read prompt, often in dialect); key terms per query | Egyptian, Gulf, Levantine, Maghrebi | spoken queries on phones | CC-BY-4.0 |
+| svq_ar_noisy | google/svq, background speech / media / traffic noise (real, not added); references as svq_ar | same | spoken queries on phones | CC-BY-4.0 |
+| shams_lev | shams-nlp/shams, LangMedia rows (corrected orthography) | Levantine (LB, SY, PS, JO) | conversations, interviews | CC-BY-SA-4.0 |
+| hassaniya | MauriAI-lab/hassaniya-speech-test-v1 | Hassaniya (Mauritania) | YouTube | CC-BY-NC-4.0 |
+| wasil | QCRI/WASIL test (gold transcriptions, Arabic prompts) | MSA, Egyptian, Sudanese, Algerian, Syrian | prompts to a chat assistant | CC-BY-NC-SA-4.0 |
+| perle_cs | Perle-ai/ASR_Code_Switch (Egyptian and Saudi subsets) | Egyptian / Saudi + English | code-switched speech | MIT |
+| echonova | echonova-ai/arabic-dialect-asr-benchmark (gated), 112 rows per variety | MSA, Egyptian, Emirati, Saudi, Kuwaiti, Qatari, Omani, Syrian, Lebanese | public recordings | transcripts CC-BY-4.0, audio evaluation-only (never re-hosted) |
+| gsb_ar | speechcolab/GigaSpeechBench low-resource Arabic, professional transcripts (Emirati region left out: drafted with GPT-4o) | Algerian, Egyptian, Iraqi, Moroccan, Saudi, Syrian | YouTube 2025–26 | unspecified |
+| massive_ar | FBK-MT/Speech-MASSIVE-test `ar-SA` (validated rows) | MSA / Gulf prompts, speakers across the region | voice-assistant commands | CC-BY-NC-SA-4.0 |
+| sudanese_sdn | arbml/sudanese_dialect_speech (Zenodo 6721683; no test split, one transcriber) | Sudanese | TV programmes | CC-BY-4.0 |
+| mtedx_ar | deepdml/mtedx `ar` test (7 talks) | mostly MSA | TEDx talks | CC-BY-NC-ND-4.0 |
+| tedxtn_cs | TEDxTN test (KBayoud/ASR_TEDx_Tunisie mirror) | Tunisian + French | TEDx talks | CC-BY-NC-ND-4.0 |
+
+CV18 also carries the named entities of 233 of its sentences (Elyadata/CV18-NER, CC-BY-NC-4.0), scored as
+key-term recall like the SVQ salient terms.
 
 Noise for the degraded tracks comes from DEMAND (CC BY-SA 3.0) and MUSAN (CC-BY-4.0). Babble noise
 is synthesized from other test speakers.

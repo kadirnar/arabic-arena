@@ -228,6 +228,16 @@ Still open: Iraqi, Sudanese, Libyan and Bahraini conversational speech, children
 Sample size: at 30–50 % WER, ±2 points needs ~10–12k reference words *and* ≥ 35–140 clusters
 depending on between-cluster spread; adding utterances from the same few videos does not help.
 
+Added on 2026-10-20 (ROADMAP M3b): SVQ (clean, and real background-speech / media / traffic noise),
+Shams (LangMedia rows only: its Casablanca rows repeat our casablanca set), Hassaniya, WASIL (Arabic
+prompts with gold transcriptions), Perle (Egyptian and Saudi subsets); CV18-NER as key terms on CV18.
+EchoNova (balanced per variety), GigaSpeechBench (without the Emirati region, whose references match
+GPT-4o-transcribe exactly on 58 % of segments against 4–18 % elsewhere), Speech-MASSIVE ar-SA, Sudanese SDN,
+mTEDx and TEDxTN followed. Rejected after checking: kadirnar/smart-turn-arabic-asr-benchmark (references are a
+seven-model consensus, not human transcripts), Egyptian-Arabic-Lectures (Gemini transcripts), FLORAS Arabic (unverified
+subtitles), the LinTO YouTube subsets (auto-captions), both Alyah Emirati repos (text-only), Abjad-Kids
+(keyword spotting). DAI-ASR-I18N (real two-channel conversations) waits for a manual access grant.
+
 ## 10. Tooling verdicts
 
 - **Alignment engines** agree on total errors (14 engines, 300,069 errors on 100k pairs) but split

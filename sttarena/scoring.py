@@ -264,11 +264,37 @@ class Scorer:
             for f in ("duration", "cluster", "stratum", "source_utt", "group"):
                 if it.get(f) is not None:
                     r[f] = it[f]
+            if it.get("terms"):
+                r["terms"] = list(it["terms"])
+                r["diag"]["term_hit"], r["diag"]["term_n"] = term_hits(
+                    self._norms[self.headline], r["terms"], r["ref_norm"].split(), r["hyp_norm"].split())
             recs.append(r)
         return SetScore(recs, self.config)
 
 
 # --- set-level aggregation -------------------------------------------------------------------------
+def term_hits(norm, terms: Sequence[str], ref_words: Sequence[str], hyp_words: Sequence[str]) -> tuple[int, int]:
+    """Key terms of an utterance: (found in the hypothesis, present in the reference), both after `norm`.
+    A term matches a run of up to one word more than it has, compared as the aligner compares merges
+    (canonical form, spaces ignored: ما فيش = مفيش); terms the normalized reference lacks are not counted."""
+    def key(words: Sequence[str]) -> str:
+        return norm.canon("".join(words)).replace(" ", "")  # concatenate, then fold, as the aligner does
+
+    def found(words: Sequence[str], k: str, span: int) -> bool:
+        return any(key(words[i:j]) == k for i in range(len(words)) for j in range(i + 1, min(len(words), i + span) + 1))
+
+    hit = n = 0
+    for t in terms:
+        tw = norm.words(t)
+        if not tw:
+            continue
+        k, span = key(tw), len(tw) + 1
+        if found(ref_words, k, span):
+            n += 1
+            hit += found(hyp_words, k, span)
+    return hit, n
+
+
 def _ratio(a: float, b: float) -> float | None:
     return a / b if b else None
 
@@ -387,6 +413,10 @@ class SetScore:
         ns = nonspeech_stats(self.utterances, head)
         if ns:
             out["nonspeech"] = ns
+        n_terms = sum(u.get("diag", {}).get("term_n", 0) for u in self.utterances)
+        if n_terms:  # key-term recall (sets with `terms`)
+            hit = sum(u["diag"].get("term_hit", 0) for u in self.utterances)
+            out["terms"] = {"n": n_terms, "recall": hit / n_terms, "recall_ci": wilson(hit, n_terms)}
         groups: dict[str, list[dict]] = {}
         for u in self.utterances:
             if u.get("group") is not None:

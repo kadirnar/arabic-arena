@@ -164,7 +164,7 @@ def _v2_set(res: dict, profile: str) -> dict | None:
     return {"wer": p["wer"], "wer_uncapped": p.get("wer_uncapped"), "cer": p.get("cer_ns"), "av_wer": p.get("av_wer"),
             "strict_wer": strict.get("wer"), "n": p.get("num_utterances"), "failed": res.get("num_failed", 0),
             "loop_rate": sc.get("hallucination", {}).get("loop_rate"),
-            "insertions": p.get("ins")}
+            "insertions": p.get("ins"), "term_recall": (sc.get("terms") or {}).get("recall")}
 
 
 def collect_v2(suite: Suite, lb: dict) -> dict:
@@ -197,6 +197,10 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
                          "done": sum(k in complete for k in tw), "total": len(tw)}
         exposed = [k for k in weights if source_of[k] in set(row.get("in_domain") or [])]
         ns = summary["results"].get("noise_only/clean", {}).get("scoring", {}).get("nonspeech", {})
+        # key-term recall pooled over the real recordings that have terms (SVQ queries, CV18 entities)
+        terms = [t for k, r in summary["results"].items()
+                 if k in complete and k.endswith("/clean") and (t := (r.get("scoring") or {}).get("terms"))]
+        n_terms = sum(t["n"] for t in terms)
         row["v2"] = {
             "halluc_any": ns.get("halluc_any"), "halluc_3plus": ns.get("halluc_3plus"),
             "halluc_3plus_ci": ns.get("halluc_3plus_ci"), "inserted_wpm": ns.get("inserted_wpm"),
@@ -206,6 +210,7 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
             "zero_shot": combine(wer, zero_shot, how) if zero_shot else None,
             "arena_real": combine(wer, real, how) if real else None,
             "exposure": round(sum(weights[k] for k in exposed), 4), "incomplete": sorted(set(sets) - set(complete)),
+            "term_recall": sum(t["n"] * t["recall"] for t in terms) / n_terms if n_terms else None, "term_n": n_terms,
         }
     # bag of hallucinations, mined from every model's local noise-only predictions
     outs = {}
@@ -330,7 +335,8 @@ def to_markdown_v2(lb: dict) -> str:
         return ""
     head = ["#", "Model", "Params (B)", "**Arena WER v2**", "95% CI", "Rank set", "Arena CER v2",
             *[TRACK_LABEL.get(t, t) for t in tracks],
-            "Strict (L1)", "Arithmetic", "Real audio", "Zero-shot", "Exposure", "Halluc. ≥3 words", "v1 Arena", "RTFx"]
+            "Strict (L1)", "Arithmetic", "Real audio", "Zero-shot", "Exposure", "Halluc. ≥3 words", "Terms missed",
+            "v1 Arena", "RTFx"]
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
     for i, r in enumerate(rows, 1):
         v = r["v2"]
@@ -342,6 +348,7 @@ def to_markdown_v2(lb: dict) -> str:
                  ("—" if not rs else str(rs[0]) if rs[0] == rs[1] else f"{rs[0]}–{rs[1]}"), _pct(v["arena_cer"]),
                  *[_pct(v["tracks"][t]["wer"]) for t in tracks], _pct(v["arena_strict"]), _pct(v["arena_arith"]),
                  _pct(v["arena_real"]), _pct(v["zero_shot"]), f"{v['exposure']:.0%}" if v["exposure"] else "—", _pct(v.get("halluc_3plus")),
+                 _pct(1 - v["term_recall"]) if v.get("term_recall") is not None else "—",
                  _pct(r.get("arena_wer")), str(r["rtfx"] or "—")]
         lines.append("| " + " | ".join(cells) + " |")
     meta = lb["v2"]
@@ -356,7 +363,10 @@ def to_markdown_v2(lb: dict) -> str:
               "ranked model trained on (" + (", ".join(sorted({k.split('/')[0] for k in meta['zero_shot_sets']}))
                                              or "none") + "). Exposure: share of the Arena weight on sets whose "
               "training split the model saw (†). Halluc. ≥3 words: share of noise-only clips (silence, hold, line noise, "
-              "distant chatter) on which the model wrote three or more words; not part of the Arena. 95% CI and "
+              "distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of "
+              "key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' "
+              "salient terms (names, places, question words) and the named entities of the CV18 test sentences "
+              "(Elyadata/CV18-NER); not part of the Arena. 95% CI and "
               "rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together "
               "across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. "
               "2024): models whose rank sets overlap are not separated by this benchmark."]

@@ -278,6 +278,8 @@ function setVal(m, key, metric = state.metric) {
 const rankOf = (m) => (isV2() ? m.v2?.rank_set : m.rank_range);
 // v2: share of noise-only clips with three or more words; v1: with any output
 const halluc = (m) => (isV2() ? m.v2?.halluc_3plus ?? null : m.hallucination_rate);
+// v2 only: share of the SVQ queries' key terms (names, places, question words) missing from the output
+const termsMissed = (m) => (isV2() && m.v2?.term_recall != null ? 1 - m.v2.term_recall : null);
 // 95% bootstrap interval (WER only; CER intervals are not computed).
 function ciOf(m, track = state.track, metric = state.metric) {
   if (metric !== "wer") return null;
@@ -537,7 +539,8 @@ function drawTable() {
   const d = state.data, tbl = document.getElementById("tbl"); tbl.replaceChildren();
   const cols = [["#", null], ["Model", null], ["Type", null], ["Params (B)", (m) => m.params_b],
     ...TRACKS.map(([k, l]) => [l + " " + state.metric.toUpperCase(), (m) => score(m, k), k]),
-    [isV2() ? "Halluc. ≥3 words %" : "Halluc. %", (m) => halluc(m)], ["RTFx", (m) => m.rtfx]];
+    [isV2() ? "Halluc. ≥3 words %" : "Halluc. %", (m) => halluc(m)],
+    ...(isV2() ? [["Terms missed %", (m) => termsMissed(m)]] : []), ["RTFx", (m) => m.rtfx]];
   let ms = [...d.models];
   const sc = state.sort ?? FIRST_TRACK, dir = sc === cols.length - 1 ? -1 : 1;
   if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
@@ -579,6 +582,11 @@ function drawTable() {
     });
     const hv = halluc(m), hc = h("td", pct(hv), row, hv == null ? "pending" : "");
     if (hv != null && hv === best[FIRST_TRACK + TRACKS.length]) hc.classList.add("best");
+    if (isV2()) {
+      const tv = termsMissed(m), tc = h("td", pct(tv), row, tv == null ? "pending" : "");
+      tc.title = "Key terms of the SVQ queries (names, places, question words) missing from the output";
+      if (tv != null && tv === best[FIRST_TRACK + TRACKS.length + 1]) tc.classList.add("best");
+    }
     h("td", m.rtfx != null ? String(m.rtfx) : "—", row);
   });
 

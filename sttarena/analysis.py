@@ -27,6 +27,10 @@ def _meta(lang: str, name: str, cond: str) -> dict[str, dict]:
     return {r["id"]: json.loads(r["meta"]) for r in t}
 
 
+# stratum fields that name a dialect, accent or country (echonova, SVQ, WASIL, Shams, Perle)
+DIALECT_FIELDS = {"dialect", "locale", "prompt_dialect", "country", "language_pair"}
+
+
 def _groups(meta: dict, cond: str) -> list[tuple[str, str]]:
     out = []
     deg = meta.get("degradation")
@@ -64,10 +68,15 @@ def breakdown(suite_name: str) -> dict:
                 m = metas[key].get(p["id"])
                 if not m:
                     continue
-                for dim, val in _groups(m, cond):
+                spec = suite.sets[name]
+                groups = _groups(m, cond)
+                if not spec.configs and spec.stratum and spec.stratum["field"] in DIALECT_FIELDS:
+                    if (lab := spec.label("stratum", m)) is not None:  # per-row dialect, locale or country
+                        groups.append(("dialect", lab))
+                for dim, val in groups:
                     if dim == "dialect":
-                        if not suite.sets[name].configs:  # single-config sets carry no dialect split
-                            continue
+                        if not spec.configs and not (spec.stratum and spec.stratum["field"] in DIALECT_FIELDS):
+                            continue  # single-config sets without a dialect stratum carry no dialect split
                         val = f"{name}:{val}"
                     buckets[(dim, val)].append((p["ref_norm"], p["hyp_norm"]))
         model_out: dict = defaultdict(dict)

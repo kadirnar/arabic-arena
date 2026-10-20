@@ -104,3 +104,17 @@ def test_registry_in_domain_uses_set_keys():
     keys = {k for suite in ("arabic", "english") for k in Suite.load(suite).sets}
     bad = {m.key: [d for d in m.in_domain if d not in keys] for m in MODELS.values()}
     assert not {k: v for k, v in bad.items() if v}, "in_domain must list suite set keys"
+
+
+def test_terms_come_from_the_meta_field_or_a_side_file(tmp_path):
+    import json
+
+    from sttarena.data import SetSpec
+
+    side = tmp_path / "terms.json"
+    side.write_text(json.dumps({"key": "path", "regex": r"([^/]+)$", "terms": {"a.mp3": ["سامي", "ليلى"]}}))
+    spec = SetSpec(name="x", source="none/x", split="test", text="t", n=1, track="clean", terms_file=str(side))
+    assert spec.terms_of({"path": "/tmp/cache/a.mp3"}) == ["سامي", "ليلى"]
+    assert spec.terms_of({"path": "/tmp/cache/b.mp3"}) is None
+    spec = SetSpec(name="y", source="none/y", split="test", text="t", n=1, track="clean", terms="salient")
+    assert spec.terms_of({"salient": ["البقاع"]}) == ["البقاع"] and spec.terms_of({}) is None

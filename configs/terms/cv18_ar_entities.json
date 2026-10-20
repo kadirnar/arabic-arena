@@ -1,0 +1,758 @@
+{
+ "key": "path",
+ "regex": "([^/]+)$",
+ "source": "Elyadata/CV18-NER test.csv (CC-BY-NC-4.0): named entities of the Common Voice 18 test sentences",
+ "terms": {
+  "common_voice_ar_19062370.mp3": [
+   "منذ شهرين"
+  ],
+  "common_voice_ar_19065135.mp3": [
+   "غدا"
+  ],
+  "common_voice_ar_19065193.mp3": [
+   "أوروبا",
+   "أمريكا"
+  ],
+  "common_voice_ar_19077323.mp3": [
+   "المحطة"
+  ],
+  "common_voice_ar_19077324.mp3": [
+   "لندن",
+   "البارحة"
+  ],
+  "common_voice_ar_19171982.mp3": [
+   "الأخير"
+  ],
+  "common_voice_ar_19172057.mp3": [
+   "الآن"
+  ],
+  "common_voice_ar_19203958.mp3": [
+   "السادسة كل صباح"
+  ],
+  "common_voice_ar_19204114.mp3": [
+   "العام المقبل"
+  ],
+  "common_voice_ar_19204741.mp3": [
+   "غدا"
+  ],
+  "common_voice_ar_19204828.mp3": [
+   "الآن"
+  ],
+  "common_voice_ar_19204912.mp3": [
+   "الشرطة"
+  ],
+  "common_voice_ar_19205360.mp3": [
+   "محطة أوساكا"
+  ],
+  "common_voice_ar_19205391.mp3": [
+   "لمدة ساعة"
+  ],
+  "common_voice_ar_19205818.mp3": [
+   "قبل",
+   "الساعة السادسة"
+  ],
+  "common_voice_ar_19218763.mp3": [
+   "الأطفال"
+  ],
+  "common_voice_ar_19228523.mp3": [
+   "الساعة الثالثة"
+  ],
+  "common_voice_ar_19228548.mp3": [
+   "أربعة"
+  ],
+  "common_voice_ar_19228565.mp3": [
+   "ماري"
+  ],
+  "common_voice_ar_19235994.mp3": [
+   "أيام الأحد"
+  ],
+  "common_voice_ar_19236011.mp3": [
+   "ليلة البارحة"
+  ],
+  "common_voice_ar_19271012.mp3": [
+   "شركة",
+   "أمريكا"
+  ],
+  "common_voice_ar_19332371.mp3": [
+   "كيوتو"
+  ],
+  "common_voice_ar_19332387.mp3": [
+   "الرئيس"
+  ],
+  "common_voice_ar_19341267.mp3": [
+   "ألف"
+  ],
+  "common_voice_ar_19351482.mp3": [
+   "السكرتيرة"
+  ],
+  "common_voice_ar_19381133.mp3": [
+   "أتوا",
+   "كندا"
+  ],
+  "common_voice_ar_19381157.mp3": [
+   "فيرفكس",
+   "موزيلا"
+  ],
+  "common_voice_ar_19384363.mp3": [
+   "ثلاثة"
+  ],
+  "common_voice_ar_19421210.mp3": [
+   "نيويورك",
+   "يوم الإثنين"
+  ],
+  "common_voice_ar_19464229.mp3": [
+   "الأولى"
+  ],
+  "common_voice_ar_19465382.mp3": [
+   "الفرنسية"
+  ],
+  "common_voice_ar_19486957.mp3": [
+   "جون"
+  ],
+  "common_voice_ar_19486973.mp3": [
+   "كبار السن"
+  ],
+  "common_voice_ar_19486986.mp3": [
+   "بالشرطة"
+  ],
+  "common_voice_ar_19532852.mp3": [
+   "عصفورين بحجر"
+  ],
+  "common_voice_ar_19719101.mp3": [
+   "الأخير"
+  ],
+  "common_voice_ar_19721687.mp3": [
+   "لساعات",
+   "ساعات"
+  ],
+  "common_voice_ar_19721712.mp3": [
+   "أيام",
+   "العطلة"
+  ],
+  "common_voice_ar_19745565.mp3": [
+   "واحد"
+  ],
+  "common_voice_ar_19745668.mp3": [
+   "أحد عشر",
+   "طالبا"
+  ],
+  "common_voice_ar_19842605.mp3": [
+   "شهر",
+   "أستراليا"
+  ],
+  "common_voice_ar_19842805.mp3": [
+   "الآن"
+  ],
+  "common_voice_ar_19842842.mp3": [
+   "محمود درويش"
+  ],
+  "common_voice_ar_19968506.mp3": [
+   "الممرضة"
+  ],
+  "common_voice_ar_19983500.mp3": [
+   "مايك"
+  ],
+  "common_voice_ar_19994978.mp3": [
+   "حاليا"
+  ],
+  "common_voice_ar_20268169.mp3": [
+   "بعد ساعة"
+  ],
+  "common_voice_ar_20439350.mp3": [
+   "اليابانيون"
+  ],
+  "common_voice_ar_20439363.mp3": [
+   "الشهر الرابع"
+  ],
+  "common_voice_ar_20527674.mp3": [
+   "معلم"
+  ],
+  "common_voice_ar_20842443.mp3": [
+   "كوكب المريخ"
+  ],
+  "common_voice_ar_20937877.mp3": [
+   "طوكيو"
+  ],
+  "common_voice_ar_20939663.mp3": [
+   "معلمة"
+  ],
+  "common_voice_ar_20939671.mp3": [
+   "لمدة أربعا و عشرين ساعة"
+  ],
+  "common_voice_ar_21020767.mp3": [
+   "مدرسته"
+  ],
+  "common_voice_ar_21075698.mp3": [
+   "مالي",
+   "جنوب الصحراء الإفريقية"
+  ],
+  "common_voice_ar_21093529.mp3": [
+   "فلورنس",
+   "إيطاليا"
+  ],
+  "common_voice_ar_21101363.mp3": [
+   "نيويورك"
+  ],
+  "common_voice_ar_21101482.mp3": [
+   "اليوم"
+  ],
+  "common_voice_ar_21172380.mp3": [
+   "توم",
+   "بيل",
+   "الآن"
+  ],
+  "common_voice_ar_21177014.mp3": [
+   "هوكايدو"
+  ],
+  "common_voice_ar_21179369.mp3": [
+   "كويت سويسرا",
+   "ألمانيا"
+  ],
+  "common_voice_ar_21262281.mp3": [
+   "سابورو"
+  ],
+  "common_voice_ar_21262377.mp3": [
+   "الإنجليزية"
+  ],
+  "common_voice_ar_21340997.mp3": [
+   "اليابان"
+  ],
+  "common_voice_ar_21519140.mp3": [
+   "منذ الشهر الفائت"
+  ],
+  "common_voice_ar_21696521.mp3": [
+   "واحد"
+  ],
+  "common_voice_ar_21739280.mp3": [
+   "أمريكا"
+  ],
+  "common_voice_ar_21988099.mp3": [
+   "إثنان"
+  ],
+  "common_voice_ar_22725399.mp3": [
+   "مدة ساعتين"
+  ],
+  "common_voice_ar_22770446.mp3": [
+   "أولاد يافعين"
+  ],
+  "common_voice_ar_22779722.mp3": [
+   "المستشفى",
+   "البارحة"
+  ],
+  "common_voice_ar_22788980.mp3": [
+   "مايوكو"
+  ],
+  "common_voice_ar_22794346.mp3": [
+   "الفرنسية"
+  ],
+  "common_voice_ar_22937020.mp3": [
+   "أولا"
+  ],
+  "common_voice_ar_22937026.mp3": [
+   "ليلة أمس"
+  ],
+  "common_voice_ar_23928623.mp3": [
+   "اليوم",
+   "غدا"
+  ],
+  "common_voice_ar_23972704.mp3": [
+   "مارك توين"
+  ],
+  "common_voice_ar_23972934.mp3": [
+   "مليون"
+  ],
+  "common_voice_ar_23975393.mp3": [
+   "طبيبا"
+  ],
+  "common_voice_ar_24029191.mp3": [
+   "سوزوكي"
+  ],
+  "common_voice_ar_24029269.mp3": [
+   "الساعة السادسة من صباح الغد"
+  ],
+  "common_voice_ar_24029608.mp3": [
+   "عبد الله بن عباس"
+  ],
+  "common_voice_ar_24029637.mp3": [
+   "سفيان الثوري"
+  ],
+  "common_voice_ar_24030150.mp3": [
+   "كذاب"
+  ],
+  "common_voice_ar_24030347.mp3": [
+   "واحدة"
+  ],
+  "common_voice_ar_24030705.mp3": [
+   "للمؤمنين"
+  ],
+  "common_voice_ar_24030742.mp3": [
+   "ثلاثة"
+  ],
+  "common_voice_ar_24030868.mp3": [
+   "النجمة",
+   "يوليو"
+  ],
+  "common_voice_ar_24032554.mp3": [
+   "القاضي"
+  ],
+  "common_voice_ar_24033402.mp3": [
+   "الإنجليزية"
+  ],
+  "common_voice_ar_24033919.mp3": [
+   "كارول"
+  ],
+  "common_voice_ar_24036709.mp3": [
+   "طور سيناء"
+  ],
+  "common_voice_ar_24038438.mp3": [
+   "خلال يوم أو يومين"
+  ],
+  "common_voice_ar_24039201.mp3": [
+   "بولندا"
+  ],
+  "common_voice_ar_24039225.mp3": [
+   "الثلاث"
+  ],
+  "common_voice_ar_24039826.mp3": [
+   "الصادقين"
+  ],
+  "common_voice_ar_24041208.mp3": [
+   "الرئيس الجديد"
+  ],
+  "common_voice_ar_24041266.mp3": [
+   "الألمانية"
+  ],
+  "common_voice_ar_24041442.mp3": [
+   "داوود"
+  ],
+  "common_voice_ar_24041651.mp3": [
+   "موسى"
+  ],
+  "common_voice_ar_24041714.mp3": [
+   "خمسين ألف ين"
+  ],
+  "common_voice_ar_24041726.mp3": [
+   "مناد"
+  ],
+  "common_voice_ar_24041755.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24047091.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24048217.mp3": [
+   "مسلمين"
+  ],
+  "common_voice_ar_24048724.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_24059967.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24060367.mp3": [
+   "آل فرعون"
+  ],
+  "common_voice_ar_24060463.mp3": [
+   "منذ الساعة الخامسة"
+  ],
+  "common_voice_ar_24073323.mp3": [
+   "رئيس الوزراء",
+   "غدا"
+  ],
+  "common_voice_ar_24079262.mp3": [
+   "للمكذبين"
+  ],
+  "common_voice_ar_24079473.mp3": [
+   "الضالين"
+  ],
+  "common_voice_ar_24086374.mp3": [
+   "لمحمد بن واسع"
+  ],
+  "common_voice_ar_24088097.mp3": [
+   "الأستاذ",
+   "الواحدة و النصف"
+  ],
+  "common_voice_ar_24088537.mp3": [
+   "مسلم"
+  ],
+  "common_voice_ar_24088818.mp3": [
+   "دونالد ترامب"
+  ],
+  "common_voice_ar_24145315.mp3": [
+   "للشرطة",
+   "ليلى"
+  ],
+  "common_voice_ar_24148230.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24158279.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24158285.mp3": [
+   "أبو الحسن بن الحارث الهاشمي"
+  ],
+  "common_voice_ar_24167419.mp3": [
+   "سنة"
+  ],
+  "common_voice_ar_24167701.mp3": [
+   "مسلم"
+  ],
+  "common_voice_ar_24168526.mp3": [
+   "سامي",
+   "فريد"
+  ],
+  "common_voice_ar_24168541.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_24204662.mp3": [
+   "عكرمة"
+  ],
+  "common_voice_ar_24218344.mp3": [
+   "واحد"
+  ],
+  "common_voice_ar_24228695.mp3": [
+   "ليلى"
+  ],
+  "common_voice_ar_24302568.mp3": [
+   "تونس"
+  ],
+  "common_voice_ar_24332237.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_24386413.mp3": [
+   "مجموعة الاثنان وعشرين التاريخية"
+  ],
+  "common_voice_ar_24387883.mp3": [
+   "فاضل",
+   "ليلى"
+  ],
+  "common_voice_ar_24388030.mp3": [
+   "بلجيكا"
+  ],
+  "common_voice_ar_24430966.mp3": [
+   "سبع دقائق"
+  ],
+  "common_voice_ar_24441236.mp3": [
+   "الأطفال",
+   "الأطفال"
+  ],
+  "common_voice_ar_24489202.mp3": [
+   "راسل",
+   "فاضل",
+   "دانية"
+  ],
+  "common_voice_ar_24493195.mp3": [
+   "كاتب"
+  ],
+  "common_voice_ar_24493226.mp3": [
+   "للعلاء ابن صاعد"
+  ],
+  "common_voice_ar_24515670.mp3": [
+   "فاضل"
+  ],
+  "common_voice_ar_24534016.mp3": [
+   "فجر",
+   "المولد"
+  ],
+  "common_voice_ar_24552303.mp3": [
+   "محمد ابن زهير"
+  ],
+  "common_voice_ar_24583020.mp3": [
+   "للنبي",
+   "محمد"
+  ],
+  "common_voice_ar_24583033.mp3": [
+   "أربع"
+  ],
+  "common_voice_ar_24583077.mp3": [
+   "محمد",
+   "يوم الاثنين"
+  ],
+  "common_voice_ar_24663804.mp3": [
+   "آل دباس"
+  ],
+  "common_voice_ar_24704645.mp3": [
+   "لتوم"
+  ],
+  "common_voice_ar_24742474.mp3": [
+   "الحبيب"
+  ],
+  "common_voice_ar_24764389.mp3": [
+   "كاتب"
+  ],
+  "common_voice_ar_25022934.mp3": [
+   "بن عدلان"
+  ],
+  "common_voice_ar_25027060.mp3": [
+   "ببلدة"
+  ],
+  "common_voice_ar_25073973.mp3": [
+   "الأسبوعا"
+  ],
+  "common_voice_ar_25074800.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_25074807.mp3": [
+   "أبي علي"
+  ],
+  "common_voice_ar_25074812.mp3": [
+   "كعب",
+   "عمر"
+  ],
+  "common_voice_ar_25134501.mp3": [
+   "علي"
+  ],
+  "common_voice_ar_25172468.mp3": [
+   "ابن أبي سميه"
+  ],
+  "common_voice_ar_25172473.mp3": [
+   "بني ثعل"
+  ],
+  "common_voice_ar_25176297.mp3": [
+   "نرجس"
+  ],
+  "common_voice_ar_25179951.mp3": [
+   "آل زغلول"
+  ],
+  "common_voice_ar_25189874.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_25190076.mp3": [
+   "الأعراب"
+  ],
+  "common_voice_ar_25190078.mp3": [
+   "أبا إسحاق"
+  ],
+  "common_voice_ar_25190506.mp3": [
+   "واحدة"
+  ],
+  "common_voice_ar_25190509.mp3": [
+   "الآخرين"
+  ],
+  "common_voice_ar_25190550.mp3": [
+   "المحققون"
+  ],
+  "common_voice_ar_25190551.mp3": [
+   "بني حميد"
+  ],
+  "common_voice_ar_25191862.mp3": [
+   "اليوم"
+  ],
+  "common_voice_ar_25192469.mp3": [
+   "محامي"
+  ],
+  "common_voice_ar_25193823.mp3": [
+   "محمود"
+  ],
+  "common_voice_ar_25194407.mp3": [
+   "دانية"
+  ],
+  "common_voice_ar_25196462.mp3": [
+   "فاضل",
+   "القاهرة"
+  ],
+  "common_voice_ar_25204216.mp3": [
+   "فاضل",
+   "مصر"
+  ],
+  "common_voice_ar_25205045.mp3": [
+   "سمر"
+  ],
+  "common_voice_ar_25206911.mp3": [
+   "آل جدعون"
+  ],
+  "common_voice_ar_25208388.mp3": [
+   "أم بكر"
+  ],
+  "common_voice_ar_25211698.mp3": [
+   "توم",
+   "ماري"
+  ],
+  "common_voice_ar_25217275.mp3": [
+   "فاضل"
+  ],
+  "common_voice_ar_25226535.mp3": [
+   "المسلمين"
+  ],
+  "common_voice_ar_25226925.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_25226956.mp3": [
+   "ناصر"
+  ],
+  "common_voice_ar_25238450.mp3": [
+   "ابن حجر",
+   "النبي"
+  ],
+  "common_voice_ar_25250118.mp3": [
+   "النبي",
+   "ثلاث وستون سنة"
+  ],
+  "common_voice_ar_25250164.mp3": [
+   "إخوان النبيذ"
+  ],
+  "common_voice_ar_25320880.mp3": [
+   "أحمد"
+  ],
+  "common_voice_ar_25596500.mp3": [
+   "ليلى سامي"
+  ],
+  "common_voice_ar_25615232.mp3": [
+   "الشهداء"
+  ],
+  "common_voice_ar_25690830.mp3": [
+   "ابن خنساء"
+  ],
+  "common_voice_ar_25756196.mp3": [
+   "الأحياء"
+  ],
+  "common_voice_ar_25796110.mp3": [
+   "توم",
+   "ماريا"
+  ],
+  "common_voice_ar_25837074.mp3": [
+   "آل عز"
+  ],
+  "common_voice_ar_25887333.mp3": [
+   "هذه السنة"
+  ],
+  "common_voice_ar_25887404.mp3": [
+   "الكيميائي"
+  ],
+  "common_voice_ar_25951436.mp3": [
+   "فتاة",
+   "وامرأة"
+  ],
+  "common_voice_ar_25967444.mp3": [
+   "كريس براون",
+   "والأمير"
+  ],
+  "common_voice_ar_25980349.mp3": [
+   "روبن",
+   "كلوك كينغ برافاجر"
+  ],
+  "common_voice_ar_25986958.mp3": [
+   "ديزموند ناكانو"
+  ],
+  "common_voice_ar_26028488.mp3": [
+   "أيسلندا",
+   "حقوق الصيد"
+  ],
+  "common_voice_ar_26081194.mp3": [
+   "خط Queens Boulevard",
+   "أربعة"
+  ],
+  "common_voice_ar_26081197.mp3": [
+   "صناع مارفل كومكس"
+  ],
+  "common_voice_ar_26081214.mp3": [
+   "لثلاث سنوات"
+  ],
+  "common_voice_ar_26081244.mp3": [
+   "Myspace"
+  ],
+  "common_voice_ar_26091796.mp3": [
+   "فليبيني",
+   "أمريكي",
+   "وشينجي",
+   "ياباني"
+  ],
+  "common_voice_ar_26422654.mp3": [
+   "أبا إسحق"
+  ],
+  "common_voice_ar_26961839.mp3": [
+   "رسول الله"
+  ],
+  "common_voice_ar_26965737.mp3": [
+   "أبي يوسف"
+  ],
+  "common_voice_ar_27632975.mp3": [
+   "فاضل"
+  ],
+  "common_voice_ar_27633007.mp3": [
+   "مسلم"
+  ],
+  "common_voice_ar_27647522.mp3": [
+   "فاضل",
+   "ليلى"
+  ],
+  "common_voice_ar_27648739.mp3": [
+   "آل فرنيني"
+  ],
+  "common_voice_ar_27858876.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_27885973.mp3": [
+   "يوم",
+   "أربعة"
+  ],
+  "common_voice_ar_28010855.mp3": [
+   "ليلى"
+  ],
+  "common_voice_ar_28072677.mp3": [
+   "توم"
+  ],
+  "common_voice_ar_28272353.mp3": [
+   "الأمير",
+   "أبي نصر"
+  ],
+  "common_voice_ar_28272355.mp3": [
+   "الربع",
+   "ربع"
+  ],
+  "common_voice_ar_28316777.mp3": [
+   "لأبي حفص"
+  ],
+  "common_voice_ar_28316928.mp3": [
+   "مصر"
+  ],
+  "common_voice_ar_28317020.mp3": [
+   "أمحمد"
+  ],
+  "common_voice_ar_28317112.mp3": [
+   "نساء قيس"
+  ],
+  "common_voice_ar_28330795.mp3": [
+   "ابن عمار"
+  ],
+  "common_voice_ar_28552168.mp3": [
+   "فاضل",
+   "سبع سنوات"
+  ],
+  "common_voice_ar_28781980.mp3": [
+   "أبو علي ابن أبي"
+  ],
+  "common_voice_ar_28783282.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_28790257.mp3": [
+   "أبا حفيص"
+  ],
+  "common_voice_ar_32568663.mp3": [
+   "سامي"
+  ],
+  "common_voice_ar_32568688.mp3": [
+   "الأصبهاني"
+  ],
+  "common_voice_ar_32568690.mp3": [
+   "لماري"
+  ],
+  "common_voice_ar_32568760.mp3": [
+   "ولأحمد بن عبيد الله الثقفي"
+  ],
+  "common_voice_ar_32568842.mp3": [
+   "الإخوان"
+  ],
+  "common_voice_ar_33243168.mp3": [
+   "الطبيب الشرعي",
+   "فاضل صادق"
+  ],
+  "common_voice_ar_34916759.mp3": [
+   "والميناء"
+  ],
+  "common_voice_ar_38060922.mp3": [
+   "يوم الثلاثاء",
+   "يوم الثلاثاء"
+  ]
+ }
+}
