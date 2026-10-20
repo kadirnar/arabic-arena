@@ -250,7 +250,7 @@ depending on between-cluster spread; adding utterances from the same few videos 
    (finding 9), but it does measure channel robustness, which matters for MENA deployments, so it
    stays in the Arena at a lower weight, with the real-audio Arena next to it. To revisit once the
    re-transmission validation set exists (ROADMAP M4). The chain-v2 conditions replace the v1 ones
-   in the Arena once every ranked model has results on them.
+   in the Arena once every ranked model has results on them (done on 2026-10-20, §12).
 2. **`nadi_robust`: a diagnostic.** The v2 board scores it in its own unweighted track
    (`bandlimited`). Its audio is simulated (4 kHz band-limiting), it partly repeats `casablanca`
    utterances, and narrowband speech is already covered by the telephony track. v1 keeps it in
@@ -287,37 +287,45 @@ change (2026-10-15) and is 3–6 points better on most sets now (v1 Arena 45.9 �
 telephony and call-center audio depends on the ffmpeg build (METHODOLOGY), so on mgb2, casablanca and
 mgb3_egy, rebuilt here, the AMR-NB and Opus rows are not the original audio.
 
-**v1 → v2.** Arena WER in %; v1 = the v1 board formula, v2 = the headline:
+**v1 → v2.** Arena WER in %; v1 = the v1 board formula, v2 = the headline (phone tracks on chain v2):
 
 | Model | v1 published (rank) | v1 re-run (rank) | v2 Arena [95 % CI] | v2 rank set |
 |---|---|---|---|---|
-| cohere-transcribe-arabic-07-2026 | 27.69 (1) | 27.69 (1) | **14.76** [13.73–15.69] | 1 |
-| audar-asr-v1-turbo | 31.38 (2) | 31.75 (2) | **17.86** [16.87–18.77] | 2 |
-| voxtral-mini-4b-realtime-arabic | 34.91 (3) | 34.85 (3) | **20.81** [19.83–21.81] | 3–4 |
-| nvidia-fastconformer-ar-pc | 35.73 (5) | 35.69 (4) | **20.99** [19.92–22.02] | 3–4 |
-| cohere-transcribe-03-2026 | 38.76 (7) | 38.66 (7) | **22.55** [21.46–23.59] | 5–6 |
-| lemura-arabic-asr-qwen3 | 35.21 (4) | 35.84 (5) | **22.74** [21.63–23.81] | 5–6 |
-| gemma-4-e2b-it | 45.94 (13) | 41.59 (9) | **25.16** [24.18–26.18] | 7–8 |
-| lemura-arabic-asr-lite | 37.44 (6) | 37.43 (6) | **25.19** [23.99–26.30] | 7–8 |
-| qwen3-asr-1.7b | 39.94 (8) | 39.68 (8) | **26.38** [25.26–27.47] | 9–10 |
-| whisper-large-v3 | 50.12 (15) | 49.52 (15) | **26.72** [25.47–27.99] | 9–10 |
-| audar-asr-v1-flash | 41.62 (9) | 41.97 (10) | **27.71** [26.56–28.88] | 11–12 |
-| voxtral-mini-4b-realtime-2602 | 44.65 (10) | 44.60 (11) | **28.42** [27.33–29.64] | 11–13 |
-| whisper-large-v3-turbo | 62.25 (19) | 63.67 (19) | **29.03** [27.74–30.29] | 12–13 |
-| qwen3-asr-arabic-ksa | 45.63 (11) | 45.39 (12) | **30.59** [29.38–31.75] | 14 |
-| qwen3-asr-arabic-uae | 46.75 (14) | 46.59 (14) | **31.81** [30.59–33.01] | 15 |
-| qwencleo-asr | 50.14 (16) | 50.64 (17) | **32.85** [31.74–34.00] | 16–17 |
-| nemotron-3.5-asr-arabic-dialectal-v2 | 45.84 (12) | 45.83 (13) | **33.73** [32.50–35.05] | 16–17 |
-| qwen3-asr-0.6b | 50.15 (17) | 50.10 (16) | **37.79** [36.59–39.01] | 18 |
-| moulsot-v0.3 | 62.03 (18) | 61.81 (18) | **41.52** [40.23–42.91] | 19 |
+| cohere-transcribe-arabic-07-2026 | 27.69 (1) | 27.69 (1) | **14.25** [13.24–15.15] | 1 |
+| audar-asr-v1-turbo | 31.38 (2) | 31.75 (2) | **17.26** [16.26–18.13] | 2 |
+| voxtral-mini-4b-realtime-arabic | 34.91 (3) | 34.85 (3) | **20.08** [19.11–21.08] | 3–4 |
+| nvidia-fastconformer-ar-pc | 35.73 (5) | 35.69 (4) | **20.30** [19.21–21.31] | 3–4 |
+| cohere-transcribe-03-2026 | 38.76 (7) | 38.66 (7) | **21.94** [20.83–22.98] | 5–6 |
+| lemura-arabic-asr-qwen3 | 35.21 (4) | 35.84 (5) | **22.08** [20.98–23.17] | 5–6 |
+| lemura-arabic-asr-lite | 37.44 (6) | 37.43 (6) | **24.39** [23.21–25.50] | 7–8 |
+| gemma-4-e2b-it | 45.94 (13) | 41.59 (9) | **24.45** [23.49–25.47] | 7–8 |
+| qwen3-asr-1.7b | 39.94 (8) | 39.68 (8) | **25.64** [24.51–26.70] | 9–10 |
+| whisper-large-v3 | 50.12 (15) | 49.52 (15) | **26.02** [24.78–27.25] | 9–10 |
+| audar-asr-v1-flash | 41.62 (9) | 41.97 (10) | **26.95** [25.83–28.09] | 11–12 |
+| voxtral-mini-4b-realtime-2602 | 44.65 (10) | 44.60 (11) | **27.48** [26.40–28.67] | 11–13 |
+| whisper-large-v3-turbo | 62.25 (19) | 63.67 (19) | **28.38** [27.12–29.64] | 12–13 |
+| qwen3-asr-arabic-ksa | 45.63 (11) | 45.39 (12) | **29.85** [28.66–30.99] | 14 |
+| qwen3-asr-arabic-uae | 46.75 (14) | 46.59 (14) | **31.00** [29.79–32.19] | 15 |
+| qwencleo-asr | 50.14 (16) | 50.64 (17) | **32.09** [31.00–33.22] | 16–17 |
+| nemotron-3.5-asr-arabic-dialectal-v2 | 45.84 (12) | 45.83 (13) | **33.06** [31.83–34.33] | 16–17 |
+| qwen3-asr-0.6b | 50.15 (17) | 50.10 (16) | **36.98** [35.77–38.20] | 18 |
+| moulsot-v0.3 | 62.03 (18) | 61.81 (18) | **40.83** [39.52–42.22] | 19 |
 
 The top four keep their order. The scorer change lifts the models whose v1 errors were mostly runaway
 insertions (whisper-large-v3 15 → 10, whisper-large-v3-turbo 19 → 13) and moves
 nemotron-3.5-asr-arabic-dialectal-v2 (13 → 17) and the two Qwen3 dialect fine-tunes down. On the 15
 re-hosted set-conditions the in-domain Arabic-STT fine-tunes lead under v1 (run 5: 16.4 against 20.1
-for cohere-transcribe-arabic-07-2026) but not under v2 (10.45 against 10.21), consistent with part of
+for cohere-transcribe-arabic-07-2026) but not under v2 (10.10 against 9.79), consistent with part of
 their v1 lead coming from the spelling conventions of the sets they were trained on, which v2
 normalizes away.
+
+**Phone tracks on chain v2.** Once every ranked model had chain-v2 results (2026-10-20), the v2
+Arena's telephony and call-center tracks moved to `telephony_v2` and `callcenter_v2` (§11.1). The
+order is the same except one swap inside a shared rank set (lemura-arabic-asr-lite and
+gemma-4-e2b-it, 7–8). Telephony WER changes little (−0.2 to −1.8 points); call-center WER falls by 9
+to 16 points (cohere-transcribe-arabic-07-2026: 33.1 → 24.2), consistent with chain v2's caller
+sitting in a handset-distance room with unintelligible babble instead of v1's extreme far-field room
+and intelligible talkers. Every v2 Arena score falls by 0.5–0.9 points.
 
 ## Sources (selected)
 

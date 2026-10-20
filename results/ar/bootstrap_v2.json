@@ -5,25 +5,25 @@
  "flags": {
   "mgb2/clean": "few clusters: G=17",
   "mgb2/noisy": "few clusters: G=17",
-  "mgb2/telephony": "few clusters: G=17",
-  "mgb2/callcenter": "few clusters: G=17",
+  "mgb2/telephony_v2": "few clusters: G=17",
+  "mgb2/callcenter_v2": "few clusters: G=17",
   "sada/clean": "iid: no cluster key",
   "sada/noisy": "iid: no cluster key",
-  "sada/telephony": "iid: no cluster key",
-  "sada/callcenter": "iid: no cluster key",
+  "sada/telephony_v2": "iid: no cluster key",
+  "sada/callcenter_v2": "iid: no cluster key",
   "casablanca/clean": "iid: no cluster key",
-  "casablanca/telephony": "iid: no cluster key",
-  "casablanca/callcenter": "iid: no cluster key",
+  "casablanca/telephony_v2": "iid: no cluster key",
+  "casablanca/callcenter_v2": "iid: no cluster key",
   "mgb5_mor/clean": "few clusters: G=14",
   "mixat_cs/clean": "iid: no cluster key",
   "algerian_cs/clean": "few clusters: G=8"
  },
  "models": {
   "cohere-transcribe-arabic-07-2026": {
-   "arena": 0.147566,
+   "arena": 0.142479,
    "arena_ci": [
-    0.13735,
-    0.15692
+    0.13242,
+    0.15147
    ],
    "rank_set": [
     1,
@@ -43,20 +43,20 @@
      0.14979
     ],
     "telephony": [
-     0.13726,
-     0.16521
+     0.13204,
+     0.15859
     ],
     "callcenter": [
-     0.31138,
-     0.34885
+     0.22306,
+     0.25782
     ]
    }
   },
   "audar-asr-v1-turbo": {
-   "arena": 0.178629,
+   "arena": 0.172566,
    "arena_ci": [
-    0.16867,
-    0.18766
+    0.16259,
+    0.18129
    ],
    "rank_set": [
     2,
@@ -76,20 +76,20 @@
      0.17822
     ],
     "telephony": [
-     0.18555,
-     0.2126
+     0.17862,
+     0.20559
     ],
     "callcenter": [
-     0.40182,
-     0.43473
+     0.29068,
+     0.32384
     ]
    }
   },
   "voxtral-mini-4b-realtime-arabic": {
-   "arena": 0.208079,
+   "arena": 0.200769,
    "arena_ci": [
-    0.19832,
-    0.21812
+    0.19107,
+    0.21082
    ],
    "rank_set": [
     3,
@@ -109,20 +109,20 @@
      0.22471
     ],
     "telephony": [
-     0.23478,
-     0.26368
+     0.23101,
+     0.26006
     ],
     "callcenter": [
-     0.51385,
-     0.55207
+     0.36098,
+     0.39554
     ]
    }
   },
   "nvidia-fastconformer-ar-pc": {
-   "arena": 0.209913,
+   "arena": 0.203023,
    "arena_ci": [
-    0.19921,
-    0.22024
+    0.19213,
+    0.21306
    ],
    "rank_set": [
     3,
@@ -142,20 +142,20 @@
      0.19519
     ],
     "telephony": [
-     0.20232,
-     0.23121
+     0.19389,
+     0.22352
     ],
     "callcenter": [
-     0.41969,
-     0.45548
+     0.30904,
+     0.34188
     ]
    }
   },
   "cohere-transcribe-03-2026": {
-   "arena": 0.225507,
+   "arena": 0.219402,
    "arena_ci": [
-    0.21462,
-    0.23589
+    0.20828,
+    0.22985
    ],
    "rank_set": [
     5,
@@ -175,20 +175,20 @@
      0.18877
     ],
     "telephony": [
-     0.21464,
-     0.24425
+     0.21023,
+     0.24105
     ],
     "callcenter": [
-     0.39402,
-     0.43108
+     0.30061,
+     0.33551
     ]
    }
   },
   "lemura-arabic-asr-qwen3": {
-   "arena": 0.227373,
+   "arena": 0.220811,
    "arena_ci": [
-    0.21631,
-    0.23811
+    0.20982,
+    0.23173
    ],
    "rank_set": [
     5,
@@ -208,53 +208,20 @@
      0.2291
     ],
     "telephony": [
-     0.23524,
-     0.26484
+     0.22985,
+     0.25889
     ],
     "callcenter": [
-     0.47927,
-     0.51448
-    ]
-   }
-  },
-  "gemma-4-e2b-it": {
-   "arena": 0.251566,
-   "arena_ci": [
-    0.24184,
-    0.26182
-   ],
-   "rank_set": [
-    7,
-    8
-   ],
-   "tracks": {
-    "clean": [
-     0.18615,
-     0.20511
-    ],
-    "codeswitch": [
-     0.25321,
-     0.32949
-    ],
-    "noisy": [
-     0.24869,
-     0.27883
-    ],
-    "telephony": [
-     0.28319,
-     0.31063
-    ],
-    "callcenter": [
-     0.55109,
-     0.5822
+     0.36268,
+     0.39657
     ]
    }
   },
   "lemura-arabic-asr-lite": {
-   "arena": 0.251903,
+   "arena": 0.243909,
    "arena_ci": [
-    0.2399,
-    0.26305
+    0.2321,
+    0.25501
    ],
    "rank_set": [
     7,
@@ -274,20 +241,53 @@
      0.24598
     ],
     "telephony": [
-     0.23553,
-     0.26451
+     0.22497,
+     0.25184
     ],
     "callcenter": [
-     0.47057,
-     0.50314
+     0.35336,
+     0.38425
+    ]
+   }
+  },
+  "gemma-4-e2b-it": {
+   "arena": 0.244504,
+   "arena_ci": [
+    0.23486,
+    0.25466
+   ],
+   "rank_set": [
+    7,
+    8
+   ],
+   "tracks": {
+    "clean": [
+     0.18615,
+     0.20511
+    ],
+    "codeswitch": [
+     0.25321,
+     0.32949
+    ],
+    "noisy": [
+     0.24869,
+     0.27883
+    ],
+    "telephony": [
+     0.27496,
+     0.30234
+    ],
+    "callcenter": [
+     0.42253,
+     0.45321
     ]
    }
   },
   "qwen3-asr-1.7b": {
-   "arena": 0.263766,
+   "arena": 0.256377,
    "arena_ci": [
-    0.25256,
-    0.27468
+    0.24514,
+    0.26704
    ],
    "rank_set": [
     9,
@@ -307,20 +307,20 @@
      0.25234
     ],
     "telephony": [
-     0.28154,
-     0.31073
+     0.26864,
+     0.29692
     ],
     "callcenter": [
-     0.50375,
-     0.5357
+     0.3938,
+     0.42577
     ]
    }
   },
   "whisper-large-v3": {
-   "arena": 0.267243,
+   "arena": 0.260153,
    "arena_ci": [
-    0.25469,
-    0.27986
+    0.24783,
+    0.27245
    ],
    "rank_set": [
     9,
@@ -340,20 +340,20 @@
      0.25764
     ],
     "telephony": [
-     0.27652,
-     0.30774
+     0.27097,
+     0.30098
     ],
     "callcenter": [
-     0.51953,
-     0.55274
+     0.4,
+     0.43545
     ]
    }
   },
   "audar-asr-v1-flash": {
-   "arena": 0.277142,
+   "arena": 0.269455,
    "arena_ci": [
-    0.26564,
-    0.28877
+    0.25828,
+    0.28089
    ],
    "rank_set": [
     11,
@@ -373,20 +373,20 @@
      0.27205
     ],
     "telephony": [
-     0.29887,
-     0.32745
+     0.28423,
+     0.312
     ],
     "callcenter": [
-     0.52647,
-     0.55913
+     0.41501,
+     0.44611
     ]
    }
   },
   "voxtral-mini-4b-realtime-2602": {
-   "arena": 0.284234,
+   "arena": 0.274796,
    "arena_ci": [
-    0.27333,
-    0.29641
+    0.26401,
+    0.28665
    ],
    "rank_set": [
     11,
@@ -406,20 +406,20 @@
      0.29524
     ],
     "telephony": [
-     0.32227,
-     0.36208
+     0.30538,
+     0.34335
     ],
     "callcenter": [
-     0.63462,
-     0.67084
+     0.47157,
+     0.50989
     ]
    }
   },
   "whisper-large-v3-turbo": {
-   "arena": 0.290273,
+   "arena": 0.28384,
    "arena_ci": [
-    0.27744,
-    0.30295
+    0.27116,
+    0.29644
    ],
    "rank_set": [
     12,
@@ -439,20 +439,20 @@
      0.28242
     ],
     "telephony": [
-     0.31369,
-     0.34646
+     0.3088,
+     0.34149
     ],
     "callcenter": [
-     0.55857,
-     0.59197
+     0.44927,
+     0.48367
     ]
    }
   },
   "qwen3-asr-arabic-ksa": {
-   "arena": 0.305921,
+   "arena": 0.298502,
    "arena_ci": [
-    0.29383,
-    0.31754
+    0.28656,
+    0.30989
    ],
    "rank_set": [
     14,
@@ -472,20 +472,20 @@
      0.29178
     ],
     "telephony": [
-     0.3233,
-     0.35207
+     0.31764,
+     0.34788
     ],
     "callcenter": [
-     0.5526,
-     0.58335
+     0.436,
+     0.46699
     ]
    }
   },
   "qwen3-asr-arabic-uae": {
-   "arena": 0.318075,
+   "arena": 0.310015,
    "arena_ci": [
-    0.30595,
-    0.33014
+    0.29791,
+    0.32186
    ],
    "rank_set": [
     15,
@@ -505,20 +505,20 @@
      0.30648
     ],
     "telephony": [
-     0.34059,
-     0.36928
+     0.32691,
+     0.35654
     ],
     "callcenter": [
-     0.56865,
-     0.59942
+     0.45337,
+     0.48514
     ]
    }
   },
   "qwencleo-asr": {
-   "arena": 0.328506,
+   "arena": 0.32086,
    "arena_ci": [
-    0.31743,
-    0.33997
+    0.30995,
+    0.33219
    ],
    "rank_set": [
     16,
@@ -538,20 +538,20 @@
      0.34051
     ],
     "telephony": [
-     0.33058,
-     0.35918
+     0.32801,
+     0.35712
     ],
     "callcenter": [
-     0.58329,
-     0.61689
+     0.46087,
+     0.4934
     ]
    }
   },
   "nemotron-3.5-asr-arabic-dialectal-v2": {
-   "arena": 0.33734,
+   "arena": 0.330591,
    "arena_ci": [
-    0.32498,
-    0.35045
+    0.31831,
+    0.34331
    ],
    "rank_set": [
     16,
@@ -571,20 +571,20 @@
      0.34846
     ],
     "telephony": [
-     0.37022,
-     0.39906
+     0.36697,
+     0.39381
     ],
     "callcenter": [
-     0.61836,
-     0.6474
+     0.50774,
+     0.5364
     ]
    }
   },
   "qwen3-asr-0.6b": {
-   "arena": 0.377914,
+   "arena": 0.369778,
    "arena_ci": [
-    0.36591,
-    0.39011
+    0.35768,
+    0.38197
    ],
    "rank_set": [
     18,
@@ -604,20 +604,20 @@
      0.36362
     ],
     "telephony": [
-     0.41931,
-     0.44821
+     0.40655,
+     0.43529
     ],
     "callcenter": [
-     0.64334,
-     0.67155
+     0.53006,
+     0.55984
     ]
    }
   },
   "moulsot-v0.3": {
-   "arena": 0.415215,
+   "arena": 0.408301,
    "arena_ci": [
-    0.4023,
-    0.42913
+    0.39525,
+    0.42223
    ],
    "rank_set": [
     19,
@@ -637,12 +637,12 @@
      0.43924
     ],
     "telephony": [
-     0.49639,
-     0.52984
+     0.48432,
+     0.51761
     ],
     "callcenter": [
-     0.73321,
-     0.7634
+     0.62967,
+     0.66291
     ]
    }
   }

@@ -53,10 +53,12 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [x] Unintelligible babble (8–16 far-field talkers from a disjoint pool)
 - [x] SNR sweep (20/10/5/0/−5 dB × noise types) and its summaries: SNR₅₀, SNR×2, WER over 0–20 dB
 - [x] Hallucination set v2 (network tones, DTMF, office, environment, non-target speech) and padded utterances
-- [ ] Build the v2 conditions and run the models on them; competing-talker condition; hold music, vocal sounds
+- [x] Build the v2 conditions and run every board model on them (2026-10-20); the v2 Arena's phone tracks
+      now use chain v2
+- [ ] Competing-talker condition; hold music, vocal sounds
 - [ ] Uplink noise suppression / AGC artefacts, jitter-buffer warping, measured room and handset responses
 - [ ] Real-channel validation set by re-transmission (2G/3G, VoLTE, WhatsApp, SIP, landline, handset);
-      then revisit the simulated tracks' weight and move the Arena to the chain-v2 conditions
+      then revisit the simulated tracks' weight
 - [ ] Real Arabic call-center speech (LDC CTS builder, commissioned role-play calls, partners)
 - [ ] Stereo call (agent + customer) long-form evaluation; streaming latency track
 

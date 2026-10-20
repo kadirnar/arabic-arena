@@ -218,7 +218,8 @@ degraded:
   callcenter:
     from: [fleurs_ar, cv18_ar, mgb2, sada, casablanca, mgb3_egy]
     n: 300
-  # ---- degradation chain v2 (sttarena/degrade/chain_v2.py): new conditions, not in the Arena score ------
+  # ---- degradation chain v2 (sttarena/degrade/chain_v2.py): telephony_v2 and callcenter_v2 are the v2 Arena's
+  # phone tracks (scoring.v2.condition_tracks); sweep and padded are reported per group --------------------
   # `version: 2` builds with chain v2 (default 1: the published sets above; AMR-NB and Opus rows depend on the
   # ffmpeg build, see METHODOLOGY); `chain` names the v2 chain; `group_by` makes the runner score each value of
   # these meta.degradation fields separately.
@@ -284,3 +285,7 @@ scoring:
       telephony: {weight: 0.1}
       callcenter: {weight: 0.1}
     set_tracks: {nadi_robust: bandlimited}  # clean-condition track moves; a track without a weight is not in the Arena
+    # Since 2026-10-20 (every ranked model has results on them) the v2 Arena's phone tracks take the chain-v2
+    # conditions; the v1 chain moves to unweighted tracks. The v1 board keeps the v1 chain.
+    condition_tracks: {telephony: telephony_v1, callcenter: callcenter_v1, telephony_v2: telephony,
+                       callcenter_v2: callcenter}

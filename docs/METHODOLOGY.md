@@ -80,8 +80,9 @@ fleurs_ar telephony: every AMR-NB and Opus row, and no G.711, G.726 or GSM-FR ro
 therefore runs on the published Hub copies where they exist; mgb2, casablanca and mgb3_egy, which
 cannot be re-hosted, were rebuilt with that ffmpeg for the 2026-10 re-run.
 
-**Chain v2** (`version: 2` conditions, [`sttarena/degrade/chain_v2.py`](../sttarena/degrade/chain_v2.py);
-not in the Arena score, reported per group):
+**Chain v2** (`version: 2` conditions, [`sttarena/degrade/chain_v2.py`](../sttarena/degrade/chain_v2.py)):
+`telephony_v2` and `callcenter_v2` are the v2 Arena's telephony and call-center tracks since
+2026-10-20; the SNR sweep and the padded clips are reported per group:
 
 | Condition | What it builds |
 |---|---|
@@ -196,9 +197,10 @@ From the headline alignment of every utterance:
   against real calls: on the English suite, simulated-telephony WER adds no information about WER on
   real telephone sets once clean WER is known (partial Spearman 0.03, 10 models). Simulated audio is
   32 % of the v2 Arena (52.5 % with the v1 weights). `nadi_robust` (Casablanca audio band-limited to
-  4 kHz, partly the same utterances as `casablanca`) is scored but not weighted. The telephony and
-  call-center tracks keep the v1 chain until every ranked model has results on the chain-v2
-  conditions. A geometric mean is scale-free per set: a 10 % relative gain counts the same on FLEURS
+  4 kHz, partly the same utterances as `casablanca`) is scored but not weighted. Since 2026-10-20,
+  when every ranked model had results on them, the telephony and call-center tracks take the chain-v2
+  conditions (`telephony_v2`, `callcenter_v2`; suite `scoring.v2.condition_tracks`); the v1 board
+  keeps the v1 chain. A geometric mean is scale-free per set: a 10 % relative gain counts the same on FLEURS
   (4.6 → 4.1) as on MGB-5 (46 → 41). With the arithmetic mean the high-WER call-center sets carried
   about 34 % of the ranking signal for a nominal 20 %. The board shows the **effective weights**
   (each track's share of the between-model spread) and a leave-one-set-out stability check.

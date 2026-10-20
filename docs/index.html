@@ -206,7 +206,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Arena</b>: <span id="weights"></span>.</li>
       <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
-      <li><b>Telephony</b>: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. <b>Call-center</b> adds babble, office or street noise and reverb at the caller before that channel.</li>
+      <li><b>Telephony</b>: v1 board: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. v2 board: chain v2, an A-law-first MENA codec mix with AMR-WB, Opus and G.722 paths, tandem coding to A-law and losses on the encoded frames. <b>Call-center</b> adds noise and a room at the caller before that channel (v2: a handset room and unintelligible babble).</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one NVIDIA A10 (24 GB).</li>
       <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and fine-tunes with gated weights are listed as unranked references.</li>
     </ul>
@@ -408,14 +408,16 @@ function drawScatter() {
 // ---- dumbbell: clean -> telephony -> callcenter on the same source sets --------------------
 function drawDumbbell() {
   const box = document.getElementById("dumbbell"); box.replaceChildren();
-  const d = state.data, keys = (d.tracks.telephony || []).filter((k) => k.endsWith("/telephony"));
+  // the v2 board's phone tracks are the chain-v2 conditions; the v1 board keeps the v1 chain
+  const d = state.data, v2 = isV2() && d.v2?.tracks?.telephony, tel = v2 ? "telephony_v2" : "telephony";
+  const keys = ((v2 ? d.v2.tracks.telephony : d.tracks.telephony) || []).filter((k) => k.endsWith("/" + tel));
   const sources = keys.map((k) => k.split("/")[0]);
   const rows = d.models.map((m) => {
     const get = (cond) => {
       const v = sources.map((s) => setVal(m, `${s}/${cond}`));
       return v.every((x) => x != null) ? v.reduce((a, b) => a + b, 0) / v.length : null;
     };
-    return { m, clean: get("clean"), tel: get("telephony"), cc: get("callcenter") };
+    return { m, clean: get("clean"), tel: get(tel), cc: get(v2 ? "callcenter_v2" : "callcenter") };
   }).filter((r) => r.clean != null && r.tel != null && r.cc != null).sort((a, b) => a.cc - b.cc);
   if (!rows.length) { h("div", "No telephony results yet.", box, "empty"); return; }
   const W = 520, L = 190, R = 16, T = 4, row = 22, H = T + rows.length * row + 26;
