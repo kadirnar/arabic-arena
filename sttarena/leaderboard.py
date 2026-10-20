@@ -338,11 +338,17 @@ def to_markdown_v2(lb: dict) -> str:
             "Strict (L1)", "Arithmetic", "Real audio", "Zero-shot", "Exposure", "Halluc. ≥3 words", "Terms missed",
             "v1 Arena", "RTFx"]
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
-    for i, r in enumerate(rows, 1):
+    # references with a complete v2 Arena (gated or private weights) are listed in place but not ranked
+    refs = [r for r in lb["models"] if r.get("kind", "open") not in ("open", "api") and r.get("v2", {}).get("arena") is not None]
+    rank = 0
+    for r in sorted(rows + refs, key=lambda r: r["v2"]["arena"]):
         v = r["v2"]
-        mark = " †" if v["exposure"] else ""
+        ref = r.get("kind", "open") != "open"
+        rank += not ref
+        mark = (" †" if v["exposure"] else "") + (f" *({r['kind']} weights, unranked)*" if ref else "")
+        name = r["model"] if r.get("kind") == "private" else f"[{r['model']}](https://huggingface.co/{r['hf_id']})"
         ci, rs = v.get("arena_ci"), v.get("rank_set")
-        cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']}){mark}",
+        cells = ["—" if ref else str(rank), f"{name}{mark}",
                  f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(v['arena'])}**",
                  f"{_pct(ci[0])}–{_pct(ci[1])}" if ci else "—",
                  ("—" if not rs else str(rs[0]) if rs[0] == rs[1] else f"{rs[0]}–{rs[1]}"), _pct(v["arena_cer"]),

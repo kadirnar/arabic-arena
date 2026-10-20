@@ -337,6 +337,13 @@ to 16 points (cohere-transcribe-arabic-07-2026: 33.1 → 24.2), consistent with 
 sitting in a handset-distance room with unintelligible babble instead of v1's extreme far-field room
 and intelligible talkers. Every v2 Arena score falls by 0.5–0.9 points.
 
+**The 24-set board (same evening).** Twelve more sets (§9) make the board harder: the leader's v2 Arena
+rises from 14.25 to 19.25 and the top four keep their order (cohere-transcribe-arabic-07-2026,
+audar-asr-v1-turbo, voxtral-mini-4b-realtime-arabic, nvidia-fastconformer-ar-pc). The Arabic-STT
+fine-tunes, now run on every set, come out ahead of every ranked model as unranked references (soup70 17.12)
+and also on the zero-shot Arena over the sets no ranked model trained on (22.2 against 26.9), but write
+three or more words on 68–88 % of the noise-only clips.
+
 ## Sources (selected)
 
 - Ali, Magdy, Bell, Renals — Multi-reference WER for evaluating ASR for languages with no orthographic
