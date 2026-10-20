@@ -58,6 +58,13 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar"),
        notes="Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); "
              "same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences"),
+    _M("arabic-stt-qwen3-asr-1.7b-run6b-soup70", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run6b-soup70", 2.04,
+       "private weights", kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar"),
+       notes="Arabic-STT run6b-soup70: weight average of 0.7 x run 6b (step 10,000) and 0.3 x run 5 (step 15,000), "
+             "no further training; private weights. Trained on the train splits of MASC and Common Voice and on "
+             "MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS "
+             "ar_eg test sentences)"),
     _M("qwen3-asr-1.7b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-1.7B-hf", 2.04, "Apache-2.0", batch_size=32),
     _M("qwen3-asr-0.6b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-0.6B-hf", 0.94, "Apache-2.0", batch_size=32),
     # --- Cohere Transcribe --------------------------------------------------------------------

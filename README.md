@@ -148,54 +148,56 @@ These models are not on the ranked board above: the board ranks open-weight mode
 - `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA/MGB-3 train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†). One of its training streams also holds 20 FLEURS ar_eg test sentences (37 of the 428 fleurs_ar rows), so FLEURS is in-domain too; that stream's labels come from `soniox-stt-async-v5`.
 - `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 3 continued twice with more call, dialect and code-switching data, so it has the same in-domain sets (CV18, MASC, MGB-2, SADA, MGB-3 and the 20 FLEURS test sentences) and was also trained on clips of the lahgtna-v3-small test split (†).
 - `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 5's data trained from the base model, so it has the same in-domain sets as run 5 (†).
+- `arabic-stt-qwen3-asr-1.7b-run6b-soup70`: a weight average (model soup) of two Qwen3-ASR-1.7B fine-tunes, 0.7 × run 6b and 0.3 × run 5, with no further training; its weights are private (not downloadable). Run with the same backend and settings as `qwen3-asr-1.7b`. Run 6b was trained on the train splits of MASC and Common Voice and on MGB-2/SADA train rows; the run-5 share carries run 5's in-domain sets (†).
 
 They were run on the 15 sets that are re-hosted on the Hub; the other sets need gated sources, so they have no Arena score. For a like-for-like view, the table scores every model on those same sets: track means over the re-hosted sets, combined with the v1 Arena weights (the v1 scorer: Soniox's hypotheses were not kept, so it has no v2 score). Subset WER v2 applies the v2 Arena formula to the same sets (phone tracks on chain v2). † = trained on at least one of these sets.
 
 | # | Model | Kind | **Subset WER** | Subset WER v2 | Clean | Noisy | Code-switch | Telephony | Call-center |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | **arabic-stt-qwen3-asr-1.7b-run5** † | gated weights | **16.42** | 10.10 | 10.79 | 15.99 | 17.28 | 15.27 | 27.32 |
-| 2 | **arabic-stt-qwen3-asr-1.7b-run5base** † | gated weights | **17.62** | 10.89 | 11.81 | 16.90 | 19.64 | 16.05 | 28.91 |
-| 3 | **arabic-stt-qwen3-asr-1.7b** † | gated weights | **18.71** | 10.80 | 10.87 | 23.48 | 17.18 | 15.61 | 32.71 |
-| 4 | cohere-transcribe-arabic-07-2026 | open | **20.08** | 9.79 | 12.48 | 20.81 | 17.75 | 18.30 | 35.78 |
-| 5 | **soniox-stt-async-v5** | closed API | **20.65** | — | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
-| 6 | audar-asr-v1-turbo | open | **22.44** | 11.83 | 11.75 | 22.52 | 15.34 | 20.05 | 47.05 |
-| 7 | nvidia-fastconformer-ar-pc † | open | **24.90** | 13.28 | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
-| 8 | lemura-arabic-asr-qwen3 † | open | **27.42** | 16.76 | 16.20 | 26.29 | 23.25 | 24.58 | 52.81 |
-| 9 | voxtral-mini-4b-realtime-arabic | open | **27.54** | 15.58 | 15.49 | 27.41 | 17.58 | 27.12 | 54.12 |
-| 10 | lemura-arabic-asr-lite † | open | **28.27** | 17.88 | 15.49 | 27.46 | 43.77 | 24.35 | 47.42 |
-| 11 | qwen3-asr-1.7b | open | **29.76** | 18.68 | 19.22 | 30.18 | 21.00 | 29.48 | 52.56 |
-| 12 | cohere-transcribe-03-2026 | open | **30.88** | 16.14 | 17.43 | 26.37 | 49.45 | 30.26 | 49.15 |
-| 13 | audar-asr-v1-flash | open | **32.75** | 20.55 | 21.21 | 34.38 | 22.65 | 32.18 | 57.36 |
-| 14 | qwen3-asr-arabic-ksa | open | **35.81** | 22.53 | 23.72 | 37.50 | 23.08 | 34.48 | 63.39 |
-| 15 | voxtral-mini-4b-realtime-2602 | open | **35.83** | 21.24 | 21.31 | 34.70 | 23.76 | 37.47 | 66.46 |
-| 16 | gemma-4-e2b-it | open | **36.77** | 20.05 | 19.43 | 33.90 | 25.39 | 33.04 | 78.67 |
-| 17 | qwen3-asr-arabic-uae | open | **37.50** | 23.73 | 25.53 | 38.27 | 23.86 | 37.12 | 65.05 |
-| 18 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 27.88 | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
-| 19 | whisper-large-v3 | open | **39.22** | 19.82 | 25.60 | 40.53 | 28.35 | 40.04 | 66.70 |
-| 20 | qwen3-asr-0.6b | open | **41.10** | 29.68 | 29.22 | 39.93 | 28.37 | 42.80 | 67.40 |
-| 21 | qwencleo-asr | open | **43.88** | 26.48 | 27.52 | 45.10 | 28.80 | 40.44 | 82.60 |
-| 22 | whisper-large-v3-turbo | open | **47.75** | 21.66 | 31.72 | 41.63 | 24.50 | 46.71 | 93.03 |
-| 23 | moulsot-v0.3 | open | **57.50** | 37.05 | 36.72 | 55.24 | 41.68 | 55.98 | 105.01 |
+| 1 | **arabic-stt-qwen3-asr-1.7b-run6b-soup70** † | private weights | **16.37** | 10.07 | 10.70 | 15.94 | 17.83 | 15.05 | 27.23 |
+| 2 | **arabic-stt-qwen3-asr-1.7b-run5** † | gated weights | **16.42** | 10.10 | 10.79 | 15.99 | 17.28 | 15.27 | 27.32 |
+| 3 | **arabic-stt-qwen3-asr-1.7b-run5base** † | gated weights | **17.62** | 10.89 | 11.81 | 16.90 | 19.64 | 16.05 | 28.91 |
+| 4 | **arabic-stt-qwen3-asr-1.7b** † | gated weights | **18.71** | 10.80 | 10.87 | 23.48 | 17.18 | 15.61 | 32.71 |
+| 5 | cohere-transcribe-arabic-07-2026 | open | **20.08** | 9.79 | 12.48 | 20.81 | 17.75 | 18.30 | 35.78 |
+| 6 | **soniox-stt-async-v5** | closed API | **20.65** | — | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
+| 7 | audar-asr-v1-turbo | open | **22.44** | 11.83 | 11.75 | 22.52 | 15.34 | 20.05 | 47.05 |
+| 8 | nvidia-fastconformer-ar-pc † | open | **24.90** | 13.28 | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
+| 9 | lemura-arabic-asr-qwen3 † | open | **27.42** | 16.76 | 16.20 | 26.29 | 23.25 | 24.58 | 52.81 |
+| 10 | voxtral-mini-4b-realtime-arabic | open | **27.54** | 15.58 | 15.49 | 27.41 | 17.58 | 27.12 | 54.12 |
+| 11 | lemura-arabic-asr-lite † | open | **28.27** | 17.88 | 15.49 | 27.46 | 43.77 | 24.35 | 47.42 |
+| 12 | qwen3-asr-1.7b | open | **29.76** | 18.68 | 19.22 | 30.18 | 21.00 | 29.48 | 52.56 |
+| 13 | cohere-transcribe-03-2026 | open | **30.88** | 16.14 | 17.43 | 26.37 | 49.45 | 30.26 | 49.15 |
+| 14 | audar-asr-v1-flash | open | **32.75** | 20.55 | 21.21 | 34.38 | 22.65 | 32.18 | 57.36 |
+| 15 | qwen3-asr-arabic-ksa | open | **35.81** | 22.53 | 23.72 | 37.50 | 23.08 | 34.48 | 63.39 |
+| 16 | voxtral-mini-4b-realtime-2602 | open | **35.83** | 21.24 | 21.31 | 34.70 | 23.76 | 37.47 | 66.46 |
+| 17 | gemma-4-e2b-it | open | **36.77** | 20.05 | 19.43 | 33.90 | 25.39 | 33.04 | 78.67 |
+| 18 | qwen3-asr-arabic-uae | open | **37.50** | 23.73 | 25.53 | 38.27 | 23.86 | 37.12 | 65.05 |
+| 19 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 27.88 | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
+| 20 | whisper-large-v3 | open | **39.22** | 19.82 | 25.60 | 40.53 | 28.35 | 40.04 | 66.70 |
+| 21 | qwen3-asr-0.6b | open | **41.10** | 29.68 | 29.22 | 39.93 | 28.37 | 42.80 | 67.40 |
+| 22 | qwencleo-asr | open | **43.88** | 26.48 | 27.52 | 45.10 | 28.80 | 40.44 | 82.60 |
+| 23 | whisper-large-v3-turbo | open | **47.75** | 21.66 | 31.72 | 41.63 | 24.50 | 46.71 | 93.03 |
+| 24 | moulsot-v0.3 | open | **57.50** | 37.05 | 36.72 | 55.24 | 41.68 | 55.98 | 105.01 |
 
 Per-set WER (%, v1 scorer) of the references next to the top two ranked models:
 
-| Set | soniox-stt-async-v5 | arabic-stt-qwen3-asr-1.7b | arabic-stt-qwen3-asr-1.7b-run5 | arabic-stt-qwen3-asr-1.7b-run5base | cohere-transcribe-arabic-07-2026 | audar-asr-v1-turbo |
-|---|---|---|---|---|---|---|
-| cv18_ar/callcenter | 45.70 | 32.58 | **24.25** | 25.45 | 29.05 | 39.57 |
-| cv18_ar/clean | 9.40 | 7.67 | 7.18 | 7.87 | **4.73** | 7.67 |
-| cv18_ar/noisy | 20.12 | 24.85 | **11.46** | 12.13 | 13.72 | 17.52 |
-| cv18_ar/telephony | 15.46 | 10.86 | 10.19 | 10.33 | **8.99** | 13.86 |
-| fleurs_ar/callcenter | 14.68 | 18.82 | **14.66** | 15.33 | 15.56 | 28.18 |
-| fleurs_ar/clean | **4.23** | 5.82 | 5.68 | 5.84 | 4.94 | 5.77 |
-| fleurs_ar/noisy | 6.93 | 9.59 | 7.07 | 6.88 | **6.01** | 8.53 |
-| fleurs_ar/telephony | 5.97 | 7.11 | 6.79 | 6.93 | **5.72** | 8.58 |
-| masc_clean/clean | 5.46 | 5.76 | 5.50 | 6.20 | **4.33** | 5.74 |
-| masc_noisy/clean | 16.65 | 16.15 | 15.25 | 15.26 | **15.23** | 17.93 |
-| mixat_cs/clean | 16.80 | 17.18 | 17.28 | 19.64 | 17.75 | **15.34** |
-| sada/callcenter | 52.20 | 46.73 | **43.05** | 45.93 | 62.73 | 73.40 |
-| sada/clean | 31.05 | **24.21** | 24.81 | 27.32 | 35.93 | 27.82 |
-| sada/noisy | 40.61 | 43.33 | **30.17** | 33.34 | 48.29 | 46.12 |
-| sada/telephony | 37.29 | 28.86 | **28.81** | 30.90 | 40.18 | 37.70 |
+| Set | soniox-stt-async-v5 | arabic-stt-qwen3-asr-1.7b | arabic-stt-qwen3-asr-1.7b-run5 | arabic-stt-qwen3-asr-1.7b-run5base | arabic-stt-qwen3-asr-1.7b-run6b-soup70 | cohere-transcribe-arabic-07-2026 | audar-asr-v1-turbo |
+|---|---|---|---|---|---|---|---|
+| cv18_ar/callcenter | 45.70 | 32.58 | 24.25 | 25.45 | **23.72** | 29.05 | 39.57 |
+| cv18_ar/clean | 9.40 | 7.67 | 7.18 | 7.87 | 7.00 | **4.73** | 7.67 |
+| cv18_ar/noisy | 20.12 | 24.85 | **11.46** | 12.13 | 11.53 | 13.72 | 17.52 |
+| cv18_ar/telephony | 15.46 | 10.86 | 10.19 | 10.33 | 9.46 | **8.99** | 13.86 |
+| fleurs_ar/callcenter | 14.68 | 18.82 | 14.66 | 15.33 | **14.29** | 15.56 | 28.18 |
+| fleurs_ar/clean | **4.23** | 5.82 | 5.68 | 5.84 | 5.39 | 4.94 | 5.77 |
+| fleurs_ar/noisy | 6.93 | 9.59 | 7.07 | 6.88 | 6.95 | **6.01** | 8.53 |
+| fleurs_ar/telephony | 5.97 | 7.11 | 6.79 | 6.93 | 6.50 | **5.72** | 8.58 |
+| masc_clean/clean | 5.46 | 5.76 | 5.50 | 6.20 | 5.64 | **4.33** | 5.74 |
+| masc_noisy/clean | 16.65 | 16.15 | 15.25 | 15.26 | 15.53 | **15.23** | 17.93 |
+| mixat_cs/clean | 16.80 | 17.18 | 17.28 | 19.64 | 17.83 | 17.75 | **15.34** |
+| sada/callcenter | 52.20 | 46.73 | **43.05** | 45.93 | 43.68 | 62.73 | 73.40 |
+| sada/clean | 31.05 | **24.21** | 24.81 | 27.32 | 24.76 | 35.93 | 27.82 |
+| sada/noisy | 40.61 | 43.33 | 30.17 | 33.34 | **29.78** | 48.29 | 46.12 |
+| sada/telephony | 37.29 | 28.86 | **28.81** | 30.90 | 29.18 | 40.18 | 37.70 |
 <!-- API:ar:END -->
 
 Hardware: 1× NVIDIA A10 (24 GB) for every model on the board (re-run 2026-10-19/20, so RTFx is

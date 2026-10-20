@@ -151,6 +151,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <span class="badge b-open">Open</span> open weights
       <span class="badge b-api">API</span> closed API
       <span class="badge b-gated">Gated</span> gated weights (on the Hub, access on request)
+      <span class="badge b-private">Private</span> private weights (not downloadable)
       <span>† in-domain</span>
     </div>
   </div>
@@ -558,8 +559,9 @@ function drawTable() {
       h("span", rankText(rr), rc, "ci").title = isV2() ? "95% simultaneous rank confidence set" : "95% bootstrap range of the Arena rank";
     }
     const td = h("td", null, row, "model");
-    const a = h("a", m.model, td); a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`;
-    a.target = "_blank"; a.rel = "noopener";
+    const a = h("a", m.model, td);
+    if ((m.kind || "open") === "private") a.title = "Private weights: not downloadable";  // no link to a page others cannot open
+    else { a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`; a.target = "_blank"; a.rel = "noopener"; }
     const info = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
       + (m.in_domain?.length ? ` Trained on the train split of: ${m.in_domain.join(", ")}.` : "");
     if (m.in_domain?.length) h("span", "†", td, "dag").title = info;
