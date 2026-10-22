@@ -41,7 +41,9 @@ class Qwen3ASRHF(ASRModel):
         super().__init__(spec, device)
         from transformers import AutoModelForMultimodalLM, AutoProcessor
 
-        self.processor = AutoProcessor.from_pretrained(spec.hf_id)
+        # kwargs.processor: take the processor (chat template) from another repo, e.g. the base model when a
+        # fine-tune saved a template that drops the final message
+        self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
         self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):

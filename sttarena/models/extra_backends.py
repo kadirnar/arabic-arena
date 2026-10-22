@@ -108,7 +108,11 @@ class FunASRMLT(ASRModel):
         sys.path.insert(0, str(src))
         from model import FunASRNano
 
-        self.model, self.kwargs = FunASRNano.from_pretrained(model=spec.hf_id, hub="hf", device=f"{device}:0")
+        from huggingface_hub import snapshot_download
+
+        # a local copy: funasr's own hub="hf" path did not resolve the repo and treated its id as a model type
+        local = snapshot_download(spec.hf_id)
+        self.model, self.kwargs = FunASRNano.from_pretrained(model=local, device=f"{device}:0")
         self.model.eval()
         self.kwargs["llm_kwargs"] = {"do_sample": False}
 
