@@ -46,6 +46,8 @@ def main(argv: list[str] | None = None) -> None:
     r.add_argument("--limit", type=int, help="smoke test on the first N rows (not saved)")
     r.add_argument("--batch-size", type=int)
     r.add_argument("--force", action="store_true")
+    r.add_argument("--retry-failed", action="store_true",
+                   help="re-transcribe only the utterances an earlier run marked failed, then re-score their sets")
 
     lb = sub.add_parser("leaderboard", help="aggregate results into leaderboard files")
     lb.add_argument("--suite", "-s", nargs="+", default=["arabic"])
@@ -62,7 +64,7 @@ def main(argv: list[str] | None = None) -> None:
         from .runner import run
 
         for m in args.model:
-            run(m, args.suite, args.sets, args.conditions, args.limit, args.batch_size, args.force)
+            run(m, args.suite, args.sets, args.conditions, args.limit, args.batch_size, args.force, args.retry_failed)
             _free_gpu()
     elif args.cmd == "leaderboard":
         from .leaderboard import build

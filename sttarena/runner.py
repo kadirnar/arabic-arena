@@ -64,21 +64,39 @@ def _is_oom(e: Exception) -> bool:
     return "out of memory" in str(e).lower()
 
 
+def _free_cuda() -> None:
+    import gc
+
+    gc.collect()
+    try:
+        import torch
+
+        torch.cuda.empty_cache()
+    except ImportError:
+        pass
+
+
 def _transcribe(model, batch: list, lang: str) -> list[str]:
-    """Transcribe a batch; on CUDA OOM, halve it and retry instead of losing the whole batch."""
+    """Transcribe a batch; on CUDA OOM, halve it and retry instead of losing the whole batch. The retry runs
+    after the except block: inside it, the OOM traceback keeps the failed call's tensors alive, and every
+    retry ran out of memory again (whole batches of dialect fine-tunes in repetition loops were lost)."""
     try:
         return model.transcribe(batch, lang)
     except Exception as e:
         if not _is_oom(e) or len(batch) == 1:
             raise
-        try:
-            import torch
+    _free_cuda()
+    h = len(batch) // 2
+    return _transcribe(model, batch[:h], lang) + _transcribe(model, batch[h:], lang)
 
-            torch.cuda.empty_cache()
-        except ImportError:
-            pass
-        h = len(batch) // 2
-        return _transcribe(model, batch[:h], lang) + _transcribe(model, batch[h:], lang)
+
+def _transcribe_one(model, row: dict, lang: str) -> str | None:
+    try:
+        return _transcribe(model, [row["audio"]], lang)[0]
+    except Exception as e:  # noqa: BLE001
+        print(f"[failed] {row['id']}: {type(e).__name__}: {e}")
+    _free_cuda()
+    return None
 
 
 def transcribe_rows(model, rows: list[dict], lang: str, bs: int, desc: str) -> tuple[list[str], list[bool], float]:
@@ -90,17 +108,14 @@ def transcribe_rows(model, rows: list[dict], lang: str, bs: int, desc: str) -> t
         idx = order[start : start + bs]
         cuda_sync()
         t0 = time.perf_counter()
+        out = None
         try:
             out = _transcribe(model, [rows[i]["audio"] for i in idx], lang)
         except Exception as e:  # retry one by one so a single bad clip does not sink the batch
             print(f"[error] {desc} batch {start}: {type(e).__name__}: {e}; retrying one by one")
-            out = []
-            for i in idx:
-                try:
-                    out += _transcribe(model, [rows[i]["audio"]], lang)
-                except Exception as e1:  # noqa: BLE001
-                    print(f"[failed] {rows[i]['id']}: {type(e1).__name__}: {e1}")
-                    out.append(None)
+        if out is None:  # outside the except block, so the failed batch's memory can be released first
+            _free_cuda()
+            out = [_transcribe_one(model, rows[i], lang) for i in idx]
         cuda_sync()
         elapsed += time.perf_counter() - t0
         for i, h in zip(idx, out):
@@ -176,7 +191,10 @@ def write_predictions(path, scored: SetScore) -> None:
 
 
 def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditions: list[str] | None = None,
-        limit: int | None = None, batch_size: int | None = None, force: bool = False) -> dict:
+        limit: int | None = None, batch_size: int | None = None, force: bool = False,
+        retry_failed: bool = False) -> dict:
+    """Run a model over a suite (cached per set). `retry_failed`: only re-transcribe the utterances an
+    earlier run marked failed (e.g. out of memory), then re-score their sets."""
     suite = Suite.load(suite_name)
     lang = suite.language
     spec = get_spec(model_key)
@@ -194,6 +212,10 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
         if (sets and name not in sets) or (conditions and cond not in conditions):
             continue
         key = f"{name}/{cond}"
+        if retry_failed:
+            if summary["results"].get(key, {}).get("num_failed"):
+                todo.append((name, cond, track, key))
+            continue
         if key in summary["results"] and not force and limit is None:
             continue
         if not set_path(lang, name, cond).exists():
@@ -219,7 +241,21 @@ def run(model_key: str, suite_name: str, sets: list[str] | None = None, conditio
         for r in rows:
             if r["sampling_rate"] != SR:  # telephony audio is 8 kHz; models consume 16 kHz
                 r["audio"] = soxr.resample(r["audio"], r["sampling_rate"], SR).astype(np.float32)
-        hyps, failed, elapsed = transcribe_rows(model, rows, lang, bs, f"{model_key} {key}")
+        if retry_failed:
+            preds = {p["id"]: p for p in map(json.loads, (pred_dir / f"{name}__{cond}.jsonl").open())}
+            hyps = [preds.get(r["id"], {}).get("hyp", "") for r in rows]
+            failed = [r["id"] not in preds or bool(preds[r["id"]].get("diag", {}).get("failed")) for r in rows]
+            cuda_sync()
+            t0 = time.perf_counter()
+            for k, r in enumerate(rows):
+                if failed[k]:
+                    h = _transcribe_one(model, r, lang)
+                    hyps[k], failed[k] = _clean_hyp(h or ""), h is None
+            cuda_sync()
+            # the original run's time plus the retries, so RTFx still covers every utterance
+            elapsed = (summary["results"][key].get("seconds") or 0) + time.perf_counter() - t0
+        else:
+            hyps, failed, elapsed = transcribe_rows(model, rows, lang, bs, f"{model_key} {key}")
         scored = score_rows(suite, name, rows, hyps, failed, cond)
         res = result_entry(scored, rows, name, cond, track, elapsed, limit)
         if track == "hallucination":
