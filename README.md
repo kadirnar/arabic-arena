@@ -55,42 +55,43 @@ telephony and call-center channels**, and averages them into one Arena score, in
 | 15 | [whisper-large-v3-egyptian-arabic](https://huggingface.co/AbdelrahmanHassan/whisper-large-v3-egyptian-arabic) † | 1.54 | **30.48** | 29.44–31.40 | 14–18 | 16.08 | 28.63 | 41.16 | 24.16 | 27.83 | 41.21 | 32.28 | 36.70 | 30.48 | 39.04 | 6% | 54.67 | 28.40 | 58.78 | 28.8 |
 | 16 | [lemura-arabic-asr-lite](https://huggingface.co/lemuralabs/lemura-arabic-asr-lite) † | 0.11 | **30.85** | 29.86–31.72 | 14–19 | 17.15 | 28.42 | 54.91 | 23.89 | 23.97 | 36.99 | 32.37 | 37.31 | 32.42 | 44.46 | 23% | 9.33 | 28.79 | 42.52 | 914.2 |
 | 17 | [qwen3-asr-1.7b](https://huggingface.co/Qwen/Qwen3-ASR-1.7B-hf) | 2.04 | **30.98** | 30.01–31.84 | 14–20 | 15.25 | 29.55 | 41.74 | 23.65 | 28.35 | 41.10 | 32.65 | 37.15 | 31.23 | 39.00 | — | 37.33 | 24.84 | 44.09 | 75.9 |
-| 18 | [whisper-large-v3-turbo-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal-v2) | 0.81 | **31.38** | 30.33–32.34 | 15–21 | 15.91 | 28.66 | 36.83 | 28.53 | 30.66 | 45.81 | 33.59 | 35.94 | 30.18 | 36.59 | — | 34.33 | 31.21 | 76.49 | 18.7 |
+| 18 | [whisper-large-v3-turbo-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal-v2) | 0.81 | **31.38** | 30.33–32.34 | 15–22 | 15.91 | 28.66 | 36.83 | 28.53 | 30.66 | 45.81 | 33.59 | 35.94 | 30.18 | 36.59 | — | 34.33 | 31.21 | 76.49 | 18.7 |
 | 19 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **31.60** | 30.53–32.52 | 16–21 | 17.29 | 29.77 | 43.82 | 24.53 | 28.73 | 41.92 | 33.24 | 38.04 | 31.79 | 40.76 | — | 54.33 | 28.55 | 53.97 | 36.1 |
-| 20 | [qwen3-asr-1.7b-arabic-dialectal-v2](https://huggingface.co/oddadmix/qwen3-asr-1.7b-arabic-dialectal-v2) | 2.04 | **31.93** | 30.94–32.81 | 18–23 | 16.53 | 30.20 | 41.17 | 25.13 | 30.83 | 42.67 | 33.92 | 37.27 | 31.68 | 38.38 | — | 27.33 | 23.98 | 45.39 | 25.0 |
-| 21 | [egytalk-asr-v2](https://huggingface.co/NAMAA-Space/EgypTalk-ASR-v2) † | 0.12 | **32.23** | 31.21–33.09 | 17–24 | 20.96 | 29.19 | 64.68 | 24.85 | 23.81 | 37.27 | 33.71 | 40.87 | 34.15 | 48.91 | 23% | 2.33 | 28.02 | 45.55 | 1402.0 |
-| 22 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **32.58** | 31.62–33.44 | 20–24 | 16.80 | 30.67 | 43.91 | 25.99 | 29.85 | 43.17 | 34.25 | 38.37 | 32.68 | 40.95 | — | 23.67 | 29.27 | 46.32 | 36.3 |
-| 23 | [confucius4-r2t2](https://huggingface.co/netease-youdao/Confucius4-R2T2) | 2.04 | **32.72** | 31.81–33.55 | 20–24 | 16.92 | 31.62 | 41.87 | 25.46 | 30.11 | 42.47 | 34.41 | 38.48 | 32.99 | 39.97 | — | 12.00 | 25.67 | 45.09 | 102.8 |
-| 24 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **33.47** | 32.46–34.49 | 21–26 | 20.63 | 31.05 | 40.25 | 28.17 | 32.52 | 49.19 | 35.07 | 39.48 | 32.45 | 40.87 | — | 7.67 | 30.24 | 48.84 | 20.0 |
-| 25 | [whisper-large-v3-turbo-arabic-dialectal](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal) | 0.81 | **34.58** | 33.55–35.55 | 24–28 | 16.82 | 32.16 | 39.70 | 31.29 | 33.81 | 48.09 | 36.70 | 38.72 | 33.51 | 39.74 | — | 47.33 | 36.02 | 48.32 | 22.1 |
-| 26 | [qwen3-asr-arabic-ksa](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-ksa) | 2.04 | **34.79** | 33.81–35.67 | 24–28 | 17.66 | 33.29 | 44.13 | 27.44 | 33.33 | 45.22 | 36.57 | 40.36 | 34.74 | 41.79 | — | 99.67 | 27.22 | 49.65 | 63.1 |
-| 27 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **35.27** | 34.17–36.27 | 25–34 | 19.25 | 33.56 | 44.92 | 28.55 | 32.61 | 46.74 | 36.86 | 41.41 | 35.52 | 45.30 | — | 71.00 | 41.79 | 70.04 | 78.7 |
-| 28 | [qwen3-asr-jordanian](https://huggingface.co/sarapd/Qwen3-ASR-1.7B_Jordanian_Dialect_Arabic) | 2.04 | **35.31** | 34.35–36.21 | 25–33 | 17.46 | 33.63 | 42.34 | 28.74 | 34.86 | 47.39 | 37.10 | 40.37 | 34.70 | 40.95 | — | 29.67 | 27.55 | 47.83 | 60.6 |
-| 29 | [qwen3-asr-arabic-uae](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-uae) | 2.04 | **36.06** | 35.08–36.96 | 28–34 | 18.53 | 34.39 | 45.55 | 29.02 | 34.21 | 47.01 | 37.82 | 41.48 | 35.97 | 43.05 | — | 100.00 | 28.56 | 50.91 | 85.7 |
-| 30 | [egyptian-arabic-wav2vec2-xlsr-53](https://huggingface.co/IbrahimAmin/egyptian-arabic-wav2vec2-xlsr-53) † | 0.32 | **36.11** | 35.07–37.01 | 27–34 | 18.63 | 31.89 | 55.06 | 29.84 | 33.38 | 51.40 | 38.04 | 43.05 | 35.45 | 47.93 | 20% | 6.00 | 32.42 | 50.84 | 226.1 |
-| 31 | [qwencleo-asr](https://huggingface.co/mohammedaly22/QwenCleo-ASR) | 2.04 | **36.13** | 35.25–36.93 | 27–35 | 18.51 | 34.37 | 41.24 | 32.18 | 34.25 | 47.78 | 38.02 | 41.72 | 35.36 | 42.23 | — | 97.00 | 30.40 | 54.42 | 34.2 |
-| 32 | [arabic-whisper-codeswitching](https://huggingface.co/MohamedRashad/Arabic-Whisper-CodeSwitching-Edition) | 1.54 | **36.15** | 35.23–36.98 | 27–35 | 19.22 | 35.20 | 37.69 | 31.95 | 34.89 | 48.36 | 38.34 | 41.09 | 35.38 | 42.15 | — | 66.00 | 38.90 | 57.25 | 36.2 |
-| 33 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **36.20** | 35.20–37.12 | 27–35 | 18.55 | 34.68 | 50.91 | 27.86 | 32.23 | 44.81 | 38.17 | 41.88 | 37.25 | 46.81 | — | 19.67 | 37.30 | 48.54 | 78.8 |
-| 34 | [moonshine-streaming-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-streaming-tiny-ar) | 0.03 | **36.27** | 35.25–37.20 | 27–35 | 19.61 | 32.91 | 46.21 | 33.19 | 33.49 | 50.78 | 37.89 | 41.68 | 35.10 | 43.71 | — | 54.33 | 34.05 | 60.12 | 832.8 |
-| 35 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **37.03** | 35.99–37.98 | 31–35 | 19.34 | 34.40 | 52.65 | 28.89 | 34.71 | 48.87 | 38.97 | 43.39 | 37.25 | 47.42 | — | 16.33 | 31.82 | 50.51 | 326.2 |
-| 36 | [whisper-levantine](https://huggingface.co/HebArabNlpProject/WhisperLevantine) | 1.54 | **38.28** | 37.33–39.19 | 36–38 | 18.05 | 36.73 | 48.85 | 31.66 | 35.70 | 46.54 | 40.70 | 42.21 | 38.55 | 45.41 | — | 58.67 | 36.47 | 49.32 | 7.6 |
-| 37 | [nemotron-3.5-asr-arabic-dialectal-v2](https://huggingface.co/oddadmix/nemotron-3.5-asr-arabic-dialectal-v2) | 0.64 | **38.32** | 37.37–39.25 | 36–38 | 18.96 | 35.35 | 46.08 | 34.03 | 38.08 | 52.28 | 40.01 | 42.52 | 37.22 | 44.00 | — | 18.00 | 33.98 | 50.00 | 332.5 |
-| 38 | [arabic-morocco-whisper-v3](https://huggingface.co/smerchi/Arabic-Morocco-Speech_To_Text) | 1.54 | **38.43** | 37.45–39.34 | 36–38 | 18.13 | 36.19 | 45.74 | 32.87 | 37.99 | 51.08 | 40.66 | 42.58 | 37.70 | 44.35 | — | 35.33 | 34.46 | 53.03 | 8.4 |
-| 39 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **42.30** | 41.36–43.22 | 39 | 20.70 | 40.34 | 50.85 | 34.85 | 42.18 | 54.54 | 43.83 | 46.59 | 41.85 | 48.67 | — | 30.67 | 38.83 | 54.18 | 73.5 |
-| 40 | [nemotron-3.5-asr-jordanian](https://huggingface.co/RamaBashar22/nemotron-3.5-asr-streaming-0.6b-jordanian) | 0.64 | **43.65** | 42.73–44.60 | 40–41 | 21.21 | 40.44 | 50.51 | 39.10 | 44.72 | 59.17 | 45.32 | 47.47 | 42.07 | 48.59 | — | 21.00 | 38.24 | 55.45 | 327.7 |
-| 41 | [whisper-large-v3-turbo-darija](https://huggingface.co/anaszil/whisper-large-v3-turbo-darija) | 0.81 | **44.19** | 43.08–45.26 | 40–41 | 20.50 | 41.48 | 51.66 | 39.73 | 43.59 | 57.02 | 46.10 | 47.56 | 43.36 | 49.64 | — | 53.67 | 45.27 | 62.65 | 88.4 |
-| 42 | [moulsot-v0.3](https://huggingface.co/atlasia/moulsot.v0.3) | 2.04 | **46.86** | 45.76–47.94 | 42–43 | 24.40 | 44.44 | 48.16 | 41.91 | 50.22 | 64.75 | 48.53 | 50.48 | 44.86 | 49.64 | — | 71.33 | 41.05 | 66.20 | 26.6 |
-| 43 | [voho-saudi-stt-small](https://huggingface.co/VohoAI/voho-saudi-stt-small) † | 0.24 | **47.92** | 46.96–48.89 | 42–45 | 23.36 | 45.71 | 51.43 | 43.74 | 48.84 | 61.41 | 49.73 | 50.66 | 46.68 | 52.66 | 9% | 65.00 | 49.23 | 69.90 | 38.2 |
-| 44 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **48.85** | 47.87–49.78 | 43–45 | 23.32 | 46.73 | 56.09 | 42.72 | 47.83 | 61.88 | 50.99 | 52.84 | 48.35 | 56.31 | — | 19.00 | 54.09 | 60.35 | 178.4 |
-| 45 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **49.03** | 48.03–50.02 | 43–45 | 27.09 | 47.21 | 58.18 | 40.85 | 47.97 | 61.57 | 50.20 | 52.87 | 48.79 | 55.84 | — | 69.00 | 42.90 | 74.26 | 8.1 |
-| 46 | [cs-egyptian-whisper-small](https://huggingface.co/IbrahimAmin/code-switched-egyptian-arabic-whisper-small) † | 0.24 | **51.49** | 50.65–52.36 | 46 | 24.68 | 49.62 | 56.71 | 46.53 | 50.42 | 63.70 | 52.98 | 54.87 | 50.80 | 57.74 | 9% | 85.33 | 55.04 | 67.36 | 42.6 |
-| 47 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) † | 0.96 | **56.55** | 55.58–57.48 | 47–48 | 25.23 | 54.37 | 73.55 | 46.46 | 53.59 | 65.81 | 58.27 | 60.74 | 57.53 | 66.61 | 9% | 32.67 | 50.92 | 66.77 | 89.2 |
-| 48 | [hubert-large-arabic-egyptian](https://huggingface.co/omarxadel/hubert-large-arabic-egyptian) † | 0.32 | **58.45** | 57.38–59.51 | 47–49 | 27.75 | 54.33 | 70.64 | 59.65 | 53.22 | 67.55 | 60.33 | 61.58 | 57.54 | 66.56 | 6% | 41.67 | 64.88 | 69.98 | 225.8 |
-| 49 | [moonshine-base-ar](https://huggingface.co/moonshine-ai/moonshine-base-ar) | 0.06 | **59.53** | 58.68–60.40 | 48–50 | 44.99 | 58.50 | 69.46 | 54.45 | 53.04 | 66.13 | 60.60 | 61.53 | 60.72 | 66.77 | — | 97.00 | 65.83 | 69.02 | 388.8 |
-| 50 | [moonshine-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-tiny-ar) | 0.03 | **60.10** | 59.27–60.94 | 49–50 | 43.31 | 57.03 | 70.20 | 56.78 | 57.33 | 70.69 | 61.04 | 62.41 | 59.50 | 65.78 | — | 74.00 | 55.21 | 71.03 | 611.3 |
-| 51 | [wav2vec2-large-xlsr-53-arabic](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-arabic) | 0.32 | **66.92** | 65.97–67.78 | 51 | 31.37 | 63.36 | 82.97 | 59.93 | 65.56 | 76.69 | 68.30 | 70.43 | 66.65 | 75.07 | — | 52.00 | 55.49 | 76.47 | 215.9 |
-| 52 | [wav2vec2-xlsr-moroccan-darija](https://huggingface.co/boumehdi/wav2vec2-large-xlsr-moroccan-darija) | 0.32 | **73.25** | 72.30–74.23 | 52 | 34.83 | 68.60 | 76.20 | 73.86 | 79.07 | 87.72 | 74.80 | 74.40 | 70.09 | 72.39 | — | 43.67 | 69.19 | 82.96 | 224.9 |
-| 53 | [wav2vec2-xlsr-53-levantine-arabic](https://huggingface.co/elgeish/wav2vec2-large-xlsr-53-levantine-arabic) | 0.32 | **92.40** | 92.12–92.68 | 53 | 52.21 | 89.92 | 96.71 | 92.50 | 94.15 | 96.82 | 93.04 | 92.63 | 91.39 | 93.40 | — | 45.33 | 92.49 | 97.13 | 232.1 |
+| 20 | [qwen3-asr-1.7b-arabic-dialectal-v2](https://huggingface.co/oddadmix/qwen3-asr-1.7b-arabic-dialectal-v2) | 2.04 | **31.93** | 30.94–32.81 | 18–24 | 16.53 | 30.20 | 41.17 | 25.13 | 30.83 | 42.67 | 33.92 | 37.27 | 31.68 | 38.38 | — | 27.33 | 23.98 | 45.39 | 25.0 |
+| 21 | [egytalk-asr-v2](https://huggingface.co/NAMAA-Space/EgypTalk-ASR-v2) † | 0.12 | **32.23** | 31.21–33.09 | 17–25 | 20.96 | 29.19 | 64.68 | 24.85 | 23.81 | 37.27 | 33.71 | 40.87 | 34.15 | 48.91 | 23% | 2.33 | 28.02 | 45.55 | 1402.0 |
+| 22 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **32.58** | 31.62–33.44 | 20–25 | 16.80 | 30.67 | 43.91 | 25.99 | 29.85 | 43.17 | 34.25 | 38.37 | 32.68 | 40.95 | — | 23.67 | 29.27 | 46.32 | 36.3 |
+| 23 | [confucius4-r2t2](https://huggingface.co/netease-youdao/Confucius4-R2T2) | 2.04 | **32.72** | 31.81–33.55 | 20–25 | 16.92 | 31.62 | 41.87 | 25.46 | 30.11 | 42.47 | 34.41 | 38.48 | 32.99 | 39.97 | — | 12.00 | 25.67 | 45.09 | 102.8 |
+| 24 | [omniasr-ctc-3b-v2](https://huggingface.co/facebook/omniASR-CTC-3B) | 3.08 | **33.09** | 32.07–34.01 | 19–26 | 17.51 | 31.77 | 45.15 | 25.34 | 29.79 | 42.15 | 35.08 | 39.82 | 33.76 | 43.52 | — | 14.67 | 32.77 | 46.76 | 30.5 |
+| 25 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **33.47** | 32.46–34.49 | 21–27 | 20.63 | 31.05 | 40.25 | 28.17 | 32.52 | 49.19 | 35.07 | 39.48 | 32.45 | 40.87 | — | 7.67 | 30.24 | 48.84 | 20.0 |
+| 26 | [whisper-large-v3-turbo-arabic-dialectal](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal) | 0.81 | **34.58** | 33.55–35.55 | 24–29 | 16.82 | 32.16 | 39.70 | 31.29 | 33.81 | 48.09 | 36.70 | 38.72 | 33.51 | 39.74 | — | 47.33 | 36.02 | 48.32 | 22.1 |
+| 27 | [qwen3-asr-arabic-ksa](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-ksa) | 2.04 | **34.79** | 33.81–35.67 | 25–29 | 17.66 | 33.29 | 44.13 | 27.44 | 33.33 | 45.22 | 36.57 | 40.36 | 34.74 | 41.79 | — | 99.67 | 27.22 | 49.65 | 63.1 |
+| 28 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **35.27** | 34.17–36.27 | 26–35 | 19.25 | 33.56 | 44.92 | 28.55 | 32.61 | 46.74 | 36.86 | 41.41 | 35.52 | 45.30 | — | 71.00 | 41.79 | 70.04 | 78.7 |
+| 29 | [qwen3-asr-jordanian](https://huggingface.co/sarapd/Qwen3-ASR-1.7B_Jordanian_Dialect_Arabic) | 2.04 | **35.31** | 34.35–36.21 | 26–34 | 17.46 | 33.63 | 42.34 | 28.74 | 34.86 | 47.39 | 37.10 | 40.37 | 34.70 | 40.95 | — | 29.67 | 27.55 | 47.83 | 60.6 |
+| 30 | [qwen3-asr-arabic-uae](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-uae) | 2.04 | **36.06** | 35.08–36.96 | 29–35 | 18.53 | 34.39 | 45.55 | 29.02 | 34.21 | 47.01 | 37.82 | 41.48 | 35.97 | 43.05 | — | 100.00 | 28.56 | 50.91 | 85.7 |
+| 31 | [egyptian-arabic-wav2vec2-xlsr-53](https://huggingface.co/IbrahimAmin/egyptian-arabic-wav2vec2-xlsr-53) † | 0.32 | **36.11** | 35.07–37.01 | 28–35 | 18.63 | 31.89 | 55.06 | 29.84 | 33.38 | 51.40 | 38.04 | 43.05 | 35.45 | 47.93 | 20% | 6.00 | 32.42 | 50.84 | 226.1 |
+| 32 | [qwencleo-asr](https://huggingface.co/mohammedaly22/QwenCleo-ASR) | 2.04 | **36.13** | 35.25–36.93 | 28–36 | 18.51 | 34.37 | 41.24 | 32.18 | 34.25 | 47.78 | 38.02 | 41.72 | 35.36 | 42.23 | — | 97.00 | 30.40 | 54.42 | 34.2 |
+| 33 | [arabic-whisper-codeswitching](https://huggingface.co/MohamedRashad/Arabic-Whisper-CodeSwitching-Edition) | 1.54 | **36.15** | 35.23–36.98 | 28–36 | 19.22 | 35.20 | 37.69 | 31.95 | 34.89 | 48.36 | 38.34 | 41.09 | 35.38 | 42.15 | — | 66.00 | 38.90 | 57.25 | 36.2 |
+| 34 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **36.20** | 35.20–37.12 | 28–36 | 18.55 | 34.68 | 50.91 | 27.86 | 32.23 | 44.81 | 38.17 | 41.88 | 37.25 | 46.81 | — | 19.67 | 37.30 | 48.54 | 78.8 |
+| 35 | [moonshine-streaming-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-streaming-tiny-ar) | 0.03 | **36.27** | 35.25–37.20 | 28–36 | 19.61 | 32.91 | 46.21 | 33.19 | 33.49 | 50.78 | 37.89 | 41.68 | 35.10 | 43.71 | — | 54.33 | 34.05 | 60.12 | 832.8 |
+| 36 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **37.03** | 35.99–37.98 | 32–36 | 19.34 | 34.40 | 52.65 | 28.89 | 34.71 | 48.87 | 38.97 | 43.39 | 37.25 | 47.42 | — | 16.33 | 31.82 | 50.51 | 326.2 |
+| 37 | [whisper-levantine](https://huggingface.co/HebArabNlpProject/WhisperLevantine) | 1.54 | **38.28** | 37.33–39.19 | 37–39 | 18.05 | 36.73 | 48.85 | 31.66 | 35.70 | 46.54 | 40.70 | 42.21 | 38.55 | 45.41 | — | 58.67 | 36.47 | 49.32 | 7.6 |
+| 38 | [nemotron-3.5-asr-arabic-dialectal-v2](https://huggingface.co/oddadmix/nemotron-3.5-asr-arabic-dialectal-v2) | 0.64 | **38.32** | 37.37–39.25 | 37–39 | 18.96 | 35.35 | 46.08 | 34.03 | 38.08 | 52.28 | 40.01 | 42.52 | 37.22 | 44.00 | — | 18.00 | 33.98 | 50.00 | 332.5 |
+| 39 | [arabic-morocco-whisper-v3](https://huggingface.co/smerchi/Arabic-Morocco-Speech_To_Text) | 1.54 | **38.43** | 37.45–39.34 | 37–39 | 18.13 | 36.19 | 45.74 | 32.87 | 37.99 | 51.08 | 40.66 | 42.58 | 37.70 | 44.35 | — | 35.33 | 34.46 | 53.03 | 8.4 |
+| 40 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **42.30** | 41.36–43.22 | 40 | 20.70 | 40.34 | 50.85 | 34.85 | 42.18 | 54.54 | 43.83 | 46.59 | 41.85 | 48.67 | — | 30.67 | 38.83 | 54.18 | 73.5 |
+| 41 | [nemotron-3.5-asr-jordanian](https://huggingface.co/RamaBashar22/nemotron-3.5-asr-streaming-0.6b-jordanian) | 0.64 | **43.65** | 42.73–44.60 | 41–42 | 21.21 | 40.44 | 50.51 | 39.10 | 44.72 | 59.17 | 45.32 | 47.47 | 42.07 | 48.59 | — | 21.00 | 38.24 | 55.45 | 327.7 |
+| 42 | [whisper-large-v3-turbo-darija](https://huggingface.co/anaszil/whisper-large-v3-turbo-darija) | 0.81 | **44.19** | 43.08–45.26 | 41–42 | 20.50 | 41.48 | 51.66 | 39.73 | 43.59 | 57.02 | 46.10 | 47.56 | 43.36 | 49.64 | — | 53.67 | 45.27 | 62.65 | 88.4 |
+| 43 | [moulsot-v0.3](https://huggingface.co/atlasia/moulsot.v0.3) | 2.04 | **46.86** | 45.76–47.94 | 43–44 | 24.40 | 44.44 | 48.16 | 41.91 | 50.22 | 64.75 | 48.53 | 50.48 | 44.86 | 49.64 | — | 71.33 | 41.05 | 66.20 | 26.6 |
+| 44 | [voho-saudi-stt-small](https://huggingface.co/VohoAI/voho-saudi-stt-small) † | 0.24 | **47.92** | 46.96–48.89 | 43–46 | 23.36 | 45.71 | 51.43 | 43.74 | 48.84 | 61.41 | 49.73 | 50.66 | 46.68 | 52.66 | 9% | 65.00 | 49.23 | 69.90 | 38.2 |
+| 45 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **48.85** | 47.87–49.78 | 44–46 | 23.32 | 46.73 | 56.09 | 42.72 | 47.83 | 61.88 | 50.99 | 52.84 | 48.35 | 56.31 | — | 19.00 | 54.09 | 60.35 | 178.4 |
+| 46 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **49.03** | 48.03–50.02 | 44–46 | 27.09 | 47.21 | 58.18 | 40.85 | 47.97 | 61.57 | 50.20 | 52.87 | 48.79 | 55.84 | — | 69.00 | 42.90 | 74.26 | 8.1 |
+| 47 | [cs-egyptian-whisper-small](https://huggingface.co/IbrahimAmin/code-switched-egyptian-arabic-whisper-small) † | 0.24 | **51.49** | 50.65–52.36 | 47 | 24.68 | 49.62 | 56.71 | 46.53 | 50.42 | 63.70 | 52.98 | 54.87 | 50.80 | 57.74 | 9% | 85.33 | 55.04 | 67.36 | 42.6 |
+| 48 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) † | 0.96 | **56.55** | 55.58–57.48 | 48–49 | 25.23 | 54.37 | 73.55 | 46.46 | 53.59 | 65.81 | 58.27 | 60.74 | 57.53 | 66.61 | 9% | 32.67 | 50.92 | 66.77 | 89.2 |
+| 49 | [hubert-large-arabic-egyptian](https://huggingface.co/omarxadel/hubert-large-arabic-egyptian) † | 0.32 | **58.45** | 57.38–59.51 | 48–50 | 27.75 | 54.33 | 70.64 | 59.65 | 53.22 | 67.55 | 60.33 | 61.58 | 57.54 | 66.56 | 6% | 41.67 | 64.88 | 69.98 | 225.8 |
+| 50 | [moonshine-base-ar](https://huggingface.co/moonshine-ai/moonshine-base-ar) | 0.06 | **59.53** | 58.68–60.40 | 49–51 | 44.99 | 58.50 | 69.46 | 54.45 | 53.04 | 66.13 | 60.60 | 61.53 | 60.72 | 66.77 | — | 97.00 | 65.83 | 69.02 | 388.8 |
+| 51 | [moonshine-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-tiny-ar) | 0.03 | **60.10** | 59.27–60.94 | 50–51 | 43.31 | 57.03 | 70.20 | 56.78 | 57.33 | 70.69 | 61.04 | 62.41 | 59.50 | 65.78 | — | 74.00 | 55.21 | 71.03 | 611.3 |
+| 52 | [wav2vec2-large-xlsr-53-arabic](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-arabic) | 0.32 | **66.92** | 65.97–67.78 | 52 | 31.37 | 63.36 | 82.97 | 59.93 | 65.56 | 76.69 | 68.30 | 70.43 | 66.65 | 75.07 | — | 52.00 | 55.49 | 76.47 | 215.9 |
+| 53 | [wav2vec2-xlsr-moroccan-darija](https://huggingface.co/boumehdi/wav2vec2-large-xlsr-moroccan-darija) | 0.32 | **73.25** | 72.30–74.23 | 53 | 34.83 | 68.60 | 76.20 | 73.86 | 79.07 | 87.72 | 74.80 | 74.40 | 70.09 | 72.39 | — | 43.67 | 69.19 | 82.96 | 224.9 |
+| 54 | [wav2vec2-xlsr-53-levantine-arabic](https://huggingface.co/elgeish/wav2vec2-large-xlsr-53-levantine-arabic) | 0.32 | **92.40** | 92.12–92.68 | 54 | 52.21 | 89.92 | 96.71 | 92.50 | 94.15 | 96.82 | 93.04 | 92.63 | 91.39 | 93.40 | — | 45.33 | 92.49 | 97.13 | 232.1 |
 
 WER/CER in %, lower is better. Per set: profile `L2sp` (dialect-lenient normalization, space-insensitive alignment, multi-reference where available, errors capped per utterance). Arena: weighted geometric mean over sets (track weight split evenly over its sets; Clean 50%, Code-switch 15%, Noisy 15%, Telephony 10%, Call-center 10%, not weighted: nadi_robust). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over the clean sets whose audio is not simulated (no telephony, call-center, added noise or band-limiting). Zero-shot: Arena over the sets no ranked model trained on (algerian_cs, echonova, gsb_ar, hassaniya, massive_ar, mgb5_mor, mixat_cs, mtedx_ar, perle_cs, shams_lev, sudanese_sdn, svq_ar, svq_ar_noisy, tedxtn_cs, wasil). Exposure: share of the Arena weight on sets whose training split the model saw (†). Halluc. ≥3 words: share of noise-only clips (silence, hold, line noise, distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' salient terms (names, places, question words) and the named entities of the CV18 test sentences (Elyadata/CV18-NER); not part of the Arena. 95% CI and rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. 2024): models whose rank sets overlap are not separated by this benchmark.
 Effective track weights (share of the between-model spread of the Arena): Clean 51%, Code-switch 11%, Noisy 18%, Telephony 11%, Call-center 9%.
@@ -124,6 +125,7 @@ Intervals likely too narrow on: algerian_cs/clean (few clusters: G=8), casablanc
 | egytalk-asr-v2 | 7.27 | 8.60 | 7.76 | 12.72 | 50.40 | 59.34 | 14.32 | 57.06 | 23.17 | 35.24 | 89.37 | 21.39 | 45.97 | 26.50 | 96.45 | 64.76 | 45.13 | 54.80 | 74.06 | 51.26 | 84.14 | 21.20 | 27.60 | 11.60 | 23.58 | 23.29 | 63.27 | 10.28 | 16.77 | 16.58 | 55.57 | 59.56 | 19.24 | 18.77 | 31.93 | 28.49 | 67.40 | 69.47 | 33.53 | 70.96 |
 | audar-asr-v1-flash | 10.32 | 14.28 | 11.61 | 14.88 | 40.78 | 51.88 | 26.70 | 56.91 | 24.67 | 31.17 | 67.39 | 25.75 | 28.06 | 24.37 | 96.57 | 66.60 | 39.06 | 19.54 | 52.65 | 45.50 | 79.41 | 23.59 | 27.47 | 14.51 | 25.18 | 21.80 | 59.69 | 14.51 | 22.24 | 18.61 | 52.53 | 63.73 | 35.15 | 23.99 | 37.07 | 29.97 | 63.90 | 72.77 | 52.22 | 67.19 |
 | confucius4-r2t2 | 9.94 | 15.85 | 13.04 | 15.86 | 42.75 | 58.08 | 30.73 | 56.01 | 22.17 | 32.31 | 67.64 | 25.43 | 30.45 | 22.45 | 97.00 | 68.98 | 40.20 | 19.52 | 49.38 | 42.10 | 75.75 | 25.46 | 23.92 | 12.93 | 27.19 | 22.49 | 56.51 | 12.68 | 23.78 | 18.78 | 51.05 | 67.19 | 38.35 | 20.85 | 37.01 | 30.90 | 63.51 | 75.11 | 51.56 | 69.51 |
+| omniasr-ctc-3b-v2 | 8.55 | 11.99 | 8.05 | 16.12 | 54.98 | 56.25 | 30.56 | 53.47 | 27.78 | 41.12 | 75.55 | 22.50 | 36.01 | 26.21 | 96.31 | 67.52 | 42.61 | 26.01 | 44.89 | 56.76 | 62.71 | 21.82 | 30.76 | 12.18 | 20.98 | 23.01 | 67.15 | 10.89 | 23.25 | 16.94 | 67.00 | 64.50 | 37.71 | 18.93 | 39.81 | 27.03 | 77.58 | 71.68 | 49.48 | 68.79 |
 | voxtral-mini-4b-realtime-2602 | 9.70 | 14.42 | 9.57 | 14.50 | 45.90 | 59.63 | 24.51 | 57.13 | 25.08 | 37.25 | 68.58 | 26.85 | 27.50 | 26.08 | 96.95 | 65.82 | 39.63 | 21.11 | 44.37 | 41.72 | 67.16 | 22.62 | 30.89 | 15.06 | 29.39 | 25.05 | 64.45 | 14.62 | 27.92 | 18.92 | 60.39 | 74.86 | 33.92 | 27.35 | 45.29 | 33.54 | 74.92 | 84.22 | 54.04 | 75.92 |
 | whisper-large-v3-turbo-arabic-dialectal | 13.32 | 25.53 | 14.32 | 17.06 | 39.23 | 48.98 | 24.39 | 45.18 | 29.23 | 32.88 | 63.52 | 25.78 | 25.11 | 25.85 | 96.31 | 68.69 | 35.36 | 18.74 | 44.23 | 44.02 | 68.05 | 25.83 | 35.74 | 18.90 | 40.81 | 25.49 | 51.76 | 18.58 | 37.94 | 22.05 | 48.51 | 57.76 | 34.33 | 31.77 | 51.90 | 36.35 | 61.12 | 69.47 | 48.57 | 65.82 |
 | qwen3-asr-arabic-ksa | 11.79 | 18.12 | 13.38 | 17.17 | 42.47 | 58.61 | 34.40 | 62.30 | 23.78 | 34.51 | 69.19 | 26.30 | 30.20 | 22.84 | 96.95 | 69.15 | 41.99 | 19.87 | 54.14 | 42.61 | 82.74 | 25.32 | 26.64 | 15.41 | 30.79 | 23.84 | 55.95 | 15.68 | 27.05 | 21.72 | 50.98 | 68.22 | 42.75 | 24.45 | 39.41 | 32.91 | 63.51 | 75.88 | 55.95 | 70.54 |
@@ -176,44 +178,45 @@ Intervals likely too narrow on: algerian_cs/clean (few clusters: G=8), casablanc
 | 13 | [confucius4-r2t2](https://huggingface.co/netease-youdao/Confucius4-R2T2) | 2.04 | **45.09** | 44.64–45.52 | 16–18 | 25.51 | 43.75 | 49.62 | 35.64 | 38.76 | 58.58 | 16.00 | 102.8 |
 | 14 | [qwen3-asr-1.7b-arabic-dialectal-v2](https://huggingface.co/oddadmix/qwen3-asr-1.7b-arabic-dialectal-v2) | 2.04 | **45.39** | 44.69–46.12 | 17–20 | 24.70 | 42.90 | 49.93 | 35.71 | 37.93 | 62.20 | 70.67 | 25.0 |
 | 15 | [egytalk-asr-v2](https://huggingface.co/NAMAA-Space/EgypTalk-ASR-v2) † | 0.12 | **45.55** | 45.11–45.99 | 18–20 | 31.49 | 44.05 | 67.95 | 36.26 | 32.99 | 56.50 | 7.33 | 1402.0 |
-| 16 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **46.32** | 45.50–47.13 | 19–21 | 26.36 | 43.23 | 54.62 | 37.33 | 39.37 | 61.28 | 27.67 | 36.3 |
-| 17 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **46.55** | 45.00–48.59 | 17–23 | 25.81 | 40.59 | 46.02 | 38.14 | 37.84 | 72.27 | 95.00 | 27.1 |
-| 18 | [qwen3-asr-jordanian](https://huggingface.co/sarapd/Qwen3-ASR-1.7B_Jordanian_Dialect_Arabic) | 2.04 | **47.83** | 47.35–48.33 | 21–23 | 25.01 | 45.66 | 51.84 | 38.67 | 42.16 | 62.14 | 66.00 | 60.6 |
-| 19 | [whisper-large-v3-turbo-arabic-dialectal](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal) | 0.81 | **48.32** | 47.80–48.94 | 22–25 | 24.26 | 44.20 | 48.57 | 42.31 | 40.44 | 67.81 | 99.00 | 22.1 |
-| 20 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **48.54** | 48.05–48.97 | 23–26 | 27.52 | 47.18 | 51.65 | 38.66 | 41.83 | 63.51 | 32.67 | 78.8 |
-| 21 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **48.84** | 48.32–49.39 | 24–26 | 34.15 | 44.41 | 47.27 | 39.84 | 43.46 | 69.49 | 8.67 | 20.0 |
-| 22 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **48.98** | 47.59–50.45 | 22–29 | 30.44 | 45.91 | 55.28 | 36.50 | 38.08 | 71.48 | 88.00 | 45.0 |
-| 23 | [whisper-levantine](https://huggingface.co/HebArabNlpProject/WhisperLevantine) | 1.54 | **49.32** | 48.88–49.80 | 26–28 | 24.64 | 48.37 | 57.11 | 40.06 | 42.02 | 61.31 | 78.67 | 7.6 |
-| 24 | [qwen3-asr-arabic-ksa](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-ksa) | 2.04 | **49.65** | 49.09–50.22 | 27–29 | 26.96 | 46.95 | 54.34 | 40.23 | 42.07 | 66.68 | 100.00 | 63.1 |
-| 25 | [nemotron-3.5-asr-arabic-dialectal-v2](https://huggingface.co/oddadmix/nemotron-3.5-asr-arabic-dialectal-v2) | 0.64 | **50.00** | 49.56–50.44 | 28–29 | 27.22 | 46.00 | 53.21 | 43.13 | 44.16 | 66.37 | 21.00 | 332.5 |
-| 26 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **50.51** | 50.08–50.94 | 30–31 | 30.11 | 47.41 | 59.51 | 40.44 | 43.57 | 65.93 | 17.67 | 326.2 |
-| 27 | [egyptian-arabic-wav2vec2-xlsr-53](https://huggingface.co/IbrahimAmin/egyptian-arabic-wav2vec2-xlsr-53) † | 0.32 | **50.84** | 50.41–51.24 | 31–32 | 29.88 | 46.12 | 60.13 | 41.25 | 42.82 | 69.65 | 35.67 | 226.1 |
-| 28 | [qwen3-asr-arabic-uae](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-uae) | 2.04 | **50.91** | 50.39–51.42 | 30–32 | 27.70 | 48.23 | 56.20 | 41.16 | 43.77 | 67.39 | 100.00 | 85.7 |
-| 29 | [arabic-morocco-whisper-v3](https://huggingface.co/smerchi/Arabic-Morocco-Speech_To_Text) | 1.54 | **53.03** | 52.16–53.99 | 33–35 | 27.62 | 48.55 | 54.46 | 44.17 | 46.75 | 73.08 | 100.00 | 8.4 |
-| 30 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **53.97** | 52.15–56.18 | 33–37 | 34.38 | 49.03 | 63.11 | 44.63 | 44.66 | 74.35 | 100.00 | 36.1 |
-| 31 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **54.18** | 53.75–54.60 | 34–36 | 28.22 | 50.65 | 58.79 | 44.17 | 49.49 | 70.23 | 48.33 | 73.5 |
-| 32 | [qwencleo-asr](https://huggingface.co/mohammedaly22/QwenCleo-ASR) | 2.04 | **54.42** | 52.74–56.31 | 33–37 | 29.95 | 48.28 | 57.48 | 46.32 | 42.63 | 81.50 | 100.00 | 34.2 |
-| 33 | [nemotron-3.5-asr-jordanian](https://huggingface.co/RamaBashar22/nemotron-3.5-asr-streaming-0.6b-jordanian) | 0.64 | **55.45** | 55.01–55.88 | 36–38 | 30.47 | 50.68 | 57.13 | 47.61 | 51.58 | 72.68 | 22.67 | 327.7 |
-| 34 | [arabic-whisper-codeswitching](https://huggingface.co/MohamedRashad/Arabic-Whisper-CodeSwitching-Edition) | 1.54 | **57.25** | 55.40–59.24 | 37–39 | 33.08 | 52.76 | 52.32 | 50.68 | 49.60 | 80.13 | 100.00 | 36.2 |
-| 35 | [whisper-large-v3-egyptian-arabic](https://huggingface.co/AbdelrahmanHassan/whisper-large-v3-egyptian-arabic) † | 1.54 | **58.78** | 56.25–61.53 | 38–42 | 36.71 | 52.82 | 64.98 | 42.70 | 47.43 | 89.52 | 100.00 | 28.8 |
-| 36 | [moonshine-streaming-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-streaming-tiny-ar) | 0.03 | **60.12** | 58.66–61.71 | 39–42 | 34.30 | 47.91 | 57.43 | 51.82 | 49.53 | 99.65 | 62.00 | 832.8 |
-| 37 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **60.35** | 59.95–60.78 | 39–42 | 32.42 | 57.09 | 59.13 | 52.64 | 56.15 | 76.65 | 34.33 | 178.4 |
-| 38 | [whisper-large-v3-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-arabic-dialectal-v2) | 1.54 | **61.85** | 58.58–65.49 | 39–44 | 36.41 | 46.46 | 46.61 | 47.74 | 45.25 | 123.59 | 99.33 | 6.5 |
-| 39 | [whisper-large-v3-turbo-darija](https://huggingface.co/anaszil/whisper-large-v3-turbo-darija) | 0.81 | **62.65** | 61.08–64.34 | 42–43 | 33.90 | 54.95 | 65.04 | 52.46 | 53.01 | 92.23 | 99.67 | 88.4 |
-| 40 | [moulsot-v0.3](https://huggingface.co/atlasia/moulsot.v0.3) | 2.04 | **66.20** | 64.01–69.06 | 43–47 | 39.25 | 55.81 | 54.60 | 58.21 | 61.14 | 101.24 | 97.67 | 26.6 |
-| 41 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) † | 0.96 | **66.77** | 66.40–67.12 | 44–46 | 33.33 | 64.12 | 76.65 | 56.63 | 61.92 | 78.93 | 49.33 | 89.2 |
-| 42 | [cs-egyptian-whisper-small](https://huggingface.co/IbrahimAmin/code-switched-egyptian-arabic-whisper-small) † | 0.24 | **67.36** | 65.75–69.21 | 44–48 | 37.40 | 62.56 | 65.78 | 63.20 | 58.25 | 88.80 | 96.67 | 42.6 |
-| 43 | [moonshine-base-ar](https://huggingface.co/moonshine-ai/moonshine-base-ar) | 0.06 | **69.02** | 68.46–69.55 | 46–49 | 48.34 | 65.69 | 73.59 | 63.12 | 60.32 | 85.68 | 99.00 | 388.8 |
-| 44 | [voho-saudi-stt-small](https://huggingface.co/VohoAI/voho-saudi-stt-small) † | 0.24 | **69.90** | 67.62–72.45 | 46–51 | 39.88 | 58.69 | 68.11 | 59.39 | 62.04 | 106.14 | 91.67 | 38.2 |
-| 45 | [hubert-large-arabic-egyptian](https://huggingface.co/omarxadel/hubert-large-arabic-egyptian) † | 0.32 | **69.98** | 69.55–70.43 | 48–50 | 34.34 | 65.59 | 75.10 | 69.50 | 61.58 | 83.88 | 45.33 | 225.8 |
-| 46 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **70.04** | 66.57–73.51 | 45–52 | 47.05 | 58.65 | 85.11 | 51.43 | 58.87 | 107.55 | 100.00 | 78.7 |
-| 47 | [moonshine-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-tiny-ar) | 0.03 | **71.03** | 70.45–71.59 | 49–51 | 48.22 | 64.69 | 75.36 | 65.66 | 64.93 | 90.09 | 87.33 | 611.3 |
-| 48 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **74.26** | 70.94–78.58 | 51–54 | 46.76 | 69.57 | 68.10 | 59.58 | 67.56 | 103.24 | 100.00 | 8.1 |
-| 49 | [wav2vec2-large-xlsr-53-arabic](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-arabic) | 0.32 | **76.47** | 76.15–76.81 | 52–54 | 39.22 | 72.72 | 85.08 | 68.87 | 73.12 | 87.76 | 85.67 | 215.9 |
-| 50 | [whisper-large-v3-turbo-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal-v2) | 0.81 | **76.49** | 72.70–80.66 | 52–54 | 47.36 | 53.30 | 56.67 | 55.87 | 46.15 | 172.78 | 94.00 | 18.7 |
-| 51 | [wav2vec2-xlsr-moroccan-darija](https://huggingface.co/boumehdi/wav2vec2-large-xlsr-moroccan-darija) | 0.32 | **82.96** | 82.58–83.30 | 55 | 41.94 | 76.25 | 79.85 | 81.42 | 84.09 | 96.29 | 50.00 | 224.9 |
-| 52 | [wav2vec2-xlsr-53-levantine-arabic](https://huggingface.co/elgeish/wav2vec2-large-xlsr-53-levantine-arabic) | 0.32 | **97.13** | 96.95–97.32 | 56 | 57.43 | 94.47 | 97.70 | 97.65 | 97.21 | 101.06 | 61.33 | 232.1 |
-| 53 | [cohere-transcribe-arabic-dialectal-v2](https://huggingface.co/oddadmix/cohere-transcribe-arabic-07-2026-dialectal-v2) | 2.07 | **136.81** | 130.31–143.58 | 57 | 98.74 | 118.82 | 85.91 | 125.23 | 110.77 | 228.48 | 96.00 | 51.0 |
+| 16 | [audar-asr-v1-flash](https://huggingface.co/audarai/Audar-ASR-V1-Flash) | 0.78 | **46.32** | 45.50–47.13 | 19–22 | 26.36 | 43.23 | 54.62 | 37.33 | 39.37 | 61.28 | 27.67 | 36.3 |
+| 17 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **46.55** | 45.00–48.59 | 17–24 | 25.81 | 40.59 | 46.02 | 38.14 | 37.84 | 72.27 | 95.00 | 27.1 |
+| 18 | [omniasr-ctc-3b-v2](https://huggingface.co/facebook/omniASR-CTC-3B) | 3.08 | **46.76** | 46.23–47.23 | 20–22 | 27.40 | 45.33 | 46.61 | 36.64 | 40.83 | 62.85 | 30.00 | 30.5 |
+| 19 | [qwen3-asr-jordanian](https://huggingface.co/sarapd/Qwen3-ASR-1.7B_Jordanian_Dialect_Arabic) | 2.04 | **47.83** | 47.35–48.33 | 22–24 | 25.01 | 45.66 | 51.84 | 38.67 | 42.16 | 62.14 | 66.00 | 60.6 |
+| 20 | [whisper-large-v3-turbo-arabic-dialectal](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal) | 0.81 | **48.32** | 47.80–48.94 | 23–26 | 24.26 | 44.20 | 48.57 | 42.31 | 40.44 | 67.81 | 99.00 | 22.1 |
+| 21 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **48.54** | 48.05–48.97 | 24–27 | 27.52 | 47.18 | 51.65 | 38.66 | 41.83 | 63.51 | 32.67 | 78.8 |
+| 22 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **48.84** | 48.32–49.39 | 25–27 | 34.15 | 44.41 | 47.27 | 39.84 | 43.46 | 69.49 | 8.67 | 20.0 |
+| 23 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **48.98** | 47.59–50.45 | 23–30 | 30.44 | 45.91 | 55.28 | 36.50 | 38.08 | 71.48 | 88.00 | 45.0 |
+| 24 | [whisper-levantine](https://huggingface.co/HebArabNlpProject/WhisperLevantine) | 1.54 | **49.32** | 48.88–49.80 | 27–29 | 24.64 | 48.37 | 57.11 | 40.06 | 42.02 | 61.31 | 78.67 | 7.6 |
+| 25 | [qwen3-asr-arabic-ksa](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-ksa) | 2.04 | **49.65** | 49.09–50.22 | 28–30 | 26.96 | 46.95 | 54.34 | 40.23 | 42.07 | 66.68 | 100.00 | 63.1 |
+| 26 | [nemotron-3.5-asr-arabic-dialectal-v2](https://huggingface.co/oddadmix/nemotron-3.5-asr-arabic-dialectal-v2) | 0.64 | **50.00** | 49.56–50.44 | 29–30 | 27.22 | 46.00 | 53.21 | 43.13 | 44.16 | 66.37 | 21.00 | 332.5 |
+| 27 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **50.51** | 50.08–50.94 | 31–32 | 30.11 | 47.41 | 59.51 | 40.44 | 43.57 | 65.93 | 17.67 | 326.2 |
+| 28 | [egyptian-arabic-wav2vec2-xlsr-53](https://huggingface.co/IbrahimAmin/egyptian-arabic-wav2vec2-xlsr-53) † | 0.32 | **50.84** | 50.41–51.24 | 32–33 | 29.88 | 46.12 | 60.13 | 41.25 | 42.82 | 69.65 | 35.67 | 226.1 |
+| 29 | [qwen3-asr-arabic-uae](https://huggingface.co/vadimbelsky/qwen3-asr-arabic-uae) | 2.04 | **50.91** | 50.39–51.42 | 31–33 | 27.70 | 48.23 | 56.20 | 41.16 | 43.77 | 67.39 | 100.00 | 85.7 |
+| 30 | [arabic-morocco-whisper-v3](https://huggingface.co/smerchi/Arabic-Morocco-Speech_To_Text) | 1.54 | **53.03** | 52.16–53.99 | 34–36 | 27.62 | 48.55 | 54.46 | 44.17 | 46.75 | 73.08 | 100.00 | 8.4 |
+| 31 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **53.97** | 52.15–56.18 | 34–38 | 34.38 | 49.03 | 63.11 | 44.63 | 44.66 | 74.35 | 100.00 | 36.1 |
+| 32 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **54.18** | 53.75–54.60 | 35–37 | 28.22 | 50.65 | 58.79 | 44.17 | 49.49 | 70.23 | 48.33 | 73.5 |
+| 33 | [qwencleo-asr](https://huggingface.co/mohammedaly22/QwenCleo-ASR) | 2.04 | **54.42** | 52.74–56.31 | 34–38 | 29.95 | 48.28 | 57.48 | 46.32 | 42.63 | 81.50 | 100.00 | 34.2 |
+| 34 | [nemotron-3.5-asr-jordanian](https://huggingface.co/RamaBashar22/nemotron-3.5-asr-streaming-0.6b-jordanian) | 0.64 | **55.45** | 55.01–55.88 | 37–39 | 30.47 | 50.68 | 57.13 | 47.61 | 51.58 | 72.68 | 22.67 | 327.7 |
+| 35 | [arabic-whisper-codeswitching](https://huggingface.co/MohamedRashad/Arabic-Whisper-CodeSwitching-Edition) | 1.54 | **57.25** | 55.40–59.24 | 38–40 | 33.08 | 52.76 | 52.32 | 50.68 | 49.60 | 80.13 | 100.00 | 36.2 |
+| 36 | [whisper-large-v3-egyptian-arabic](https://huggingface.co/AbdelrahmanHassan/whisper-large-v3-egyptian-arabic) † | 1.54 | **58.78** | 56.25–61.53 | 39–43 | 36.71 | 52.82 | 64.98 | 42.70 | 47.43 | 89.52 | 100.00 | 28.8 |
+| 37 | [moonshine-streaming-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-streaming-tiny-ar) | 0.03 | **60.12** | 58.66–61.71 | 40–43 | 34.30 | 47.91 | 57.43 | 51.82 | 49.53 | 99.65 | 62.00 | 832.8 |
+| 38 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **60.35** | 59.95–60.78 | 40–43 | 32.42 | 57.09 | 59.13 | 52.64 | 56.15 | 76.65 | 34.33 | 178.4 |
+| 39 | [whisper-large-v3-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-arabic-dialectal-v2) | 1.54 | **61.85** | 58.58–65.49 | 40–45 | 36.41 | 46.46 | 46.61 | 47.74 | 45.25 | 123.59 | 99.33 | 6.5 |
+| 40 | [whisper-large-v3-turbo-darija](https://huggingface.co/anaszil/whisper-large-v3-turbo-darija) | 0.81 | **62.65** | 61.08–64.34 | 43–44 | 33.90 | 54.95 | 65.04 | 52.46 | 53.01 | 92.23 | 99.67 | 88.4 |
+| 41 | [moulsot-v0.3](https://huggingface.co/atlasia/moulsot.v0.3) | 2.04 | **66.20** | 64.01–69.06 | 44–48 | 39.25 | 55.81 | 54.60 | 58.21 | 61.14 | 101.24 | 97.67 | 26.6 |
+| 42 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) † | 0.96 | **66.77** | 66.40–67.12 | 45–47 | 33.33 | 64.12 | 76.65 | 56.63 | 61.92 | 78.93 | 49.33 | 89.2 |
+| 43 | [cs-egyptian-whisper-small](https://huggingface.co/IbrahimAmin/code-switched-egyptian-arabic-whisper-small) † | 0.24 | **67.36** | 65.75–69.21 | 45–49 | 37.40 | 62.56 | 65.78 | 63.20 | 58.25 | 88.80 | 96.67 | 42.6 |
+| 44 | [moonshine-base-ar](https://huggingface.co/moonshine-ai/moonshine-base-ar) | 0.06 | **69.02** | 68.46–69.55 | 47–50 | 48.34 | 65.69 | 73.59 | 63.12 | 60.32 | 85.68 | 99.00 | 388.8 |
+| 45 | [voho-saudi-stt-small](https://huggingface.co/VohoAI/voho-saudi-stt-small) † | 0.24 | **69.90** | 67.62–72.45 | 47–52 | 39.88 | 58.69 | 68.11 | 59.39 | 62.04 | 106.14 | 91.67 | 38.2 |
+| 46 | [hubert-large-arabic-egyptian](https://huggingface.co/omarxadel/hubert-large-arabic-egyptian) † | 0.32 | **69.98** | 69.55–70.43 | 49–51 | 34.34 | 65.59 | 75.10 | 69.50 | 61.58 | 83.88 | 45.33 | 225.8 |
+| 47 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **70.04** | 66.57–73.51 | 46–53 | 47.05 | 58.65 | 85.11 | 51.43 | 58.87 | 107.55 | 100.00 | 78.7 |
+| 48 | [moonshine-tiny-ar](https://huggingface.co/moonshine-ai/moonshine-tiny-ar) | 0.03 | **71.03** | 70.45–71.59 | 50–52 | 48.22 | 64.69 | 75.36 | 65.66 | 64.93 | 90.09 | 87.33 | 611.3 |
+| 49 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **74.26** | 70.94–78.58 | 52–55 | 46.76 | 69.57 | 68.10 | 59.58 | 67.56 | 103.24 | 100.00 | 8.1 |
+| 50 | [wav2vec2-large-xlsr-53-arabic](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-arabic) | 0.32 | **76.47** | 76.15–76.81 | 53–55 | 39.22 | 72.72 | 85.08 | 68.87 | 73.12 | 87.76 | 85.67 | 215.9 |
+| 51 | [whisper-large-v3-turbo-arabic-dialectal-v2](https://huggingface.co/oddadmix/whisper-large-v3-turbo-arabic-dialectal-v2) | 0.81 | **76.49** | 72.70–80.66 | 53–55 | 47.36 | 53.30 | 56.67 | 55.87 | 46.15 | 172.78 | 94.00 | 18.7 |
+| 52 | [wav2vec2-xlsr-moroccan-darija](https://huggingface.co/boumehdi/wav2vec2-large-xlsr-moroccan-darija) | 0.32 | **82.96** | 82.58–83.30 | 56 | 41.94 | 76.25 | 79.85 | 81.42 | 84.09 | 96.29 | 50.00 | 224.9 |
+| 53 | [wav2vec2-xlsr-53-levantine-arabic](https://huggingface.co/elgeish/wav2vec2-large-xlsr-53-levantine-arabic) | 0.32 | **97.13** | 96.95–97.32 | 57 | 57.43 | 94.47 | 97.70 | 97.65 | 97.21 | 101.06 | 61.33 | 232.1 |
+| 54 | [cohere-transcribe-arabic-dialectal-v2](https://huggingface.co/oddadmix/cohere-transcribe-arabic-07-2026-dialectal-v2) | 2.07 | **136.81** | 130.31–143.58 | 58 | 98.74 | 118.82 | 85.91 | 125.23 | 110.77 | 228.48 | 96.00 | 51.0 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Noisy 15%, Code-switch 10%, Telephony 20%, Call-center 20%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
 
@@ -240,6 +243,7 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 | egytalk-asr-v2 | 8.28 | 9.20 | 8.14 | 14.03 | 52.70 | 61.80 | 21.53 | 80.52 | 26.40 | 39.22 | 90.15 | 26.11 | 47.87 | 28.41 | 119.18 | 67.47 | 47.77 | 56.47 | 75.49 | 54.10 | 85.74 | 23.14 | 72.54 | 31.01 | 12.67 | 24.98 | 24.48 | 65.00 | 11.75 | 19.19 | 18.54 | 59.88 | 61.89 | 26.72 | 35.29 | 49.23 | 42.41 | 78.99 | 79.72 | 53.36 |
 | audar-asr-v1-flash | 11.13 | 15.25 | 12.26 | 16.21 | 46.20 | 55.58 | 35.98 | 77.10 | 27.56 | 35.42 | 71.48 | 30.07 | 30.57 | 26.53 | 130.07 | 71.59 | 41.95 | 22.65 | 62.48 | 48.03 | 85.34 | 25.50 | 71.18 | 29.84 | 15.31 | 26.25 | 22.74 | 70.45 | 14.87 | 26.85 | 21.70 | 54.82 | 73.33 | 44.64 | 37.20 | 50.43 | 48.21 | 84.44 | 81.37 | 66.01 |
 | gemma-4-e2b-it | 8.13 | 19.34 | 10.51 | 16.44 | 39.73 | 53.49 | 25.35 | 60.06 | 25.20 | 35.80 | 70.03 | 26.07 | 26.94 | 26.22 | 139.27 | 72.46 | 35.04 | 25.39 | 45.77 | 43.14 | 69.76 | 23.62 | 69.91 | 34.50 | 13.90 | 40.17 | 27.01 | 57.89 | 13.74 | 33.78 | 24.23 | 51.61 | 70.09 | 33.58 | 50.07 | 80.95 | 50.88 | 105.00 | 79.24 | 67.46 |
+| omniasr-ctc-3b-v2 | 9.19 | 13.24 | 8.66 | 17.51 | 58.14 | 60.03 | 39.97 | 76.42 | 31.33 | 44.29 | 78.02 | 27.03 | 39.29 | 28.29 | 123.05 | 70.54 | 45.67 | 27.77 | 50.16 | 42.68 | 65.82 | 23.72 | 71.08 | 33.40 | 12.96 | 21.59 | 23.79 | 69.94 | 12.11 | 26.12 | 18.73 | 72.48 | 69.68 | 45.87 | 34.58 | 64.96 | 42.24 | 84.11 | 84.42 | 66.80 |
 | qwen3-asr-jordanian | 14.23 | 21.41 | 15.33 | 18.85 | 45.18 | 61.53 | 41.22 | 79.00 | 28.86 | 35.42 | 74.87 | 32.16 | 32.26 | 23.50 | 132.44 | 75.03 | 44.99 | 23.41 | 57.58 | 42.04 | 84.32 | 28.00 | 71.72 | 29.91 | 18.65 | 33.64 | 26.79 | 61.99 | 19.05 | 30.65 | 24.97 | 56.58 | 72.35 | 49.34 | 42.10 | 55.63 | 46.29 | 74.73 | 86.59 | 67.52 |
 | whisper-large-v3-turbo-arabic-dialectal | 14.21 | 28.01 | 15.72 | 19.70 | 42.44 | 53.87 | 32.25 | 64.00 | 33.30 | 39.42 | 68.98 | 30.31 | 27.71 | 28.66 | 137.43 | 75.48 | 39.89 | 23.43 | 51.68 | 47.25 | 71.94 | 28.43 | 69.40 | 42.40 | 19.69 | 51.43 | 27.70 | 57.10 | 19.64 | 40.37 | 24.72 | 53.66 | 63.67 | 40.55 | 49.20 | 81.68 | 54.07 | 74.87 | 83.47 | 63.57 |
 | omniasr-ctc-1b-v2 | 12.27 | 16.10 | 11.82 | 18.72 | 60.10 | 62.97 | 41.62 | 76.66 | 35.73 | 43.75 | 78.12 | 30.93 | 39.67 | 31.92 | 123.77 | 71.63 | 46.23 | 44.56 | 46.20 | 46.48 | 69.37 | 26.79 | 72.48 | 38.16 | 16.13 | 24.18 | 23.05 | 69.83 | 16.64 | 25.18 | 21.15 | 66.91 | 73.14 | 47.95 | 38.62 | 62.82 | 44.20 | 82.20 | 85.25 | 67.94 |
@@ -320,42 +324,43 @@ Soniox, a closed API, was run on the 15 re-hosted set-conditions only, so it has
 | 20 | gemma-4-e4b-it | open | **33.91** | 17.01 | 17.64 | 29.82 | 22.22 | 29.69 | 75.52 |
 | 21 | egytalk-asr-v2 † | open | **34.17** | 20.15 | 19.58 | 31.45 | 56.47 | 30.27 | 54.50 |
 | 22 | qwen3-asr-jordanian | open | **34.67** | 24.12 | 24.04 | 35.57 | 23.41 | 35.43 | 57.48 |
-| 23 | qwen3-asr-arabic-ksa | open | **35.81** | 22.53 | 23.72 | 37.50 | 23.08 | 34.48 | 63.39 |
-| 24 | voxtral-mini-4b-realtime-2602 | open | **35.83** | 21.24 | 21.31 | 34.70 | 23.76 | 37.47 | 66.46 |
-| 25 | seamless-m4t-v2-large | open | **36.25** | 16.63 | 21.38 | 31.05 | 30.07 | 35.35 | 70.16 |
-| 26 | whisper-levantine | open | **36.61** | 27.35 | 26.52 | 35.65 | 32.41 | 35.90 | 57.79 |
-| 27 | nemotron-3.5-asr-streaming-0.6b | open | **36.69** | 23.55 | 23.56 | 35.17 | 33.99 | 37.31 | 61.52 |
-| 28 | gemma-4-e2b-it | open | **36.77** | 20.05 | 19.43 | 33.90 | 25.39 | 33.04 | 78.67 |
-| 29 | qwen3-asr-arabic-uae | open | **37.50** | 23.73 | 25.53 | 38.27 | 23.86 | 37.12 | 65.05 |
-| 30 | omniasr-ctc-1b-v2 | open | **37.86** | 24.99 | 25.07 | 34.23 | 44.56 | 36.24 | 61.22 |
-| 31 | whisper-large-v3-turbo-arabic-dialectal | open | **38.30** | 24.80 | 25.10 | 39.16 | 23.43 | 37.89 | 68.58 |
-| 32 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 27.88 | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
-| 33 | egyptian-arabic-wav2vec2-xlsr-53 † | open | **38.96** | 22.88 | 22.79 | 36.61 | 39.03 | 39.61 | 68.36 |
-| 34 | whisper-large-v3 | open | **39.22** | 19.82 | 25.60 | 40.53 | 28.35 | 40.04 | 66.70 |
-| 35 | whisper-large-v3-egyptian-arabic | open | **40.67** | 19.21 | 25.49 | 36.95 | 27.73 | 36.13 | 81.05 |
-| 36 | qwen3-asr-0.6b | open | **41.10** | 29.68 | 29.22 | 39.93 | 28.37 | 42.80 | 67.40 |
-| 37 | arabic-morocco-whisper-v3 | open | **41.88** | 27.22 | 28.06 | 40.09 | 30.95 | 42.26 | 72.48 |
-| 38 | qwencleo-asr | open | **43.88** | 26.48 | 27.52 | 45.10 | 28.80 | 40.44 | 82.60 |
-| 39 | nemotron-3.5-asr-jordanian | open | **44.24** | 32.60 | 30.77 | 44.21 | 31.10 | 47.97 | 70.67 |
-| 40 | arabic-whisper-codeswitching | open | **46.57** | 25.79 | 31.72 | 51.06 | 23.13 | 46.14 | 81.33 |
-| 41 | whisper-large-v3-turbo | open | **47.75** | 21.66 | 31.72 | 41.63 | 24.50 | 46.71 | 93.03 |
-| 42 | omniasr-ctc-300m-v2 | open | **48.38** | 35.39 | 36.06 | 47.87 | 35.93 | 50.91 | 74.02 |
-| 43 | whisper-large-v3-arabic-dialectal-v2 | open | **48.58** | 19.67 | 22.58 | 45.00 | 20.96 | 42.93 | 116.20 |
-| 44 | moonshine-streaming-tiny-ar | open | **50.08** | 24.24 | 26.42 | 52.11 | 24.97 | 47.36 | 105.24 |
-| 45 | whisper-large-v3-turbo-darija | open | **51.29** | 34.20 | 36.17 | 49.69 | 34.07 | 49.20 | 89.68 |
-| 46 | mms-1b-all † | open | **52.46** | 40.92 | 39.46 | 51.50 | 60.62 | 51.46 | 72.84 |
-| 47 | voho-saudi-stt-small † | open | **54.77** | 35.28 | 36.00 | 54.92 | 29.89 | 53.44 | 101.27 |
-| 48 | cs-egyptian-whisper-small † | open | **56.67** | 40.40 | 42.84 | 62.12 | 39.92 | 54.18 | 87.65 |
-| 49 | moonshine-base-ar | open | **57.11** | 46.86 | 44.94 | 57.73 | 52.20 | 52.52 | 84.99 |
-| 50 | moulsot-v0.3 | open | **57.50** | 37.05 | 36.72 | 55.24 | 41.68 | 55.98 | 105.01 |
-| 51 | whisper-large-v3-turbo-arabic-dialectal-v2 | open | **58.63** | 21.66 | 25.46 | 51.60 | 23.08 | 37.44 | 160.93 |
-| 52 | moonshine-tiny-ar | open | **59.17** | 46.86 | 43.47 | 61.92 | 50.14 | 57.68 | 90.59 |
-| 53 | wav2vec2-large-xlsr-53-arabic | open | **62.19** | 50.19 | 47.39 | 63.75 | 72.45 | 61.66 | 82.31 |
-| 54 | hubert-large-arabic-egyptian | open | **63.67** | 51.80 | 50.45 | 65.75 | 59.13 | 63.20 | 88.00 |
-| 55 | fun-asr-mlt-nano-2512 | open | **66.25** | 38.75 | 45.94 | 58.14 | 46.45 | 65.46 | 118.59 |
-| 56 | wav2vec2-xlsr-moroccan-darija | open | **77.92** | 68.29 | 65.87 | 80.51 | 68.89 | 81.91 | 97.60 |
-| 57 | cohere-transcribe-arabic-dialectal-v2 | open | **88.53** | 13.47 | 40.85 | 106.35 | 29.11 | 81.64 | 195.17 |
-| 58 | wav2vec2-xlsr-53-levantine-arabic | open | **93.56** | 87.97 | 85.74 | 96.64 | 94.08 | 95.78 | 102.46 |
+| 23 | omniasr-ctc-3b-v2 | open | **35.01** | 20.10 | 22.31 | 32.05 | 27.77 | 36.90 | 61.21 |
+| 24 | qwen3-asr-arabic-ksa | open | **35.81** | 22.53 | 23.72 | 37.50 | 23.08 | 34.48 | 63.39 |
+| 25 | voxtral-mini-4b-realtime-2602 | open | **35.83** | 21.24 | 21.31 | 34.70 | 23.76 | 37.47 | 66.46 |
+| 26 | seamless-m4t-v2-large | open | **36.25** | 16.63 | 21.38 | 31.05 | 30.07 | 35.35 | 70.16 |
+| 27 | whisper-levantine | open | **36.61** | 27.35 | 26.52 | 35.65 | 32.41 | 35.90 | 57.79 |
+| 28 | nemotron-3.5-asr-streaming-0.6b | open | **36.69** | 23.55 | 23.56 | 35.17 | 33.99 | 37.31 | 61.52 |
+| 29 | gemma-4-e2b-it | open | **36.77** | 20.05 | 19.43 | 33.90 | 25.39 | 33.04 | 78.67 |
+| 30 | qwen3-asr-arabic-uae | open | **37.50** | 23.73 | 25.53 | 38.27 | 23.86 | 37.12 | 65.05 |
+| 31 | omniasr-ctc-1b-v2 | open | **37.86** | 24.99 | 25.07 | 34.23 | 44.56 | 36.24 | 61.22 |
+| 32 | whisper-large-v3-turbo-arabic-dialectal | open | **38.30** | 24.80 | 25.10 | 39.16 | 23.43 | 37.89 | 68.58 |
+| 33 | nemotron-3.5-asr-arabic-dialectal-v2 | open | **38.78** | 27.88 | 26.69 | 38.94 | 27.87 | 39.96 | 64.08 |
+| 34 | egyptian-arabic-wav2vec2-xlsr-53 † | open | **38.96** | 22.88 | 22.79 | 36.61 | 39.03 | 39.61 | 68.36 |
+| 35 | whisper-large-v3 | open | **39.22** | 19.82 | 25.60 | 40.53 | 28.35 | 40.04 | 66.70 |
+| 36 | whisper-large-v3-egyptian-arabic | open | **40.67** | 19.21 | 25.49 | 36.95 | 27.73 | 36.13 | 81.05 |
+| 37 | qwen3-asr-0.6b | open | **41.10** | 29.68 | 29.22 | 39.93 | 28.37 | 42.80 | 67.40 |
+| 38 | arabic-morocco-whisper-v3 | open | **41.88** | 27.22 | 28.06 | 40.09 | 30.95 | 42.26 | 72.48 |
+| 39 | qwencleo-asr | open | **43.88** | 26.48 | 27.52 | 45.10 | 28.80 | 40.44 | 82.60 |
+| 40 | nemotron-3.5-asr-jordanian | open | **44.24** | 32.60 | 30.77 | 44.21 | 31.10 | 47.97 | 70.67 |
+| 41 | arabic-whisper-codeswitching | open | **46.57** | 25.79 | 31.72 | 51.06 | 23.13 | 46.14 | 81.33 |
+| 42 | whisper-large-v3-turbo | open | **47.75** | 21.66 | 31.72 | 41.63 | 24.50 | 46.71 | 93.03 |
+| 43 | omniasr-ctc-300m-v2 | open | **48.38** | 35.39 | 36.06 | 47.87 | 35.93 | 50.91 | 74.02 |
+| 44 | whisper-large-v3-arabic-dialectal-v2 | open | **48.58** | 19.67 | 22.58 | 45.00 | 20.96 | 42.93 | 116.20 |
+| 45 | moonshine-streaming-tiny-ar | open | **50.08** | 24.24 | 26.42 | 52.11 | 24.97 | 47.36 | 105.24 |
+| 46 | whisper-large-v3-turbo-darija | open | **51.29** | 34.20 | 36.17 | 49.69 | 34.07 | 49.20 | 89.68 |
+| 47 | mms-1b-all † | open | **52.46** | 40.92 | 39.46 | 51.50 | 60.62 | 51.46 | 72.84 |
+| 48 | voho-saudi-stt-small † | open | **54.77** | 35.28 | 36.00 | 54.92 | 29.89 | 53.44 | 101.27 |
+| 49 | cs-egyptian-whisper-small † | open | **56.67** | 40.40 | 42.84 | 62.12 | 39.92 | 54.18 | 87.65 |
+| 50 | moonshine-base-ar | open | **57.11** | 46.86 | 44.94 | 57.73 | 52.20 | 52.52 | 84.99 |
+| 51 | moulsot-v0.3 | open | **57.50** | 37.05 | 36.72 | 55.24 | 41.68 | 55.98 | 105.01 |
+| 52 | whisper-large-v3-turbo-arabic-dialectal-v2 | open | **58.63** | 21.66 | 25.46 | 51.60 | 23.08 | 37.44 | 160.93 |
+| 53 | moonshine-tiny-ar | open | **59.17** | 46.86 | 43.47 | 61.92 | 50.14 | 57.68 | 90.59 |
+| 54 | wav2vec2-large-xlsr-53-arabic | open | **62.19** | 50.19 | 47.39 | 63.75 | 72.45 | 61.66 | 82.31 |
+| 55 | hubert-large-arabic-egyptian | open | **63.67** | 51.80 | 50.45 | 65.75 | 59.13 | 63.20 | 88.00 |
+| 56 | fun-asr-mlt-nano-2512 | open | **66.25** | 38.75 | 45.94 | 58.14 | 46.45 | 65.46 | 118.59 |
+| 57 | wav2vec2-xlsr-moroccan-darija | open | **77.92** | 68.29 | 65.87 | 80.51 | 68.89 | 81.91 | 97.60 |
+| 58 | cohere-transcribe-arabic-dialectal-v2 | open | **88.53** | 13.47 | 40.85 | 106.35 | 29.11 | 81.64 | 195.17 |
+| 59 | wav2vec2-xlsr-53-levantine-arabic | open | **93.56** | 87.97 | 85.74 | 96.64 | 94.08 | 95.78 | 102.46 |
 
 Per-set WER (%, v1 scorer) of the references next to the top two ranked models:
 
