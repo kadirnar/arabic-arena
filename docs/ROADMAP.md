@@ -57,7 +57,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [x] GigaSpeechBench (Iraqi, Syrian, Algerian, Moroccan, Egyptian, Saudi; the GPT-4o-drafted Emirati region left
       out), Speech-MASSIVE ar-SA, Sudanese (SDN), mTEDx, TEDxTN (Tunisian-French code-switching)
 - [ ] DAI-ASR-I18N real two-channel conversations (gated, manual approval)
-- [x] Every registered Arabic model on the board: the 45 not run since the precision fix, incl. omniASR
+- [x] Every registered Arabic model on the board, current versions only: Whisper large-v3 and large-v3-turbo
+      (not small, medium or large-v2), omniASR v2 (not v1); community fine-tunes of any base stay
 - [ ] Long-form track (whole programmes, 1–10 min): segmentation and long-context failures
 - [ ] Numbers, dates and currency as a separate probe; TEDxTN (Tunisian), UFAL North Levantine
 
