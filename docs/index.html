@@ -161,7 +161,8 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
   <p class="note">Click a column or a score in the Score bar to sort; the best value in each column is highlighted. Click a model
     name to open it on Hugging Face. Small grey numbers are 95 % bootstrap
     intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
-    Closed APIs and fine-tunes with gated weights are unranked references, scored on the re-hosted sets only. † marks models
+    Models with gated or private weights are ranked like open ones; closed APIs are unranked references, scored on the
+    re-hosted sets only. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
     Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
   <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
@@ -211,7 +212,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: v1 board: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. v2 board: chain v2, an A-law-first MENA codec mix with AMR-WB, Opus and G.722 paths, tandem coding to A-law and losses on the encoded frames. <b>Call-center</b> adds noise and a room at the caller before that channel (v2: a handset room and unintelligible babble).</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one NVIDIA A10 (24 GB).</li>
-      <li><b>Models</b>: open-weight models are ranked, all run locally; closed APIs and fine-tunes with gated weights are listed as unranked references.</li>
+      <li><b>Models</b>: every model run locally is ranked, whether its weights are open, gated or private; closed APIs are listed as unranked references.</li>
     </ul>
   </details>
   <footer>Arabic Arena · <a href="https://github.com/kadirnar/arabic-arena">github.com/kadirnar/arabic-arena</a><br>MGB-2: QCRI-AL Jazeera Corpus, used by Arabic Arena, was developed by Qatar Computing Research Institute ("QCRI"), an institute within the Hamad Bin Khalifa University ("HBKU") a member of the Qatar Foundation for Education, Science and Community Development and the Data provided courtesy of Al Jazeera.</footer>
@@ -579,7 +580,7 @@ function drawTable() {
   let rank = 0;
   ms.forEach((m) => {
     const row = h("tr", null, tb);
-    const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and gated or private weights are unranked references
+    const kind = m.kind || "open", unranked = kind === "api";  // closed APIs are unranked references
     const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
     const rr = sc === FIRST_TRACK ? rankOf(m) : null;  // the rank set is the Arena rank's
     if (rr && rr[0] !== rr[1]) {
@@ -593,7 +594,8 @@ function drawTable() {
     else if (m.finetune_of) h("span", "fine-tune", td, "tag").title = info;
     const k = KIND[kind] || [kind, "b-open"];
     const badge = h("span", k[0], h("td", null, row), "badge " + k[1]);
-    if (unranked) badge.title = (kind === "api" ? "Closed commercial API" : kind === "gated" ? "Weights gated on the Hub (access on request)" : "Weights not public") + ": unranked reference, scored on the re-hosted sets only";
+    if (unranked) badge.title = "Closed commercial API: unranked reference, scored on the re-hosted sets only";
+    else if (kind !== "open") badge.title = kind === "gated" ? "Weights gated on the Hub (access on request)" : "Weights not public";
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([key], j) => {
       const v = score(m, key), t = trackOf(m, key);

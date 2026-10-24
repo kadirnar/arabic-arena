@@ -167,6 +167,17 @@ def _v2_set(res: dict, profile: str) -> dict | None:
             "insertions": p.get("ins"), "term_recall": (sc.get("terms") or {}).get("recall")}
 
 
+def is_ranked(row: dict) -> bool:
+    """Every model whose weights were run here (open, gated or private) is ranked; closed APIs are unranked
+    references, scored on the re-hosted sets only."""
+    return row.get("kind", "open") != "api"
+
+
+def _name_md(row: dict) -> str:
+    """The model name, linked to its Hub page unless the weights are private (a page others cannot open)."""
+    return row["model"] if row.get("kind") == "private" else f"[{row['model']}](https://huggingface.co/{row['hf_id']})"
+
+
 def collect_v2(suite: Suite, lb: dict) -> dict:
     """Add the v2 view to a v1 leaderboard dict (in place) and return it."""
     head = suite.scoring.get("headline", HEADLINE)
@@ -177,7 +188,7 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
     source_of = {f"{n}/{c}": n for n, c, _ in suite.eval_sets()}
     ranked_in_domain: set[str] = set()
     for row in lb["models"]:
-        if row.get("kind", "open") == "open":
+        if is_ranked(row):
             ranked_in_domain.update(row.get("in_domain") or [])
     zero_shot = {k: w for k, w in weights.items() if source_of[k] not in ranked_in_domain}
     simulated = {s.name for s in suite.sets.values() if s.simulated}
@@ -222,8 +233,7 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
     for row in lb["models"]:
         if row["model"] in outs:
             row["v2"]["boh_share"] = bag_share(outs[row["model"]], [p for p, _, _ in bag])
-    ranked = sorted((r for r in lb["models"] if r["v2"]["arena"] is not None and r.get("kind", "open") == "open"),
-                    key=lambda r: r["v2"]["arena"])
+    ranked = _ranked_v2(lb)
     for i, r in enumerate(ranked, 1):
         r["v2"]["rank"] = i
     lb["v2"] = {"headline": head, "aggregate": how, "weights": weights, "track_weights": track_weights,
@@ -238,7 +248,7 @@ def collect_v2(suite: Suite, lb: dict) -> dict:
 
 
 def _ranked_v2(lb: dict) -> list[dict]:
-    return sorted((r for r in lb["models"] if r.get("v2", {}).get("arena") is not None and r.get("kind", "open") == "open"),
+    return sorted((r for r in lb["models"] if r.get("v2", {}).get("arena") is not None and is_ranked(r)),
                   key=lambda r: r["v2"]["arena"])
 
 
@@ -338,17 +348,12 @@ def to_markdown_v2(lb: dict) -> str:
             "Strict (L1)", "Arithmetic", "Real audio", "Zero-shot", "Exposure", "Halluc. ≥3 words", "Terms missed",
             "v1 Arena", "RTFx"]
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
-    # references with a complete v2 Arena (gated or private weights) are listed in place but not ranked
-    refs = [r for r in lb["models"] if r.get("kind", "open") not in ("open", "api") and r.get("v2", {}).get("arena") is not None]
-    rank = 0
-    for r in sorted(rows + refs, key=lambda r: r["v2"]["arena"]):
+    for rank, r in enumerate(rows, 1):
         v = r["v2"]
-        ref = r.get("kind", "open") != "open"
-        rank += not ref
-        mark = (" †" if v["exposure"] else "") + (f" *({r['kind']} weights, unranked)*" if ref else "")
-        name = r["model"] if r.get("kind") == "private" else f"[{r['model']}](https://huggingface.co/{r['hf_id']})"
+        kind = r.get("kind", "open")
+        mark = (" †" if v["exposure"] else "") + (f" *({kind} weights)*" if kind != "open" else "")
         ci, rs = v.get("arena_ci"), v.get("rank_set")
-        cells = ["—" if ref else str(rank), f"{name}{mark}",
+        cells = [str(rank), f"{_name_md(r)}{mark}",
                  f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(v['arena'])}**",
                  f"{_pct(ci[0])}–{_pct(ci[1])}" if ci else "—",
                  ("—" if not rs else str(rs[0]) if rs[0] == rs[1] else f"{rs[0]}–{rs[1]}"), _pct(v["arena_cer"]),
@@ -403,10 +408,11 @@ def to_markdown(lb: dict) -> str:
             *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
     head.insert(-1, "Halluc. %")
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
-    ranked = [r for r in lb["models"] if r.get("kind", "open") == "open"]  # APIs and gated weights are unranked
+    ranked = [r for r in lb["models"] if is_ranked(r)]  # closed APIs are unranked
     for i, r in enumerate(ranked, 1):
-        mark = " †" if r.get("in_domain") else ""
-        cells = [str(i), f"[{r['model']}](https://huggingface.co/{r['hf_id']}){mark}",
+        kind = r.get("kind", "open")
+        mark = (" †" if r.get("in_domain") else "") + (f" *({kind} weights)*" if kind != "open" else "")
+        cells = [str(i), f"{_name_md(r)}{mark}",
                  f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(r['arena_wer'])}**",
                  f"{_pct(r['arena_ci'][0])}–{_pct(r['arena_ci'][1])}" if r.get("arena_ci") else "—",
                  (lambda rr: "—" if not rr else str(rr[0]) if rr[0] == rr[1] else f"{rr[0]}–{rr[1]}")(r.get("rank_range")),
