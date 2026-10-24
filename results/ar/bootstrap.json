@@ -247,8 +247,8 @@
     0.53994
    ],
    "rank": [
-    36,
-    38
+    41,
+    43
    ]
   },
   "arabic-stt-qwen3-asr-1.7b": {
@@ -529,8 +529,1008 @@
     0.30797
    ],
    "rank": [
-    4,
-    4
+    9,
+    9
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-best-task06": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.03977,
+     0.05966
+    ],
+    "cv18_ar/clean": [
+     0.05819,
+     0.07449
+    ],
+    "masc_clean/clean": [
+     0.04602,
+     0.06133
+    ],
+    "mgb2/clean": [
+     0.09141,
+     0.10945
+    ],
+    "sada/clean": [
+     0.22577,
+     0.25317
+    ],
+    "casablanca/clean": [
+     0.37372,
+     0.40919
+    ],
+    "mgb3_egy/clean": [
+     0.17661,
+     0.19412
+    ],
+    "mgb5_mor/clean": [
+     0.45232,
+     0.48453
+    ],
+    "svq_ar/clean": [
+     0.16053,
+     0.19473
+    ],
+    "shams_lev/clean": [
+     0.23251,
+     0.26059
+    ],
+    "hassaniya/clean": [
+     0.57226,
+     0.60976
+    ],
+    "wasil/clean": [
+     0.156,
+     0.19294
+    ],
+    "echonova/clean": [
+     0.18292,
+     0.20412
+    ],
+    "massive_ar/clean": [
+     0.12523,
+     0.15211
+    ],
+    "sudanese_sdn/clean": [
+     1.27131,
+     1.36858
+    ],
+    "mtedx_ar/clean": [
+     0.66741,
+     0.72768
+    ],
+    "gsb_ar/clean": [
+     0.24259,
+     0.27474
+    ],
+    "mixat_cs/clean": [
+     0.12497,
+     0.13833
+    ],
+    "algerian_cs/clean": [
+     0.30532,
+     0.37325
+    ],
+    "perle_cs/clean": [
+     0.09991,
+     0.11432
+    ],
+    "tedxtn_cs/clean": [
+     0.18962,
+     0.2133
+    ],
+    "masc_noisy/clean": [
+     0.14081,
+     0.16625
+    ],
+    "nadi_robust/clean": [
+     0.42023,
+     0.45831
+    ],
+    "svq_ar_noisy/clean": [
+     0.16169,
+     0.19308
+    ],
+    "fleurs_ar/noisy": [
+     0.0483,
+     0.07664
+    ],
+    "cv18_ar/noisy": [
+     0.09195,
+     0.13784
+    ],
+    "mgb2/noisy": [
+     0.09699,
+     0.13061
+    ],
+    "sada/noisy": [
+     0.24654,
+     0.30868
+    ],
+    "fleurs_ar/telephony": [
+     0.04958,
+     0.07954
+    ],
+    "cv18_ar/telephony": [
+     0.07464,
+     0.113
+    ],
+    "mgb2/telephony": [
+     0.08461,
+     0.11445
+    ],
+    "sada/telephony": [
+     0.25415,
+     0.3126
+    ],
+    "casablanca/telephony": [
+     0.36108,
+     0.42956
+    ],
+    "mgb3_egy/telephony": [
+     0.18927,
+     0.22421
+    ],
+    "fleurs_ar/callcenter": [
+     0.10676,
+     0.14146
+    ],
+    "cv18_ar/callcenter": [
+     0.18055,
+     0.24814
+    ],
+    "mgb2/callcenter": [
+     0.15303,
+     0.20299
+    ],
+    "sada/callcenter": [
+     0.35551,
+     0.42705
+    ],
+    "casablanca/callcenter": [
+     0.49224,
+     0.5723
+    ],
+    "mgb3_egy/callcenter": [
+     0.29123,
+     0.34143
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.04814,
+     0.07598
+    ],
+    "cv18_ar/telephony_v2": [
+     0.06202,
+     0.09578
+    ],
+    "mgb2/telephony_v2": [
+     0.08403,
+     0.1135
+    ],
+    "sada/telephony_v2": [
+     0.2378,
+     0.2897
+    ],
+    "casablanca/telephony_v2": [
+     0.3652,
+     0.43192
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.18506,
+     0.21843
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.0772,
+     0.11398
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.12719,
+     0.18317
+    ],
+    "mgb2/callcenter_v2": [
+     0.1158,
+     0.15224
+    ],
+    "sada/callcenter_v2": [
+     0.29869,
+     0.36376
+    ],
+    "casablanca/callcenter_v2": [
+     0.43579,
+     0.51262
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.23726,
+     0.28218
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.31002,
+     0.31949
+    ],
+    "codeswitch": [
+     0.18526,
+     0.20362
+    ],
+    "noisy": [
+     0.18374,
+     0.19802
+    ],
+    "telephony": [
+     0.18049,
+     0.1991
+    ],
+    "callcenter": [
+     0.27975,
+     0.30471
+    ],
+    "telephony_v2": [
+     0.17472,
+     0.19194
+    ],
+    "callcenter_v2": [
+     0.23005,
+     0.25239
+    ]
+   },
+   "arena_wer": [
+    0.25064,
+    0.25812
+   ],
+   "rank": [
+    1,
+    1
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-run10": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.04113,
+     0.06182
+    ],
+    "cv18_ar/clean": [
+     0.06117,
+     0.07813
+    ],
+    "masc_clean/clean": [
+     0.04898,
+     0.06473
+    ],
+    "mgb2/clean": [
+     0.09013,
+     0.10776
+    ],
+    "sada/clean": [
+     0.22993,
+     0.25813
+    ],
+    "casablanca/clean": [
+     0.37772,
+     0.41511
+    ],
+    "mgb3_egy/clean": [
+     0.17446,
+     0.19132
+    ],
+    "mgb5_mor/clean": [
+     0.45638,
+     0.48758
+    ],
+    "svq_ar/clean": [
+     0.17154,
+     0.20621
+    ],
+    "shams_lev/clean": [
+     0.237,
+     0.26407
+    ],
+    "hassaniya/clean": [
+     0.57736,
+     0.61625
+    ],
+    "wasil/clean": [
+     0.16307,
+     0.20117
+    ],
+    "echonova/clean": [
+     0.17808,
+     0.19843
+    ],
+    "massive_ar/clean": [
+     0.1299,
+     0.15639
+    ],
+    "sudanese_sdn/clean": [
+     1.26505,
+     1.36182
+    ],
+    "mtedx_ar/clean": [
+     0.66506,
+     0.72262
+    ],
+    "gsb_ar/clean": [
+     0.24949,
+     0.28145
+    ],
+    "mixat_cs/clean": [
+     0.14376,
+     0.1584
+    ],
+    "algerian_cs/clean": [
+     0.31954,
+     0.38708
+    ],
+    "perle_cs/clean": [
+     0.12423,
+     0.1417
+    ],
+    "tedxtn_cs/clean": [
+     0.19978,
+     0.22424
+    ],
+    "masc_noisy/clean": [
+     0.14227,
+     0.16715
+    ],
+    "nadi_robust/clean": [
+     0.42981,
+     0.46979
+    ],
+    "svq_ar_noisy/clean": [
+     0.16746,
+     0.19791
+    ],
+    "fleurs_ar/noisy": [
+     0.05123,
+     0.08146
+    ],
+    "cv18_ar/noisy": [
+     0.09031,
+     0.13264
+    ],
+    "mgb2/noisy": [
+     0.10154,
+     0.13421
+    ],
+    "sada/noisy": [
+     0.25567,
+     0.31798
+    ],
+    "fleurs_ar/telephony": [
+     0.05203,
+     0.08276
+    ],
+    "cv18_ar/telephony": [
+     0.07243,
+     0.11058
+    ],
+    "mgb2/telephony": [
+     0.09271,
+     0.12544
+    ],
+    "sada/telephony": [
+     0.25517,
+     0.31038
+    ],
+    "casablanca/telephony": [
+     0.37665,
+     0.44706
+    ],
+    "mgb3_egy/telephony": [
+     0.18902,
+     0.22271
+    ],
+    "fleurs_ar/callcenter": [
+     0.11666,
+     0.15328
+    ],
+    "cv18_ar/callcenter": [
+     0.17627,
+     0.24691
+    ],
+    "mgb2/callcenter": [
+     0.16351,
+     0.21427
+    ],
+    "sada/callcenter": [
+     0.3646,
+     0.43773
+    ],
+    "casablanca/callcenter": [
+     0.51047,
+     0.58752
+    ],
+    "mgb3_egy/callcenter": [
+     0.28475,
+     0.33884
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.05084,
+     0.0794
+    ],
+    "cv18_ar/telephony_v2": [
+     0.06486,
+     0.0998
+    ],
+    "mgb2/telephony_v2": [
+     0.0928,
+     0.12382
+    ],
+    "sada/telephony_v2": [
+     0.2471,
+     0.29887
+    ],
+    "casablanca/telephony_v2": [
+     0.3782,
+     0.45081
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.18699,
+     0.21883
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.07896,
+     0.1149
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.13722,
+     0.19555
+    ],
+    "mgb2/callcenter_v2": [
+     0.12183,
+     0.16101
+    ],
+    "sada/callcenter_v2": [
+     0.30303,
+     0.36866
+    ],
+    "casablanca/callcenter_v2": [
+     0.44116,
+     0.52047
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.23876,
+     0.28396
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.31231,
+     0.32176
+    ],
+    "codeswitch": [
+     0.20271,
+     0.22138
+    ],
+    "noisy": [
+     0.18812,
+     0.20235
+    ],
+    "telephony": [
+     0.1846,
+     0.20351
+    ],
+    "callcenter": [
+     0.28619,
+     0.31174
+    ],
+    "telephony_v2": [
+     0.18127,
+     0.19926
+    ],
+    "callcenter_v2": [
+     0.23586,
+     0.25832
+    ]
+   },
+   "arena_wer": [
+    0.25618,
+    0.26381
+   ],
+   "rank": [
+    3,
+    5
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-run13": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.04229,
+     0.06282
+    ],
+    "cv18_ar/clean": [
+     0.06069,
+     0.07716
+    ],
+    "masc_clean/clean": [
+     0.04783,
+     0.06312
+    ],
+    "mgb2/clean": [
+     0.09373,
+     0.11202
+    ],
+    "sada/clean": [
+     0.2332,
+     0.26104
+    ],
+    "casablanca/clean": [
+     0.37578,
+     0.4123
+    ],
+    "mgb3_egy/clean": [
+     0.17537,
+     0.19218
+    ],
+    "mgb5_mor/clean": [
+     0.46027,
+     0.49225
+    ],
+    "svq_ar/clean": [
+     0.1713,
+     0.20624
+    ],
+    "shams_lev/clean": [
+     0.23902,
+     0.26602
+    ],
+    "hassaniya/clean": [
+     0.5787,
+     0.61537
+    ],
+    "wasil/clean": [
+     0.16231,
+     0.20039
+    ],
+    "echonova/clean": [
+     0.18121,
+     0.20156
+    ],
+    "massive_ar/clean": [
+     0.13109,
+     0.15712
+    ],
+    "sudanese_sdn/clean": [
+     1.25959,
+     1.3521
+    ],
+    "mtedx_ar/clean": [
+     0.66513,
+     0.72438
+    ],
+    "gsb_ar/clean": [
+     0.25026,
+     0.28194
+    ],
+    "mixat_cs/clean": [
+     0.14831,
+     0.16336
+    ],
+    "algerian_cs/clean": [
+     0.31074,
+     0.37854
+    ],
+    "perle_cs/clean": [
+     0.12308,
+     0.14128
+    ],
+    "tedxtn_cs/clean": [
+     0.20238,
+     0.22721
+    ],
+    "masc_noisy/clean": [
+     0.14494,
+     0.17049
+    ],
+    "nadi_robust/clean": [
+     0.43264,
+     0.47146
+    ],
+    "svq_ar_noisy/clean": [
+     0.17231,
+     0.20473
+    ],
+    "fleurs_ar/noisy": [
+     0.05173,
+     0.08212
+    ],
+    "cv18_ar/noisy": [
+     0.08992,
+     0.13242
+    ],
+    "mgb2/noisy": [
+     0.09833,
+     0.13104
+    ],
+    "sada/noisy": [
+     0.25823,
+     0.32093
+    ],
+    "fleurs_ar/telephony": [
+     0.05115,
+     0.07975
+    ],
+    "cv18_ar/telephony": [
+     0.07124,
+     0.10843
+    ],
+    "mgb2/telephony": [
+     0.0947,
+     0.12893
+    ],
+    "sada/telephony": [
+     0.25969,
+     0.31335
+    ],
+    "casablanca/telephony": [
+     0.37047,
+     0.44135
+    ],
+    "mgb3_egy/telephony": [
+     0.18673,
+     0.21879
+    ],
+    "fleurs_ar/callcenter": [
+     0.11219,
+     0.14757
+    ],
+    "cv18_ar/callcenter": [
+     0.1784,
+     0.2471
+    ],
+    "mgb2/callcenter": [
+     0.15849,
+     0.21259
+    ],
+    "sada/callcenter": [
+     0.36276,
+     0.43343
+    ],
+    "casablanca/callcenter": [
+     0.51633,
+     0.60177
+    ],
+    "mgb3_egy/callcenter": [
+     0.2846,
+     0.33403
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.04877,
+     0.07779
+    ],
+    "cv18_ar/telephony_v2": [
+     0.06715,
+     0.10204
+    ],
+    "mgb2/telephony_v2": [
+     0.08997,
+     0.12078
+    ],
+    "sada/telephony_v2": [
+     0.24586,
+     0.29792
+    ],
+    "casablanca/telephony_v2": [
+     0.37754,
+     0.44645
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.18583,
+     0.21904
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.08042,
+     0.11614
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.13618,
+     0.19351
+    ],
+    "mgb2/callcenter_v2": [
+     0.12151,
+     0.15996
+    ],
+    "sada/callcenter_v2": [
+     0.30939,
+     0.37401
+    ],
+    "casablanca/callcenter_v2": [
+     0.44797,
+     0.53065
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.24098,
+     0.28609
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.31286,
+     0.32228
+    ],
+    "codeswitch": [
+     0.20222,
+     0.22136
+    ],
+    "noisy": [
+     0.18928,
+     0.20409
+    ],
+    "telephony": [
+     0.18381,
+     0.20221
+    ],
+    "callcenter": [
+     0.28542,
+     0.31113
+    ],
+    "telephony_v2": [
+     0.18045,
+     0.19815
+    ],
+    "callcenter_v2": [
+     0.23831,
+     0.26035
+    ]
+   },
+   "arena_wer": [
+    0.25616,
+    0.26383
+   ],
+   "rank": [
+    2,
+    5
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-run16": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.04243,
+     0.06359
+    ],
+    "cv18_ar/clean": [
+     0.05977,
+     0.07673
+    ],
+    "masc_clean/clean": [
+     0.04756,
+     0.06315
+    ],
+    "mgb2/clean": [
+     0.09348,
+     0.11174
+    ],
+    "sada/clean": [
+     0.23362,
+     0.26207
+    ],
+    "casablanca/clean": [
+     0.37739,
+     0.41316
+    ],
+    "mgb3_egy/clean": [
+     0.17547,
+     0.19277
+    ],
+    "mgb5_mor/clean": [
+     0.45994,
+     0.49272
+    ],
+    "svq_ar/clean": [
+     0.17185,
+     0.20713
+    ],
+    "shams_lev/clean": [
+     0.23797,
+     0.26467
+    ],
+    "hassaniya/clean": [
+     0.57873,
+     0.61406
+    ],
+    "wasil/clean": [
+     0.16207,
+     0.20054
+    ],
+    "echonova/clean": [
+     0.18127,
+     0.20188
+    ],
+    "massive_ar/clean": [
+     0.13087,
+     0.1566
+    ],
+    "sudanese_sdn/clean": [
+     1.26177,
+     1.36036
+    ],
+    "mtedx_ar/clean": [
+     0.66545,
+     0.72517
+    ],
+    "gsb_ar/clean": [
+     0.25066,
+     0.28306
+    ],
+    "mixat_cs/clean": [
+     0.14812,
+     0.16295
+    ],
+    "algerian_cs/clean": [
+     0.31432,
+     0.38155
+    ],
+    "perle_cs/clean": [
+     0.12368,
+     0.14202
+    ],
+    "tedxtn_cs/clean": [
+     0.20201,
+     0.22694
+    ],
+    "masc_noisy/clean": [
+     0.14537,
+     0.17066
+    ],
+    "nadi_robust/clean": [
+     0.43187,
+     0.46977
+    ],
+    "svq_ar_noisy/clean": [
+     0.17177,
+     0.20313
+    ],
+    "fleurs_ar/noisy": [
+     0.05214,
+     0.08231
+    ],
+    "cv18_ar/noisy": [
+     0.08756,
+     0.12809
+    ],
+    "mgb2/noisy": [
+     0.09925,
+     0.13172
+    ],
+    "sada/noisy": [
+     0.25915,
+     0.32066
+    ],
+    "fleurs_ar/telephony": [
+     0.05184,
+     0.08159
+    ],
+    "cv18_ar/telephony": [
+     0.06978,
+     0.10739
+    ],
+    "mgb2/telephony": [
+     0.09425,
+     0.1287
+    ],
+    "sada/telephony": [
+     0.26177,
+     0.32009
+    ],
+    "casablanca/telephony": [
+     0.36879,
+     0.43778
+    ],
+    "mgb3_egy/telephony": [
+     0.18618,
+     0.21817
+    ],
+    "fleurs_ar/callcenter": [
+     0.11289,
+     0.14875
+    ],
+    "cv18_ar/callcenter": [
+     0.17709,
+     0.24386
+    ],
+    "mgb2/callcenter": [
+     0.15864,
+     0.21225
+    ],
+    "sada/callcenter": [
+     0.36169,
+     0.43076
+    ],
+    "casablanca/callcenter": [
+     0.51814,
+     0.61037
+    ],
+    "mgb3_egy/callcenter": [
+     0.28395,
+     0.33251
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.04884,
+     0.07808
+    ],
+    "cv18_ar/telephony_v2": [
+     0.06534,
+     0.10116
+    ],
+    "mgb2/telephony_v2": [
+     0.08962,
+     0.12161
+    ],
+    "sada/telephony_v2": [
+     0.24762,
+     0.30058
+    ],
+    "casablanca/telephony_v2": [
+     0.37827,
+     0.44888
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.18558,
+     0.21839
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.08147,
+     0.1176
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.13762,
+     0.19368
+    ],
+    "mgb2/callcenter_v2": [
+     0.12371,
+     0.16262
+    ],
+    "sada/callcenter_v2": [
+     0.31277,
+     0.386
+    ],
+    "casablanca/callcenter_v2": [
+     0.44705,
+     0.52753
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.24127,
+     0.2859
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.3133,
+     0.32271
+    ],
+    "codeswitch": [
+     0.20311,
+     0.2219
+    ],
+    "noisy": [
+     0.18906,
+     0.20345
+    ],
+    "telephony": [
+     0.18392,
+     0.20249
+    ],
+    "callcenter": [
+     0.28518,
+     0.31157
+    ],
+    "telephony_v2": [
+     0.18089,
+     0.19849
+    ],
+    "callcenter_v2": [
+     0.23919,
+     0.26216
+    ]
+   },
+   "arena_wer": [
+    0.25655,
+    0.26434
+   ],
+   "rank": [
+    3,
+    5
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run5": {
@@ -811,8 +1811,8 @@
     0.28066
    ],
    "rank": [
-    2,
-    2
+    7,
+    7
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run5base": {
@@ -1093,8 +2093,8 @@
     0.29155
    ],
    "rank": [
-    3,
-    3
+    8,
+    8
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run6b-soup70": {
@@ -1375,8 +2375,258 @@
     0.27872
    ],
    "rank": [
-    1,
-    1
+    6,
+    6
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-run9b": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.04021,
+     0.06057
+    ],
+    "cv18_ar/clean": [
+     0.05975,
+     0.07693
+    ],
+    "masc_clean/clean": [
+     0.04633,
+     0.0617
+    ],
+    "mgb2/clean": [
+     0.08712,
+     0.10476
+    ],
+    "sada/clean": [
+     0.22967,
+     0.25849
+    ],
+    "casablanca/clean": [
+     0.37748,
+     0.41392
+    ],
+    "mgb3_egy/clean": [
+     0.17692,
+     0.19449
+    ],
+    "mgb5_mor/clean": [
+     0.45494,
+     0.4873
+    ],
+    "svq_ar/clean": [
+     0.16866,
+     0.20261
+    ],
+    "shams_lev/clean": [
+     0.22858,
+     0.2564
+    ],
+    "hassaniya/clean": [
+     0.57425,
+     0.61132
+    ],
+    "wasil/clean": [
+     0.16176,
+     0.19978
+    ],
+    "echonova/clean": [
+     0.17795,
+     0.19905
+    ],
+    "massive_ar/clean": [
+     0.12655,
+     0.15194
+    ],
+    "sudanese_sdn/clean": [
+     1.27361,
+     1.39363
+    ],
+    "mtedx_ar/clean": [
+     0.66554,
+     0.72187
+    ],
+    "gsb_ar/clean": [
+     0.24786,
+     0.27955
+    ],
+    "mixat_cs/clean": [
+     0.142,
+     0.1562
+    ],
+    "algerian_cs/clean": [
+     0.31,
+     0.37838
+    ],
+    "perle_cs/clean": [
+     0.13381,
+     0.15277
+    ],
+    "tedxtn_cs/clean": [
+     0.19765,
+     0.22248
+    ],
+    "masc_noisy/clean": [
+     0.14367,
+     0.16841
+    ],
+    "nadi_robust/clean": [
+     0.42729,
+     0.46621
+    ],
+    "svq_ar_noisy/clean": [
+     0.16916,
+     0.20086
+    ],
+    "fleurs_ar/noisy": [
+     0.05244,
+     0.08247
+    ],
+    "cv18_ar/noisy": [
+     0.09252,
+     0.13574
+    ],
+    "mgb2/noisy": [
+     0.10399,
+     0.13954
+    ],
+    "sada/noisy": [
+     0.2554,
+     0.31717
+    ],
+    "fleurs_ar/telephony": [
+     0.0508,
+     0.08019
+    ],
+    "cv18_ar/telephony": [
+     0.06915,
+     0.10623
+    ],
+    "mgb2/telephony": [
+     0.09161,
+     0.12428
+    ],
+    "sada/telephony": [
+     0.25105,
+     0.30514
+    ],
+    "casablanca/telephony": [
+     0.37013,
+     0.44018
+    ],
+    "mgb3_egy/telephony": [
+     0.18857,
+     0.22261
+    ],
+    "fleurs_ar/callcenter": [
+     0.11228,
+     0.1483
+    ],
+    "cv18_ar/callcenter": [
+     0.18404,
+     0.2505
+    ],
+    "mgb2/callcenter": [
+     0.15195,
+     0.20114
+    ],
+    "sada/callcenter": [
+     0.36033,
+     0.43499
+    ],
+    "casablanca/callcenter": [
+     0.50679,
+     0.58974
+    ],
+    "mgb3_egy/callcenter": [
+     0.2793,
+     0.33269
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.04826,
+     0.0776
+    ],
+    "cv18_ar/telephony_v2": [
+     0.06367,
+     0.09966
+    ],
+    "mgb2/telephony_v2": [
+     0.08941,
+     0.11955
+    ],
+    "sada/telephony_v2": [
+     0.24642,
+     0.29992
+    ],
+    "casablanca/telephony_v2": [
+     0.37221,
+     0.44389
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.18276,
+     0.21454
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.07917,
+     0.11517
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.13414,
+     0.19351
+    ],
+    "mgb2/callcenter_v2": [
+     0.11995,
+     0.15996
+    ],
+    "sada/callcenter_v2": [
+     0.3007,
+     0.36426
+    ],
+    "casablanca/callcenter_v2": [
+     0.44528,
+     0.52362
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.237,
+     0.28053
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.31137,
+     0.32152
+    ],
+    "codeswitch": [
+     0.20218,
+     0.22103
+    ],
+    "noisy": [
+     0.18931,
+     0.20402
+    ],
+    "telephony": [
+     0.18137,
+     0.19966
+    ],
+    "callcenter": [
+     0.28331,
+     0.30892
+    ],
+    "telephony_v2": [
+     0.17844,
+     0.1961
+    ],
+    "callcenter_v2": [
+     0.23434,
+     0.25623
+    ]
+   },
+   "arena_wer": [
+    0.25469,
+    0.26224
+   ],
+   "rank": [
+    2,
+    4
    ]
   },
   "arabic-whisper-codeswitching": {
@@ -1625,8 +2875,8 @@
     0.59243
    ],
    "rank": [
-    40,
-    42
+    45,
+    47
    ]
   },
   "audar-asr-v1-flash": {
@@ -1907,8 +3157,8 @@
     0.47131
    ],
    "rank": [
-    20,
-    23
+    25,
+    28
    ]
   },
   "audar-asr-v1-turbo": {
@@ -2189,8 +3439,8 @@
     0.3816
    ],
    "rank": [
-    7,
-    7
+    12,
+    12
    ]
   },
   "cohere-speech-tashkeel-2b": {
@@ -2439,8 +3689,8 @@
     0.40926
    ],
    "rank": [
-    9,
-    11
+    14,
+    16
    ]
   },
   "cohere-transcribe-03-2026": {
@@ -2721,8 +3971,8 @@
     0.44746
    ],
    "rank": [
-    14,
-    17
+    19,
+    22
    ]
   },
   "cohere-transcribe-arabic-07-2026": {
@@ -3003,8 +4253,8 @@
     0.33498
    ],
    "rank": [
-    5,
-    5
+    10,
+    10
    ]
   },
   "cohere-transcribe-arabic-dialectal-v2": {
@@ -3253,8 +4503,8 @@
     1.43578
    ],
    "rank": [
-    60,
-    60
+    65,
+    65
    ]
   },
   "confucius4-r2t2": {
@@ -3503,8 +4753,8 @@
     0.45519
    ],
    "rank": [
-    17,
-    19
+    22,
+    24
    ]
   },
   "cs-egyptian-whisper-small": {
@@ -3753,8 +5003,8 @@
     0.69208
    ],
    "rank": [
-    47,
-    51
+    52,
+    56
    ]
   },
   "egyptian-arabic-wav2vec2-xlsr-53": {
@@ -4003,8 +5253,8 @@
     0.51239
    ],
    "rank": [
-    34,
-    35
+    39,
+    40
    ]
   },
   "egytalk-asr-v2": {
@@ -4253,8 +5503,8 @@
     0.45992
    ],
    "rank": [
-    19,
-    21
+    24,
+    26
    ]
   },
   "fun-asr-mlt-nano-2512": {
@@ -4503,8 +5753,8 @@
     0.78582
    ],
    "rank": [
-    54,
-    57
+    59,
+    62
    ]
   },
   "gemma-4-e2b-it": {
@@ -4785,8 +6035,8 @@
     0.4859
    ],
    "rank": [
-    18,
-    25
+    23,
+    30
    ]
   },
   "gemma-4-e4b-it": {
@@ -5035,8 +6285,8 @@
     0.45642
    ],
    "rank": [
-    12,
-    20
+    17,
+    25
    ]
   },
   "hubert-large-arabic-egyptian": {
@@ -5285,8 +6535,8 @@
     0.7043
    ],
    "rank": [
-    51,
-    53
+    56,
+    58
    ]
   },
   "jais-asr": {
@@ -5535,8 +6785,8 @@
     0.36117
    ],
    "rank": [
-    6,
-    6
+    11,
+    11
    ]
   },
   "lemura-arabic-asr-lite": {
@@ -5817,8 +7067,8 @@
     0.42941
    ],
    "rank": [
-    13,
-    14
+    18,
+    19
    ]
   },
   "lemura-arabic-asr-qwen3": {
@@ -6099,8 +7349,8 @@
     0.41924
    ],
    "rank": [
-    9,
-    12
+    14,
+    17
    ]
   },
   "mms-1b-all": {
@@ -6349,8 +7599,8 @@
     0.67125
    ],
    "rank": [
-    47,
-    49
+    52,
+    54
    ]
   },
   "moonshine-base-ar": {
@@ -6599,8 +7849,8 @@
     0.69551
    ],
    "rank": [
-    49,
-    52
+    54,
+    57
    ]
   },
   "moonshine-streaming-tiny-ar": {
@@ -6849,8 +8099,8 @@
     0.61714
    ],
    "rank": [
-    42,
-    45
+    47,
+    50
    ]
   },
   "moonshine-tiny-ar": {
@@ -7099,8 +8349,8 @@
     0.71593
    ],
    "rank": [
-    52,
-    54
+    57,
+    59
    ]
   },
   "moulsot-v0.3": {
@@ -7381,8 +8631,8 @@
     0.69065
    ],
    "rank": [
-    46,
-    50
+    51,
+    55
    ]
   },
   "nemotron-3.5-asr-arabic-dialectal-v2": {
@@ -7663,8 +8913,8 @@
     0.50438
    ],
    "rank": [
-    31,
-    32
+    36,
+    37
    ]
   },
   "nemotron-3.5-asr-jordanian": {
@@ -7913,8 +9163,8 @@
     0.55875
    ],
    "rank": [
-    39,
-    41
+    44,
+    46
    ]
   },
   "nemotron-3.5-asr-streaming-0.6b": {
@@ -8163,8 +9413,8 @@
     0.50937
    ],
    "rank": [
-    33,
-    34
+    38,
+    39
    ]
   },
   "nvidia-fastconformer-ar-pc": {
@@ -8445,8 +9695,8 @@
     0.40865
    ],
    "rank": [
-    9,
-    11
+    14,
+    16
    ]
   },
   "nvidia-fastconformer-ar-pcd": {
@@ -8695,8 +9945,8 @@
     0.42304
    ],
    "rank": [
-    12,
-    13
+    17,
+    18
    ]
   },
   "omniasr-ctc-1b-v2": {
@@ -8945,8 +10195,8 @@
     0.4897
    ],
    "rank": [
-    25,
-    28
+    30,
+    33
    ]
   },
   "omniasr-ctc-300m-v2": {
@@ -9195,8 +10445,8 @@
     0.60776
    ],
    "rank": [
-    42,
-    45
+    47,
+    50
    ]
   },
   "omniasr-ctc-3b-v2": {
@@ -9445,8 +10695,8 @@
     0.47228
    ],
    "rank": [
-    21,
-    23
+    26,
+    28
    ]
   },
   "omniasr-llm-1b-v2": {
@@ -9695,8 +10945,8 @@
     0.44209
    ],
    "rank": [
-    14,
-    16
+    19,
+    21
    ]
   },
   "omniasr-llm-300m-v2": {
@@ -9945,8 +11195,8 @@
     0.49838
    ],
    "rank": [
-    25,
-    30
+    30,
+    35
    ]
   },
   "qwen3-asr-0.6b": {
@@ -10227,8 +11477,8 @@
     0.54595
    ],
    "rank": [
-    37,
-    39
+    42,
+    44
    ]
   },
   "qwen3-asr-1.7b": {
@@ -10509,8 +11759,8 @@
     0.44623
    ],
    "rank": [
-    15,
-    17
+    20,
+    22
    ]
   },
   "qwen3-asr-1.7b-arabic-dialectal-v2": {
@@ -10759,8 +12009,8 @@
     0.46123
    ],
    "rank": [
-    18,
-    21
+    23,
+    26
    ]
   },
   "qwen3-asr-arabic-ksa": {
@@ -11041,8 +12291,8 @@
     0.50221
    ],
    "rank": [
-    30,
-    32
+    35,
+    37
    ]
   },
   "qwen3-asr-arabic-uae": {
@@ -11323,8 +12573,8 @@
     0.51425
    ],
    "rank": [
-    33,
-    35
+    38,
+    40
    ]
   },
   "qwen3-asr-jordanian": {
@@ -11573,8 +12823,8 @@
     0.48334
    ],
    "rank": [
-    23,
-    25
+    28,
+    30
    ]
   },
   "qwencleo-asr": {
@@ -11855,8 +13105,8 @@
     0.56312
    ],
    "rank": [
-    36,
-    40
+    41,
+    45
    ]
   },
   "seamless-m4t-v2-large": {
@@ -12105,8 +13355,8 @@
     0.50452
    ],
    "rank": [
-    24,
-    32
+    29,
+    37
    ]
   },
   "voho-saudi-stt-small": {
@@ -12355,8 +13605,8 @@
     0.72452
    ],
    "rank": [
-    49,
-    54
+    54,
+    59
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -12637,8 +13887,8 @@
     0.49389
    ],
    "rank": [
-    26,
-    29
+    31,
+    34
    ]
   },
   "voxtral-mini-4b-realtime-arabic": {
@@ -12919,8 +14169,8 @@
     0.39496
    ],
    "rank": [
-    8,
-    8
+    13,
+    13
    ]
   },
   "wav2vec2-large-xlsr-53-arabic": {
@@ -13169,8 +14419,8 @@
     0.76805
    ],
    "rank": [
-    55,
-    57
+    60,
+    62
    ]
   },
   "wav2vec2-xlsr-53-levantine-arabic": {
@@ -13419,8 +14669,8 @@
     0.97323
    ],
    "rank": [
-    59,
-    59
+    64,
+    64
    ]
   },
   "wav2vec2-xlsr-moroccan-darija": {
@@ -13669,8 +14919,8 @@
     0.83303
    ],
    "rank": [
-    58,
-    58
+    63,
+    63
    ]
   },
   "whisper-large-v3": {
@@ -13951,8 +15201,8 @@
     0.56178
    ],
    "rank": [
-    36,
-    40
+    41,
+    45
    ]
   },
   "whisper-large-v3-arabic-dialectal-v2": {
@@ -14201,8 +15451,8 @@
     0.65488
    ],
    "rank": [
-    42,
-    47
+    47,
+    52
    ]
   },
   "whisper-large-v3-egyptian-arabic": {
@@ -14451,8 +15701,8 @@
     0.61533
    ],
    "rank": [
-    41,
-    45
+    46,
+    50
    ]
   },
   "whisper-large-v3-turbo": {
@@ -14733,8 +15983,8 @@
     0.73512
    ],
    "rank": [
-    48,
-    55
+    53,
+    60
    ]
   },
   "whisper-large-v3-turbo-arabic-dialectal": {
@@ -14983,8 +16233,8 @@
     0.48935
    ],
    "rank": [
-    24,
-    28
+    29,
+    33
    ]
   },
   "whisper-large-v3-turbo-arabic-dialectal-v2": {
@@ -15233,8 +16483,8 @@
     0.80664
    ],
    "rank": [
-    55,
-    57
+    60,
+    62
    ]
   },
   "whisper-large-v3-turbo-darija": {
@@ -15483,8 +16733,8 @@
     0.64337
    ],
    "rank": [
-    45,
-    46
+    50,
+    51
    ]
   },
   "whisper-levantine": {
@@ -15733,8 +16983,8 @@
     0.49799
    ],
    "rank": [
-    28,
-    31
+    33,
+    36
    ]
   }
  }

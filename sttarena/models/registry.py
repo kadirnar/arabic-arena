@@ -65,6 +65,39 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "no further training; private weights. Trained on the train splits of MASC and Common Voice and on "
              "MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS "
              "ar_eg test sentences)"),
+    # Arabic-STT/qwen3-asr-1.7b-ar-run9 holds rounds 9 to 16 as branches; each entry pins its branch's head commit.
+    # The line descends from run 8 (run/streams.json), which streams the same kejue-voice and kejue-common-voice
+    # revisions as run 3 (MGB-2/SADA/MGB-3 train rows, the 20 leaked FLEURS ar_eg test sentences) plus MASC, CV18
+    # and TEDxTN train; its Hassaniya data (hassaniya-read-speech-v1) is a separate read-speech collection, not
+    # the benchmark corpus.
+    *[_M(f"arabic-stt-qwen3-asr-1.7b-{key}", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run9", 2.04,
+         "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+         kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/{branch}",
+         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+         notes=f"Arabic-STT {note}; branch `{branch}` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit {sha[:10]}), "
+               "weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as "
+               "run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences")
+      for key, branch, sha, note in [
+          ("run9b", "main", "e5a0100cebf66fa0cc11323522b1a325171646e4",
+           "run 9b final (tag run9b-final): run 9 (SFT with a two-view consistency loss and call windows, then "
+           "GSPO) continued on 27 h of human-annotated Arabic phone calls"),
+          ("run10", "run10", "e938b6d58309a288b8cc0e0c97e1ed2308bf2332",
+           "round 10 (tag run10-rl-s750): run 9b with English raised to 35 % of the hours, then GSPO"),
+          ("run13", "run13", "7dba8c7a51b7ac97d24fc7fc78f204f423e7dc5f",
+           "rounds 12-13 (tag run13-soup): weight average 0.5 x run12-rl-s1500 + 0.5 x run13c-rl-s750"),
+          ("run16", "run16", "01ffe1a9badbcacea01c56947b222d95f3cfb354",
+           "round 16 (tag run16-soup): weight average 0.5 x run13-soup + 0.5 x run16-rl-s250 (GSPO with "
+           "short replies after silence)"),
+      ]],
+    _M("arabic-stt-qwen3-asr-1.7b-best-task06", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-task06", 2.04,
+       "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       kwargs={"revision": "43617315cfbee8dbfe286f2ab4f544d4b959087d"},
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       notes="Arabic-STT best-task06: task-arithmetic merge run6b + 0.6 x (run10 - run6b) + 0.6 x (avg - run6b), avg "
+             "the 0.5/0.5 average of run6b-soup70-sip-v5 and sip-v5-grpo1, no further training (merge weights picked "
+             "on the Audioluna calls); weights gated on the Hub. Every parent carries run 5's in-domain train rows "
+             "(MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included); sip-v5 adds an MGB-2 part of "
+             "kejue-voice, sip-v5-grpo1 EdAcc and Earnings-22 (English)"),
     _M("qwen3-asr-1.7b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-1.7B-hf", 2.04, "Apache-2.0", batch_size=32),
     _M("qwen3-asr-0.6b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-0.6B-hf", 0.94, "Apache-2.0", batch_size=32),
     # --- Cohere Transcribe --------------------------------------------------------------------

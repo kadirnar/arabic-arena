@@ -175,7 +175,10 @@ def is_ranked(row: dict) -> bool:
 
 def _name_md(row: dict) -> str:
     """The model name, linked to its Hub page unless the weights are private (a page others cannot open)."""
-    return row["model"] if row.get("kind") == "private" else f"[{row['model']}](https://huggingface.co/{row['hf_id']})"
+    if row.get("kind") == "private":
+        return row["model"]
+    url = row["hf_id"] if row["hf_id"].startswith("http") else f"https://huggingface.co/{row['hf_id']}"
+    return f"[{row['model']}]({url})"
 
 
 def collect_v2(suite: Suite, lb: dict) -> dict:

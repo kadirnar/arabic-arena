@@ -42,9 +42,12 @@ class Qwen3ASRHF(ASRModel):
         from transformers import AutoModelForMultimodalLM, AutoProcessor
 
         # kwargs.processor: take the processor (chat template) from another repo, e.g. the base model when a
-        # fine-tune saved a template that drops the final message
-        self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
-        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
+        # fine-tune saved a template that drops the final message. kwargs.revision: a branch, tag or commit of
+        # the repo (one repo holding several checkpoints), for the weights and the repo's own processor.
+        rev = spec.kwargs.get("revision")
+        proc = spec.kwargs.get("processor")
+        self.processor = AutoProcessor.from_pretrained(proc or spec.hf_id, revision=None if proc else rev)
+        self.model = AutoModelForMultimodalLM.from_pretrained(spec.hf_id, revision=rev, dtype=NATIVE).to(device).eval()
 
     def transcribe(self, audios, language):
         import torch
