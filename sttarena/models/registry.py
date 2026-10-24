@@ -138,6 +138,15 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
           ("run20-mwer-s1000", "ae7e8163ce052ac90740e9b5eb9dad4f803a1fec",
            "S7all step 1000 + 1,000 MWER steps (the card's pick with its levelling front end and MBR decoding)"),
       ]],
+    _M("arabic-stt-qwen3-asr-1.7b-best-grpo2", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-grpo2", 2.04,
+       "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       kwargs={"revision": "cdd28b086d66069727b279f4a0424daeec561a05"},
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       notes="Arabic-STT best-grpo2: task06 + 0.3 x (run20 - task06), then GRPO (LoRA r 16, merged; 935 steps) on "
+             "human-annotated Arabic customer-service call segments, English call-centre clips, quiet short answers "
+             "under a louder turn, joined multi-turn pieces and windows without speech; weights gated on the Hub. "
+             "Carries its parents' in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test "
+             "sentences included)"),
     _M("arabic-stt-qwen3-asr-1.7b-best-task06", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-task06", 2.04,
        "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        kwargs={"revision": "43617315cfbee8dbfe286f2ab4f544d4b959087d"},
