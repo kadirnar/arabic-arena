@@ -247,8 +247,8 @@
     0.53994
    ],
    "rank": [
-    34,
-    36
+    35,
+    37
    ]
   },
   "arabic-stt-qwen3-asr-1.7b": {
@@ -1625,8 +1625,8 @@
     0.59243
    ],
    "rank": [
-    38,
-    40
+    39,
+    41
    ]
   },
   "audar-asr-v1-flash": {
@@ -3253,8 +3253,8 @@
     1.43578
    ],
    "rank": [
-    58,
-    58
+    59,
+    59
    ]
   },
   "confucius4-r2t2": {
@@ -3753,8 +3753,8 @@
     0.69208
    ],
    "rank": [
-    45,
-    49
+    46,
+    50
    ]
   },
   "egyptian-arabic-wav2vec2-xlsr-53": {
@@ -4003,8 +4003,8 @@
     0.51239
    ],
    "rank": [
-    32,
-    33
+    33,
+    34
    ]
   },
   "egytalk-asr-v2": {
@@ -4503,8 +4503,8 @@
     0.78582
    ],
    "rank": [
-    52,
-    55
+    53,
+    56
    ]
   },
   "gemma-4-e2b-it": {
@@ -5285,8 +5285,8 @@
     0.7043
    ],
    "rank": [
-    49,
-    51
+    50,
+    52
    ]
   },
   "jais-asr": {
@@ -6349,8 +6349,8 @@
     0.67125
    ],
    "rank": [
-    45,
-    47
+    46,
+    48
    ]
   },
   "moonshine-base-ar": {
@@ -6599,8 +6599,8 @@
     0.69551
    ],
    "rank": [
-    47,
-    50
+    48,
+    51
    ]
   },
   "moonshine-streaming-tiny-ar": {
@@ -6849,8 +6849,8 @@
     0.61714
    ],
    "rank": [
-    40,
-    43
+    41,
+    44
    ]
   },
   "moonshine-tiny-ar": {
@@ -7099,8 +7099,8 @@
     0.71593
    ],
    "rank": [
-    50,
-    52
+    51,
+    53
    ]
   },
   "moulsot-v0.3": {
@@ -7381,8 +7381,8 @@
     0.69065
    ],
    "rank": [
-    44,
-    48
+    45,
+    49
    ]
   },
   "nemotron-3.5-asr-arabic-dialectal-v2": {
@@ -7663,8 +7663,8 @@
     0.50438
    ],
    "rank": [
-    29,
-    30
+    30,
+    31
    ]
   },
   "nemotron-3.5-asr-jordanian": {
@@ -7913,8 +7913,8 @@
     0.55875
    ],
    "rank": [
-    37,
-    39
+    38,
+    40
    ]
   },
   "nemotron-3.5-asr-streaming-0.6b": {
@@ -8163,8 +8163,8 @@
     0.50937
    ],
    "rank": [
-    31,
-    32
+    32,
+    33
    ]
   },
   "nvidia-fastconformer-ar-pc": {
@@ -9195,8 +9195,8 @@
     0.60776
    ],
    "rank": [
-    40,
-    43
+    41,
+    44
    ]
   },
   "omniasr-ctc-3b-v2": {
@@ -9447,6 +9447,256 @@
    "rank": [
     20,
     22
+   ]
+  },
+  "omniasr-llm-300m-v2": {
+   "sets": {
+    "fleurs_ar/clean": [
+     0.07552,
+     0.09964
+    ],
+    "cv18_ar/clean": [
+     0.10229,
+     0.12553
+    ],
+    "masc_clean/clean": [
+     0.06947,
+     0.08772
+    ],
+    "mgb2/clean": [
+     0.15421,
+     0.17671
+    ],
+    "sada/clean": [
+     0.46706,
+     0.52419
+    ],
+    "casablanca/clean": [
+     0.56245,
+     0.59793
+    ],
+    "mgb3_egy/clean": [
+     0.32859,
+     0.35435
+    ],
+    "mgb5_mor/clean": [
+     0.72022,
+     0.77897
+    ],
+    "svq_ar/clean": [
+     0.26616,
+     0.30444
+    ],
+    "shams_lev/clean": [
+     0.34203,
+     0.37575
+    ],
+    "hassaniya/clean": [
+     0.69002,
+     0.74274
+    ],
+    "wasil/clean": [
+     0.27371,
+     0.31426
+    ],
+    "echonova/clean": [
+     0.31768,
+     0.34539
+    ],
+    "massive_ar/clean": [
+     0.25715,
+     0.30181
+    ],
+    "sudanese_sdn/clean": [
+     1.29343,
+     1.40234
+    ],
+    "mtedx_ar/clean": [
+     0.69579,
+     0.76036
+    ],
+    "gsb_ar/clean": [
+     0.39765,
+     0.44321
+    ],
+    "mixat_cs/clean": [
+     0.25356,
+     0.27323
+    ],
+    "algerian_cs/clean": [
+     0.51894,
+     0.64041
+    ],
+    "perle_cs/clean": [
+     0.45391,
+     0.47833
+    ],
+    "tedxtn_cs/clean": [
+     0.80969,
+     0.87233
+    ],
+    "masc_noisy/clean": [
+     0.21798,
+     0.25051
+    ],
+    "nadi_robust/clean": [
+     0.70784,
+     0.76401
+    ],
+    "svq_ar_noisy/clean": [
+     0.29808,
+     0.33519
+    ],
+    "fleurs_ar/noisy": [
+     0.11652,
+     0.15488
+    ],
+    "cv18_ar/noisy": [
+     0.21177,
+     0.28738
+    ],
+    "mgb2/noisy": [
+     0.19542,
+     0.24372
+    ],
+    "sada/noisy": [
+     0.5816,
+     0.69844
+    ],
+    "fleurs_ar/telephony": [
+     0.12195,
+     0.15989
+    ],
+    "cv18_ar/telephony": [
+     0.22616,
+     0.29994
+    ],
+    "mgb2/telephony": [
+     0.18645,
+     0.23306
+    ],
+    "sada/telephony": [
+     0.59005,
+     0.70975
+    ],
+    "casablanca/telephony": [
+     0.67249,
+     0.74818
+    ],
+    "mgb3_egy/telephony": [
+     0.41866,
+     0.47246
+    ],
+    "fleurs_ar/callcenter": [
+     0.42354,
+     0.5267
+    ],
+    "cv18_ar/callcenter": [
+     0.75216,
+     1.10761
+    ],
+    "mgb2/callcenter": [
+     0.46131,
+     0.54948
+    ],
+    "sada/callcenter": [
+     0.81148,
+     0.93685
+    ],
+    "casablanca/callcenter": [
+     0.88341,
+     1.03268
+    ],
+    "mgb3_egy/callcenter": [
+     0.70537,
+     0.82636
+    ],
+    "fleurs_ar/telephony_v2": [
+     0.11684,
+     0.15383
+    ],
+    "cv18_ar/telephony_v2": [
+     0.21908,
+     0.30224
+    ],
+    "mgb2/telephony_v2": [
+     0.17482,
+     0.21639
+    ],
+    "sada/telephony_v2": [
+     0.58832,
+     0.73277
+    ],
+    "casablanca/telephony_v2": [
+     0.64125,
+     0.72759
+    ],
+    "mgb3_egy/telephony_v2": [
+     0.40441,
+     0.46609
+    ],
+    "fleurs_ar/callcenter_v2": [
+     0.21397,
+     0.28178
+    ],
+    "cv18_ar/callcenter_v2": [
+     0.44023,
+     0.70651
+    ],
+    "mgb2/callcenter_v2": [
+     0.29986,
+     0.35801
+    ],
+    "sada/callcenter_v2": [
+     0.70287,
+     0.83347
+    ],
+    "casablanca/callcenter_v2": [
+     0.76364,
+     0.90001
+    ],
+    "mgb3_egy/callcenter_v2": [
+     0.54362,
+     0.61746
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.4272,
+     0.4391
+    ],
+    "codeswitch": [
+     0.51769,
+     0.55393
+    ],
+    "noisy": [
+     0.34872,
+     0.37195
+    ],
+    "telephony": [
+     0.3876,
+     0.41902
+    ],
+    "callcenter": [
+     0.71316,
+     0.78498
+    ],
+    "telephony_v2": [
+     0.37628,
+     0.41051
+    ],
+    "callcenter_v2": [
+     0.52302,
+     0.58112
+    ]
+   },
+   "arena_wer": [
+    0.48111,
+    0.49838
+   ],
+   "rank": [
+    24,
+    29
    ]
   },
   "qwen3-asr-0.6b": {
@@ -9727,8 +9977,8 @@
     0.54595
    ],
    "rank": [
-    35,
-    37
+    36,
+    38
    ]
   },
   "qwen3-asr-1.7b": {
@@ -10541,8 +10791,8 @@
     0.50221
    ],
    "rank": [
-    28,
-    30
+    29,
+    31
    ]
   },
   "qwen3-asr-arabic-uae": {
@@ -10823,8 +11073,8 @@
     0.51425
    ],
    "rank": [
-    31,
-    33
+    32,
+    34
    ]
   },
   "qwen3-asr-jordanian": {
@@ -11355,8 +11605,8 @@
     0.56312
    ],
    "rank": [
-    34,
-    38
+    35,
+    39
    ]
   },
   "seamless-m4t-v2-large": {
@@ -11606,7 +11856,7 @@
    ],
    "rank": [
     23,
-    30
+    31
    ]
   },
   "voho-saudi-stt-small": {
@@ -11855,8 +12105,8 @@
     0.72452
    ],
    "rank": [
-    47,
-    52
+    48,
+    53
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -12138,7 +12388,7 @@
    ],
    "rank": [
     25,
-    27
+    28
    ]
   },
   "voxtral-mini-4b-realtime-arabic": {
@@ -12669,8 +12919,8 @@
     0.76805
    ],
    "rank": [
-    53,
-    55
+    54,
+    56
    ]
   },
   "wav2vec2-xlsr-53-levantine-arabic": {
@@ -12919,8 +13169,8 @@
     0.97323
    ],
    "rank": [
-    57,
-    57
+    58,
+    58
    ]
   },
   "wav2vec2-xlsr-moroccan-darija": {
@@ -13169,8 +13419,8 @@
     0.83303
    ],
    "rank": [
-    56,
-    56
+    57,
+    57
    ]
   },
   "whisper-large-v3": {
@@ -13451,8 +13701,8 @@
     0.56178
    ],
    "rank": [
-    34,
-    38
+    35,
+    39
    ]
   },
   "whisper-large-v3-arabic-dialectal-v2": {
@@ -13701,8 +13951,8 @@
     0.65488
    ],
    "rank": [
-    40,
-    45
+    41,
+    46
    ]
   },
   "whisper-large-v3-egyptian-arabic": {
@@ -13951,8 +14201,8 @@
     0.61533
    ],
    "rank": [
-    39,
-    43
+    40,
+    44
    ]
   },
   "whisper-large-v3-turbo": {
@@ -14233,8 +14483,8 @@
     0.73512
    ],
    "rank": [
-    46,
-    53
+    47,
+    54
    ]
   },
   "whisper-large-v3-turbo-arabic-dialectal": {
@@ -14484,7 +14734,7 @@
    ],
    "rank": [
     23,
-    26
+    27
    ]
   },
   "whisper-large-v3-turbo-arabic-dialectal-v2": {
@@ -14733,8 +14983,8 @@
     0.80664
    ],
    "rank": [
-    53,
-    55
+    54,
+    56
    ]
   },
   "whisper-large-v3-turbo-darija": {
@@ -14983,8 +15233,8 @@
     0.64337
    ],
    "rank": [
-    43,
-    44
+    44,
+    45
    ]
   },
   "whisper-levantine": {
@@ -15234,7 +15484,7 @@
    ],
    "rank": [
     27,
-    29
+    30
    ]
   }
  }
