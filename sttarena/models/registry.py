@@ -65,29 +65,54 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "no further training; private weights. Trained on the train splits of MASC and Common Voice and on "
              "MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS "
              "ar_eg test sentences)"),
-    # Arabic-STT/qwen3-asr-1.7b-ar-run9 holds rounds 9 to 16 as branches; each entry pins its branch's head commit.
-    # The line descends from run 8 (run/streams.json), which streams the same kejue-voice and kejue-common-voice
-    # revisions as run 3 (MGB-2/SADA/MGB-3 train rows, the 20 leaked FLEURS ar_eg test sentences) plus MASC, CV18
-    # and TEDxTN train; its Hassaniya data (hassaniya-read-speech-v1) is a separate read-speech collection, not
-    # the benchmark corpus.
+    # Arabic-STT/qwen3-asr-1.7b-ar-run9 holds rounds 9 to 16: a branch per round (its head the round's recommended
+    # model) and a tag per kept checkpoint. Each entry pins a commit with distinct weights (rl-step-2000 has
+    # run9-final's file). The line descends from run 8 (run/streams.json), which streams the same kejue-voice and
+    # kejue-common-voice revisions as run 3 (MGB-2/SADA/MGB-3 train rows, the 20 leaked FLEURS ar_eg test
+    # sentences) plus MASC, CV18 and TEDxTN train; its Hassaniya data (hassaniya-read-speech-v1) is a separate
+    # read-speech collection, not the benchmark corpus.
     *[_M(f"arabic-stt-qwen3-asr-1.7b-{key}", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run9", 2.04,
          "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
-         kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/{branch}",
+         kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/{ref}",
          in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
-         notes=f"Arabic-STT {note}; branch `{branch}` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit {sha[:10]}), "
+         notes=f"Arabic-STT {note}; {kind} `{ref}` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit {sha[:10]}), "
                "weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as "
                "run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences")
-      for key, branch, sha, note in [
-          ("run9b", "main", "e5a0100cebf66fa0cc11323522b1a325171646e4",
+      for key, kind, ref, sha, note in [
+          # branch heads, the recommended model of each round
+          ("run9b", "branch", "main", "e5a0100cebf66fa0cc11323522b1a325171646e4",
            "run 9b final (tag run9b-final): run 9 (SFT with a two-view consistency loss and call windows, then "
            "GSPO) continued on 27 h of human-annotated Arabic phone calls"),
-          ("run10", "run10", "e938b6d58309a288b8cc0e0c97e1ed2308bf2332",
+          ("run10", "branch", "run10", "e938b6d58309a288b8cc0e0c97e1ed2308bf2332",
            "round 10 (tag run10-rl-s750): run 9b with English raised to 35 % of the hours, then GSPO"),
-          ("run13", "run13", "7dba8c7a51b7ac97d24fc7fc78f204f423e7dc5f",
+          ("run13", "branch", "run13", "7dba8c7a51b7ac97d24fc7fc78f204f423e7dc5f",
            "rounds 12-13 (tag run13-soup): weight average 0.5 x run12-rl-s1500 + 0.5 x run13c-rl-s750"),
-          ("run16", "run16", "01ffe1a9badbcacea01c56947b222d95f3cfb354",
+          ("run16", "branch", "run16", "01ffe1a9badbcacea01c56947b222d95f3cfb354",
            "round 16 (tag run16-soup): weight average 0.5 x run13-soup + 0.5 x run16-rl-s250 (GSPO with "
            "short replies after silence)"),
+          # intermediate checkpoints
+          ("run9-step-3000", "tag", "step-3000", "4634e9ca16b1fef5eba1bf274e450f85abcc9e1d",
+           "run 9 Stage A (SFT) step 3,000 of 12,000, flat learning rate, before the decay"),
+          ("run9-step-6000", "tag", "step-6000", "c28c54851961ccd70c471360d4095db3f5ae5ac9",
+           "run 9 Stage A (SFT) step 6,000 of 12,000, before the decay"),
+          ("run9-step-9000", "tag", "step-9000", "c52fd76c9ea8e31a638dbae6127447389047cde6",
+           "run 9 Stage A (SFT) step 9,000 of 12,000, before the decay"),
+          ("run9-step-12000", "tag", "step-12000", "58da29c3f1ef6ce71337d31ae299eb7238124cf8",
+           "run 9 Stage A (SFT) step 12,000 of 12,000, after the decay"),
+          ("run9-rl-step-500", "tag", "rl-step-500", "13d439b0a8cd68672c271bd4727cb5c781a830e9",
+           "run 9 Stage B (GSPO) step 500"),
+          ("run9-final", "tag", "run9-final", "3e47cf38ea8d45165c49c2846303aaee538065bc",
+           "run 9 final: Stage B (GSPO) step 2,000 of 4,500, the same weights as tag rl-step-2000"),
+          ("run12-rl-s1500", "tag", "run12-rl-s1500", "f7e4817efefd15d998a6c415e2c6682f710aef82",
+           "round 12 GSPO step 1,500, from a 70/30 weight average of rounds 10 and 11"),
+          ("run13-sft-s3000", "tag", "run13-sft-s3000", "08a56c295b7ba347513040c119740f4fbf6efc56",
+           "round 13 supervised fine-tuning step 3,000 (English call turns weighted up, SPGISpeech added)"),
+          ("run13c-rl-s750", "tag", "run13c-rl-s750", "dd52a9dfdc5573a519222c404545f4ba69ab2057",
+           "round 13c GSPO step 750, from run13-sft-s3000 with English call windows"),
+          ("run16-rl-s250", "tag", "run16-rl-s250", "9478d27adb5e182c396a57b34897442151cdd3b0",
+           "round 16 GSPO step 250, from run13-soup (short replies after silence)"),
+          ("run16-rl-s1000", "tag", "run16-rl-s1000", "b6a96f0e6a13a88748125497f0573e3c2f248501",
+           "round 16 GSPO step 1,000, from run13-soup (short replies after silence)"),
       ]],
     _M("arabic-stt-qwen3-asr-1.7b-best-task06", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-task06", 2.04,
        "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
