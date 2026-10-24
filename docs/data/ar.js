@@ -1397,6 +1397,1143 @@ window.ARENA_DATA['ar'] = {
    }
   },
   {
+   "model": "arabic-stt-qwen3-asr-1.7b-run20-mwer-s800",
+   "hf_id": "Arabic-STT/qwen3-asr-1.7b-ar-run20-mwer-s800",
+   "params_b": 2.04,
+   "license": "gated weights",
+   "kind": "gated",
+   "sets": {
+    "fleurs_ar/clean": {
+     "wer": 0.04991351618482827,
+     "cer": 0.02106168063614872,
+     "rtfx": 158.7,
+     "n": 428
+    },
+    "cv18_ar/clean": {
+     "wer": 0.06759443339960239,
+     "cer": 0.01986273718207509,
+     "rtfx": 196.86,
+     "n": 1000
+    },
+    "masc_clean/clean": {
+     "wer": 0.055170575692963755,
+     "cer": 0.022072624440051054,
+     "rtfx": 136.48,
+     "n": 1000
+    },
+    "mgb2/clean": {
+     "wer": 0.10153718321562111,
+     "cer": 0.04695462266440185,
+     "rtfx": 153.07,
+     "n": 1000
+    },
+    "sada/clean": {
+     "wer": 0.24596828838596016,
+     "cer": 0.10712760240847652,
+     "rtfx": 113.22,
+     "n": 1000
+    },
+    "casablanca/clean": {
+     "wer": 0.39359853680841334,
+     "cer": 0.1512299818391943,
+     "rtfx": 100.63,
+     "n": 994
+    },
+    "mgb3_egy/clean": {
+     "wer": 0.1806677436725902,
+     "cer": 0.07940150051760386,
+     "rtfx": 124.06,
+     "n": 1000
+    },
+    "mgb5_mor/clean": {
+     "wer": 0.4724997665514987,
+     "cer": 0.21683756071235835,
+     "rtfx": 114.8,
+     "n": 1000
+    },
+    "mixat_cs/clean": {
+     "wer": 0.14713480507280413,
+     "cer": 0.05814704538651795,
+     "rtfx": 147.01,
+     "n": 1000
+    },
+    "algerian_cs/clean": {
+     "wer": 0.34766408713098307,
+     "cer": 0.14936681459032364,
+     "rtfx": 108.73,
+     "n": 316
+    },
+    "masc_noisy/clean": {
+     "wer": 0.15950575680988485,
+     "cer": 0.06356547458994354,
+     "rtfx": 122.23,
+     "n": 1000
+    },
+    "nadi_robust/clean": {
+     "wer": 0.44880271622587564,
+     "cer": 0.1940188594521778,
+     "rtfx": 107.51,
+     "n": 1000
+    },
+    "svq_ar/clean": {
+     "wer": 0.18690958164642374,
+     "cer": 0.07595219836400818,
+     "rtfx": 174.59,
+     "n": 1000
+    },
+    "svq_ar_noisy/clean": {
+     "wer": 0.1831892899508558,
+     "cer": 0.0751758404852552,
+     "rtfx": 183.22,
+     "n": 1000
+    },
+    "shams_lev/clean": {
+     "wer": 0.24582901310208313,
+     "cer": 0.0840997074640461,
+     "rtfx": 125.18,
+     "n": 907
+    },
+    "hassaniya/clean": {
+     "wer": 0.5952856572113464,
+     "cer": 0.2406428842050689,
+     "rtfx": 121.57,
+     "n": 408
+    },
+    "wasil/clean": {
+     "wer": 0.17671221393243355,
+     "cer": 0.09332737057998057,
+     "rtfx": 162.78,
+     "n": 1000
+    },
+    "perle_cs/clean": {
+     "wer": 0.123458847050983,
+     "cer": 0.057950039949949496,
+     "rtfx": 146.2,
+     "n": 600
+    },
+    "echonova/clean": {
+     "wer": 0.19106335505842287,
+     "cer": 0.08961432538630838,
+     "rtfx": 133.47,
+     "n": 1000
+    },
+    "massive_ar/clean": {
+     "wer": 0.14214463840399003,
+     "cer": 0.06869973190348526,
+     "rtfx": 152.88,
+     "n": 1000
+    },
+    "tedxtn_cs/clean": {
+     "wer": 0.21225635943178064,
+     "cer": 0.09902529063178006,
+     "rtfx": 117.62,
+     "n": 813
+    },
+    "sudanese_sdn/clean": {
+     "wer": 1.2989255100808885,
+     "cer": 1.042526993748816,
+     "rtfx": 121.38,
+     "n": 1000
+    },
+    "mtedx_ar/clean": {
+     "wer": 0.6938059992208804,
+     "cer": 0.44261535459955126,
+     "rtfx": 114.83,
+     "n": 908
+    },
+    "gsb_ar/clean": {
+     "wer": 0.266838751310801,
+     "cer": 0.11570889389419857,
+     "rtfx": 126.61,
+     "n": 1000
+    },
+    "fleurs_ar/noisy": {
+     "wer": 0.065225097483162,
+     "cer": 0.028606582589972316,
+     "rtfx": 155.78,
+     "n": 300
+    },
+    "cv18_ar/noisy": {
+     "wer": 0.10592938041305797,
+     "cer": 0.040223616034905915,
+     "rtfx": 191.17,
+     "n": 300
+    },
+    "mgb2/noisy": {
+     "wer": 0.11661166116611661,
+     "cer": 0.05743696852155751,
+     "rtfx": 150.22,
+     "n": 300
+    },
+    "sada/noisy": {
+     "wer": 0.28896170387057135,
+     "cer": 0.13792385237024077,
+     "rtfx": 105.96,
+     "n": 300
+    },
+    "fleurs_ar/telephony": {
+     "wer": 0.06238922367954626,
+     "cer": 0.027591510304521685,
+     "rtfx": 156.66,
+     "n": 300
+    },
+    "cv18_ar/telephony": {
+     "wer": 0.08727514990006663,
+     "cer": 0.026997545677665668,
+     "rtfx": 195.65,
+     "n": 300
+    },
+    "mgb2/telephony": {
+     "wer": 0.10698569856985699,
+     "cer": 0.047341986175344374,
+     "rtfx": 147.48,
+     "n": 300
+    },
+    "sada/telephony": {
+     "wer": 0.2815891869752202,
+     "cer": 0.12842622677663917,
+     "rtfx": 106.26,
+     "n": 300
+    },
+    "casablanca/telephony": {
+     "wer": 0.39701207883026063,
+     "cer": 0.16873248209280597,
+     "rtfx": 76.75,
+     "n": 296
+    },
+    "mgb3_egy/telephony": {
+     "wer": 0.20304475421863535,
+     "cer": 0.0917904215533205,
+     "rtfx": 123.91,
+     "n": 300
+    },
+    "fleurs_ar/callcenter": {
+     "wer": 0.12796880538816022,
+     "cer": 0.05736696401107352,
+     "rtfx": 155.78,
+     "n": 300
+    },
+    "cv18_ar/callcenter": {
+     "wer": 0.21518987341772153,
+     "cer": 0.09926370329970002,
+     "rtfx": 191.49,
+     "n": 300
+    },
+    "mgb2/callcenter": {
+     "wer": 0.17546754675467546,
+     "cer": 0.08215227012780348,
+     "rtfx": 152.59,
+     "n": 300
+    },
+    "sada/callcenter": {
+     "wer": 0.39320090108539835,
+     "cer": 0.20332416895776056,
+     "rtfx": 105.46,
+     "n": 300
+    },
+    "casablanca/callcenter": {
+     "wer": 0.5400508582326764,
+     "cer": 0.27069448769853627,
+     "rtfx": 77.12,
+     "n": 296
+    },
+    "mgb3_egy/callcenter": {
+     "wer": 0.3063096111518709,
+     "cer": 0.16469990196434406,
+     "rtfx": 127.61,
+     "n": 300
+    },
+    "fleurs_ar/telephony_v2": {
+     "wer": 0.06061680255228642,
+     "cer": 0.026484158720393725,
+     "rtfx": 155.86,
+     "n": 300
+    },
+    "cv18_ar/telephony_v2": {
+     "wer": 0.08127914723517655,
+     "cer": 0.02631578947368421,
+     "rtfx": 193.3,
+     "n": 300
+    },
+    "mgb2/telephony_v2": {
+     "wer": 0.1034103410341034,
+     "cer": 0.045899845840171066,
+     "rtfx": 148.34,
+     "n": 300
+    },
+    "sada/telephony_v2": {
+     "wer": 0.2727831251279951,
+     "cer": 0.12271932016995751,
+     "rtfx": 104.92,
+     "n": 300
+    },
+    "casablanca/telephony_v2": {
+     "wer": 0.4049586776859504,
+     "cer": 0.1669261912176892,
+     "rtfx": 76.34,
+     "n": 296
+    },
+    "mgb3_egy/telephony_v2": {
+     "wer": 0.20029347028613353,
+     "cer": 0.08982970843469736,
+     "rtfx": 124.47,
+     "n": 300
+    },
+    "fleurs_ar/callcenter_v2": {
+     "wer": 0.09429280397022333,
+     "cer": 0.04306367271608736,
+     "rtfx": 155.95,
+     "n": 300
+    },
+    "cv18_ar/callcenter_v2": {
+     "wer": 0.16722185209860094,
+     "cer": 0.07035724025088629,
+     "rtfx": 195.66,
+     "n": 300
+    },
+    "mgb2/callcenter_v2": {
+     "wer": 0.14218921892189218,
+     "cer": 0.06663682928042171,
+     "rtfx": 151.29,
+     "n": 300
+    },
+    "sada/callcenter_v2": {
+     "wer": 0.3432316199057956,
+     "cer": 0.17220694826293426,
+     "rtfx": 105.66,
+     "n": 300
+    },
+    "casablanca/callcenter_v2": {
+     "wer": 0.48029243483788936,
+     "cer": 0.22746807848022424,
+     "rtfx": 73.57,
+     "n": 296
+    },
+    "mgb3_egy/callcenter_v2": {
+     "wer": 0.26008804108584005,
+     "cer": 0.1307142079082096,
+     "rtfx": 126.05,
+     "n": 300
+    },
+    "noise_only/clean": {
+     "wer": null,
+     "cer": null,
+     "rtfx": 41.41,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": 0.31555675081639695,
+     "cer": 0.17163151591445724,
+     "done": 17,
+     "total": 17,
+     "ci": [
+      0.31101,
+      0.32031
+     ]
+    },
+    "codeswitch": {
+     "wer": 0.20762852467163773,
+     "cer": 0.09112229763964279,
+     "done": 4,
+     "total": 4,
+     "ci": [
+      0.19826,
+      0.21672
+     ]
+    },
+    "noisy": {
+     "wer": 0.1954608008456463,
+     "cer": 0.08527874200629329,
+     "done": 7,
+     "total": 7,
+     "ci": [
+      0.18816,
+      0.20285
+     ]
+    },
+    "telephony": {
+     "wer": 0.18971601536226435,
+     "cer": 0.08181336209671623,
+     "done": 6,
+     "total": 6,
+     "ci": [
+      0.18108,
+      0.19939
+     ]
+    },
+    "callcenter": {
+     "wer": 0.29303126600508383,
+     "cer": 0.146250249343203,
+     "done": 6,
+     "total": 6,
+     "ci": [
+      0.28143,
+      0.30523
+     ]
+    }
+   },
+   "env": {
+    "python": "3.12.3",
+    "host": "c81c69284a43",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA A10",
+    "transformers": "5.19.0"
+   },
+   "finetune_of": "Qwen/Qwen3-ASR-1.7B",
+   "in_domain": [
+    "cv18_ar",
+    "masc_clean",
+    "masc_noisy",
+    "mgb2",
+    "sada",
+    "mgb3_egy",
+    "fleurs_ar",
+    "tedxtn_cs"
+   ],
+   "notes": "Arabic-STT round 20 (the same weights as tag run20-mwer-s800 of Arabic-STT/qwen3-asr-1.7b-ar-run20): online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns, then 800 steps of MWER; weights gated on the Hub. Carries the run9 line's in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included). Run without the card's two-channel front end, which only chunks mono",
+   "training_data": "",
+   "hallucination_rate": 0.44,
+   "inserted_wpm": 43.55,
+   "arena_wer": 0.25707629165321927,
+   "arena_cer": 0.12758779392295216,
+   "arena_ci": [
+    0.25336,
+    0.26077
+   ],
+   "rank_range": [
+    2,
+    3
+   ],
+   "rtfx": 128.4,
+   "audio_hours": 51.84,
+   "v2": {
+    "halluc_any": 0.44,
+    "halluc_3plus": 0.4166666666666667,
+    "halluc_3plus_ci": [
+     0.36228,
+     0.47317
+    ],
+    "inserted_wpm": 43.55188323418978,
+    "sets": {
+     "fleurs_ar/clean": {
+      "wer": 0.04427952999381571,
+      "wer_uncapped": 0.04427952999381571,
+      "cer": 0.01996449612801976,
+      "av_wer": null,
+      "strict_wer": 0.04822554717447756,
+      "n": 428,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.004823747680890538,
+      "term_recall": null
+     },
+     "cv18_ar/clean": {
+      "wer": 0.06172839506172839,
+      "wer_uncapped": 0.06172839506172839,
+      "cer": 0.02088458013794434,
+      "av_wer": null,
+      "strict_wer": 0.06679920477137177,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.001991238550378335,
+      "term_recall": 0.9074733096085409
+     },
+     "masc_clean/clean": {
+      "wer": 0.04880650753433791,
+      "wer_uncapped": 0.04907320976130151,
+      "cer": 0.021715071934914607,
+      "av_wer": null,
+      "strict_wer": 0.05503731343283582,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.004133884517935725,
+      "term_recall": null
+     },
+     "mgb2/clean": {
+      "wer": 0.08749168330006653,
+      "wer_uncapped": 0.0896540252827678,
+      "cer": 0.041703896861722496,
+      "av_wer": null,
+      "strict_wer": 0.09813045284586622,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.017797737857618096,
+      "term_recall": null
+     },
+     "sada/clean": {
+      "wer": 0.2137372898941689,
+      "wer_uncapped": 0.21601992114546587,
+      "cer": 0.10229410850839792,
+      "av_wer": null,
+      "strict_wer": 0.2436644531779374,
+      "n": 998,
+      "failed": 0,
+      "loop_rate": 0.001002004008016032,
+      "insertions": 0.0363837587327938,
+      "term_recall": null
+     },
+     "casablanca/clean": {
+      "wer": 0.3469614281750069,
+      "wer_uncapped": 0.34973637961335674,
+      "cer": 0.14754357446039917,
+      "av_wer": null,
+      "strict_wer": 0.3886602652034751,
+      "n": 994,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03015447229673481,
+      "term_recall": null
+     },
+     "mgb3_egy/clean": {
+      "wer": 0.0822109148957398,
+      "wer_uncapped": 0.0822109148957398,
+      "cer": 0.06385829115808277,
+      "av_wer": 0.12344318427456884,
+      "strict_wer": 0.10244595065234281,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.009064865095993501,
+      "term_recall": null
+     },
+     "mgb5_mor/clean": {
+      "wer": 0.2547299916793851,
+      "wer_uncapped": 0.2581797780457833,
+      "cer": 0.1937781889672719,
+      "av_wer": null,
+      "strict_wer": 0.2727923330547549,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03104810501910637,
+      "term_recall": null
+     },
+     "mixat_cs/clean": {
+      "wer": 0.12029214370311883,
+      "wer_uncapped": 0.12037110146071851,
+      "cer": 0.056907862528150395,
+      "av_wer": 0.1251484874999555,
+      "strict_wer": 0.13686499617969164,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.002,
+      "insertions": 0.0166995657323332,
+      "term_recall": null
+     },
+     "algerian_cs/clean": {
+      "wer": 0.2794159748067564,
+      "wer_uncapped": 0.2940166046378471,
+      "cer": 0.13353874393601678,
+      "av_wer": null,
+      "strict_wer": 0.33076263924592975,
+      "n": 316,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.04809619238476954,
+      "term_recall": null
+     },
+     "masc_noisy/clean": {
+      "wer": 0.13746478873239437,
+      "wer_uncapped": 0.13788732394366196,
+      "cer": 0.06269723707090874,
+      "av_wer": null,
+      "strict_wer": 0.15768042684639147,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.014084507042253521,
+      "term_recall": null
+     },
+     "nadi_robust/clean": {
+      "wer": 0.4137744034707158,
+      "wer_uncapped": 0.419649313087491,
+      "cer": 0.19477671451355663,
+      "av_wer": null,
+      "strict_wer": 0.44183345246604716,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03298987707881417,
+      "term_recall": null
+     },
+     "svq_ar/clean": {
+      "wer": 0.15642929463381708,
+      "wer_uncapped": 0.16031049611879852,
+      "cer": 0.07508351047676891,
+      "av_wer": null,
+      "strict_wer": 0.1823549257759784,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.01721228484643942,
+      "term_recall": 0.8306368330464716
+     },
+     "svq_ar_noisy/clean": {
+      "wer": 0.15818921668362157,
+      "wer_uncapped": 0.15937605968124788,
+      "cer": 0.07751908250546584,
+      "av_wer": null,
+      "strict_wer": 0.18217251313336721,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.012207527975584944,
+      "term_recall": 0.819434872501723
+     },
+     "shams_lev/clean": {
+      "wer": 0.1887557777568154,
+      "wer_uncapped": 0.1887557777568154,
+      "cer": 0.07552581261950286,
+      "av_wer": null,
+      "strict_wer": 0.24394838466610153,
+      "n": 907,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03009150080181115,
+      "term_recall": null
+     },
+     "hassaniya/clean": {
+      "wer": 0.5455456458562983,
+      "wer_uncapped": 0.5455456458562983,
+      "cer": 0.2373478539397822,
+      "av_wer": null,
+      "strict_wer": 0.592988413903316,
+      "n": 408,
+      "failed": 0,
+      "loop_rate": 0.0024509803921568627,
+      "insertions": 0.03286902495240004,
+      "term_recall": null
+     },
+     "wasil/clean": {
+      "wer": 0.12005480390477821,
+      "wer_uncapped": 0.14223325911971227,
+      "cer": 0.07180122358593251,
+      "av_wer": null,
+      "strict_wer": 0.1544906166219839,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.02877205000856311,
+      "term_recall": null
+     },
+     "perle_cs/clean": {
+      "wer": 0.0950004377900359,
+      "wer_uncapped": 0.0950004377900359,
+      "cer": 0.06048071140915137,
+      "av_wer": null,
+      "strict_wer": 0.11839920292261708,
+      "n": 600,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.005953944488223448,
+      "term_recall": null
+     },
+     "echonova/clean": {
+      "wer": 0.16965984776403426,
+      "wer_uncapped": 0.17019505233111323,
+      "cer": 0.08455184810054352,
+      "av_wer": null,
+      "strict_wer": 0.19019665394775462,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.01623453853472883,
+      "term_recall": null
+     },
+     "massive_ar/clean": {
+      "wer": 0.11217641418983701,
+      "wer_uncapped": 0.11332694151486097,
+      "cer": 0.0681427248268866,
+      "av_wer": null,
+      "strict_wer": 0.14061001342796853,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.010738255033557046,
+      "term_recall": null
+     },
+     "tedxtn_cs/clean": {
+      "wer": 0.20063804104155888,
+      "wer_uncapped": 0.20175892395240558,
+      "cer": 0.10348986812479898,
+      "av_wer": null,
+      "strict_wer": 0.2116782292699042,
+      "n": 812,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.023021210553543715,
+      "term_recall": null
+     },
+     "sudanese_sdn/clean": {
+      "wer": 0.9528994372400293,
+      "wer_uncapped": 1.293736236848544,
+      "cer": 0.8262931159106023,
+      "av_wer": null,
+      "strict_wer": 0.9571411324399373,
+      "n": 996,
+      "failed": 0,
+      "loop_rate": 0.004016064257028112,
+      "insertions": 0.3556398336187913,
+      "term_recall": null
+     },
+     "mtedx_ar/clean": {
+      "wer": 0.642512077294686,
+      "wer_uncapped": 0.6886016451233843,
+      "cer": 0.44535470988959364,
+      "av_wer": null,
+      "strict_wer": 0.647746460579296,
+      "n": 905,
+      "failed": 0,
+      "loop_rate": 0.0011049723756906078,
+      "insertions": 0.11385298341820081,
+      "term_recall": null
+     },
+     "gsb_ar/clean": {
+      "wer": 0.2225894406345534,
+      "wer_uncapped": 0.22589440634553418,
+      "cer": 0.10181770531084446,
+      "av_wer": null,
+      "strict_wer": 0.2624616873689305,
+      "n": 998,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.033380153680905564,
+      "term_recall": null
+     },
+     "fleurs_ar/noisy": {
+      "wer": 0.05913692061800746,
+      "wer_uncapped": 0.05913692061800746,
+      "cer": 0.027687776141384388,
+      "av_wer": null,
+      "strict_wer": 0.06321022727272728,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.007991475759190196,
+      "term_recall": null
+     },
+     "cv18_ar/noisy": {
+      "wer": 0.09819639278557114,
+      "wer_uncapped": 0.09819639278557114,
+      "cer": 0.04308797127468582,
+      "av_wer": null,
+      "strict_wer": 0.10459693537641572,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.0033400133600534404,
+      "term_recall": 0.9
+     },
+     "mgb2/noisy": {
+      "wer": 0.10338190816607094,
+      "wer_uncapped": 0.10558152323343414,
+      "cer": 0.052672393223574324,
+      "av_wer": null,
+      "strict_wer": 0.11441144114411442,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.019521583722848502,
+      "term_recall": null
+     },
+     "sada/noisy": {
+      "wer": 0.2600502512562814,
+      "wer_uncapped": 0.2627721943048576,
+      "cer": 0.1368691637813451,
+      "av_wer": null,
+      "strict_wer": 0.2867089903747696,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.038735343383584586,
+      "term_recall": null
+     },
+     "fleurs_ar/telephony": {
+      "wer": 0.05665068371514829,
+      "wer_uncapped": 0.05665068371514829,
+      "cer": 0.026804123711340205,
+      "av_wer": null,
+      "strict_wer": 0.060014204545454544,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.006038003906943704,
+      "term_recall": null
+     },
+     "cv18_ar/telephony": {
+      "wer": 0.08082832331329326,
+      "wer_uncapped": 0.08082832331329326,
+      "cer": 0.028398890158315652,
+      "av_wer": null,
+      "strict_wer": 0.0866089273817455,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.004008016032064128,
+      "term_recall": 0.9111111111111111
+     },
+     "mgb2/telephony": {
+      "wer": 0.09100907341215288,
+      "wer_uncapped": 0.09320868847951609,
+      "cer": 0.04247196373180625,
+      "av_wer": null,
+      "strict_wer": 0.10561056105610561,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.020621391256530106,
+      "term_recall": null
+     },
+     "sada/telephony": {
+      "wer": 0.24560301507537688,
+      "wer_uncapped": 0.2520938023450586,
+      "cer": 0.12254747665512539,
+      "av_wer": null,
+      "strict_wer": 0.2770837599836166,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.042922948073701846,
+      "term_recall": null
+     },
+     "casablanca/telephony": {
+      "wer": 0.34124438742783836,
+      "wer_uncapped": 0.344772289929442,
+      "cer": 0.16538079596669467,
+      "av_wer": null,
+      "strict_wer": 0.3916083916083916,
+      "n": 296,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03559974342527261,
+      "term_recall": null
+     },
+     "mgb3_egy/telephony": {
+      "wer": 0.10716195847717216,
+      "wer_uncapped": 0.10716195847717216,
+      "cer": 0.07616107629929966,
+      "av_wer": 0.14858346326601474,
+      "strict_wer": 0.12458327624788784,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.011280206155491808,
+      "term_recall": null
+     },
+     "fleurs_ar/callcenter": {
+      "wer": 0.12235837329071213,
+      "wer_uncapped": 0.12235837329071213,
+      "cer": 0.06019882179675994,
+      "av_wer": null,
+      "strict_wer": 0.1258877840909091,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.008524240809802876,
+      "term_recall": null
+     },
+     "cv18_ar/callcenter": {
+      "wer": 0.19906479625918505,
+      "wer_uncapped": 0.20975283901135605,
+      "cer": 0.10674065611228986,
+      "av_wer": null,
+      "strict_wer": 0.20386409060626248,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.01603206412825651,
+      "term_recall": 0.8222222222222222
+     },
+     "mgb2/callcenter": {
+      "wer": 0.16084685180093483,
+      "wer_uncapped": 0.16222161121803685,
+      "cer": 0.07891911238367931,
+      "av_wer": null,
+      "strict_wer": 0.17546754675467546,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.024195765740995325,
+      "term_recall": null
+     },
+     "sada/callcenter": {
+      "wer": 0.36620603015075376,
+      "wer_uncapped": 0.3699748743718593,
+      "cer": 0.20842513902003987,
+      "av_wer": null,
+      "strict_wer": 0.38951464263772273,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0033333333333333335,
+      "insertions": 0.04020100502512563,
+      "term_recall": null
+     },
+     "casablanca/callcenter": {
+      "wer": 0.4868505452212957,
+      "wer_uncapped": 0.4974342527261065,
+      "cer": 0.27637308074249484,
+      "av_wer": null,
+      "strict_wer": 0.5260648442466624,
+      "n": 296,
+      "failed": 0,
+      "loop_rate": 0.0033783783783783786,
+      "insertions": 0.04746632456703015,
+      "term_recall": null
+     },
+     "mgb3_egy/callcenter": {
+      "wer": 0.22093645159721884,
+      "wer_uncapped": 0.22113093791024457,
+      "cer": 0.1587725764835975,
+      "av_wer": 0.25875433845343543,
+      "strict_wer": 0.2360140658537699,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.017698254485340594,
+      "term_recall": null
+     },
+     "fleurs_ar/telephony_v2": {
+      "wer": 0.055052388563310246,
+      "wer_uncapped": 0.055052388563310246,
+      "cer": 0.025957290132547866,
+      "av_wer": null,
+      "strict_wer": 0.05894886363636364,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.005682827206535251,
+      "term_recall": null
+     },
+     "cv18_ar/telephony_v2": {
+      "wer": 0.07615230460921844,
+      "wer_uncapped": 0.07615230460921844,
+      "cer": 0.027909254121103313,
+      "av_wer": null,
+      "strict_wer": 0.07994670219853431,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.0026720106880427524,
+      "term_recall": 0.9111111111111111
+     },
+     "mgb2/telephony_v2": {
+      "wer": 0.08743469892768765,
+      "wer_uncapped": 0.08908441022821006,
+      "cer": 0.04002624671916011,
+      "av_wer": null,
+      "strict_wer": 0.10203520352035203,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.018146824305746493,
+      "term_recall": null
+     },
+     "sada/telephony_v2": {
+      "wer": 0.24015912897822445,
+      "wer_uncapped": 0.24288107202680068,
+      "cer": 0.11934739271849754,
+      "av_wer": null,
+      "strict_wer": 0.2709399959041573,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.04061976549413735,
+      "term_recall": null
+     },
+     "casablanca/telephony_v2": {
+      "wer": 0.35054522129570237,
+      "wer_uncapped": 0.3534316869788326,
+      "cer": 0.16377664043999696,
+      "av_wer": null,
+      "strict_wer": 0.3989192625556262,
+      "n": 296,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03624118024374599,
+      "term_recall": null
+     },
+     "mgb3_egy/telephony_v2": {
+      "wer": 0.10405017746876064,
+      "wer_uncapped": 0.10405017746876064,
+      "cer": 0.0756542572797641,
+      "av_wer": 0.14493535452259498,
+      "strict_wer": 0.12202584828972006,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.010696747216414644,
+      "term_recall": null
+     },
+     "fleurs_ar/callcenter_v2": {
+      "wer": 0.08897176345231753,
+      "wer_uncapped": 0.08897176345231753,
+      "cer": 0.04396170839469809,
+      "av_wer": null,
+      "strict_wer": 0.09197443181818182,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.007636299058781744,
+      "term_recall": null
+     },
+     "cv18_ar/callcenter_v2": {
+      "wer": 0.15831663326653306,
+      "wer_uncapped": 0.16098864395457582,
+      "cer": 0.07573037375550841,
+      "av_wer": null,
+      "strict_wer": 0.1632245169886742,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.012024048096192385,
+      "term_recall": 0.8555555555555555
+     },
+     "mgb2/callcenter_v2": {
+      "wer": 0.12757767390706626,
+      "wer_uncapped": 0.12977728897442947,
+      "cer": 0.06293247434979718,
+      "av_wer": null,
+      "strict_wer": 0.14026402640264027,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.024470717624415727,
+      "term_recall": null
+     },
+     "sada/callcenter_v2": {
+      "wer": 0.30527638190954776,
+      "wer_uncapped": 0.3146984924623116,
+      "cer": 0.1706011960969468,
+      "av_wer": null,
+      "strict_wer": 0.3348351423305345,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0033333333333333335,
+      "insertions": 0.0471105527638191,
+      "term_recall": null
+     },
+     "casablanca/callcenter_v2": {
+      "wer": 0.4278383579217447,
+      "wer_uncapped": 0.4345734445157152,
+      "cer": 0.22916507524253305,
+      "av_wer": null,
+      "strict_wer": 0.4694850603941513,
+      "n": 296,
+      "failed": 0,
+      "loop_rate": 0.0033783783783783786,
+      "insertions": 0.042334830019243104,
+      "term_recall": null
+     },
+     "mgb3_egy/callcenter_v2": {
+      "wer": 0.1711479554626343,
+      "wer_uncapped": 0.1711479554626343,
+      "cer": 0.11974751197935864,
+      "av_wer": 0.20882527792690705,
+      "strict_wer": 0.18504818011599763,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.017309281859289153,
+      "term_recall": null
+     },
+     "noise_only/clean": {
+      "wer": null,
+      "wer_uncapped": null,
+      "cer": null,
+      "av_wer": null,
+      "strict_wer": null,
+      "n": 0,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": null,
+      "term_recall": null
+     }
+    },
+    "tracks": {
+     "clean": {
+      "wer": 0.17094701982355984,
+      "cer": 0.08933875632420003,
+      "wer_arith": 0.2500334399887705,
+      "done": 17,
+      "total": 17,
+      "ci": [
+       0.16281,
+       0.17746
+      ]
+     },
+     "codeswitch": {
+      "wer": 0.15909511522529027,
+      "cer": 0.08304692785600153,
+      "wer_arith": 0.17383664933536752,
+      "done": 4,
+      "total": 4,
+      "ci": [
+       0.14143,
+       0.17899
+      ]
+     },
+     "noisy": {
+      "wer": 0.12259442878709646,
+      "cer": 0.058911258737172005,
+      "wer_arith": 0.13606991304032448,
+      "done": 6,
+      "total": 6,
+      "ci": [
+       0.11134,
+       0.13172
+      ]
+     },
+     "telephony": {
+      "wer": 0.12146136815644691,
+      "cer": 0.05916185543708283,
+      "wer_arith": 0.15223231997381728,
+      "done": 6,
+      "total": 6,
+      "ci": [
+       0.11125,
+       0.1308
+      ]
+     },
+     "callcenter": {
+      "wer": 0.1850616133338718,
+      "cer": 0.09967878718830318,
+      "wer_arith": 0.21318812765330725,
+      "done": 6,
+      "total": 6,
+      "ci": [
+       0.17251,
+       0.19651
+      ]
+     }
+    },
+    "arena": 0.1567203364218251,
+    "arena_arith": 0.2080447491134515,
+    "arena_cer": 0.08054019659137368,
+    "arena_strict": 0.17662242651552293,
+    "zero_shot": 0.21635571783119897,
+    "arena_real": 0.16656767269528786,
+    "exposure": 0.5056,
+    "incomplete": [],
+    "term_recall": 0.8288436268068331,
+    "term_n": 6088,
+    "boh_share": 0.4,
+    "rank": 2,
+    "arena_ci": [
+     0.14953,
+     0.16311
+    ],
+    "rank_set": [
+     2,
+     6
+    ]
+   }
+  },
+  {
    "model": "arabic-stt-qwen3-asr-1.7b-run9b",
    "hf_id": "https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/main",
    "params_b": 2.04,
@@ -1804,7 +2941,7 @@ window.ARENA_DATA['ar'] = {
    ],
    "rank_range": [
     2,
-    6
+    7
    ],
    "rtfx": 120.7,
    "audio_hours": 51.84,
@@ -2522,14 +3659,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8283508541392904,
     "term_n": 6088,
     "boh_share": 0.4033333333333333,
-    "rank": 2,
+    "rank": 3,
     "arena_ci": [
      0.15002,
      0.16354
     ],
     "rank_set": [
      2,
-     10
+     11
     ]
    }
   },
@@ -2940,8 +4077,8 @@ window.ARENA_DATA['ar'] = {
     0.2627
    ],
    "rank_range": [
-    2,
-    5
+    3,
+    6
    ],
    "rtfx": 120.8,
    "audio_hours": 51.84,
@@ -3658,15 +4795,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.8250657030223391,
     "term_n": 6088,
-    "boh_share": 0.43333333333333335,
-    "rank": 4,
+    "boh_share": 0.43666666666666665,
+    "rank": 5,
     "arena_ci": [
      0.15153,
      0.16508
     ],
     "rank_set": [
-     2,
-     10
+     3,
+     11
     ]
    }
   },
@@ -4077,8 +5214,8 @@ window.ARENA_DATA['ar'] = {
     0.26366
    ],
    "rank_range": [
-    3,
-    10
+    4,
+    11
    ],
    "rtfx": 122.0,
    "audio_hours": 51.84,
@@ -4796,14 +5933,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8298291721419185,
     "term_n": 6088,
     "boh_share": 0.39666666666666667,
-    "rank": 10,
+    "rank": 11,
     "arena_ci": [
      0.15212,
      0.16612
     ],
     "rank_set": [
      2,
-     11
+     12
     ]
    }
   },
@@ -5214,8 +6351,8 @@ window.ARENA_DATA['ar'] = {
     0.26383
    ],
    "rank_range": [
-    3,
-    9
+    4,
+    10
    ],
    "rtfx": 122.9,
    "audio_hours": 51.84,
@@ -5932,15 +7069,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.8250657030223391,
     "term_n": 6088,
-    "boh_share": 0.43666666666666665,
-    "rank": 5,
+    "boh_share": 0.4533333333333333,
+    "rank": 6,
     "arena_ci": [
      0.15157,
      0.1653
     ],
     "rank_set": [
-     2,
-     10
+     3,
+     11
     ]
    }
   },
@@ -6351,8 +7488,8 @@ window.ARENA_DATA['ar'] = {
     0.26381
    ],
    "rank_range": [
-    3,
-    10
+    4,
+    11
    ],
    "rtfx": 118.0,
    "audio_hours": 51.84,
@@ -7070,14 +8207,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8270367936925098,
     "term_n": 6088,
     "boh_share": 0.41333333333333333,
-    "rank": 3,
+    "rank": 4,
     "arena_ci": [
      0.1511,
      0.1646
     ],
     "rank_set": [
      2,
-     10
+     11
     ]
    }
   },
@@ -7488,8 +8625,8 @@ window.ARENA_DATA['ar'] = {
     0.26359
    ],
    "rank_range": [
-    3,
-    10
+    4,
+    11
    ],
    "rtfx": 116.0,
    "audio_hours": 51.84,
@@ -8207,14 +9344,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8354139290407359,
     "term_n": 6088,
     "boh_share": 0.49,
-    "rank": 8,
+    "rank": 9,
     "arena_ci": [
      0.15184,
      0.16587
     ],
     "rank_set": [
      2,
-     11
+     12
     ]
    }
   },
@@ -8625,8 +9762,8 @@ window.ARENA_DATA['ar'] = {
     0.26406
    ],
    "rank_range": [
-    5,
-    10
+    6,
+    11
    ],
    "rtfx": 124.1,
    "audio_hours": 51.84,
@@ -9343,15 +10480,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.8234231274638634,
     "term_n": 6088,
-    "boh_share": 0.44,
-    "rank": 9,
+    "boh_share": 0.45,
+    "rank": 10,
     "arena_ci": [
      0.15234,
      0.16587
     ],
     "rank_set": [
-     2,
-     10
+     3,
+     11
     ]
    }
   },
@@ -9762,8 +10899,8 @@ window.ARENA_DATA['ar'] = {
     0.26434
    ],
    "rank_range": [
-    4,
-    10
+    5,
+    11
    ],
    "rtfx": 124.9,
    "audio_hours": 51.84,
@@ -10480,15 +11617,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.823915900131406,
     "term_n": 6088,
-    "boh_share": 0.44,
-    "rank": 6,
+    "boh_share": 0.45666666666666667,
+    "rank": 7,
     "arena_ci": [
      0.15187,
      0.1655
     ],
     "rank_set": [
-     2,
-     10
+     3,
+     11
     ]
    }
   },
@@ -10899,8 +12036,8 @@ window.ARENA_DATA['ar'] = {
     0.26428
    ],
    "rank_range": [
-    4,
-    10
+    5,
+    11
    ],
    "rtfx": 122.7,
    "audio_hours": 51.84,
@@ -11617,15 +12754,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.8257227332457293,
     "term_n": 6088,
-    "boh_share": 0.41,
-    "rank": 7,
+    "boh_share": 0.42333333333333334,
+    "rank": 8,
     "arena_ci": [
      0.15211,
      0.16587
     ],
     "rank_set": [
-     2,
-     10
+     3,
+     11
     ]
    }
   },
@@ -12036,8 +13173,8 @@ window.ARENA_DATA['ar'] = {
     0.26706
    ],
    "rank_range": [
-    11,
-    11
+    12,
+    12
    ],
    "rtfx": 121.7,
    "audio_hours": 51.84,
@@ -12755,14 +13892,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8219448094612353,
     "term_n": 6088,
     "boh_share": 0.4,
-    "rank": 11,
+    "rank": 12,
     "arena_ci": [
      0.15444,
      0.16835
     ],
     "rank_set": [
-     9,
-     12
+     10,
+     13
     ]
    }
   },
@@ -13173,8 +14310,8 @@ window.ARENA_DATA['ar'] = {
     0.26934
    ],
    "rank_range": [
-    12,
-    12
+    13,
+    13
    ],
    "rtfx": 112.7,
    "audio_hours": 51.84,
@@ -13892,14 +15029,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8286793692509855,
     "term_n": 6088,
     "boh_share": 0.9633333333333334,
-    "rank": 12,
+    "rank": 13,
     "arena_ci": [
      0.15642,
      0.1702
     ],
     "rank_set": [
-     11,
-     14
+     12,
+     15
     ]
    }
   },
@@ -14310,8 +15447,8 @@ window.ARENA_DATA['ar'] = {
     0.2726
    ],
    "rank_range": [
-    13,
-    14
+    14,
+    15
    ],
    "rtfx": 118.2,
    "audio_hours": 51.84,
@@ -15029,14 +16166,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8219448094612353,
     "term_n": 6088,
     "boh_share": 0.47333333333333333,
-    "rank": 14,
+    "rank": 15,
     "arena_ci": [
      0.15933,
      0.17329
     ],
     "rank_set": [
-     12,
-     15
+     13,
+     16
     ]
    }
   },
@@ -15447,8 +16584,8 @@ window.ARENA_DATA['ar'] = {
     0.27277
    ],
    "rank_range": [
-    13,
-    14
+    14,
+    15
    ],
    "rtfx": 116.6,
    "audio_hours": 51.84,
@@ -16166,14 +17303,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8281865965834428,
     "term_n": 6088,
     "boh_share": 0.93,
-    "rank": 13,
+    "rank": 14,
     "arena_ci": [
      0.15867,
      0.17231
     ],
     "rank_set": [
-     12,
-     15
+     13,
+     16
     ]
    }
   },
@@ -16584,8 +17721,8 @@ window.ARENA_DATA['ar'] = {
     0.27497
    ],
    "rank_range": [
-    15,
-    15
+    16,
+    16
    ],
    "rtfx": 117.5,
    "audio_hours": 51.84,
@@ -17303,14 +18440,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8268725361366623,
     "term_n": 6088,
     "boh_share": 0.9533333333333334,
-    "rank": 15,
+    "rank": 16,
     "arena_ci": [
      0.16083,
      0.17484
     ],
     "rank_set": [
-     13,
-     18
+     14,
+     19
     ]
    }
   },
@@ -17763,8 +18900,8 @@ window.ARENA_DATA['ar'] = {
     0.27872
    ],
    "rank_range": [
-    16,
-    17
+    17,
+    18
    ],
    "rtfx": 98.9,
    "audio_hours": 66.04,
@@ -18566,14 +19703,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8354139290407359,
     "term_n": 6088,
     "boh_share": 0.9433333333333334,
-    "rank": 17,
+    "rank": 18,
     "arena_ci": [
      0.16376,
      0.17778
     ],
     "rank_set": [
-     15,
-     18
+     16,
+     19
     ]
    }
   },
@@ -18984,8 +20121,8 @@ window.ARENA_DATA['ar'] = {
     0.28018
    ],
    "rank_range": [
-    16,
-    18
+    17,
+    19
    ],
    "rtfx": 112.2,
    "audio_hours": 51.84,
@@ -19703,14 +20840,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8211235216819974,
     "term_n": 6088,
     "boh_share": 0.93,
-    "rank": 16,
+    "rank": 17,
     "arena_ci": [
      0.16286,
      0.17688
     ],
     "rank_set": [
-     15,
-     18
+     16,
+     19
     ]
    }
   },
@@ -20163,8 +21300,8 @@ window.ARENA_DATA['ar'] = {
     0.28066
    ],
    "rank_range": [
-    17,
-    18
+    18,
+    19
    ],
    "rtfx": 90.4,
    "audio_hours": 66.04,
@@ -20966,14 +22103,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8352496714848883,
     "term_n": 6088,
     "boh_share": 0.95,
-    "rank": 18,
+    "rank": 19,
     "arena_ci": [
      0.16437,
      0.17844
     ],
     "rank_set": [
-     15,
-     18
+     16,
+     19
     ]
    }
   },
@@ -21426,8 +22563,8 @@ window.ARENA_DATA['ar'] = {
     0.29155
    ],
    "rank_range": [
-    19,
-    19
+    20,
+    20
    ],
    "rtfx": 91.3,
    "audio_hours": 66.04,
@@ -22229,14 +23366,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8372207621550591,
     "term_n": 6088,
     "boh_share": 0.9533333333333334,
-    "rank": 19,
+    "rank": 20,
     "arena_ci": [
      0.17232,
      0.18679
     ],
     "rank_set": [
-     19,
-     19
+     20,
+     20
     ]
    }
   },
@@ -22688,8 +23825,8 @@ window.ARENA_DATA['ar'] = {
     0.30797
    ],
    "rank_range": [
-    20,
-    20
+    21,
+    21
    ],
    "rtfx": 75.5,
    "audio_hours": 66.04,
@@ -23491,14 +24628,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.838042049934297,
     "term_n": 6088,
     "boh_share": 0.8566666666666667,
-    "rank": 20,
+    "rank": 21,
     "arena_ci": [
      0.18147,
      0.19619
     ],
     "rank_set": [
-     20,
-     21
+     21,
+     22
     ]
    }
   },
@@ -23942,8 +25079,8 @@ window.ARENA_DATA['ar'] = {
     0.33498
    ],
    "rank_range": [
-    21,
-    21
+    22,
+    22
    ],
    "rtfx": 236.9,
    "audio_hours": 66.04,
@@ -24745,14 +25882,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.846419185282523,
     "term_n": 6088,
     "boh_share": 0.5133333333333333,
-    "rank": 21,
+    "rank": 22,
     "arena_ci": [
      0.18288,
      0.20026
     ],
     "rank_set": [
-     20,
-     21
+     21,
+     22
     ]
    }
   },
@@ -25154,8 +26291,8 @@ window.ARENA_DATA['ar'] = {
     0.36117
    ],
    "rank_range": [
-    22,
-    22
+    23,
+    23
    ],
    "rtfx": 43.9,
    "audio_hours": 51.84,
@@ -25873,14 +27010,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7863009198423128,
     "term_n": 6088,
     "boh_share": 0.09666666666666666,
-    "rank": 22,
+    "rank": 23,
     "arena_ci": [
      0.2052,
      0.2203
     ],
     "rank_set": [
-     22,
-     22
+     23,
+     23
     ]
    }
   },
@@ -26324,8 +27461,8 @@ window.ARENA_DATA['ar'] = {
     0.3816
    ],
    "rank_range": [
-    23,
-    23
+    24,
+    24
    ],
    "rtfx": 58.0,
    "audio_hours": 66.04,
@@ -27127,14 +28264,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.8191524310118266,
     "term_n": 6088,
     "boh_share": 0.41,
-    "rank": 23,
+    "rank": 24,
     "arena_ci": [
      0.217,
      0.23361
     ],
     "rank_set": [
-     23,
-     23
+     24,
+     24
     ]
    }
   },
@@ -27578,8 +28715,8 @@ window.ARENA_DATA['ar'] = {
     0.39496
    ],
    "rank_range": [
-    24,
-    24
+    25,
+    25
    ],
    "rtfx": 20.1,
    "audio_hours": 66.04,
@@ -28381,14 +29518,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7848226018396847,
     "term_n": 6088,
     "boh_share": 0.07333333333333333,
-    "rank": 24,
+    "rank": 25,
     "arena_ci": [
      0.2399,
      0.25671
     ],
     "rank_set": [
-     24,
-     25
+     25,
+     26
     ]
    }
   },
@@ -28837,8 +29974,8 @@ window.ARENA_DATA['ar'] = {
     0.40865
    ],
    "rank_range": [
-    25,
-    27
+    26,
+    28
    ],
    "rtfx": 760.2,
    "audio_hours": 66.04,
@@ -29640,14 +30777,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7495072273324573,
     "term_n": 6088,
     "boh_share": 0.13,
-    "rank": 28,
+    "rank": 29,
     "arena_ci": [
      0.25636,
      0.2746
     ],
     "rank_set": [
-     25,
-     29
+     26,
+     30
     ]
    }
   },
@@ -30049,8 +31186,8 @@ window.ARENA_DATA['ar'] = {
     0.40926
    ],
    "rank_range": [
-    25,
-    27
+    26,
+    28
    ],
    "rtfx": 191.8,
    "audio_hours": 51.84,
@@ -30768,14 +31905,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.746550591327201,
     "term_n": 6088,
     "boh_share": 0.4866666666666667,
-    "rank": 29,
+    "rank": 30,
     "arena_ci": [
      0.26297,
      0.28037
     ],
     "rank_set": [
-     26,
-     33
+     27,
+     34
     ]
    }
   },
@@ -31226,8 +32363,8 @@ window.ARENA_DATA['ar'] = {
     0.41924
    ],
    "rank_range": [
-    25,
-    28
+    26,
+    29
    ],
    "rtfx": 41.2,
    "audio_hours": 66.04,
@@ -32029,14 +33166,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7623193166885677,
     "term_n": 6088,
     "boh_share": 0.8,
-    "rank": 33,
+    "rank": 34,
     "arena_ci": [
      0.27107,
      0.28963
     ],
     "rank_set": [
-     29,
-     33
+     30,
+     34
     ]
    }
   },
@@ -32443,8 +33580,8 @@ window.ARENA_DATA['ar'] = {
     0.42304
    ],
    "rank_range": [
-    28,
-    29
+    29,
+    30
    ],
    "rtfx": 1430.9,
    "audio_hours": 51.84,
@@ -33162,14 +34299,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7486859395532195,
     "term_n": 6088,
     "boh_share": 0.07666666666666666,
-    "rank": 30,
+    "rank": 31,
     "arena_ci": [
      0.26668,
      0.28462
     ],
     "rank_set": [
-     28,
-     33
+     29,
+     34
     ]
    }
   },
@@ -33618,8 +34755,8 @@ window.ARENA_DATA['ar'] = {
     0.42941
    ],
    "rank_range": [
-    29,
-    30
+    30,
+    31
    ],
    "rtfx": 914.2,
    "audio_hours": 66.04,
@@ -34421,14 +35558,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7120565045992115,
     "term_n": 6088,
     "boh_share": 0.03666666666666667,
-    "rank": 37,
+    "rank": 38,
     "arena_ci": [
      0.29856,
      0.31716
     ],
     "rank_set": [
-     35,
-     42
+     36,
+     43
     ]
    }
   },
@@ -34830,8 +35967,8 @@ window.ARENA_DATA['ar'] = {
     0.45642
    ],
    "rank_range": [
-    28,
-    36
+    29,
+    37
    ],
    "rtfx": 8.0,
    "audio_hours": 51.84,
@@ -35549,14 +36686,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7897503285151117,
     "term_n": 6088,
     "boh_share": 0.23,
-    "rank": 27,
+    "rank": 28,
     "arena_ci": [
      0.25683,
      0.27347
     ],
     "rank_set": [
-     25,
-     31
+     26,
+     32
     ]
    }
   },
@@ -35957,8 +37094,8 @@ window.ARENA_DATA['ar'] = {
     0.44209
    ],
    "rank_range": [
-    30,
-    32
+    31,
+    33
    ],
    "rtfx": 12.3,
    "audio_hours": 51.84,
@@ -36676,14 +37813,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7426084099868594,
     "term_n": 6088,
     "boh_share": 0.61,
-    "rank": 26,
+    "rank": 27,
     "arena_ci": [
      0.25402,
      0.27298
     ],
     "rank_set": [
-     25,
-     29
+     26,
+     30
     ]
    }
   },
@@ -37127,8 +38264,8 @@ window.ARENA_DATA['ar'] = {
     0.44746
    ],
    "rank_range": [
-    30,
-    33
+    31,
+    34
    ],
    "rtfx": 248.0,
    "audio_hours": 66.04,
@@ -37930,14 +39067,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.778580814717477,
     "term_n": 6088,
     "boh_share": 0.44,
-    "rank": 31,
+    "rank": 32,
     "arena_ci": [
      0.26877,
      0.28797
     ],
     "rank_set": [
-     28,
-     34
+     29,
+     35
     ]
    }
   },
@@ -38381,8 +39518,8 @@ window.ARENA_DATA['ar'] = {
     0.44623
    ],
    "rank_range": [
-    31,
-    33
+    32,
+    34
    ],
    "rtfx": 75.9,
    "audio_hours": 66.04,
@@ -39184,14 +40321,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7516425755584757,
     "term_n": 6088,
     "boh_share": 0.5733333333333334,
-    "rank": 38,
+    "rank": 39,
     "arena_ci": [
      0.30014,
      0.31842
     ],
     "rank_set": [
-     35,
-     42
+     36,
+     43
     ]
    }
   },
@@ -39593,8 +40730,8 @@ window.ARENA_DATA['ar'] = {
     0.45519
    ],
    "rank_range": [
-    33,
-    35
+    34,
+    36
    ],
    "rtfx": 102.8,
    "audio_hours": 51.84,
@@ -40312,14 +41449,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7432654402102497,
     "term_n": 6088,
     "boh_share": 0.09666666666666666,
-    "rank": 45,
+    "rank": 46,
     "arena_ci": [
      0.3181,
      0.33554
     ],
     "rank_set": [
-     42,
-     47
+     43,
+     48
     ]
    }
   },
@@ -40721,8 +41858,8 @@ window.ARENA_DATA['ar'] = {
     0.46123
    ],
    "rank_range": [
-    34,
-    37
+    35,
+    38
    ],
    "rtfx": 25.0,
    "audio_hours": 51.84,
@@ -41440,14 +42577,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7601839684625493,
     "term_n": 6088,
     "boh_share": 0.29333333333333333,
-    "rank": 42,
+    "rank": 43,
     "arena_ci": [
      0.30935,
      0.32815
     ],
     "rank_set": [
-     38,
-     46
+     39,
+     47
     ]
    }
   },
@@ -41854,8 +42991,8 @@ window.ARENA_DATA['ar'] = {
     0.45992
    ],
    "rank_range": [
-    35,
-    37
+    36,
+    38
    ],
    "rtfx": 1402.0,
    "audio_hours": 51.84,
@@ -42573,14 +43710,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7197766097240473,
     "term_n": 6088,
     "boh_share": 0.05333333333333334,
-    "rank": 43,
+    "rank": 44,
     "arena_ci": [
      0.31213,
      0.33094
     ],
     "rank_set": [
-     38,
-     47
+     39,
+     48
     ]
    }
   },
@@ -43024,8 +44161,8 @@ window.ARENA_DATA['ar'] = {
     0.47131
    ],
    "rank_range": [
-    36,
-    39
+    37,
+    40
    ],
    "rtfx": 36.3,
    "audio_hours": 66.04,
@@ -43827,14 +44964,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7072930354796321,
     "term_n": 6088,
     "boh_share": 0.17666666666666667,
-    "rank": 44,
+    "rank": 45,
     "arena_ci": [
      0.31617,
      0.33443
     ],
     "rank_set": [
-     42,
-     47
+     43,
+     48
     ]
    }
   },
@@ -44278,8 +45415,8 @@ window.ARENA_DATA['ar'] = {
     0.4859
    ],
    "rank_range": [
-    34,
-    41
+    35,
+    42
    ],
    "rtfx": 27.1,
    "audio_hours": 66.04,
@@ -45081,14 +46218,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7432654402102497,
     "term_n": 6088,
     "boh_share": 0.6233333333333333,
-    "rank": 35,
+    "rank": 36,
     "arena_ci": [
      0.29183,
      0.30871
     ],
     "rank_set": [
-     34,
-     38
+     35,
+     39
     ]
    }
   },
@@ -45489,8 +46626,8 @@ window.ARENA_DATA['ar'] = {
     0.47228
    ],
    "rank_range": [
-    37,
-    39
+    38,
+    40
    ],
    "rtfx": 30.5,
    "audio_hours": 51.84,
@@ -46208,14 +47345,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6723061760840998,
     "term_n": 6088,
     "boh_share": 0.07333333333333333,
-    "rank": 46,
+    "rank": 47,
     "arena_ci": [
      0.32075,
      0.34011
     ],
     "rank_set": [
-     41,
-     48
+     42,
+     49
     ]
    }
   },
@@ -46617,8 +47754,8 @@ window.ARENA_DATA['ar'] = {
     0.48334
    ],
    "rank_range": [
-    39,
-    41
+    40,
+    42
    ],
    "rtfx": 60.6,
    "audio_hours": 51.84,
@@ -47335,15 +48472,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.7245400788436268,
     "term_n": 6088,
-    "boh_share": 0.18333333333333332,
-    "rank": 51,
+    "boh_share": 0.18666666666666668,
+    "rank": 52,
     "arena_ci": [
      0.34346,
      0.36209
     ],
     "rank_set": [
-     48,
-     56
+     49,
+     57
     ]
    }
   },
@@ -47745,8 +48882,8 @@ window.ARENA_DATA['ar'] = {
     0.48935
    ],
    "rank_range": [
-    40,
-    44
+    41,
+    45
    ],
    "rtfx": 22.1,
    "audio_hours": 51.84,
@@ -48464,14 +49601,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6397831800262812,
     "term_n": 6088,
     "boh_share": 0.7,
-    "rank": 48,
+    "rank": 49,
     "arena_ci": [
      0.33554,
      0.35554
     ],
     "rank_set": [
-     46,
-     52
+     47,
+     53
     ]
    }
   },
@@ -48872,8 +50009,8 @@ window.ARENA_DATA['ar'] = {
     0.4897
    ],
    "rank_range": [
-    41,
-    44
+    42,
+    45
    ],
    "rtfx": 78.8,
    "audio_hours": 51.84,
@@ -49591,14 +50728,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6269710906701709,
     "term_n": 6088,
     "boh_share": 0.08666666666666667,
-    "rank": 56,
+    "rank": 57,
     "arena_ci": [
      0.35203,
      0.37125
     ],
     "rank_set": [
-     49,
-     58
+     50,
+     59
     ]
    }
   },
@@ -50042,8 +51179,8 @@ window.ARENA_DATA['ar'] = {
     0.49389
    ],
    "rank_range": [
-    42,
-    45
+    43,
+    46
    ],
    "rtfx": 20.0,
    "audio_hours": 66.04,
@@ -50845,14 +51982,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6976018396846255,
     "term_n": 6088,
     "boh_share": 0.07,
-    "rank": 47,
+    "rank": 48,
     "arena_ci": [
      0.32461,
      0.34486
     ],
     "rank_set": [
-     43,
-     49
+     44,
+     50
     ]
    }
   },
@@ -51253,8 +52390,8 @@ window.ARENA_DATA['ar'] = {
     0.49838
    ],
    "rank_range": [
-    41,
-    46
+    42,
+    47
    ],
    "rtfx": 13.6,
    "audio_hours": 51.84,
@@ -51972,14 +53109,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7077858081471747,
     "term_n": 6088,
     "boh_share": 0.6466666666666666,
-    "rank": 40,
+    "rank": 41,
     "arena_ci": [
      0.30365,
      0.32295
     ],
     "rank_set": [
-     37,
-     43
+     38,
+     44
     ]
    }
   },
@@ -52381,8 +53518,8 @@ window.ARENA_DATA['ar'] = {
     0.50452
    ],
    "rank_range": [
-    40,
-    48
+    41,
+    49
    ],
    "rtfx": 45.0,
    "audio_hours": 51.84,
@@ -53100,14 +54237,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7918856767411301,
     "term_n": 6088,
     "boh_share": 0.67,
-    "rank": 32,
+    "rank": 33,
     "arena_ci": [
      0.26958,
      0.28795
     ],
     "rank_set": [
-     29,
-     33
+     30,
+     34
     ]
    }
   },
@@ -53509,8 +54646,8 @@ window.ARENA_DATA['ar'] = {
     0.49799
    ],
    "rank_range": [
-    44,
-    47
+    45,
+    48
    ],
    "rtfx": 7.6,
    "audio_hours": 51.84,
@@ -54228,14 +55365,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6353482260183968,
     "term_n": 6088,
     "boh_share": 0.5866666666666667,
-    "rank": 59,
+    "rank": 60,
     "arena_ci": [
      0.37327,
      0.39189
     ],
     "rank_set": [
-     59,
-     61
+     60,
+     62
     ]
    }
   },
@@ -54679,8 +55816,8 @@ window.ARENA_DATA['ar'] = {
     0.50221
    ],
    "rank_range": [
-    46,
-    48
+    47,
+    49
    ],
    "rtfx": 63.1,
    "audio_hours": 66.04,
@@ -55481,15 +56618,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.7278252299605782,
     "term_n": 6088,
-    "boh_share": 0.9266666666666666,
-    "rank": 49,
+    "boh_share": 0.93,
+    "rank": 50,
     "arena_ci": [
      0.3381,
      0.35672
     ],
     "rank_set": [
-     47,
-     51
+     48,
+     52
     ]
    }
   },
@@ -55933,8 +57070,8 @@ window.ARENA_DATA['ar'] = {
     0.50438
    ],
    "rank_range": [
-    47,
-    48
+    48,
+    49
    ],
    "rtfx": 332.5,
    "audio_hours": 66.04,
@@ -56736,14 +57873,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6601511169513797,
     "term_n": 6088,
     "boh_share": 0.07,
-    "rank": 60,
+    "rank": 61,
     "arena_ci": [
      0.37366,
      0.3925
     ],
     "rank_set": [
-     59,
-     61
+     60,
+     62
     ]
    }
   },
@@ -57145,8 +58282,8 @@ window.ARENA_DATA['ar'] = {
     0.50937
    ],
    "rank_range": [
-    49,
-    50
+    50,
+    51
    ],
    "rtfx": 326.2,
    "audio_hours": 51.84,
@@ -57864,14 +59001,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6818331143232589,
     "term_n": 6088,
     "boh_share": 0.08,
-    "rank": 58,
+    "rank": 59,
     "arena_ci": [
      0.35988,
      0.37977
     ],
     "rank_set": [
-     53,
-     58
+     54,
+     59
     ]
    }
   },
@@ -58278,8 +59415,8 @@ window.ARENA_DATA['ar'] = {
     0.51239
    ],
    "rank_range": [
-    50,
-    51
+    51,
+    52
    ],
    "rtfx": 226.1,
    "audio_hours": 51.84,
@@ -58997,14 +60134,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6757555847568988,
     "term_n": 6088,
     "boh_share": 0.013333333333333334,
-    "rank": 53,
+    "rank": 54,
     "arena_ci": [
      0.35069,
      0.37014
     ],
     "rank_set": [
-     50,
-     58
+     51,
+     59
     ]
    }
   },
@@ -59448,8 +60585,8 @@ window.ARENA_DATA['ar'] = {
     0.51425
    ],
    "rank_range": [
-    49,
-    51
+    50,
+    52
    ],
    "rtfx": 85.7,
    "audio_hours": 66.04,
@@ -60250,15 +61387,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.7143561103810775,
     "term_n": 6088,
-    "boh_share": 0.7333333333333333,
-    "rank": 52,
+    "boh_share": 0.7366666666666667,
+    "rank": 53,
     "arena_ci": [
      0.35078,
      0.36957
     ],
     "rank_set": [
-     51,
-     57
+     52,
+     58
     ]
    }
   },
@@ -60660,8 +61797,8 @@ window.ARENA_DATA['ar'] = {
     0.53994
    ],
    "rank_range": [
-    52,
-    54
+    53,
+    55
    ],
    "rtfx": 8.4,
    "audio_hours": 51.84,
@@ -61379,14 +62516,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6553876478318003,
     "term_n": 6088,
     "boh_share": 0.14,
-    "rank": 61,
+    "rank": 62,
     "arena_ci": [
      0.37447,
      0.39343
     ],
     "rank_set": [
-     59,
-     61
+     60,
+     62
     ]
    }
   },
@@ -61830,8 +62967,8 @@ window.ARENA_DATA['ar'] = {
     0.56178
    ],
    "rank_range": [
-    52,
-    56
+    53,
+    57
    ],
    "rtfx": 36.1,
    "audio_hours": 66.04,
@@ -62633,14 +63770,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7145203679369251,
     "term_n": 6088,
     "boh_share": 0.58,
-    "rank": 41,
+    "rank": 42,
     "arena_ci": [
      0.30531,
      0.32521
     ],
     "rank_set": [
-     37,
-     43
+     38,
+     44
     ]
    }
   },
@@ -63084,8 +64221,8 @@ window.ARENA_DATA['ar'] = {
     0.54595
    ],
    "rank_range": [
-    53,
-    55
+    54,
+    56
    ],
    "rtfx": 73.5,
    "audio_hours": 66.04,
@@ -63887,14 +65024,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6116951379763469,
     "term_n": 6088,
     "boh_share": 0.22666666666666666,
-    "rank": 62,
+    "rank": 63,
     "arena_ci": [
      0.41358,
      0.43224
     ],
     "rank_set": [
-     62,
-     62
+     63,
+     63
     ]
    }
   },
@@ -64338,8 +65475,8 @@ window.ARENA_DATA['ar'] = {
     0.56312
    ],
    "rank_range": [
-    52,
-    56
+    53,
+    57
    ],
    "rtfx": 34.2,
    "audio_hours": 66.04,
@@ -65141,14 +66278,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6959592641261498,
     "term_n": 6088,
     "boh_share": 0.95,
-    "rank": 54,
+    "rank": 55,
     "arena_ci": [
      0.35251,
      0.36934
     ],
     "rank_set": [
-     50,
-     58
+     51,
+     59
     ]
    }
   },
@@ -65550,8 +66687,8 @@ window.ARENA_DATA['ar'] = {
     0.55875
    ],
    "rank_range": [
-    55,
-    57
+    56,
+    58
    ],
    "rtfx": 327.7,
    "audio_hours": 51.84,
@@ -66269,14 +67406,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6176084099868594,
     "term_n": 6088,
     "boh_share": 0.09666666666666666,
-    "rank": 63,
+    "rank": 64,
     "arena_ci": [
      0.42726,
      0.44602
     ],
     "rank_set": [
-     63,
-     64
+     64,
+     65
     ]
    }
   },
@@ -66678,8 +67815,8 @@ window.ARENA_DATA['ar'] = {
     0.59243
    ],
    "rank_range": [
-    56,
-    58
+    57,
+    59
    ],
    "rtfx": 36.2,
    "audio_hours": 51.84,
@@ -67397,14 +68534,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6110381077529566,
     "term_n": 6088,
     "boh_share": 0.34,
-    "rank": 55,
+    "rank": 56,
     "arena_ci": [
      0.35225,
      0.3698
     ],
     "rank_set": [
-     50,
-     58
+     51,
+     59
     ]
    }
   },
@@ -67808,8 +68945,8 @@ window.ARENA_DATA['ar'] = {
     0.61533
    ],
    "rank_range": [
-    57,
-    61
+    58,
+    62
    ],
    "rtfx": 28.8,
    "audio_hours": 51.84,
@@ -68527,14 +69664,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.7159986859395532,
     "term_n": 6088,
     "boh_share": 0.6066666666666667,
-    "rank": 36,
+    "rank": 37,
     "arena_ci": [
      0.2944,
      0.31397
     ],
     "rank_set": [
-     35,
-     39
+     36,
+     40
     ]
    }
   },
@@ -68936,8 +70073,8 @@ window.ARENA_DATA['ar'] = {
     0.61714
    ],
    "rank_range": [
-    58,
-    61
+    59,
+    62
    ],
    "rtfx": 832.8,
    "audio_hours": 51.84,
@@ -69655,14 +70792,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6594940867279895,
     "term_n": 6088,
     "boh_share": 0.38666666666666666,
-    "rank": 57,
+    "rank": 58,
     "arena_ci": [
      0.35253,
      0.37203
     ],
     "rank_set": [
-     50,
-     58
+     51,
+     59
     ]
    }
   },
@@ -70063,8 +71200,8 @@ window.ARENA_DATA['ar'] = {
     0.60776
    ],
    "rank_range": [
-    58,
-    61
+    59,
+    62
    ],
    "rtfx": 178.4,
    "audio_hours": 51.84,
@@ -70782,14 +71919,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.4590998685939553,
     "term_n": 6088,
     "boh_share": 0.05,
-    "rank": 67,
+    "rank": 68,
     "arena_ci": [
      0.47866,
      0.49775
     ],
     "rank_set": [
-     66,
-     68
+     67,
+     69
     ]
    }
   },
@@ -71191,8 +72328,8 @@ window.ARENA_DATA['ar'] = {
     0.65488
    ],
    "rank_range": [
-    58,
-    63
+    59,
+    64
    ],
    "rtfx": 6.5,
    "audio_hours": 51.84,
@@ -71910,14 +73047,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.6930026281208935,
     "term_n": 6088,
     "boh_share": 0.36,
-    "rank": 34,
+    "rank": 35,
     "arena_ci": [
      0.28492,
      0.30386
     ],
     "rank_set": [
-     33,
-     35
+     34,
+     36
     ]
    }
   },
@@ -72319,8 +73456,8 @@ window.ARENA_DATA['ar'] = {
     0.64337
    ],
    "rank_range": [
-    61,
-    62
+    62,
+    63
    ],
    "rtfx": 88.4,
    "audio_hours": 51.84,
@@ -73037,15 +74174,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.5473061760840998,
     "term_n": 6088,
-    "boh_share": 0.3233333333333333,
-    "rank": 64,
+    "boh_share": 0.32666666666666666,
+    "rank": 65,
     "arena_ci": [
      0.43078,
      0.45259
     ],
     "rank_set": [
-     63,
-     64
+     64,
+     65
     ]
    }
   },
@@ -73489,8 +74626,8 @@ window.ARENA_DATA['ar'] = {
     0.69065
    ],
    "rank_range": [
-    62,
-    66
+    63,
+    67
    ],
    "rtfx": 26.6,
    "audio_hours": 66.04,
@@ -74292,14 +75429,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.5895203679369251,
     "term_n": 6088,
     "boh_share": 0.5266666666666666,
-    "rank": 65,
+    "rank": 66,
     "arena_ci": [
      0.45764,
      0.4794
     ],
     "rank_set": [
-     65,
-     66
+     66,
+     67
     ]
    }
   },
@@ -74703,8 +75840,8 @@ window.ARENA_DATA['ar'] = {
     0.67125
    ],
    "rank_range": [
-    63,
-    65
+    64,
+    66
    ],
    "rtfx": 89.2,
    "audio_hours": 51.84,
@@ -75422,14 +76559,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.4908015768725361,
     "term_n": 6088,
     "boh_share": 0.043333333333333335,
-    "rank": 70,
+    "rank": 71,
     "arena_ci": [
      0.55576,
      0.57478
     ],
     "rank_set": [
-     70,
-     71
+     71,
+     72
     ]
    }
   },
@@ -75833,8 +76970,8 @@ window.ARENA_DATA['ar'] = {
     0.69208
    ],
    "rank_range": [
-    63,
-    67
+    64,
+    68
    ],
    "rtfx": 42.6,
    "audio_hours": 51.84,
@@ -76552,14 +77689,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.44957293035479634,
     "term_n": 6088,
     "boh_share": 0.57,
-    "rank": 69,
+    "rank": 70,
     "arena_ci": [
      0.50646,
      0.52365
     ],
     "rank_set": [
-     69,
-     69
+     70,
+     70
     ]
    }
   },
@@ -76961,8 +78098,8 @@ window.ARENA_DATA['ar'] = {
     0.69551
    ],
    "rank_range": [
-    65,
-    68
+    66,
+    69
    ],
    "rtfx": 388.8,
    "audio_hours": 51.84,
@@ -77680,14 +78817,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.3416557161629435,
     "term_n": 6088,
     "boh_share": 0.8733333333333333,
-    "rank": 72,
+    "rank": 73,
     "arena_ci": [
      0.58684,
      0.60401
     ],
     "rank_set": [
-     71,
-     73
+     72,
+     74
     ]
    }
   },
@@ -78091,8 +79228,8 @@ window.ARENA_DATA['ar'] = {
     0.72452
    ],
    "rank_range": [
-    65,
-    70
+    66,
+    71
    ],
    "rtfx": 38.2,
    "audio_hours": 51.84,
@@ -78810,14 +79947,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.5077201051248358,
     "term_n": 6088,
     "boh_share": 0.21,
-    "rank": 66,
+    "rank": 67,
     "arena_ci": [
      0.46957,
      0.48892
     ],
     "rank_set": [
-     65,
-     68
+     66,
+     69
     ]
    }
   },
@@ -79221,8 +80358,8 @@ window.ARENA_DATA['ar'] = {
     0.7043
    ],
    "rank_range": [
-    67,
-    69
+    68,
+    70
    ],
    "rtfx": 225.8,
    "audio_hours": 51.84,
@@ -79940,14 +81077,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.3511826544021025,
     "term_n": 6088,
     "boh_share": 0.043333333333333335,
-    "rank": 71,
+    "rank": 72,
     "arena_ci": [
      0.57383,
      0.59507
     ],
     "rank_set": [
-     70,
-     73
+     71,
+     74
     ]
    }
   },
@@ -80391,8 +81528,8 @@ window.ARENA_DATA['ar'] = {
     0.73512
    ],
    "rank_range": [
-    64,
-    71
+    65,
+    72
    ],
    "rtfx": 78.7,
    "audio_hours": 66.04,
@@ -81194,14 +82331,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.5821287779237845,
     "term_n": 6088,
     "boh_share": 0.6266666666666667,
-    "rank": 50,
+    "rank": 51,
     "arena_ci": [
      0.34175,
      0.36274
     ],
     "rank_set": [
-     48,
-     57
+     49,
+     58
     ]
    }
   },
@@ -81603,8 +82740,8 @@ window.ARENA_DATA['ar'] = {
     0.71593
    ],
    "rank_range": [
-    68,
-    70
+    69,
+    71
    ],
    "rtfx": 611.3,
    "audio_hours": 51.84,
@@ -82322,14 +83459,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.44793035479632065,
     "term_n": 6088,
     "boh_share": 0.61,
-    "rank": 73,
+    "rank": 74,
     "arena_ci": [
      0.59274,
      0.60942
     ],
     "rank_set": [
-     71,
-     73
+     72,
+     74
     ]
    }
   },
@@ -82731,8 +83868,8 @@ window.ARENA_DATA['ar'] = {
     0.78582
    ],
    "rank_range": [
-    70,
-    73
+    71,
+    74
    ],
    "rtfx": 8.1,
    "audio_hours": 51.84,
@@ -83450,14 +84587,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.5709592641261498,
     "term_n": 6088,
     "boh_share": 0.4866666666666667,
-    "rank": 68,
+    "rank": 69,
     "arena_ci": [
      0.48035,
      0.50016
     ],
     "rank_set": [
-     66,
-     68
+     67,
+     69
     ]
    }
   },
@@ -83859,8 +84996,8 @@ window.ARENA_DATA['ar'] = {
     0.76805
    ],
    "rank_range": [
-    71,
-    73
+    72,
+    74
    ],
    "rtfx": 215.9,
    "audio_hours": 51.84,
@@ -84578,14 +85715,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.44513797634691193,
     "term_n": 6088,
     "boh_share": 0.02,
-    "rank": 74,
+    "rank": 75,
     "arena_ci": [
      0.65975,
      0.67776
     ],
     "rank_set": [
-     74,
-     74
+     75,
+     75
     ]
    }
   },
@@ -84987,8 +86124,8 @@ window.ARENA_DATA['ar'] = {
     0.80664
    ],
    "rank_range": [
-    71,
-    73
+    72,
+    74
    ],
    "rtfx": 18.7,
    "audio_hours": 51.84,
@@ -85705,15 +86842,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.687910643889619,
     "term_n": 6088,
-    "boh_share": 0.23333333333333334,
-    "rank": 39,
+    "boh_share": 0.23666666666666666,
+    "rank": 40,
     "arena_ci": [
      0.30327,
      0.32337
     ],
     "rank_set": [
-     36,
-     44
+     37,
+     45
     ]
    }
   },
@@ -86115,8 +87252,8 @@ window.ARENA_DATA['ar'] = {
     0.83303
    ],
    "rank_range": [
-    74,
-    74
+    75,
+    75
    ],
    "rtfx": 224.9,
    "audio_hours": 51.84,
@@ -86834,14 +87971,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.30814717477003944,
     "term_n": 6088,
     "boh_share": 0.03,
-    "rank": 75,
+    "rank": 76,
     "arena_ci": [
      0.72301,
      0.74232
     ],
     "rank_set": [
-     75,
-     75
+     76,
+     76
     ]
    }
   },
@@ -87243,8 +88380,8 @@ window.ARENA_DATA['ar'] = {
     0.97323
    ],
    "rank_range": [
-    75,
-    75
+    76,
+    76
    ],
    "rtfx": 232.1,
    "audio_hours": 51.84,
@@ -87962,14 +89099,14 @@ window.ARENA_DATA['ar'] = {
     "term_recall": 0.07506570302233903,
     "term_n": 6088,
     "boh_share": 0.0,
-    "rank": 76,
+    "rank": 77,
     "arena_ci": [
      0.92121,
      0.92679
     ],
     "rank_set": [
-     76,
-     76
+     77,
+     77
     ]
    }
   },
@@ -88371,8 +89508,8 @@ window.ARENA_DATA['ar'] = {
     1.43578
    ],
    "rank_range": [
-    76,
-    76
+    77,
+    77
    ],
    "rtfx": 51.0,
    "audio_hours": 51.84,
@@ -89089,15 +90226,15 @@ window.ARENA_DATA['ar'] = {
     "incomplete": [],
     "term_recall": 0.8436268068331143,
     "term_n": 6088,
-    "boh_share": 0.5833333333333334,
-    "rank": 25,
+    "boh_share": 0.5866666666666667,
+    "rank": 26,
     "arena_ci": [
      0.24172,
      0.26336
     ],
     "rank_set": [
-     24,
-     28
+     25,
+     29
     ]
    }
   },
@@ -89467,13 +90604,13 @@ window.ARENA_DATA['ar'] = {
   "bag_of_hallucinations": [
    [
     "الله يحفظك",
-    663,
-    27
+    664,
+    28
    ],
    [
     "السلام عليكو",
-    376,
-    40
+    381,
+    41
    ],
    [
     "الله يخليك",
@@ -89492,18 +90629,18 @@ window.ARENA_DATA['ar'] = {
    ],
    [
     "ورحمه الله",
-    295,
-    33
+    298,
+    34
    ],
    [
     "الله وبركاته",
-    293,
-    32
+    296,
+    33
    ],
    [
     "ورحمه الله وبركاته",
-    292,
-    31
+    295,
+    32
    ],
    [
     "عليكو ورحمه الله",
@@ -89511,14 +90648,14 @@ window.ARENA_DATA['ar'] = {
     32
    ],
    [
+    "الله يسلمك",
+    269,
+    28
+   ],
+   [
     "عليكو ورحمه الله وبركاته",
     266,
     30
-   ],
-   [
-    "الله يسلمك",
-    266,
-    27
    ],
    [
     "السلام عليكو ورحمه الله",
@@ -89547,8 +90684,8 @@ window.ARENA_DATA['ar'] = {
    ],
    [
     "الله يرحمه",
-    186,
-    24
+    187,
+    25
    ],
    [
     "قبل ما",
@@ -89556,19 +90693,19 @@ window.ARENA_DATA['ar'] = {
     6
    ],
    [
+    "اللي هو",
+    176,
+    33
+   ],
+   [
     "شكرا لكم",
     173,
     10
    ],
    [
-    "اللي هو",
-    171,
-    32
-   ],
-   [
     "يا رب",
-    168,
-    29
+    169,
+    30
    ],
    [
     "ايه ده",
@@ -89577,8 +90714,8 @@ window.ARENA_DATA['ar'] = {
    ],
    [
     "اللي انا",
-    163,
-    26
+    166,
+    27
    ],
    [
     "يجي الضيوف",
@@ -89587,8 +90724,8 @@ window.ARENA_DATA['ar'] = {
    ],
    [
     "هذا هو",
-    150,
-    33
+    152,
+    34
    ],
    [
     "الله يخليك يا",
@@ -89597,8 +90734,8 @@ window.ARENA_DATA['ar'] = {
    ],
    [
     "الله اكبر",
-    144,
-    16
+    145,
+    17
    ],
    [
     "الله يحفظك الله",
@@ -89616,25 +90753,25 @@ window.ARENA_DATA['ar'] = {
     13
    ]
   ],
-  "num_ranked": 76,
+  "num_ranked": 77,
   "effective_weights": {
    "geometric": {
-    "clean": 0.45079003710795845,
-    "codeswitch": 0.15710736948021295,
-    "noisy": 0.1693544542017511,
-    "telephony": 0.11948059356183051,
-    "callcenter": 0.10326754564824692
+    "clean": 0.44972515033621746,
+    "codeswitch": 0.15816413311619784,
+    "noisy": 0.169116920079712,
+    "telephony": 0.11952729551939449,
+    "callcenter": 0.10346650094847828
    },
    "arithmetic": {
-    "clean": 0.4301557807511827,
-    "codeswitch": 0.18170880368230485,
-    "noisy": 0.1574473293584588,
-    "telephony": 0.11146456224813764,
-    "callcenter": 0.119223523959916
+    "clean": 0.4292467975136516,
+    "codeswitch": 0.1826410797442271,
+    "noisy": 0.1571543151663349,
+    "telephony": 0.11144382436759132,
+    "callcenter": 0.11951398320819512
    }
   },
   "leave_one_set_out": {
-   "mean_moved": 13.92,
+   "mean_moved": 13.97,
    "max_shift": 6,
    "sets": {
     "fleurs_ar/clean": {
@@ -89714,7 +90851,7 @@ window.ARENA_DATA['ar'] = {
      "max_shift": 3
     },
     "perle_cs/clean": {
-     "moved": 35,
+     "moved": 37,
      "max_shift": 6
     },
     "tedxtn_cs/clean": {

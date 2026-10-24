@@ -114,6 +114,30 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
           ("run16-rl-s1000", "tag", "run16-rl-s1000", "b6a96f0e6a13a88748125497f0573e3c2f248501",
            "round 16 GSPO step 1,000, from run13-soup (short replies after silence)"),
       ]],
+    _M("arabic-stt-qwen3-asr-1.7b-run20-mwer-s800", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run20-mwer-s800",
+       2.04, "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       kwargs={"revision": "1e523e84318c0c2d83481335e6f4c8e5e1f83d4a"},
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       notes="Arabic-STT round 20 (the same weights as tag run20-mwer-s800 of Arabic-STT/qwen3-asr-1.7b-ar-run20): "
+             "online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, "
+             "PriMock57), Arabic phone-call windows and synthetic TTS turns, then 800 steps of MWER; weights gated on "
+             "the Hub. Carries the run9 line's in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS "
+             "ar_eg test sentences included). Run without the card's two-channel front end, which only chunks mono"),
+    # the other round-20 checkpoints, tags of Arabic-STT/qwen3-asr-1.7b-ar-run20 (its main is run20-mwer-s800)
+    *[_M(f"arabic-stt-qwen3-asr-1.7b-{tag}", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run20", 2.04,
+         "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+         kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run20/tree/{tag}",
+         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+         notes=f"Arabic-STT round 20, {note}; tag `{tag}` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit {sha[:10]}), "
+               "weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes "
+               "(AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries "
+               "the run9 line's in-domain train rows")
+      for tag, sha, note in [
+          ("run20-s7all-s500", "9d547ba6af6340dfd6b9612e74463c07999bb97d", "S7all RL step 500"),
+          ("run20-s7all-s1000", "dc649d570d62a00af3f17662055ac9cf3f314cad", "S7all RL step 1000"),
+          ("run20-mwer-s1000", "ae7e8163ce052ac90740e9b5eb9dad4f803a1fec",
+           "S7all step 1000 + 1,000 MWER steps (the card's pick with its levelling front end and MBR decoding)"),
+      ]],
     _M("arabic-stt-qwen3-asr-1.7b-best-task06", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-task06", 2.04,
        "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        kwargs={"revision": "43617315cfbee8dbfe286f2ab4f544d4b959087d"},
