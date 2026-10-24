@@ -64,6 +64,7 @@ tbody tr:hover td { background: var(--head); }
 td.rank { color: var(--muted); width: 48px; }
 td.model a { color: var(--fg); text-decoration: none; font-weight: 600; }
 td.model a:hover { color: var(--accent); text-decoration: underline; }
+svg a.mlink:hover text, svg a.mlink:focus text { fill: var(--accent); text-decoration: underline; }
 td.best { color: var(--best); background: var(--bestbg); font-weight: 700; }
 tbody tr:hover td.best { background: var(--bestbg); }
 td.arena { font-weight: 700; }
@@ -157,7 +158,8 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
   </div>
 
   <div class="table-wrap"><table id="tbl"></table></div>
-  <p class="note">Click a column to sort; the best value in each column is highlighted. Small grey numbers are 95 % bootstrap
+  <p class="note">Click a column or a score in the Score bar to sort; the best value in each column is highlighted. Click a model
+    name to open it on Hugging Face. Small grey numbers are 95 % bootstrap
     intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
     Closed APIs and fine-tunes with gated weights are unranked references, scored on the re-hosted sets only. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
@@ -302,6 +304,22 @@ function showTip(evt, title, rows) {
   tip.style.left = x + "px"; tip.style.top = y + "px";
 }
 const hideTip = () => (tip.style.display = "none");
+// Hub page of a model; none for private weights (no link to a page others cannot open)
+const modelUrl = (m) => (m.kind === "private" || !m.hf_id ? null
+  : m.hf_id.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`);
+function modelLink(td, m) {
+  const a = h("a", m.model, td), url = modelUrl(m);
+  if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; a.title = "Open on Hugging Face"; }
+  else a.title = "Private weights: not downloadable";
+  return a;
+}
+// A chart's row label, linked to the model's Hub page. Draw it after the row's hover rect so it takes the click.
+function modelLabel(svg, m, attrs, text = m.model) {
+  const url = modelUrl(m);
+  const parent = url ? el("a", { href: url, target: "_blank", rel: "noopener", class: "mlink" }, svg) : svg;
+  const t = el("text", attrs, parent); t.textContent = text;
+  return t;
+}
 function bindHover(node, fn) {
   node.setAttribute("tabindex", "0");
   node.addEventListener("pointermove", fn);
@@ -337,8 +355,6 @@ function drawRank() {
   }
   ms.forEach((m, i) => {
     const y = top + i * row + (row - bar) / 2, v = score(m), x1 = x(v), x0 = labelW, r = 4;
-    const t = el("text", { x: labelW - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg);
-    t.textContent = `${i + 1}. ${m.model}`;
     const w = Math.max(x1 - x0, r);
     const fill = (m.kind || "open") === "open" ? "var(--s1)" : m.kind === "api" ? "var(--s2)" : "var(--priv)";
     el("path", { d: `M${x0},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
@@ -355,6 +371,7 @@ function drawRank() {
     if (state.track === "arena" && rankOf(m)) rows.push([isV2() ? "Rank set (95%)" : "Rank range (95%)", rankText(rankOf(m))]);
     bindHover(hit, (e) => showTip(e, m.model, [...rows,
       ["RTFx", String(m.rtfx ?? "—")], ["Params", m.params_b ? m.params_b + "B" : "—"]]));
+    modelLabel(svg, m, { x: labelW - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, `${i + 1}. ${m.model}`);
   });
 }
 
@@ -385,7 +402,8 @@ function drawScatter() {
   const pts = ms.map((m) => ({ m, cx: X(m.rtfx), cy: Y(score(m)) }));
   for (const { m, cx, cy } of pts) {
     el("circle", { cx, cy, r: 5, fill: "var(--s1)", stroke: "var(--surface)", "stroke-width": 2 }, svg);
-    const hit = el("circle", { cx, cy, r: 12, fill: "transparent" }, svg);
+    const url = modelUrl(m);
+    const hit = el("circle", { cx, cy, r: 12, fill: "transparent" }, url ? el("a", { href: url, target: "_blank", rel: "noopener" }, svg) : svg);
     bindHover(hit, (e) => showTip(e, m.model, [[state.metric.toUpperCase(), pct(score(m)) + "%"], ["RTFx", String(m.rtfx)]]));
   }
   // Direct labels for the best few, placed where they hit neither another label nor another point.
@@ -434,8 +452,7 @@ function drawDumbbell() {
   }
   rows.forEach((r, i) => {
     const y = T + i * row + row / 2;
-    el("text", { x: L - 8, y: y + 4, "text-anchor": "end" }, svg).textContent = r.m.model;
-    const lo = Math.min(r.clean, r.tel, r.cc), hi = Math.max(r.clean, r.tel, r.cc);
+    const lo =Math.min(r.clean, r.tel, r.cc), hi = Math.max(r.clean, r.tel, r.cc);
     el("line", { x1: X(lo), x2: X(hi), y1: y, y2: y, stroke: "var(--axis)", "stroke-width": 2, "stroke-linecap": "round" }, svg);
     [["clean", "--s1"], ["tel", "--s2"], ["cc", "--s3"]].forEach(([k, c]) =>
       el("circle", { cx: X(r[k]), cy: y, r: 5, fill: `var(${c})`, stroke: "var(--surface)", "stroke-width": 2 }, svg));
@@ -443,6 +460,7 @@ function drawDumbbell() {
     bindHover(hit, (e) => showTip(e, r.m.model, [["Clean", pct(r.clean) + "%", "var(--s1)"],
       ["Telephony", pct(r.tel) + "%", "var(--s2)"], ["Call-center", pct(r.cc) + "%", "var(--s3)"],
       ["Call-center vs clean", "+" + ((r.cc - r.clean) * 100).toFixed(1) + " pts", "var(--axis)"]]));
+    modelLabel(svg, r.m, { x: L - 8, y: y + 4, "text-anchor": "end" });
   });
 }
 
@@ -489,7 +507,7 @@ function drawHeat() {
   });
   rows.forEach((r, i) => {
     const y = T + i * row;
-    el("text", { x: L - 10, y: y + row / 2 + 4, "text-anchor": "end" }, svg).textContent = r.m.model;
+    modelLabel(svg, r.m, { x: L - 10, y: y + row / 2 + 4, "text-anchor": "end" });
     cols.forEach((c, j) => {
       const cell = r.bd[state.dim][c.v], x = L + j * cw;
       if (!cell) return;
@@ -523,13 +541,13 @@ function drawHalluc() {
   }
   ms.forEach((m, i) => {
     const y = T + i * row + (row - bar) / 2, v = halluc(m), r = 4, w = Math.max(X(v) - L, r);
-    el("text", { x: L - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, svg).textContent = m.model;
     el("path", { d: `M${L},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
       fill: "var(--s2)" }, svg);
     el("text", { x: L + w + 6, y: y + bar / 2 + 4, fill: "var(--ink)" }, svg).textContent = (v * 100).toFixed(0) + "%";
     const hit = el("rect", { x: 0, y: T + i * row, width: W, height: row, fill: "transparent" }, svg);
     bindHover(hit, (e) => showTip(e, m.model, [["clips with output", pct(v) + "%", "var(--s2)"],
       ["inserted words / min", m.inserted_wpm != null ? m.inserted_wpm.toFixed(1) : "—", "var(--axis)"]]));
+    modelLabel(svg, m, { x: L - 10, y: y + bar / 2 + 4, "text-anchor": "end" });
   });
 }
 
@@ -542,13 +560,19 @@ function drawTable() {
     [isV2() ? "Halluc. ≥3 words %" : "Halluc. %", (m) => halluc(m)],
     ...(isV2() ? [["Terms missed %", (m) => termsMissed(m)]] : []), ["RTFx", (m) => m.rtfx]];
   let ms = [...d.models];
-  const sc = state.sort ?? FIRST_TRACK, dir = sc === cols.length - 1 ? -1 : 1;
+  // with no column picked, sort by the score chosen in the Score bar
+  const sc = state.sort ?? FIRST_TRACK + Math.max(0, TRACKS.findIndex(([k]) => k === state.track));
+  const dir = sc === cols.length - 1 ? -1 : 1;
   if (cols[sc][1]) ms.sort((a, b) => ((cols[sc][1](a) ?? Infinity) - (cols[sc][1](b) ?? Infinity)) * (cols[sc][1](a) == null || cols[sc][1](b) == null ? 1 : dir));
   const tr = h("tr", null, h("thead", null, tbl));
   cols.forEach(([l], i) => {
     const th = h("th", l, tr);
     if (i === sc) { th.setAttribute("aria-sort", "ascending"); th.classList.add("sorted"); }
-    if (cols[i][1]) th.addEventListener("click", () => { state.sort = i; drawTable(); });
+    if (!cols[i][1]) return;
+    th.addEventListener("click", () => {
+      if (cols[i][2]) { setTrack(cols[i][2]); return; }  // a score column: the Score bar and charts follow
+      state.sort = i; drawTable();
+    });
   });
   const best = cols.map(([, f], i) => (f && i >= FIRST_TRACK && i < cols.length - 1) ? Math.min(...ms.map(f).filter((v) => v != null)) : null);
   const tb = h("tbody", null, tbl);
@@ -557,14 +581,12 @@ function drawTable() {
     const row = h("tr", null, tb);
     const kind = m.kind || "open", unranked = kind !== "open";  // closed APIs and gated or private weights are unranked references
     const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
-    const rr = rankOf(m);
+    const rr = sc === FIRST_TRACK ? rankOf(m) : null;  // the rank set is the Arena rank's
     if (rr && rr[0] !== rr[1]) {
       h("span", rankText(rr), rc, "ci").title = isV2() ? "95% simultaneous rank confidence set" : "95% bootstrap range of the Arena rank";
     }
     const td = h("td", null, row, "model");
-    const a = h("a", m.model, td);
-    if ((m.kind || "open") === "private") a.title = "Private weights: not downloadable";  // no link to a page others cannot open
-    else { a.href = m.hf_id?.startsWith("http") ? m.hf_id : `https://huggingface.co/${m.hf_id}`; a.target = "_blank"; a.rel = "noopener"; }
+    modelLink(td, m);
     const info = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
       + (m.in_domain?.length ? ` Trained on the train split of: ${m.in_domain.join(", ")}.` : "");
     if (m.in_domain?.length) h("span", "†", td, "dag").title = info;
@@ -600,7 +622,7 @@ function drawTable() {
   const setBest = Object.fromEntries(keys.map((k) => [k, Math.min(...ms.map((m) => setVal(m, k)).filter((v) => v != null))]));
   ms.forEach((m, r) => {
     const row = h("tr", null, sb);
-    h("td", String(r + 1), row, "rank"); h("td", m.model, row, "model");
+    h("td", String(r + 1), row, "rank"); modelLink(h("td", null, row, "model"), m);
     keys.forEach((k) => { const v = setVal(m, k); const c = h("td", pct(v), row); if (v != null && v === setBest[k]) c.classList.add("best"); });
   });
 }
@@ -633,7 +655,7 @@ function setupSeg(id, key, onChange) {
   }
   const dm = document.getElementById("dim");
   DIMS.forEach(([k, l]) => { const b = h("button", l, dm); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.dim)); });
-  setupSeg("track", "track", () => { drawRank(); drawScatter(); });
+  setupSeg("track", "track", () => setTrack(state.track));
   setupSeg("metric", "metric", drawAll);
   setupSeg("scorer", "scorer", () => { state.sort = null; drawAll(); });
   setupSeg("dim", "dim", drawHeat);
@@ -641,6 +663,13 @@ function setupSeg(id, key, onChange) {
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => state.data && drawAll());
   await load();
 })();
+
+// Pick a score (from the Score bar or a score column's header): the table sorts by it and the charts redraw.
+function setTrack(k) {
+  state.track = k; state.sort = null;
+  for (const b of document.querySelectorAll("#track button")) b.setAttribute("aria-pressed", String(b.dataset.v === k));
+  drawTable(); drawRank(); drawScatter();
+}
 
 function buildTrackSeg() {
   TRACKS = [["arena", "Arena"], ...Object.keys(state.data.tracks).map((k) => [k, TRACK_NAMES[k] || k])];
