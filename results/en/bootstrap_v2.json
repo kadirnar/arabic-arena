@@ -1,0 +1,104 @@
+{
+ "n_boot": 2000,
+ "headline": "L2sp",
+ "aggregate": "geometric",
+ "flags": {
+  "librispeech_clean/clean": "iid: no cluster key",
+  "librispeech_clean/noisy": "iid: no cluster key",
+  "librispeech_clean/telephony": "iid: no cluster key",
+  "librispeech_clean/callcenter": "iid: no cluster key",
+  "librispeech_other/clean": "iid: no cluster key",
+  "fleurs_en/clean": "iid: no cluster key",
+  "fleurs_en/noisy": "iid: no cluster key",
+  "fleurs_en/telephony": "iid: no cluster key",
+  "fleurs_en/callcenter": "iid: no cluster key",
+  "common_voice_en/clean": "iid: no cluster key",
+  "common_voice_en/telephony": "iid: no cluster key",
+  "common_voice_en/callcenter": "iid: no cluster key",
+  "voxpopuli_en/clean": "iid: no cluster key",
+  "voxpopuli_en/noisy": "iid: no cluster key",
+  "voxpopuli_en/telephony": "iid: no cluster key",
+  "voxpopuli_en/callcenter": "iid: no cluster key",
+  "earnings22/clean": "iid: no cluster key",
+  "earnings22/noisy": "iid: no cluster key",
+  "earnings22/telephony": "iid: no cluster key",
+  "earnings22/callcenter": "iid: no cluster key",
+  "gigaspeech/clean": "iid: no cluster key",
+  "gigaspeech/telephony": "iid: no cluster key",
+  "gigaspeech/callcenter": "iid: no cluster key",
+  "spgispeech/clean": "iid: no cluster key",
+  "ami_sdm/clean": "iid: no cluster key",
+  "edacc/clean": "iid: no cluster key",
+  "urgent2024/clean": "iid: no cluster key",
+  "minds14_tel/clean": "iid: no cluster key",
+  "vystadial_voip/clean": "iid: no cluster key"
+ },
+ "models": {
+  "qwen3-asr-1.7b": {
+   "arena": 0.068183,
+   "arena_ci": [
+    0.06539,
+    0.07053
+   ],
+   "rank_set": [
+    1,
+    2
+   ],
+   "tracks": {
+    "clean": [
+     0.04463,
+     0.04815
+    ],
+    "accented": [
+     0.11576,
+     0.1331
+    ],
+    "noisy": [
+     0.06426,
+     0.07635
+    ],
+    "telephony": [
+     0.04392,
+     0.05027
+    ],
+    "callcenter": [
+     0.14341,
+     0.16242
+    ]
+   }
+  },
+  "arabic-stt-qwen3-asr-1.7b-best-grpo2": {
+   "arena": 0.069355,
+   "arena_ci": [
+    0.06663,
+    0.07166
+   ],
+   "rank_set": [
+    1,
+    2
+   ],
+   "tracks": {
+    "clean": [
+     0.05104,
+     0.05462
+    ],
+    "accented": [
+     0.12002,
+     0.13834
+    ],
+    "noisy": [
+     0.06221,
+     0.07152
+    ],
+    "telephony": [
+     0.04853,
+     0.05504
+    ],
+    "callcenter": [
+     0.11798,
+     0.13271
+    ]
+   }
+  }
+ }
+}
