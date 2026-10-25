@@ -34,6 +34,39 @@
   "vystadial_voip/clean": "iid: no cluster key"
  },
  "models": {
+  "cohere-transcribe-arabic-07-2026": {
+   "arena": 0.066939,
+   "arena_ci": [
+    0.0642,
+    0.06927
+   ],
+   "rank_set": [
+    1,
+    3
+   ],
+   "tracks": {
+    "clean": [
+     0.04182,
+     0.04523
+    ],
+    "accented": [
+     0.12841,
+     0.1483
+    ],
+    "noisy": [
+     0.06084,
+     0.07248
+    ],
+    "telephony": [
+     0.04573,
+     0.05223
+    ],
+    "callcenter": [
+     0.14059,
+     0.16039
+    ]
+   }
+  },
   "qwen3-asr-1.7b": {
    "arena": 0.068183,
    "arena_ci": [
@@ -42,7 +75,7 @@
    ],
    "rank_set": [
     1,
-    3
+    4
    ],
    "tracks": {
     "clean": [
@@ -75,7 +108,7 @@
    ],
    "rank_set": [
     1,
-    3
+    4
    ],
    "tracks": {
     "clean": [
@@ -107,8 +140,8 @@
     0.07166
    ],
    "rank_set": [
-    1,
-    3
+    2,
+    4
    ],
    "tracks": {
     "clean": [
@@ -140,8 +173,8 @@
     0.08932
    ],
    "rank_set": [
-    4,
-    4
+    5,
+    5
    ],
    "tracks": {
     "clean": [

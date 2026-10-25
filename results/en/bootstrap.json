@@ -301,6 +301,156 @@
     2
    ]
   },
+  "cohere-transcribe-arabic-07-2026": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.01157,
+     0.01591
+    ],
+    "librispeech_other/clean": [
+     0.02044,
+     0.02701
+    ],
+    "fleurs_en/clean": [
+     0.05797,
+     0.0762
+    ],
+    "common_voice_en/clean": [
+     0.0614,
+     0.07912
+    ],
+    "voxpopuli_en/clean": [
+     0.04967,
+     0.05739
+    ],
+    "earnings22/clean": [
+     0.09361,
+     0.11014
+    ],
+    "gigaspeech/clean": [
+     0.08098,
+     0.09135
+    ],
+    "spgispeech/clean": [
+     0.03019,
+     0.03493
+    ],
+    "ami_sdm/clean": [
+     0.06157,
+     0.0746
+    ],
+    "edacc/clean": [
+     0.14459,
+     0.24521
+    ],
+    "urgent2024/clean": [
+     0.09018,
+     0.11209
+    ],
+    "librispeech_clean/noisy": [
+     0.01554,
+     0.02518
+    ],
+    "fleurs_en/noisy": [
+     0.08167,
+     0.20116
+    ],
+    "voxpopuli_en/noisy": [
+     0.05715,
+     0.07449
+    ],
+    "earnings22/noisy": [
+     0.12911,
+     0.18024
+    ],
+    "minds14_tel/clean": [
+     0.01226,
+     0.01865
+    ],
+    "vystadial_voip/clean": [
+     0.07368,
+     0.09364
+    ],
+    "librispeech_clean/telephony": [
+     0.01377,
+     0.02232
+    ],
+    "fleurs_en/telephony": [
+     0.06078,
+     0.08823
+    ],
+    "voxpopuli_en/telephony": [
+     0.04986,
+     0.06438
+    ],
+    "earnings22/telephony": [
+     0.08919,
+     0.11495
+    ],
+    "common_voice_en/telephony": [
+     0.09674,
+     0.1401
+    ],
+    "gigaspeech/telephony": [
+     0.07525,
+     0.0967
+    ],
+    "librispeech_clean/callcenter": [
+     0.06012,
+     0.09962
+    ],
+    "fleurs_en/callcenter": [
+     0.15139,
+     0.20102
+    ],
+    "voxpopuli_en/callcenter": [
+     0.08895,
+     0.26249
+    ],
+    "earnings22/callcenter": [
+     0.18332,
+     0.23413
+    ],
+    "common_voice_en/callcenter": [
+     0.28899,
+     0.8031
+    ],
+    "gigaspeech/callcenter": [
+     0.13536,
+     0.17327
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.05522,
+     0.05938
+    ],
+    "accented": [
+     0.14459,
+     0.24521
+    ],
+    "noisy": [
+     0.08157,
+     0.10952
+    ],
+    "telephony": [
+     0.06474,
+     0.07339
+    ],
+    "callcenter": [
+     0.16842,
+     0.26591
+    ]
+   },
+   "arena_wer": [
+    0.09586,
+    0.11979
+   ],
+   "rank": [
+    4,
+    4
+   ]
+  },
   "qwen3-asr-1.7b": {
    "sets": {
     "librispeech_clean/clean": [
@@ -597,8 +747,8 @@
     0.12671
    ],
    "rank": [
-    4,
-    4
+    5,
+    5
    ]
   }
  }
