@@ -14628,7 +14628,730 @@
     ],
     "rank_set": [
      19,
-     22
+     23
+    ]
+   }
+  },
+  {
+   "model": "arabic-stt-qwen3-asr-1.7b-run9-step-9000",
+   "hf_id": "https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/step-9000",
+   "params_b": 2.04,
+   "license": "gated weights",
+   "kind": "gated",
+   "sets": {
+    "librispeech_clean/clean": {
+     "wer": 0.020920291677143574,
+     "cer": 0.007821398739463893,
+     "rtfx": 182.71,
+     "n": 1000
+    },
+    "librispeech_other/clean": {
+     "wer": 0.05003913675500391,
+     "cer": 0.022337219965937377,
+     "rtfx": 172.46,
+     "n": 1000
+    },
+    "fleurs_en/clean": {
+     "wer": 0.06408011765529799,
+     "cer": 0.03686203831119013,
+     "rtfx": 192.56,
+     "n": 647
+    },
+    "common_voice_en/clean": {
+     "wer": 0.1008223859873972,
+     "cer": 0.05130672414456718,
+     "rtfx": 231.82,
+     "n": 1000
+    },
+    "voxpopuli_en/clean": {
+     "wer": 0.07266655393980385,
+     "cer": 0.042529884871564894,
+     "rtfx": 193.3,
+     "n": 1000
+    },
+    "earnings22/clean": {
+     "wer": 0.08838068336139931,
+     "cer": 0.05347006042849295,
+     "rtfx": 171.79,
+     "n": 997
+    },
+    "gigaspeech/clean": {
+     "wer": 0.09099516364287726,
+     "cer": 0.04548187444739169,
+     "rtfx": 163.14,
+     "n": 1000
+    },
+    "spgispeech/clean": {
+     "wer": 0.04641589049554881,
+     "cer": 0.02539441956596624,
+     "rtfx": 203.09,
+     "n": 1000
+    },
+    "ami_sdm/clean": {
+     "wer": 0.09280742459396751,
+     "cer": 0.050812850031113875,
+     "rtfx": 141.89,
+     "n": 991
+    },
+    "edacc/clean": {
+     "wer": 0.15850381176986783,
+     "cer": 0.11291608063759963,
+     "rtfx": 167.55,
+     "n": 995
+    },
+    "urgent2024/clean": {
+     "wer": 0.1229053289509133,
+     "cer": 0.08129300033735777,
+     "rtfx": 185.34,
+     "n": 1000
+    },
+    "minds14_tel/clean": {
+     "wer": 0.022625316949483127,
+     "cer": 0.015665960614894198,
+     "rtfx": 192.88,
+     "n": 558
+    },
+    "vystadial_voip/clean": {
+     "wer": 0.17850953206239167,
+     "cer": 0.11958583023590988,
+     "rtfx": 193.77,
+     "n": 1000
+    },
+    "librispeech_clean/noisy": {
+     "wer": 0.030292479108635098,
+     "cer": 0.013372710379612424,
+     "rtfx": 161.02,
+     "n": 300
+    },
+    "fleurs_en/noisy": {
+     "wer": 0.09214133414559854,
+     "cer": 0.05471148755955532,
+     "rtfx": 183.09,
+     "n": 300
+    },
+    "voxpopuli_en/noisy": {
+     "wer": 0.09261939218523878,
+     "cer": 0.05314395546791144,
+     "rtfx": 182.41,
+     "n": 300
+    },
+    "earnings22/noisy": {
+     "wer": 0.11892633228840126,
+     "cer": 0.07544733444014019,
+     "rtfx": 155.25,
+     "n": 298
+    },
+    "librispeech_clean/telephony": {
+     "wer": 0.026288300835654595,
+     "cer": 0.009689408016989648,
+     "rtfx": 162.22,
+     "n": 300
+    },
+    "fleurs_en/telephony": {
+     "wer": 0.07249466950959488,
+     "cer": 0.042085759661196404,
+     "rtfx": 181.22,
+     "n": 300
+    },
+    "voxpopuli_en/telephony": {
+     "wer": 0.08451519536903039,
+     "cer": 0.048376226254961185,
+     "rtfx": 183.52,
+     "n": 300
+    },
+    "earnings22/telephony": {
+     "wer": 0.08738244514106583,
+     "cer": 0.05316362294779561,
+     "rtfx": 152.97,
+     "n": 298
+    },
+    "common_voice_en/telephony": {
+     "wer": 0.14844290657439446,
+     "cer": 0.0824288283818148,
+     "rtfx": 220.66,
+     "n": 300
+    },
+    "gigaspeech/telephony": {
+     "wer": 0.09444060773480663,
+     "cer": 0.047437684904954605,
+     "rtfx": 165.04,
+     "n": 300
+    },
+    "librispeech_clean/callcenter": {
+     "wer": 0.0745125348189415,
+     "cer": 0.040914520838863815,
+     "rtfx": 162.08,
+     "n": 300
+    },
+    "fleurs_en/callcenter": {
+     "wer": 0.15397502284495887,
+     "cer": 0.09653255690841715,
+     "rtfx": 182.11,
+     "n": 300
+    },
+    "voxpopuli_en/callcenter": {
+     "wer": 0.12937771345875543,
+     "cer": 0.08863982426799132,
+     "rtfx": 117.63,
+     "n": 300
+    },
+    "earnings22/callcenter": {
+     "wer": 0.1710423197492163,
+     "cer": 0.11068068622025456,
+     "rtfx": 152.58,
+     "n": 298
+    },
+    "common_voice_en/callcenter": {
+     "wer": 0.2996539792387543,
+     "cer": 0.19580723190473237,
+     "rtfx": 230.37,
+     "n": 300
+    },
+    "gigaspeech/callcenter": {
+     "wer": 0.1517610497237569,
+     "cer": 0.08710511102798653,
+     "rtfx": 160.09,
+     "n": 300
+    },
+    "noise_only/clean": {
+     "wer": null,
+     "cer": null,
+     "rtfx": 21.82,
+     "n": 300
+    }
+   },
+   "tracks": {
+    "clean": {
+     "wer": 0.06968084978982661,
+     "cer": 0.03733516338952091,
+     "done": 9,
+     "total": 9,
+     "ci": [
+      0.06708,
+      0.07279
+     ]
+    },
+    "accented": {
+     "wer": 0.15850381176986783,
+     "cer": 0.11291608063759963,
+     "done": 1,
+     "total": 1,
+     "ci": [
+      0.14351,
+      0.17527
+     ]
+    },
+    "noisy": {
+     "wer": 0.0913769733357574,
+     "cer": 0.05559369763691543,
+     "done": 5,
+     "total": 5,
+     "ci": [
+      0.08593,
+      0.09757
+     ]
+    },
+    "telephony": {
+     "wer": 0.0893373717720527,
+     "cer": 0.05230416512731454,
+     "done": 8,
+     "total": 8,
+     "ci": [
+      0.08417,
+      0.09517
+     ]
+    },
+    "callcenter": {
+     "wer": 0.16338710330573056,
+     "cer": 0.10327998852804095,
+     "done": 6,
+     "total": 6,
+     "ci": [
+      0.15351,
+      0.17319
+     ]
+    }
+   },
+   "env": {
+    "python": "3.12.3",
+    "host": "c81c69284a43",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA A10",
+    "transformers": "5.19.0"
+   },
+   "finetune_of": "Qwen/Qwen3-ASR-1.7B",
+   "in_domain": [
+    "librispeech_clean",
+    "librispeech_other",
+    "common_voice_en",
+    "voxpopuli_en",
+    "ami_sdm",
+    "gigaspeech",
+    "edacc",
+    "earnings22"
+   ],
+   "notes": "Arabic-STT run 9 Stage A (SFT) step 9,000 of 12,000, before the decay; tag `step-9000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit c52fd76c9e), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
+   "training_data": "",
+   "hallucination_rate": 0.9933333333333333,
+   "inserted_wpm": 594.1,
+   "arena_wer": 0.10288304090779754,
+   "arena_cer": 0.0620586004362046,
+   "arena_ci": [
+    0.10008,
+    0.10576
+   ],
+   "rank_range": [
+    21,
+    23
+   ],
+   "rtfx": 156.1,
+   "audio_hours": 38.41,
+   "v2": {
+    "halluc_any": 0.9933333333333333,
+    "halluc_3plus": 0.9633333333333334,
+    "halluc_3plus_ci": [
+     0.93555,
+     0.9794
+    ],
+    "inserted_wpm": 594.1002620866559,
+    "sets": {
+     "librispeech_clean/clean": {
+      "wer": 0.017349761126477244,
+      "wer_uncapped": 0.017349761126477244,
+      "cer": 0.008280615726230817,
+      "av_wer": null,
+      "strict_wer": 0.020920291677143574,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.002263012320844858,
+      "term_recall": null
+     },
+     "librispeech_other/clean": {
+      "wer": 0.04629319020462932,
+      "wer_uncapped": 0.04634909985463491,
+      "cer": 0.02485611029313345,
+      "av_wer": null,
+      "strict_wer": 0.04992731745499273,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.0057027843005702785,
+      "term_recall": null
+     },
+     "fleurs_en/clean": {
+      "wer": 0.05931787940331956,
+      "wer_uncapped": 0.05931787940331956,
+      "cer": 0.036810980506680295,
+      "av_wer": null,
+      "strict_wer": 0.06408011765529799,
+      "n": 647,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.025772112893059737,
+      "term_recall": null
+     },
+     "common_voice_en/clean": {
+      "wer": 0.09377336323827833,
+      "wer_uncapped": 0.09633664423795792,
+      "cer": 0.05383150989701599,
+      "av_wer": null,
+      "strict_wer": 0.09804549823774432,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.014632062373170992,
+      "term_recall": null
+     },
+     "voxpopuli_en/clean": {
+      "wer": 0.06843929658437606,
+      "wer_uncapped": 0.06843929658437606,
+      "cer": 0.042737681491805304,
+      "av_wer": null,
+      "strict_wer": 0.07266655393980385,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.01703584714237403,
+      "term_recall": null
+     },
+     "earnings22/clean": {
+      "wer": 0.08311152153837796,
+      "wer_uncapped": 0.08381769786517464,
+      "cer": 0.054150285587122614,
+      "av_wer": null,
+      "strict_wer": 0.08767450703460264,
+      "n": 997,
+      "failed": 0,
+      "loop_rate": 0.004012036108324975,
+      "insertions": 0.02335814004019773,
+      "term_recall": null
+     },
+     "gigaspeech/clean": {
+      "wer": 0.08114332505949487,
+      "wer_uncapped": 0.08124568182399754,
+      "cer": 0.04526231497816648,
+      "av_wer": null,
+      "strict_wer": 0.09089280687837457,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.002,
+      "insertions": 0.020778423194042835,
+      "term_recall": null
+     },
+     "spgispeech/clean": {
+      "wer": 0.04204188751093501,
+      "wer_uncapped": 0.04204188751093501,
+      "cer": 0.02463040492830495,
+      "av_wer": null,
+      "strict_wer": 0.04641589049554881,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.02060927288632738,
+      "term_recall": null
+     },
+     "ami_sdm/clean": {
+      "wer": 0.07211136890951277,
+      "wer_uncapped": 0.07981438515081206,
+      "cer": 0.04526897214217099,
+      "av_wer": null,
+      "strict_wer": 0.0851044083526682,
+      "n": 991,
+      "failed": 0,
+      "loop_rate": 0.0010090817356205853,
+      "insertions": 0.023294663573085846,
+      "term_recall": null
+     },
+     "edacc/clean": {
+      "wer": 0.1407886798661767,
+      "wer_uncapped": 0.153841934953107,
+      "cer": 0.10594577127581446,
+      "av_wer": null,
+      "strict_wer": 0.14545055668293752,
+      "n": 995,
+      "failed": 0,
+      "loop_rate": 0.004020100502512563,
+      "insertions": 0.04064059672023255,
+      "term_recall": null
+     },
+     "urgent2024/clean": {
+      "wer": 0.11730157874885501,
+      "wer_uncapped": 0.11897192736677623,
+      "cer": 0.08474956391726887,
+      "av_wer": null,
+      "strict_wer": 0.12123498033299208,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.003,
+      "insertions": 0.024139231639635755,
+      "term_recall": null
+     },
+     "minds14_tel/clean": {
+      "wer": 0.0217476106885118,
+      "wer_uncapped": 0.0217476106885118,
+      "cer": 0.015557954036907363,
+      "av_wer": null,
+      "strict_wer": 0.022625316949483127,
+      "n": 558,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.010434952213770237,
+      "term_recall": null
+     },
+     "vystadial_voip/clean": {
+      "wer": 0.10745233968804159,
+      "wer_uncapped": 0.1517427305988831,
+      "cer": 0.09038019212555812,
+      "av_wer": null,
+      "strict_wer": 0.13325630656653187,
+      "n": 1000,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.09974966300789524,
+      "term_recall": null
+     },
+     "librispeech_clean/noisy": {
+      "wer": 0.026114206128133706,
+      "wer_uncapped": 0.026114206128133706,
+      "cer": 0.01433662724769156,
+      "av_wer": null,
+      "strict_wer": 0.030292479108635098,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.00383008356545961,
+      "term_recall": null
+     },
+     "fleurs_en/noisy": {
+      "wer": 0.08757234236978373,
+      "wer_uncapped": 0.08757234236978373,
+      "cer": 0.05638763724059148,
+      "av_wer": null,
+      "strict_wer": 0.09214133414559854,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.026347852573865366,
+      "term_recall": null
+     },
+     "voxpopuli_en/noisy": {
+      "wer": 0.08856729377713458,
+      "wer_uncapped": 0.08856729377713458,
+      "cer": 0.054079100774266836,
+      "av_wer": null,
+      "strict_wer": 0.09261939218523878,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.02243125904486252,
+      "term_recall": null
+     },
+     "earnings22/noisy": {
+      "wer": 0.10932601880877743,
+      "wer_uncapped": 0.11285266457680251,
+      "cer": 0.0768644333826629,
+      "av_wer": null,
+      "strict_wer": 0.11539968652037617,
+      "n": 298,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.027037617554858933,
+      "term_recall": null
+     },
+     "librispeech_clean/telephony": {
+      "wer": 0.022458217270194987,
+      "wer_uncapped": 0.022458217270194987,
+      "cer": 0.010327231491981208,
+      "av_wer": null,
+      "strict_wer": 0.026288300835654595,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.0031337047353760445,
+      "term_recall": null
+     },
+     "fleurs_en/telephony": {
+      "wer": 0.06792567773378008,
+      "wer_uncapped": 0.06792567773378008,
+      "cer": 0.04286983562860951,
+      "av_wer": null,
+      "strict_wer": 0.07249466950959488,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.02193116052391106,
+      "term_recall": null
+     },
+     "voxpopuli_en/telephony": {
+      "wer": 0.08017366136034733,
+      "wer_uncapped": 0.08017366136034733,
+      "cer": 0.04899704044722131,
+      "av_wer": null,
+      "strict_wer": 0.08451519536903039,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.019102749638205498,
+      "term_recall": null
+     },
+     "earnings22/telephony": {
+      "wer": 0.07934952978056427,
+      "wer_uncapped": 0.08052507836990595,
+      "cer": 0.0541728328624602,
+      "av_wer": null,
+      "strict_wer": 0.08620689655172414,
+      "n": 298,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.020963949843260186,
+      "term_recall": null
+     },
+     "common_voice_en/telephony": {
+      "wer": 0.1422145328719723,
+      "wer_uncapped": 0.14602076124567473,
+      "cer": 0.08785930687947979,
+      "av_wer": null,
+      "strict_wer": 0.14463667820069204,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.02041522491349481,
+      "term_recall": null
+     },
+     "gigaspeech/telephony": {
+      "wer": 0.08364986187845304,
+      "wer_uncapped": 0.08364986187845304,
+      "cer": 0.04698085419734904,
+      "av_wer": null,
+      "strict_wer": 0.09444060773480663,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0033333333333333335,
+      "insertions": 0.02175414364640884,
+      "term_recall": null
+     },
+     "librispeech_clean/callcenter": {
+      "wer": 0.07137883008356546,
+      "wer_uncapped": 0.07172701949860724,
+      "cer": 0.04527782277660781,
+      "av_wer": null,
+      "strict_wer": 0.07416434540389973,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.01149025069637883,
+      "term_recall": null
+     },
+     "fleurs_en/callcenter": {
+      "wer": 0.15016752969844654,
+      "wer_uncapped": 0.15016752969844654,
+      "cer": 0.1012248524465317,
+      "av_wer": null,
+      "strict_wer": 0.15397502284495887,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.03381053914102954,
+      "term_recall": null
+     },
+     "voxpopuli_en/callcenter": {
+      "wer": 0.12547033285094067,
+      "wer_uncapped": 0.1256150506512301,
+      "cer": 0.08427251801141969,
+      "av_wer": null,
+      "strict_wer": 0.129232995658466,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0033333333333333335,
+      "insertions": 0.023878437047756874,
+      "term_recall": null
+     },
+     "earnings22/callcenter": {
+      "wer": 0.16026645768025077,
+      "wer_uncapped": 0.16673197492163008,
+      "cer": 0.11386160814386295,
+      "av_wer": null,
+      "strict_wer": 0.164576802507837,
+      "n": 298,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.040556426332288405,
+      "term_recall": null
+     },
+     "common_voice_en/callcenter": {
+      "wer": 0.2799307958477509,
+      "wer_uncapped": 0.2975778546712803,
+      "cer": 0.20734500849774626,
+      "av_wer": null,
+      "strict_wer": 0.2820069204152249,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": 0.04602076124567474,
+      "term_recall": null
+     },
+     "gigaspeech/callcenter": {
+      "wer": 0.14079765193370167,
+      "wer_uncapped": 0.14105662983425415,
+      "cer": 0.09099516095097833,
+      "av_wer": null,
+      "strict_wer": 0.1515020718232044,
+      "n": 300,
+      "failed": 0,
+      "loop_rate": 0.0033333333333333335,
+      "insertions": 0.028142265193370167,
+      "term_recall": null
+     },
+     "noise_only/clean": {
+      "wer": null,
+      "wer_uncapped": null,
+      "cer": null,
+      "av_wer": null,
+      "strict_wer": null,
+      "n": 0,
+      "failed": 0,
+      "loop_rate": 0.0,
+      "insertions": null,
+      "term_recall": null
+     }
+    },
+    "tracks": {
+     "clean": {
+      "wer": 0.05689957547799815,
+      "cer": 0.033095583677541444,
+      "wer_arith": 0.06262017706393345,
+      "done": 9,
+      "total": 9,
+      "ci": [
+       0.05321,
+       0.06025
+      ]
+     },
+     "accented": {
+      "wer": 0.1407886798661767,
+      "cer": 0.10594577127581448,
+      "wer_arith": 0.1407886798661767,
+      "done": 1,
+      "total": 1,
+      "ci": [
+       0.12012,
+       0.16206
+      ]
+     },
+     "noisy": {
+      "wer": 0.07636755948713324,
+      "cer": 0.049080010948570264,
+      "wer_arith": 0.0857762879665369,
+      "done": 5,
+      "total": 5,
+      "ci": [
+       0.0702,
+       0.08299
+      ]
+     },
+     "telephony": {
+      "wer": 0.06366162880167367,
+      "cer": 0.040200151882921,
+      "wer_arith": 0.07562142890898318,
+      "done": 8,
+      "total": 8,
+      "ci": [
+       0.05852,
+       0.06866
+      ]
+     },
+     "callcenter": {
+      "wer": 0.14284417666912336,
+      "cer": 0.09693738701979591,
+      "wer_arith": 0.15466859968244268,
+      "done": 6,
+      "total": 6,
+      "ci": [
+       0.13266,
+       0.15293
+      ]
+     }
+    },
+    "arena": 0.07849996211827515,
+    "arena_arith": 0.09363819559373689,
+    "arena_cer": 0.04951321994604728,
+    "arena_strict": 0.08455100276029746,
+    "zero_shot": 0.07758731289813002,
+    "arena_real": 0.0640859146880427,
+    "exposure": 0.7403,
+    "incomplete": [],
+    "term_recall": null,
+    "term_n": 0,
+    "boh_share": 0.97,
+    "rank": 23,
+    "arena_ci": [
+     0.07397,
+     0.08281
+    ],
+    "rank_set": [
+     22,
+     24
     ]
    }
   },
@@ -14893,7 +15616,7 @@
    ],
    "rank_range": [
     16,
-    25
+    26
    ],
    "rtfx": 353.1,
    "audio_hours": 38.41,
@@ -15607,7 +16330,7 @@
    ],
    "rank_range": [
     19,
-    26
+    27
    ],
    "rtfx": 357.5,
    "audio_hours": 38.41,
@@ -16320,8 +17043,8 @@
     0.11437
    ],
    "rank_range": [
-    21,
-    23
+    22,
+    24
    ],
    "rtfx": 467.3,
    "audio_hours": 38.41,
@@ -16763,14 +17486,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.16666666666666666,
-    "rank": 23,
+    "rank": 24,
     "arena_ci": [
      0.07606,
      0.08468
     ],
     "rank_set": [
      23,
-     25
+     26
     ]
    }
   },
@@ -17034,8 +17757,8 @@
     0.11974
    ],
    "rank_range": [
-    23,
-    25
+    24,
+    26
    ],
    "rtfx": 182.9,
    "audio_hours": 38.41,
@@ -17477,14 +18200,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.29333333333333333,
-    "rank": 25,
+    "rank": 26,
     "arena_ci": [
      0.07894,
      0.08719
     ],
     "rank_set": [
-     23,
-     26
+     24,
+     27
     ]
    }
   },
@@ -17748,8 +18471,8 @@
     0.12198
    ],
    "rank_range": [
-    24,
-    25
+    25,
+    26
    ],
    "rtfx": 113.3,
    "audio_hours": 38.41,
@@ -18191,14 +18914,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.24,
-    "rank": 24,
+    "rank": 25,
     "arena_ci": [
      0.07846,
      0.0869
     ],
     "rank_set": [
-     23,
-     25
+     24,
+     26
     ]
    }
   },
@@ -18462,8 +19185,8 @@
     0.12671
    ],
    "rank_range": [
-    25,
-    26
+    26,
+    27
    ],
    "rtfx": 84.5,
    "audio_hours": 38.41,
@@ -18905,14 +19628,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.8266666666666667,
-    "rank": 26,
+    "rank": 27,
     "arena_ci": [
      0.08154,
      0.09082
     ],
     "rank_set": [
-     25,
-     26
+     26,
+     27
     ]
    }
   },
@@ -19176,8 +19899,8 @@
     0.14697
    ],
    "rank_range": [
-    27,
-    27
+    28,
+    28
    ],
    "rtfx": 133.4,
    "audio_hours": 38.41,
@@ -19619,14 +20342,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.74,
-    "rank": 27,
+    "rank": 28,
     "arena_ci": [
      0.08577,
      0.09545
     ],
     "rank_set": [
-     27,
-     27
+     28,
+     28
     ]
    }
   },
@@ -19890,8 +20613,8 @@
     0.17682
    ],
    "rank_range": [
-    28,
-    28
+    29,
+    29
    ],
    "rtfx": 20.5,
    "audio_hours": 38.41,
@@ -20333,14 +21056,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.08333333333333333,
-    "rank": 28,
+    "rank": 29,
     "arena_ci": [
      0.11215,
      0.12386
     ],
     "rank_set": [
-     28,
-     28
+     29,
+     29
     ]
    }
   },
@@ -20604,8 +21327,8 @@
     0.22549
    ],
    "rank_range": [
-    29,
-    29
+    30,
+    30
    ],
    "rtfx": 36.2,
    "audio_hours": 38.41,
@@ -21047,14 +21770,14 @@
     "term_recall": null,
     "term_n": 0,
     "boh_share": 0.26,
-    "rank": 29,
+    "rank": 30,
     "arena_ci": [
      0.14737,
      0.15933
     ],
     "rank_set": [
-     29,
-     29
+     30,
+     30
     ]
    }
   }
@@ -21170,68 +21893,83 @@
   "bag_of_hallucinations": [
    [
     "of the",
-    635,
-    29
+    660,
+    30
    ],
    [
     "thank you",
-    592,
+    597,
+    29
+   ],
+   [
+    "and then",
+    423,
+    26
+   ],
+   [
+    "have a",
+    390,
     28
    ],
    [
     "i think",
-    360,
-    29
+    384,
+    30
    ],
    [
     "and the",
-    355,
-    29
+    372,
+    30
    ],
    [
     "is a",
-    351,
-    28
+    364,
+    29
    ],
    [
     "it is",
-    324,
-    28
+    345,
+    29
    ],
    [
     "i am",
-    311,
-    29
+    323,
+    30
    ],
    [
     "in the",
-    307,
-    29
+    323,
+    30
    ],
    [
     "going to",
-    299,
-    28
-   ],
-   [
-    "and then",
-    280,
-    25
+    312,
+    29
    ],
    [
     "that is",
-    265,
-    28
+    295,
+    29
    ],
    [
-    "have a",
-    258,
-    27
+    "and then we",
+    253,
+    20
+   ],
+   [
+    "is the",
+    251,
+    30
    ],
    [
     "to the",
-    236,
-    29
+    243,
+    30
+   ],
+   [
+    "we will",
+    241,
+    24
    ],
    [
     "okay so",
@@ -21240,100 +21978,85 @@
    ],
    [
     "on the",
-    219,
-    29
+    226,
+    30
    ],
    [
-    "is the",
-    216,
-    29
+    "and then we will",
+    213,
+    20
+   ],
+   [
+    "will have",
+    208,
+    20
    ],
    [
     "we are",
-    202,
-    29
+    208,
+    30
    ],
    [
-    "the the",
-    184,
-    21
-   ],
-   [
-    "a good",
-    183,
-    26
-   ],
-   [
-    "so i",
-    179,
-    21
-   ],
-   [
-    "to have",
-    174,
-    26
-   ],
-   [
-    "the the the",
-    165,
-    21
-   ],
-   [
-    "we have",
-    163,
-    29
-   ],
-   [
-    "the the the the",
-    156,
-    21
-   ],
-   [
-    "the other",
-    151,
-    23
-   ],
-   [
-    "to be",
-    151,
-    29
-   ],
-   [
-    "for the",
-    147,
-    28
-   ],
-   [
-    "the the the the the",
-    146,
-    21
-   ],
-   [
-    "and then we",
-    146,
+    "we will have",
+    204,
     19
    ],
    [
-    "the 1st",
-    146,
-    25
+    "and then we will have",
+    198,
+    17
+   ],
+   [
+    "will have a",
+    197,
+    17
+   ],
+   [
+    "the the",
+    197,
+    22
+   ],
+   [
+    "a good",
+    197,
+    27
+   ],
+   [
+    "we will have a",
+    196,
+    17
+   ],
+   [
+    "and then we will have a",
+    193,
+    16
+   ],
+   [
+    "to have",
+    191,
+    27
+   ],
+   [
+    "so i",
+    183,
+    22
    ]
   ],
-  "num_ranked": 29,
+  "num_ranked": 30,
   "effective_weights": {
    "geometric": {
-    "clean": 0.24511286868827464,
-    "accented": 0.03889533672291722,
-    "noisy": 0.1816535002044258,
-    "telephony": 0.19642482438663297,
-    "callcenter": 0.3379134699977495
+    "clean": 0.24522814009844107,
+    "accented": 0.038877274786876616,
+    "noisy": 0.18155589453243393,
+    "telephony": 0.1967386198871963,
+    "callcenter": 0.3376000706950524
    },
    "arithmetic": {
-    "clean": 0.1365473560635873,
-    "accented": 0.04595303203753607,
-    "noisy": 0.15359511033647175,
-    "telephony": 0.12675966399970048,
-    "callcenter": 0.5371448375627045
+    "clean": 0.1364678705537235,
+    "accented": 0.045939596201578045,
+    "noisy": 0.15362974845237276,
+    "telephony": 0.12637873662983468,
+    "callcenter": 0.5375840481624911
    }
   },
   "leave_one_set_out": {
