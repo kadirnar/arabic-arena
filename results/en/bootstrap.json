@@ -1,6 +1,156 @@
 {
  "n_boot": 1000,
  "models": {
+  "arabic-stt-qwen3-asr-1.7b": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.04032,
+     0.05435
+    ],
+    "librispeech_other/clean": [
+     0.07399,
+     0.08747
+    ],
+    "fleurs_en/clean": [
+     0.07901,
+     0.09646
+    ],
+    "common_voice_en/clean": [
+     0.15167,
+     0.18081
+    ],
+    "voxpopuli_en/clean": [
+     0.07917,
+     0.08889
+    ],
+    "earnings22/clean": [
+     0.13928,
+     0.15573
+    ],
+    "gigaspeech/clean": [
+     0.10341,
+     0.11538
+    ],
+    "spgispeech/clean": [
+     0.04252,
+     0.04873
+    ],
+    "ami_sdm/clean": [
+     0.14191,
+     0.16399
+    ],
+    "edacc/clean": [
+     0.17879,
+     0.21397
+    ],
+    "urgent2024/clean": [
+     0.196,
+     0.28893
+    ],
+    "librispeech_clean/noisy": [
+     0.05314,
+     0.07288
+    ],
+    "fleurs_en/noisy": [
+     0.19298,
+     0.43679
+    ],
+    "voxpopuli_en/noisy": [
+     0.11017,
+     0.15892
+    ],
+    "earnings22/noisy": [
+     0.20282,
+     0.5051
+    ],
+    "minds14_tel/clean": [
+     0.03521,
+     0.04658
+    ],
+    "vystadial_voip/clean": [
+     0.21112,
+     0.24567
+    ],
+    "librispeech_clean/telephony": [
+     0.04016,
+     0.05497
+    ],
+    "fleurs_en/telephony": [
+     0.08565,
+     0.1098
+    ],
+    "voxpopuli_en/telephony": [
+     0.08345,
+     0.10161
+    ],
+    "earnings22/telephony": [
+     0.14218,
+     0.17646
+    ],
+    "common_voice_en/telephony": [
+     0.22845,
+     0.31097
+    ],
+    "gigaspeech/telephony": [
+     0.10303,
+     0.12815
+    ],
+    "librispeech_clean/callcenter": [
+     0.13852,
+     0.19459
+    ],
+    "fleurs_en/callcenter": [
+     0.28268,
+     0.61044
+    ],
+    "voxpopuli_en/callcenter": [
+     0.16748,
+     0.38645
+    ],
+    "earnings22/callcenter": [
+     0.28128,
+     0.57184
+    ],
+    "common_voice_en/callcenter": [
+     0.56447,
+     1.12389
+    ],
+    "gigaspeech/callcenter": [
+     0.20788,
+     0.40533
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.09941,
+     0.10528
+    ],
+    "accented": [
+     0.17879,
+     0.21397
+    ],
+    "noisy": [
+     0.16972,
+     0.25999
+    ],
+    "telephony": [
+     0.12486,
+     0.13798
+    ],
+    "callcenter": [
+     0.32089,
+     0.45758
+    ]
+   },
+   "arena_wer": [
+    0.1762,
+    0.21078
+   ],
+   "rank": [
+    34,
+    35
+   ]
+  },
   "arabic-stt-qwen3-asr-1.7b-best-grpo2": {
    "sets": {
     "librispeech_clean/clean": [
@@ -4198,7 +4348,7 @@
    ],
    "rank": [
     34,
-    34
+    35
    ]
   },
   "parakeet-tdt-0.6b-v3": {

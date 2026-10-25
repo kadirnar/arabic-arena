@@ -2,6 +2,7 @@
 
 | Model | amr_nb_12k2 | amr_nb_4k75 | amr_nb_7k4 | g711_alaw | g711_mulaw | g726_16k | g726_32k | gsm_fr | opus_nb_10k |
 |---|---|---|---|---|---|---|---|---|---|
+| arabic-stt-qwen3-asr-1.7b | 26.4 | 23.6 | 23.1 | 19.8 | 19.5 | 36.9 | 14.2 | 28.9 | 19.8 |
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 11.5 | 14.6 | 12.1 | 9.2 | 9.7 | 10.1 | 8.7 | 10.3 | 11.7 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 11.3 | 15.1 | 11.8 | 9.0 | 9.7 | 9.6 | 8.6 | 10.1 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 11.8 | 14.9 | 12.6 | 9.7 | 10.1 | 10.8 | 9.1 | 10.7 | 12.4 |
@@ -41,6 +42,7 @@
 
 | Model | babble | cafe | home | hum | misc | office | street | transport |
 |---|---|---|---|---|---|---|---|---|
+| arabic-stt-qwen3-asr-1.7b | 52.1 | 23.4 | 13.9 | 29.3 | 18.6 | 21.9 | 20.5 | 20.8 |
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 16.0 | 16.4 | 8.6 | 9.1 | 10.9 | 12.2 | 10.9 | 10.4 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 16.0 | 16.2 | 8.9 | 8.4 | 11.0 | 11.8 | 10.9 | 10.4 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 17.2 | 17.1 | 9.6 | 10.0 | 11.6 | 11.7 | 11.3 | 10.6 |
@@ -80,6 +82,7 @@
 
 | Model | 10–15 dB | 5–10 dB | ≥15 dB |
 |---|---|---|---|
+| arabic-stt-qwen3-asr-1.7b | 30.3 | 45.7 | 25.8 |
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 11.9 | 16.6 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 11.9 | 16.4 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 12.5 | 17.5 | 12.3 |
@@ -119,6 +122,7 @@
 
 | Model | 0% | 1% | 2% | 5% |
 |---|---|---|---|---|
+| arabic-stt-qwen3-asr-1.7b | 20.1 | 30.1 | 17.0 | 29.9 |
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 9.5 | 11.0 | 9.8 | 15.8 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 9.4 | 11.1 | 9.6 | 15.9 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 10.0 | 11.5 | 10.0 | 16.2 |
