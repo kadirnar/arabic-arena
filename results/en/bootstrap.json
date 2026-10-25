@@ -4501,6 +4501,156 @@
     35
    ]
   },
+  "omniasr-ctc-300m-v2": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.04876,
+     0.05721
+    ],
+    "librispeech_other/clean": [
+     0.11506,
+     0.13046
+    ],
+    "fleurs_en/clean": [
+     0.18386,
+     0.20603
+    ],
+    "common_voice_en/clean": [
+     0.29645,
+     0.32839
+    ],
+    "voxpopuli_en/clean": [
+     0.13144,
+     0.14249
+    ],
+    "earnings22/clean": [
+     0.25527,
+     0.27602
+    ],
+    "gigaspeech/clean": [
+     0.19648,
+     0.2177
+    ],
+    "spgispeech/clean": [
+     0.1396,
+     0.16005
+    ],
+    "ami_sdm/clean": [
+     0.27218,
+     0.30257
+    ],
+    "edacc/clean": [
+     0.36455,
+     0.40252
+    ],
+    "urgent2024/clean": [
+     0.29094,
+     0.32675
+    ],
+    "librispeech_clean/noisy": [
+     0.08164,
+     0.10599
+    ],
+    "fleurs_en/noisy": [
+     0.30085,
+     0.35518
+    ],
+    "voxpopuli_en/noisy": [
+     0.25863,
+     0.31718
+    ],
+    "earnings22/noisy": [
+     0.36393,
+     0.43469
+    ],
+    "minds14_tel/clean": [
+     0.1542,
+     0.17938
+    ],
+    "vystadial_voip/clean": [
+     0.41084,
+     0.4654
+    ],
+    "librispeech_clean/telephony": [
+     0.07655,
+     0.09717
+    ],
+    "fleurs_en/telephony": [
+     0.25258,
+     0.28753
+    ],
+    "voxpopuli_en/telephony": [
+     0.16151,
+     0.18488
+    ],
+    "earnings22/telephony": [
+     0.291,
+     0.33719
+    ],
+    "common_voice_en/telephony": [
+     0.42786,
+     0.50738
+    ],
+    "gigaspeech/telephony": [
+     0.20804,
+     0.24478
+    ],
+    "librispeech_clean/callcenter": [
+     0.3009,
+     0.37714
+    ],
+    "fleurs_en/callcenter": [
+     0.53667,
+     0.60039
+    ],
+    "voxpopuli_en/callcenter": [
+     0.36184,
+     0.42193
+    ],
+    "earnings22/callcenter": [
+     0.51594,
+     0.58643
+    ],
+    "common_voice_en/callcenter": [
+     0.66782,
+     0.74957
+    ],
+    "gigaspeech/callcenter": [
+     0.41653,
+     0.47526
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.18848,
+     0.19549
+    ],
+    "accented": [
+     0.36455,
+     0.40252
+    ],
+    "noisy": [
+     0.27152,
+     0.29483
+    ],
+    "telephony": [
+     0.25992,
+     0.27572
+    ],
+    "callcenter": [
+     0.48652,
+     0.51293
+    ]
+   },
+   "arena_wer": [
+    0.29724,
+    0.30577
+   ],
+   "rank": [
+    37,
+    37
+   ]
+  },
   "parakeet-tdt-0.6b-v3": {
    "sets": {
     "librispeech_clean/clean": [

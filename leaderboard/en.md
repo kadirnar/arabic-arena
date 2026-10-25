@@ -36,9 +36,10 @@
 | 34 | [arabic-stt-qwen3-asr-1.7b](https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run3) *(gated weights)* | 2.04 | **12.51** | 11.99–13.04 | 34 | 8.33 | 8.42 | 17.50 | 14.27 | 9.87 | 24.95 | 13.32 | 15.24 | 9.57 | 13.08 | — | 87.67 | — | 19.14 | 98.5 |
 | 35 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **13.78** | 13.25–14.30 | 35 | 8.84 | 8.10 | 21.88 | 15.72 | 9.73 | 36.81 | 14.54 | 18.22 | 8.91 | 12.82 | — | 3.00 | — | 18.92 | 335.1 |
 | 36 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **15.33** | 14.74–15.93 | 36 | 9.96 | 9.32 | 22.33 | 17.23 | 11.33 | 38.24 | 16.04 | 19.52 | 10.18 | 13.95 | — | 36.33 | — | 21.30 | 36.2 |
+| 37 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **24.29** | 23.62–25.02 | 37 | 12.48 | 15.92 | 35.67 | 24.42 | 22.03 | 47.25 | 25.51 | 28.68 | 18.87 | 28.44 | — | 14.67 | — | 30.13 | 178.1 |
 
 WER/CER in %, lower is better. Per set: profile `L2sp` (dialect-lenient normalization, space-insensitive alignment, multi-reference where available, errors capped per utterance). Arena: weighted geometric mean over sets (track weight split evenly over its sets; Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over the clean sets whose audio is not simulated (no telephony, call-center, added noise or band-limiting). Zero-shot: Arena over the sets no ranked model trained on (fleurs_en, minds14_tel, urgent2024, vystadial_voip). Exposure: share of the Arena weight on sets whose training split the model saw (†). Halluc. ≥3 words: share of noise-only clips (silence, hold, line noise, distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' salient terms (names, places, question words) and the named entities of the CV18 test sentences (Elyadata/CV18-NER); not part of the Arena. 95% CI and rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. 2024): models whose rank sets overlap are not separated by this benchmark.
-Effective track weights (share of the between-model spread of the Arena): Clean 25%, Accented 4%, Noisy 18%, Telephony 21%, Call-center 32%.
+Effective track weights (share of the between-model spread of the Arena): Clean 29%, Accented 4%, Noisy 17%, Telephony 23%, Call-center 28%.
 Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/callcenter (few clusters: G=6), earnings22/clean (few clusters: G=6), earnings22/noisy (few clusters: G=6), earnings22/telephony (few clusters: G=6), minds14_tel/clean (iid: no cluster key), urgent2024/clean (iid: no cluster key).
 
 <details><summary>Per-set WER v2 (%)</summary>
@@ -81,6 +82,7 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | arabic-stt-qwen3-asr-1.7b | 3.82 | 7.41 | 7.96 | 15.88 | 7.96 | 14.08 | 9.82 | 4.03 | 13.45 | 17.50 | 19.47 | 5.55 | 20.64 | 12.46 | 21.28 | 3.93 | 18.41 | 4.16 | 8.89 | 8.80 | 14.91 | 24.64 | 10.39 | 15.60 | 28.16 | 18.48 | 29.27 | 49.31 | 20.58 |
 | nemotron-3.5-asr-streaming-0.6b | 2.77 | 6.61 | 9.27 | 16.73 | 8.32 | 15.04 | 9.62 | 3.59 | 12.21 | 21.88 | 20.14 | 5.76 | 21.86 | 15.60 | 24.24 | 2.65 | 8.32 | 5.10 | 12.52 | 10.93 | 15.67 | 30.21 | 11.03 | 27.12 | 37.45 | 31.85 | 41.46 | 55.92 | 33.17 |
 | gemma-4-e2b-it | 3.76 | 8.68 | 8.70 | 17.39 | 8.23 | 15.20 | 9.59 | 5.22 | 17.17 | 22.33 | 22.79 | 7.83 | 21.37 | 15.28 | 26.02 | 3.21 | 10.15 | 6.75 | 13.87 | 12.34 | 19.22 | 31.97 | 11.71 | 28.57 | 41.91 | 33.49 | 43.79 | 58.79 | 30.28 |
+| omniasr-ctc-300m-v2 | 4.65 | 11.41 | 18.10 | 29.92 | 12.92 | 24.82 | 18.98 | 13.95 | 27.02 | 35.67 | 29.59 | 8.77 | 31.65 | 27.61 | 38.24 | 15.74 | 37.18 | 8.03 | 25.75 | 16.69 | 29.47 | 44.50 | 20.93 | 32.89 | 55.56 | 38.38 | 53.31 | 68.58 | 43.41 |
 
 </details>
 
@@ -124,6 +126,7 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | 34 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **18.92** | 18.48–19.34 | 34–35 | 13.17 | 10.04 | 23.84 | 17.97 | 12.93 | 38.27 | 4.00 | 335.1 |
 | 35 | [arabic-stt-qwen3-asr-1.7b](https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run3) *(gated weights)* | 2.04 | **19.14** | 17.62–21.08 | 34–36 | 12.61 | 10.22 | 19.45 | 20.56 | 13.10 | 38.06 | 98.67 | 98.5 |
 | 36 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **21.30** | 20.37–22.55 | 35–36 | 13.53 | 11.19 | 23.93 | 19.81 | 14.81 | 43.94 | 88.67 | 36.2 |
+| 37 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **30.13** | 29.72–30.58 | 37 | 15.39 | 19.20 | 38.25 | 28.27 | 26.73 | 49.96 | 24.67 | 178.1 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
 
@@ -169,6 +172,7 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, A
 | nemotron-3.5-asr-streaming-0.6b | 3.19 | 7.21 | 9.96 | 17.51 | 8.67 | 15.57 | 10.57 | 3.96 | 13.74 | 23.84 | 20.46 | 6.22 | 22.54 | 15.89 | 24.75 | 2.71 | 11.55 | 5.48 | 13.16 | 11.22 | 16.34 | 30.90 | 12.09 | 27.47 | 38.07 | 32.11 | 41.97 | 56.06 | 33.93 |
 | arabic-stt-qwen3-asr-1.7b | 4.65 | 8.04 | 8.71 | 16.64 | 8.40 | 14.72 | 10.94 | 4.55 | 15.31 | 19.45 | 23.27 | 6.28 | 28.82 | 13.29 | 31.13 | 4.07 | 22.80 | 4.79 | 9.72 | 9.26 | 15.83 | 26.75 | 11.58 | 16.59 | 41.67 | 24.76 | 38.77 | 76.89 | 29.67 |
 | gemma-4-e2b-it | 4.31 | 9.20 | 9.37 | 18.42 | 8.70 | 15.77 | 10.48 | 5.59 | 18.90 | 23.93 | 25.35 | 8.18 | 22.14 | 15.83 | 27.55 | 3.35 | 13.67 | 7.31 | 16.05 | 12.76 | 19.81 | 32.84 | 12.66 | 29.25 | 45.72 | 34.05 | 45.45 | 78.20 | 30.97 |
+| omniasr-ctc-300m-v2 | 5.29 | 12.28 | 19.48 | 31.18 | 13.70 | 26.54 | 20.67 | 14.96 | 28.71 | 38.25 | 30.86 | 9.37 | 32.71 | 28.49 | 39.89 | 16.64 | 43.64 | 8.72 | 26.91 | 17.32 | 31.29 | 46.71 | 22.63 | 33.69 | 56.69 | 39.10 | 54.94 | 70.73 | 44.64 |
 
 </details>
 
