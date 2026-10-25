@@ -301,6 +301,156 @@
     2
    ]
   },
+  "arabic-stt-qwen3-asr-1.7b-run20-mwer-s800": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.0187,
+     0.02402
+    ],
+    "librispeech_other/clean": [
+     0.04168,
+     0.05125
+    ],
+    "fleurs_en/clean": [
+     0.05612,
+     0.07074
+    ],
+    "common_voice_en/clean": [
+     0.08315,
+     0.1036
+    ],
+    "voxpopuli_en/clean": [
+     0.06893,
+     0.07765
+    ],
+    "earnings22/clean": [
+     0.07691,
+     0.09019
+    ],
+    "gigaspeech/clean": [
+     0.08697,
+     0.09747
+    ],
+    "spgispeech/clean": [
+     0.02787,
+     0.03278
+    ],
+    "ami_sdm/clean": [
+     0.07798,
+     0.09594
+    ],
+    "edacc/clean": [
+     0.13414,
+     0.16578
+    ],
+    "urgent2024/clean": [
+     0.09425,
+     0.11484
+    ],
+    "librispeech_clean/noisy": [
+     0.02201,
+     0.03506
+    ],
+    "fleurs_en/noisy": [
+     0.07474,
+     0.09994
+    ],
+    "voxpopuli_en/noisy": [
+     0.08094,
+     0.101
+    ],
+    "earnings22/noisy": [
+     0.09204,
+     0.12292
+    ],
+    "minds14_tel/clean": [
+     0.01209,
+     0.01964
+    ],
+    "vystadial_voip/clean": [
+     0.06787,
+     0.08737
+    ],
+    "librispeech_clean/telephony": [
+     0.02006,
+     0.03054
+    ],
+    "fleurs_en/telephony": [
+     0.06025,
+     0.08043
+    ],
+    "voxpopuli_en/telephony": [
+     0.07139,
+     0.08966
+    ],
+    "earnings22/telephony": [
+     0.07282,
+     0.09693
+    ],
+    "common_voice_en/telephony": [
+     0.10939,
+     0.15919
+    ],
+    "gigaspeech/telephony": [
+     0.08429,
+     0.10595
+    ],
+    "librispeech_clean/callcenter": [
+     0.05084,
+     0.07644
+    ],
+    "fleurs_en/callcenter": [
+     0.12217,
+     0.15905
+    ],
+    "voxpopuli_en/callcenter": [
+     0.10278,
+     0.12935
+    ],
+    "earnings22/callcenter": [
+     0.12962,
+     0.16947
+    ],
+    "common_voice_en/callcenter": [
+     0.24084,
+     0.30971
+    ],
+    "gigaspeech/callcenter": [
+     0.12711,
+     0.16044
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.06337,
+     0.06774
+    ],
+    "accented": [
+     0.13414,
+     0.16578
+    ],
+    "noisy": [
+     0.07812,
+     0.08834
+    ],
+    "telephony": [
+     0.06824,
+     0.07679
+    ],
+    "callcenter": [
+     0.13943,
+     0.15635
+    ]
+   },
+   "arena_wer": [
+    0.09003,
+    0.09495
+   ],
+   "rank": [
+    3,
+    3
+   ]
+  },
   "canary-1b-v2": {
    "sets": {
     "librispeech_clean/clean": [
@@ -447,8 +597,8 @@
     0.12198
    ],
    "rank": [
-    7,
-    8
+    8,
+    9
    ]
   },
   "cohere-transcribe-03-2026": {
@@ -597,8 +747,8 @@
     0.12577
    ],
    "rank": [
-    4,
-    9
+    5,
+    10
    ]
   },
   "cohere-transcribe-arabic-07-2026": {
@@ -747,8 +897,8 @@
     0.11979
    ],
    "rank": [
-    4,
-    8
+    5,
+    9
    ]
   },
   "gemma-4-e2b-it": {
@@ -897,8 +1047,8 @@
     0.22549
    ],
    "rank": [
-    12,
-    12
+    13,
+    13
    ]
   },
   "parakeet-tdt-0.6b-v3": {
@@ -1047,8 +1197,8 @@
     0.11437
    ],
    "rank": [
-    4,
-    6
+    5,
+    7
    ]
   },
   "qwen3-asr-0.6b": {
@@ -1197,8 +1347,8 @@
     0.11974
    ],
    "rank": [
-    6,
-    8
+    7,
+    9
    ]
   },
   "qwen3-asr-1.7b": {
@@ -1347,8 +1497,8 @@
     0.09932
    ],
    "rank": [
-    3,
-    3
+    4,
+    4
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -1497,8 +1647,8 @@
     0.17682
    ],
    "rank": [
-    11,
-    11
+    12,
+    12
    ]
   },
   "whisper-large-v3": {
@@ -1647,8 +1797,8 @@
     0.12671
    ],
    "rank": [
-    8,
-    9
+    9,
+    10
    ]
   },
   "whisper-large-v3-turbo": {
@@ -1797,8 +1947,8 @@
     0.14697
    ],
    "rank": [
-    10,
-    10
+    11,
+    11
    ]
   }
  }
