@@ -5551,6 +5551,156 @@
     19
    ]
   },
+  "seamless-m4t-v2-large": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.02245,
+     0.02815
+    ],
+    "librispeech_other/clean": [
+     0.04111,
+     0.05063
+    ],
+    "fleurs_en/clean": [
+     0.07238,
+     0.08979
+    ],
+    "common_voice_en/clean": [
+     0.06859,
+     0.11773
+    ],
+    "voxpopuli_en/clean": [
+     0.06002,
+     0.06974
+    ],
+    "earnings22/clean": [
+     0.30341,
+     0.36915
+    ],
+    "gigaspeech/clean": [
+     0.30665,
+     0.3605
+    ],
+    "spgispeech/clean": [
+     0.16266,
+     0.19888
+    ],
+    "ami_sdm/clean": [
+     0.36906,
+     0.41968
+    ],
+    "edacc/clean": [
+     0.46534,
+     0.5175
+    ],
+    "urgent2024/clean": [
+     0.23207,
+     0.27477
+    ],
+    "librispeech_clean/noisy": [
+     0.0391,
+     0.06559
+    ],
+    "fleurs_en/noisy": [
+     0.131,
+     0.18842
+    ],
+    "voxpopuli_en/noisy": [
+     0.10548,
+     0.1469
+    ],
+    "earnings22/noisy": [
+     0.34665,
+     0.54028
+    ],
+    "minds14_tel/clean": [
+     0.09005,
+     0.1473
+    ],
+    "vystadial_voip/clean": [
+     0.16304,
+     0.20206
+    ],
+    "librispeech_clean/telephony": [
+     0.20729,
+     0.42756
+    ],
+    "fleurs_en/telephony": [
+     0.14844,
+     0.24832
+    ],
+    "voxpopuli_en/telephony": [
+     0.22257,
+     0.31685
+    ],
+    "earnings22/telephony": [
+     0.75835,
+     1.00862
+    ],
+    "common_voice_en/telephony": [
+     0.13173,
+     0.19013
+    ],
+    "gigaspeech/telephony": [
+     0.75114,
+     0.9044
+    ],
+    "librispeech_clean/callcenter": [
+     0.51175,
+     0.65621
+    ],
+    "fleurs_en/callcenter": [
+     0.4498,
+     0.62426
+    ],
+    "voxpopuli_en/callcenter": [
+     0.46482,
+     0.58157
+    ],
+    "earnings22/callcenter": [
+     0.91767,
+     1.20278
+    ],
+    "common_voice_en/callcenter": [
+     0.5901,
+     0.80527
+    ],
+    "gigaspeech/callcenter": [
+     0.83686,
+     0.94939
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.16568,
+     0.17856
+    ],
+    "accented": [
+     0.46534,
+     0.5175
+    ],
+    "noisy": [
+     0.18536,
+     0.22755
+    ],
+    "telephony": [
+     0.34313,
+     0.39436
+    ],
+    "callcenter": [
+     0.67478,
+     0.74751
+    ]
+   },
+   "arena_wer": [
+    0.3467,
+    0.36882
+   ],
+   "rank": [
+    41,
+    41
+   ]
+  },
   "voxtral-mini-4b-realtime-2602": {
    "sets": {
     "librispeech_clean/clean": [
