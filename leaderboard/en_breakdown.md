@@ -19,6 +19,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 11.9 | 15.1 | 12.5 | 9.6 | 10.3 | 11.0 | 9.2 | 10.6 | 12.8 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.1 | 15.4 | 12.8 | 9.5 | 10.3 | 10.4 | 9.2 | 10.7 | 12.7 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 12.1 | 15.2 | 13.2 | 9.7 | 10.4 | 10.7 | 9.3 | 10.9 | 13.0 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-3000 | 12.3 | 16.0 | 13.5 | 10.0 | 10.5 | 11.5 | 8.7 | 11.1 | 12.7 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 12.4 | 15.7 | 13.5 | 10.2 | 10.5 | 12.0 | 9.3 | 11.5 | 13.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-9000 | 12.2 | 15.9 | 13.3 | 10.0 | 10.6 | 11.7 | 9.4 | 11.6 | 13.5 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 11.9 | 14.4 | 12.8 | 9.5 | 10.3 | 10.9 | 9.0 | 10.6 | 12.6 |
@@ -54,6 +55,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 17.1 | 16.9 | 9.7 | 9.8 | 12.5 | 12.2 | 11.6 | 11.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 17.2 | 16.9 | 10.0 | 9.7 | 12.9 | 12.4 | 11.6 | 11.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 17.4 | 17.7 | 9.6 | 9.5 | 13.1 | 12.9 | 12.0 | 11.2 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-3000 | 17.7 | 18.0 | 9.5 | 10.2 | 12.6 | 13.4 | 12.6 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 18.0 | 18.7 | 10.1 | 10.7 | 13.7 | 12.7 | 12.9 | 12.4 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-9000 | 17.8 | 18.5 | 10.2 | 10.6 | 13.3 | 13.4 | 12.2 | 11.9 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 17.0 | 16.4 | 9.2 | 9.2 | 12.5 | 12.6 | 11.4 | 10.9 |
@@ -89,6 +91,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 12.6 | 18.0 | 12.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.8 | 17.9 | 12.3 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 13.0 | 18.4 | 12.5 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-3000 | 13.7 | 18.3 | 12.9 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 13.4 | 19.0 | 13.3 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-9000 | 13.6 | 18.4 | 13.2 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 12.7 | 17.6 | 12.1 |
@@ -124,6 +127,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 10.1 | 11.7 | 10.1 | 16.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 10.1 | 11.8 | 10.1 | 16.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 10.3 | 12.0 | 10.3 | 16.4 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-3000 | 10.2 | 12.1 | 10.6 | 17.3 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 10.4 | 12.4 | 10.9 | 17.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-9000 | 10.5 | 12.2 | 10.8 | 16.9 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 10.0 | 11.6 | 10.3 | 15.8 |
