@@ -28,6 +28,17 @@ BACKENDS = {
 }
 
 _M = ModelSpec
+
+# English sets the Arabic-STT rounds trained on (run/streams.json of runs 4-8, the model cards after): runs 4-5 the
+# train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI (IHM) and GigaSpeech; run 6 adds EdAcc's dev split
+# and distil-whisper/earnings22 (all 38 shards of its "chunked" split: 57,391 segments of the 125 Earnings-22 calls,
+# every one of the benchmark's 1,000 earnings22 rows among them under the same file and segment id); round 13 adds
+# SPGISpeech. Exposure is cumulative along the line (run 8 continues run 6b).
+EN_RUN5 = ("librispeech_clean", "librispeech_other", "common_voice_en", "voxpopuli_en", "ami_sdm", "gigaspeech")
+EN_RUN6 = (*EN_RUN5, "edacc", "earnings22")
+EN_RUN13 = (*EN_RUN6, "spgispeech")
+RUN13_LINE = {"run13", "run16", "run13-sft-s3000", "run13c-rl-s750", "run16-rl-s250", "run16-rl-s1000"}
+
 MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     # --- Closed APIs (internal comparison only; out of the public board's scope) ---------------
     _M("soniox-stt-async-v5", "soniox_api", "soniox/stt-async-v5", None, "proprietary API", kind="api",
@@ -41,26 +52,29 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     _M("whisper-large-v2", "whisper_hf", "openai/whisper-large-v2", 1.54, "Apache-2.0", batch_size=32),
     # --- Qwen3-ASR ----------------------------------------------------------------------------
     _M("arabic-stt-qwen3-asr-1.7b", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run3", 2.04, "gated weights",
-       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar"),
        notes="Arabic-STT run 3: full fine-tune, weights gated on the Hub; trained on the train splits of CV18 and MASC "
              "and on MGB-2/SADA/MGB-3 train rows (rows overlapping their test sets excluded). Its kejue-common-voice "
              "stream also holds 20 FLEURS ar_eg *test* sentences (37 of our 428 fleurs_ar rows), which the "
              "contamination guard did not cover; labels of that stream come from Soniox stt-async-v5"),
     _M("arabic-stt-qwen3-asr-1.7b-run5", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5", 2.04, "gated weights",
-       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN5),
        notes="Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; "
              "same in-domain train rows as run 3, including MGB-3 train and the 20 leaked FLEURS ar_eg test "
              "sentences; also trained on clips of the lahgtna-v3-small test split"),
     _M("arabic-stt-qwen3-asr-1.7b-run5base", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run5base", 2.04, "gated weights",
-       kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN5),
        notes="Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); "
              "same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences"),
     _M("arabic-stt-qwen3-asr-1.7b-run6b-soup70", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run6b-soup70", 2.04,
-       "private weights", kind="private", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       "private weights", kind="private", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN6),
        notes="Arabic-STT run6b-soup70: weight average of 0.7 x run 6b (step 10,000) and 0.3 x run 5 (step 15,000), "
              "no further training; private weights. Trained on the train splits of MASC and Common Voice and on "
              "MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS "
@@ -72,9 +86,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     # sentences) plus MASC, CV18 and TEDxTN train; its Hassaniya data (hassaniya-read-speech-v1) is a separate
     # read-speech collection, not the benchmark corpus.
     *[_M(f"arabic-stt-qwen3-asr-1.7b-{key}", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run9", 2.04,
-         "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+         "gated weights", kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
          kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run9/tree/{ref}",
-         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                    *(EN_RUN13 if key in RUN13_LINE else EN_RUN6)),
          notes=f"Arabic-STT {note}; {kind} `{ref}` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit {sha[:10]}), "
                "weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as "
                "run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences")
@@ -115,9 +130,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
            "round 16 GSPO step 1,000, from run13-soup (short replies after silence)"),
       ]],
     _M("arabic-stt-qwen3-asr-1.7b-run20-mwer-s800", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run20-mwer-s800",
-       2.04, "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       2.04, "gated weights", kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        kwargs={"revision": "1e523e84318c0c2d83481335e6f4c8e5e1f83d4a"},
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN13),
        notes="Arabic-STT round 20 (the same weights as tag run20-mwer-s800 of Arabic-STT/qwen3-asr-1.7b-ar-run20): "
              "online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, "
              "PriMock57), Arabic phone-call windows and synthetic TTS turns, then 800 steps of MWER; weights gated on "
@@ -125,9 +141,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "ar_eg test sentences included). Run without the card's two-channel front end, which only chunks mono"),
     # the other round-20 checkpoints, tags of Arabic-STT/qwen3-asr-1.7b-ar-run20 (its main is run20-mwer-s800)
     *[_M(f"arabic-stt-qwen3-asr-1.7b-{tag}", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-run20", 2.04,
-         "gated weights", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+         "gated weights", kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
          kwargs={"revision": sha}, repo=f"https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run20/tree/{tag}",
-         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+         in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                    *EN_RUN13),
          notes=f"Arabic-STT round 20, {note}; tag `{tag}` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit {sha[:10]}), "
                "weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes "
                "(AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries "
@@ -139,18 +156,20 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
            "S7all step 1000 + 1,000 MWER steps (the card's pick with its levelling front end and MBR decoding)"),
       ]],
     _M("arabic-stt-qwen3-asr-1.7b-best-grpo2", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-grpo2", 2.04,
-       "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       "Apache-2.0 (gated)", kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        kwargs={"revision": "cdd28b086d66069727b279f4a0424daeec561a05"},
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN13),
        notes="Arabic-STT best-grpo2: task06 + 0.3 x (run20 - task06), then GRPO (LoRA r 16, merged; 935 steps) on "
              "human-annotated Arabic customer-service call segments, English call-centre clips, quiet short answers "
              "under a louder turn, joined multi-turn pieces and windows without speech; weights gated on the Hub. "
              "Carries its parents' in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test "
              "sentences included)"),
     _M("arabic-stt-qwen3-asr-1.7b-best-task06", "qwen3_asr_hf", "Arabic-STT/qwen3-asr-1.7b-ar-best-task06", 2.04,
-       "Apache-2.0 (gated)", kind="gated", languages=("ar",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
+       "Apache-2.0 (gated)", kind="gated", batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B",
        kwargs={"revision": "43617315cfbee8dbfe286f2ab4f544d4b959087d"},
-       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs"),
+       in_domain=("cv18_ar", "masc_clean", "masc_noisy", "mgb2", "sada", "mgb3_egy", "fleurs_ar", "tedxtn_cs",
+                  *EN_RUN6),
        notes="Arabic-STT best-task06: task-arithmetic merge run6b + 0.6 x (run10 - run6b) + 0.6 x (avg - run6b), avg "
              "the 0.5/0.5 average of run6b-soup70-sip-v5 and sip-v5-grpo1, no further training (merge weights picked "
              "on the Audioluna calls); weights gated on the Hub. Every parent carries run 5's in-domain train rows "
@@ -353,6 +372,14 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        finetune_of="facebook/wav2vec2-large-xlsr-53",
        notes="trained on the Arabic Speech Corpus (single-speaker MSA) despite the name; Buckwalter output"),
 ]}
+
+# the Arabic-STT line's English exposure (EN_RUN5 above), appended to its notes
+for _m in MODELS.values():
+    if _m.key.startswith("arabic-stt-") and "gigaspeech" in _m.in_domain:
+        _m.notes += ("; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech"
+                     + (", EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)"
+                        if "earnings22" in _m.in_domain else "")
+                     + (", SPGISpeech" if "spgispeech" in _m.in_domain else ""))
 
 
 

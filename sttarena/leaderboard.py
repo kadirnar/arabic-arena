@@ -70,8 +70,10 @@ def collect(suite: Suite) -> dict:
                "env": s.get("env", {})}
         try:
             spec = get_spec(s["model"])
-            row.update(hf_id=spec.repo or row["hf_id"], finetune_of=spec.finetune_of, in_domain=list(spec.in_domain),
-                       notes=spec.notes, training_data=spec.training_data)
+            # in_domain lists the sets of every suite; a board keeps its own
+            row.update(hf_id=spec.repo or row["hf_id"], finetune_of=spec.finetune_of,
+                       in_domain=[k for k in spec.in_domain if k in suite.sets], notes=spec.notes,
+                       training_data=spec.training_data)
         except KeyError:
             row.update(finetune_of=None, in_domain=[], notes="", training_data="")
         for key, r in res.items():

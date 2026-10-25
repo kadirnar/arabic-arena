@@ -430,8 +430,9 @@ function drawScatter() {
 // ---- dumbbell: clean -> telephony -> callcenter on the same source sets --------------------
 function drawDumbbell() {
   const box = document.getElementById("dumbbell"); box.replaceChildren();
-  // the v2 board's phone tracks are the chain-v2 conditions; the v1 board keeps the v1 chain
-  const d = state.data, v2 = isV2() && d.v2?.tracks?.telephony, tel = v2 ? "telephony_v2" : "telephony";
+  // the v2 board's phone tracks are the chain-v2 conditions where the suite has them (Arabic); otherwise the v1 chain
+  const d = state.data, v2 = isV2() && d.v2?.tracks?.telephony?.some((k) => k.endsWith("/telephony_v2"));
+  const tel = v2 ? "telephony_v2" : "telephony";
   const keys = ((v2 ? d.v2.tracks.telephony : d.tracks.telephony) || []).filter((k) => k.endsWith("/" + tel));
   const sources = keys.map((k) => k.split("/")[0]);
   const rows = d.models.map((m) => {

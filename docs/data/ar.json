@@ -654,7 +654,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT best-grpo2: task06 + 0.3 x (run20 - task06), then GRPO (LoRA r 16, merged; 935 steps) on human-annotated Arabic customer-service call segments, English call-centre clips, quiet short answers under a louder turn, joined multi-turn pieces and windows without speech; weights gated on the Hub. Carries its parents' in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included)",
+   "notes": "Arabic-STT best-grpo2: task06 + 0.3 x (run20 - task06), then GRPO (LoRA r 16, merged; 935 steps) on human-annotated Arabic customer-service call segments, English call-centre clips, quiet short answers under a louder turn, joined multi-turn pieces and windows without speech; weights gated on the Hub. Carries its parents' in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included); English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.5,
    "inserted_wpm": 46.26,
@@ -1791,7 +1791,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT best-task06: task-arithmetic merge run6b + 0.6 x (run10 - run6b) + 0.6 x (avg - run6b), avg the 0.5/0.5 average of run6b-soup70-sip-v5 and sip-v5-grpo1, no further training (merge weights picked on the Audioluna calls); weights gated on the Hub. Every parent carries run 5's in-domain train rows (MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included); sip-v5 adds an MGB-2 part of kejue-voice, sip-v5-grpo1 EdAcc and Earnings-22 (English)",
+   "notes": "Arabic-STT best-task06: task-arithmetic merge run6b + 0.6 x (run10 - run6b) + 0.6 x (avg - run6b), avg the 0.5/0.5 average of run6b-soup70-sip-v5 and sip-v5-grpo1, no further training (merge weights picked on the Audioluna calls); weights gated on the Hub. Every parent carries run 5's in-domain train rows (MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included); sip-v5 adds an MGB-2 part of kejue-voice, sip-v5-grpo1 EdAcc and Earnings-22 (English); English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.52,
    "inserted_wpm": 41.09,
@@ -2928,7 +2928,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 20, S7all step 1000 + 1,000 MWER steps (the card's pick with its levelling front end and MBR decoding); tag `run20-mwer-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit ae7e8163ce), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows",
+   "notes": "Arabic-STT round 20, S7all step 1000 + 1,000 MWER steps (the card's pick with its levelling front end and MBR decoding); tag `run20-mwer-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit ae7e8163ce), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.44333333333333336,
    "inserted_wpm": 44.99,
@@ -4065,7 +4065,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 20 (the same weights as tag run20-mwer-s800 of Arabic-STT/qwen3-asr-1.7b-ar-run20): online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns, then 800 steps of MWER; weights gated on the Hub. Carries the run9 line's in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included). Run without the card's two-channel front end, which only chunks mono",
+   "notes": "Arabic-STT round 20 (the same weights as tag run20-mwer-s800 of Arabic-STT/qwen3-asr-1.7b-ar-run20): online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns, then 800 steps of MWER; weights gated on the Hub. Carries the run9 line's in-domain train rows (run 5's, MGB-3 train and the 20 leaked FLEURS ar_eg test sentences included). Run without the card's two-channel front end, which only chunks mono; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.44,
    "inserted_wpm": 43.55,
@@ -5202,7 +5202,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9b final (tag run9b-final): run 9 (SFT with a two-view consistency loss and call windows, then GSPO) continued on 27 h of human-annotated Arabic phone calls; branch `main` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit e5a0100ceb), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9b final (tag run9b-final): run 9 (SFT with a two-view consistency loss and call windows, then GSPO) continued on 27 h of human-annotated Arabic phone calls; branch `main` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit e5a0100ceb), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.48,
    "inserted_wpm": 60.18,
@@ -6339,7 +6339,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 20, S7all RL step 1000; tag `run20-s7all-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit dc649d570d), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows",
+   "notes": "Arabic-STT round 20, S7all RL step 1000; tag `run20-s7all-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit dc649d570d), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4266666666666667,
    "inserted_wpm": 43.09,
@@ -7476,7 +7476,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 12 GSPO step 1,500, from a 70/30 weight average of rounds 10 and 11; tag `run12-rl-s1500` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit f7e4817efe), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 12 GSPO step 1,500, from a 70/30 weight average of rounds 10 and 11; tag `run12-rl-s1500` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit f7e4817efe), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.4766666666666667,
    "inserted_wpm": 56.96,
@@ -8613,7 +8613,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 20, S7all RL step 500; tag `run20-s7all-s500` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit 9d547ba6af), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows",
+   "notes": "Arabic-STT round 20, S7all RL step 500; tag `run20-s7all-s500` of Arabic-STT/qwen3-asr-1.7b-ar-run20 (commit 9d547ba6af), weights gated on the Hub. Online RL (RLOO) from run16-soup on English call windows, far-end mixes (AMI, ICSI, HarperValleyBank, PriMock57), Arabic phone-call windows and synthetic TTS turns; carries the run9 line's in-domain train rows; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4533333333333333,
    "inserted_wpm": 47.66,
@@ -9750,7 +9750,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 final: Stage B (GSPO) step 2,000 of 4,500, the same weights as tag rl-step-2000; tag `run9-final` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 3e47cf38ea), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 final: Stage B (GSPO) step 2,000 of 4,500, the same weights as tag rl-step-2000; tag `run9-final` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 3e47cf38ea), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.4533333333333333,
    "inserted_wpm": 66.53,
@@ -10887,7 +10887,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT rounds 12-13 (tag run13-soup): weight average 0.5 x run12-rl-s1500 + 0.5 x run13c-rl-s750; branch `run13` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 7dba8c7a51), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT rounds 12-13 (tag run13-soup): weight average 0.5 x run12-rl-s1500 + 0.5 x run13c-rl-s750; branch `run13` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 7dba8c7a51), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4766666666666667,
    "inserted_wpm": 53.76,
@@ -12024,7 +12024,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 10 (tag run10-rl-s750): run 9b with English raised to 35 % of the hours, then GSPO; branch `run10` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit e938b6d583), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 10 (tag run10-rl-s750): run 9b with English raised to 35 % of the hours, then GSPO; branch `run10` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit e938b6d583), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.49666666666666665,
    "inserted_wpm": 43.97,
@@ -13161,7 +13161,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 Stage B (GSPO) step 500; tag `rl-step-500` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 13d439b0a8), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 Stage B (GSPO) step 500; tag `rl-step-500` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 13d439b0a8), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 0.7566666666666667,
    "inserted_wpm": 52.68,
@@ -14298,7 +14298,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 16 GSPO step 250, from run13-soup (short replies after silence); tag `run16-rl-s250` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 9478d27adb), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 16 GSPO step 250, from run13-soup (short replies after silence); tag `run16-rl-s250` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 9478d27adb), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4766666666666667,
    "inserted_wpm": 64.15,
@@ -15435,7 +15435,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 16 (tag run16-soup): weight average 0.5 x run13-soup + 0.5 x run16-rl-s250 (GSPO with short replies after silence); branch `run16` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 01ffe1a9ba), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 16 (tag run16-soup): weight average 0.5 x run13-soup + 0.5 x run16-rl-s250 (GSPO with short replies after silence); branch `run16` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 01ffe1a9ba), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4766666666666667,
    "inserted_wpm": 56.69,
@@ -16572,7 +16572,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 16 GSPO step 1,000, from run13-soup (short replies after silence); tag `run16-rl-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit b6a96f0e6a), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 16 GSPO step 1,000, from run13-soup (short replies after silence); tag `run16-rl-s1000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit b6a96f0e6a), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.4766666666666667,
    "inserted_wpm": 59.36,
@@ -17709,7 +17709,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 13c GSPO step 750, from run13-sft-s3000 with English call windows; tag `run13c-rl-s750` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit dd52a9dfdc), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 13c GSPO step 750, from run13-sft-s3000 with English call windows; tag `run13c-rl-s750` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit dd52a9dfdc), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.48,
    "inserted_wpm": 69.66,
@@ -18846,7 +18846,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 Stage A (SFT) step 12,000 of 12,000, after the decay; tag `step-12000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 58da29c3f1), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 Stage A (SFT) step 12,000 of 12,000, after the decay; tag `step-12000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 58da29c3f1), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 84.66,
@@ -19983,7 +19983,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT round 13 supervised fine-tuning step 3,000 (English call turns weighted up, SPGISpeech added); tag `run13-sft-s3000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 08a56c295b), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT round 13 supervised fine-tuning step 3,000 (English call turns weighted up, SPGISpeech added); tag `run13-sft-s3000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 08a56c295b), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included), SPGISpeech",
    "training_data": "",
    "hallucination_rate": 0.5466666666666666,
    "inserted_wpm": 72.21,
@@ -21120,7 +21120,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 Stage A (SFT) step 6,000 of 12,000, before the decay; tag `step-6000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit c28c548519), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 Stage A (SFT) step 6,000 of 12,000, before the decay; tag `step-6000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit c28c548519), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 78.2,
@@ -22257,7 +22257,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 Stage A (SFT) step 9,000 of 12,000, before the decay; tag `step-9000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit c52fd76c9e), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 Stage A (SFT) step 9,000 of 12,000, before the decay; tag `step-9000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit c52fd76c9e), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 113.94,
@@ -23436,7 +23436,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run6b-soup70: weight average of 0.7 x run 6b (step 10,000) and 0.3 x run 5 (step 15,000), no further training; private weights. Trained on the train splits of MASC and Common Voice and on MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS ar_eg test sentences)",
+   "notes": "Arabic-STT run6b-soup70: weight average of 0.7 x run 6b (step 10,000) and 0.3 x run 5 (step 15,000), no further training; private weights. Trained on the train splits of MASC and Common Voice and on MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS ar_eg test sentences); English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 107.48,
@@ -24657,7 +24657,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 9 Stage A (SFT) step 3,000 of 12,000, flat learning rate, before the decay; tag `step-3000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 4634e9ca16), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run 9 Stage A (SFT) step 3,000 of 12,000, flat learning rate, before the decay; tag `step-3000` of Arabic-STT/qwen3-asr-1.7b-ar-run9 (commit 4634e9ca16), weights gated on the Hub. Descends from run 8 and run 6b, with the same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech, EdAcc's dev split and the whole Earnings-22 corpus (every earnings22 test row here included)",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 85.13,
@@ -25836,7 +25836,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; same in-domain train rows as run 3, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; also trained on clips of the lahgtna-v3-small test split",
+   "notes": "Arabic-STT run 5: run 3 continued twice (runs 4 and 5) with more call, dialect and code-switching data; same in-domain train rows as run 3, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; also trained on clips of the lahgtna-v3-small test split; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 79.96,
@@ -27099,7 +27099,7 @@
     "fleurs_ar",
     "tedxtn_cs"
    ],
-   "notes": "Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences",
+   "notes": "Arabic-STT run5base: run 5's data and targets trained from the base model (40,000 steps); same in-domain train rows as run 5, including MGB-3 train and the 20 leaked FLEURS ar_eg test sentences; English: the train splits of LibriSpeech, Common Voice 17, VoxPopuli, AMI and GigaSpeech",
    "training_data": "",
    "hallucination_rate": 1.0,
    "inserted_wpm": 111.45,
