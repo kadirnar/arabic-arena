@@ -448,7 +448,157 @@
    ],
    "rank": [
     4,
-    4
+    5
+   ]
+  },
+  "parakeet-tdt-0.6b-v3": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.01594,
+     0.0213
+    ],
+    "librispeech_other/clean": [
+     0.03105,
+     0.03896
+    ],
+    "fleurs_en/clean": [
+     0.0597,
+     0.07421
+    ],
+    "common_voice_en/clean": [
+     0.07848,
+     0.09884
+    ],
+    "voxpopuli_en/clean": [
+     0.05584,
+     0.06457
+    ],
+    "earnings22/clean": [
+     0.10055,
+     0.11656
+    ],
+    "gigaspeech/clean": [
+     0.08214,
+     0.09288
+    ],
+    "spgispeech/clean": [
+     0.03955,
+     0.04568
+    ],
+    "ami_sdm/clean": [
+     0.08777,
+     0.10699
+    ],
+    "edacc/clean": [
+     0.13639,
+     0.16886
+    ],
+    "urgent2024/clean": [
+     0.10599,
+     0.12965
+    ],
+    "librispeech_clean/noisy": [
+     0.02495,
+     0.04097
+    ],
+    "fleurs_en/noisy": [
+     0.10024,
+     0.14946
+    ],
+    "voxpopuli_en/noisy": [
+     0.07537,
+     0.10013
+    ],
+    "earnings22/noisy": [
+     0.12714,
+     0.17805
+    ],
+    "minds14_tel/clean": [
+     0.01283,
+     0.01943
+    ],
+    "vystadial_voip/clean": [
+     0.08814,
+     0.11225
+    ],
+    "librispeech_clean/telephony": [
+     0.01811,
+     0.02683
+    ],
+    "fleurs_en/telephony": [
+     0.0657,
+     0.08612
+    ],
+    "voxpopuli_en/telephony": [
+     0.06606,
+     0.08457
+    ],
+    "earnings22/telephony": [
+     0.09865,
+     0.1267
+    ],
+    "common_voice_en/telephony": [
+     0.12811,
+     0.17678
+    ],
+    "gigaspeech/telephony": [
+     0.07884,
+     0.10086
+    ],
+    "librispeech_clean/callcenter": [
+     0.08829,
+     0.13528
+    ],
+    "fleurs_en/callcenter": [
+     0.17867,
+     0.2348
+    ],
+    "voxpopuli_en/callcenter": [
+     0.12279,
+     0.15641
+    ],
+    "earnings22/callcenter": [
+     0.19336,
+     0.24668
+    ],
+    "common_voice_en/callcenter": [
+     0.36131,
+     0.44603
+    ],
+    "gigaspeech/callcenter": [
+     0.14343,
+     0.18202
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.06496,
+     0.06944
+    ],
+    "accented": [
+     0.13639,
+     0.16886
+    ],
+    "noisy": [
+     0.09483,
+     0.11098
+    ],
+    "telephony": [
+     0.07576,
+     0.08485
+    ],
+    "callcenter": [
+     0.19561,
+     0.21755
+    ]
+   },
+   "arena_wer": [
+    0.1079,
+    0.11437
+   ],
+   "rank": [
+    4,
+    5
    ]
   },
   "qwen3-asr-1.7b": {
@@ -747,8 +897,8 @@
     0.12671
    ],
    "rank": [
-    5,
-    5
+    6,
+    6
    ]
   }
  }
