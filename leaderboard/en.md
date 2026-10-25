@@ -39,11 +39,12 @@
 | 37 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **15.33** | 14.74–15.93 | 37–38 | 9.96 | 9.32 | 22.33 | 17.23 | 11.33 | 38.24 | 16.04 | 19.52 | 10.18 | 13.95 | — | 36.33 | — | 21.30 | 36.2 |
 | 38 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **15.93** | 15.35–16.51 | 37–38 | 8.68 | 10.27 | 24.60 | 16.19 | 13.44 | 33.59 | 17.02 | 19.90 | 11.96 | 17.24 | — | 18.67 | — | 21.29 | 77.9 |
 | 39 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) | 0.96 | **18.93** | 18.33–19.53 | 39 | 9.90 | 11.68 | 40.34 | 17.18 | 16.59 | 41.31 | 19.94 | 24.16 | 14.76 | 22.25 | — | 97.33 | — | 25.74 | 88.8 |
-| 40 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **20.50** | 19.74–21.15 | 40 | 15.11 | 10.48 | 45.35 | 14.76 | 22.64 | 55.02 | 21.21 | 29.64 | 12.98 | 16.04 | — | 88.67 | — | 35.74 | 47.4 |
-| 41 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **24.29** | 23.62–25.02 | 41 | 12.48 | 15.92 | 35.67 | 24.42 | 22.03 | 47.25 | 25.51 | 28.68 | 18.87 | 28.44 | — | 14.67 | — | 30.13 | 178.1 |
+| 40 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **20.50** | 19.74–21.15 | 40–41 | 15.11 | 10.48 | 45.35 | 14.76 | 22.64 | 55.02 | 21.21 | 29.64 | 12.98 | 16.04 | — | 88.67 | — | 35.74 | 47.4 |
+| 41 | [jais-asr](https://huggingface.co/IFM/Jais-ASR) | 5.72 | **21.84** | 20.61–22.70 | 40–41 | 18.05 | 10.15 | 21.10 | 38.07 | 15.94 | 68.52 | 22.55 | 32.57 | 11.18 | 20.97 | — | 2.33 | — | 33.26 | 50.6 |
+| 42 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **24.29** | 23.62–25.02 | 42 | 12.48 | 15.92 | 35.67 | 24.42 | 22.03 | 47.25 | 25.51 | 28.68 | 18.87 | 28.44 | — | 14.67 | — | 30.13 | 178.1 |
 
 WER/CER in %, lower is better. Per set: profile `L2sp` (dialect-lenient normalization, space-insensitive alignment, multi-reference where available, errors capped per utterance). Arena: weighted geometric mean over sets (track weight split evenly over its sets; Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over the clean sets whose audio is not simulated (no telephony, call-center, added noise or band-limiting). Zero-shot: Arena over the sets no ranked model trained on (fleurs_en, minds14_tel, urgent2024, vystadial_voip). Exposure: share of the Arena weight on sets whose training split the model saw (†). Halluc. ≥3 words: share of noise-only clips (silence, hold, line noise, distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' salient terms (names, places, question words) and the named entities of the CV18 test sentences (Elyadata/CV18-NER); not part of the Arena. 95% CI and rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. 2024): models whose rank sets overlap are not separated by this benchmark.
-Effective track weights (share of the between-model spread of the Arena): Clean 28%, Accented 4%, Noisy 15%, Telephony 26%, Call-center 27%.
+Effective track weights (share of the between-model spread of the Arena): Clean 27%, Accented 4%, Noisy 16%, Telephony 25%, Call-center 28%.
 Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/callcenter (few clusters: G=6), earnings22/clean (few clusters: G=6), earnings22/noisy (few clusters: G=6), earnings22/telephony (few clusters: G=6), minds14_tel/clean (iid: no cluster key), urgent2024/clean (iid: no cluster key).
 
 <details><summary>Per-set WER v2 (%)</summary>
@@ -90,6 +91,7 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | omniasr-ctc-1b-v2 | 2.67 | 6.48 | 11.41 | 19.46 | 8.66 | 17.80 | 14.76 | 8.31 | 17.50 | 24.60 | 20.22 | 4.60 | 20.04 | 18.80 | 31.78 | 5.92 | 25.61 | 4.32 | 15.26 | 10.71 | 20.51 | 32.46 | 14.93 | 21.62 | 37.48 | 24.33 | 40.34 | 58.58 | 30.82 |
 | mms-1b-all | 3.09 | 7.17 | 12.84 | 20.47 | 8.10 | 22.22 | 16.13 | 7.74 | 30.93 | 40.34 | 28.20 | 5.36 | 23.39 | 12.32 | 34.35 | 11.56 | 29.21 | 5.22 | 18.57 | 10.09 | 26.67 | 32.94 | 19.81 | 28.03 | 47.78 | 27.54 | 51.94 | 60.31 | 43.00 |
 | seamless-m4t-v2-large | 2.14 | 4.13 | 7.70 | 7.01 | 6.20 | 29.70 | 30.65 | 16.92 | 33.61 | 45.35 | 23.98 | 4.54 | 15.34 | 12.29 | 34.09 | 11.71 | 11.46 | 20.37 | 15.57 | 23.99 | 63.75 | 15.09 | 70.36 | 48.31 | 42.98 | 46.30 | 75.41 | 48.41 | 79.01 |
+| jais-asr | 2.24 | 5.53 | 9.72 | 17.53 | 7.53 | 31.32 | 11.41 | 7.43 | 27.12 | 21.10 | 39.90 | 29.75 | 45.89 | 21.88 | 67.12 | 3.28 | 10.55 | 5.47 | 30.52 | 13.29 | 52.98 | 31.70 | 32.45 | 59.09 | 75.57 | 49.59 | 81.78 | 72.60 | 78.69 |
 | omniasr-ctc-300m-v2 | 4.65 | 11.41 | 18.10 | 29.92 | 12.92 | 24.82 | 18.98 | 13.95 | 27.02 | 35.67 | 29.59 | 8.77 | 31.65 | 27.61 | 38.24 | 15.74 | 37.18 | 8.03 | 25.75 | 16.69 | 29.47 | 44.50 | 20.93 | 32.89 | 55.56 | 38.38 | 53.31 | 68.58 | 43.41 |
 
 </details>
@@ -138,7 +140,8 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | 38 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **21.30** | 20.37–22.55 | 36–38 | 13.53 | 11.19 | 23.93 | 19.81 | 14.81 | 43.94 | 88.67 | 36.2 |
 | 39 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) | 0.96 | **25.74** | 25.29–26.17 | 39 | 13.28 | 15.46 | 42.86 | 21.97 | 21.60 | 44.57 | 99.00 | 88.8 |
 | 40 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **30.13** | 29.72–30.58 | 40 | 15.39 | 19.20 | 38.25 | 28.27 | 26.73 | 49.96 | 24.67 | 178.1 |
-| 41 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **35.74** | 34.67–36.88 | 41 | 25.09 | 17.17 | 49.08 | 20.48 | 36.62 | 70.96 | 88.67 | 47.4 |
+| 41 | [jais-asr](https://huggingface.co/IFM/Jais-ASR) | 5.72 | **33.26** | 32.53–34.01 | 41 | 29.96 | 13.92 | 24.99 | 41.25 | 23.18 | 69.93 | 2.33 | 50.6 |
+| 42 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **35.74** | 34.67–36.88 | 42 | 25.09 | 17.17 | 49.08 | 20.48 | 36.62 | 70.96 | 88.67 | 47.4 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
 
@@ -188,6 +191,7 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, A
 | gemma-4-e2b-it | 4.31 | 9.20 | 9.37 | 18.42 | 8.70 | 15.77 | 10.48 | 5.59 | 18.90 | 23.93 | 25.35 | 8.18 | 22.14 | 15.83 | 27.55 | 3.35 | 13.67 | 7.31 | 16.05 | 12.76 | 19.81 | 32.84 | 12.66 | 29.25 | 45.72 | 34.05 | 45.45 | 78.20 | 30.97 |
 | mms-1b-all | 3.54 | 7.79 | 13.71 | 21.48 | 8.62 | 24.11 | 17.71 | 8.81 | 33.41 | 42.86 | 29.17 | 5.76 | 24.35 | 13.02 | 37.52 | 12.32 | 40.19 | 5.73 | 19.40 | 10.75 | 29.19 | 33.98 | 21.21 | 28.53 | 48.81 | 28.03 | 54.66 | 63.36 | 44.05 |
 | omniasr-ctc-300m-v2 | 5.29 | 12.28 | 19.48 | 31.18 | 13.70 | 26.54 | 20.67 | 14.96 | 28.71 | 38.25 | 30.86 | 9.37 | 32.71 | 28.49 | 39.89 | 16.64 | 43.64 | 8.72 | 26.91 | 17.32 | 31.29 | 46.71 | 22.63 | 33.69 | 56.69 | 39.10 | 54.94 | 70.73 | 44.64 |
+| jais-asr | 2.64 | 5.91 | 10.29 | 18.22 | 7.80 | 31.94 | 12.36 | 7.83 | 28.28 | 24.99 | 40.12 | 30.07 | 46.39 | 22.19 | 67.52 | 3.32 | 12.07 | 5.88 | 31.21 | 13.60 | 53.55 | 32.46 | 33.34 | 59.19 | 76.07 | 49.70 | 82.17 | 73.53 | 78.93 |
 | seamless-m4t-v2-large | 2.52 | 4.59 | 8.08 | 8.88 | 6.50 | 33.30 | 33.23 | 18.09 | 39.36 | 49.08 | 25.32 | 5.12 | 15.88 | 12.60 | 43.48 | 11.85 | 18.20 | 30.85 | 19.31 | 26.76 | 87.44 | 15.99 | 82.53 | 58.15 | 52.97 | 51.94 | 104.19 | 69.41 | 89.11 |
 
 </details>
