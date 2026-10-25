@@ -18,6 +18,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 11.9 | 15.1 | 12.5 | 9.6 | 10.3 | 11.0 | 9.2 | 10.6 | 12.8 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.1 | 15.4 | 12.8 | 9.5 | 10.3 | 10.4 | 9.2 | 10.7 | 12.7 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 12.1 | 15.2 | 13.2 | 9.7 | 10.4 | 10.7 | 9.3 | 10.9 | 13.0 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 12.4 | 15.7 | 13.5 | 10.2 | 10.5 | 12.0 | 9.3 | 11.5 | 13.2 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 11.9 | 14.4 | 12.8 | 9.5 | 10.3 | 10.9 | 9.0 | 10.6 | 12.6 |
 | canary-1b-v2 | 16.2 | 18.2 | 15.7 | 11.9 | 13.1 | 14.9 | 10.0 | 12.8 | 14.0 |
 | cohere-transcribe-03-2026 | 16.6 | 15.1 | 16.1 | 13.5 | 10.7 | 13.2 | 8.9 | 10.9 | 11.6 |
@@ -50,6 +51,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 17.1 | 16.9 | 9.7 | 9.8 | 12.5 | 12.2 | 11.6 | 11.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 17.2 | 16.9 | 10.0 | 9.7 | 12.9 | 12.4 | 11.6 | 11.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 17.4 | 17.7 | 9.6 | 9.5 | 13.1 | 12.9 | 12.0 | 11.2 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 18.0 | 18.7 | 10.1 | 10.7 | 13.7 | 12.7 | 12.9 | 12.4 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 17.0 | 16.4 | 9.2 | 9.2 | 12.5 | 12.6 | 11.4 | 10.9 |
 | canary-1b-v2 | 25.7 | 19.4 | 10.8 | 12.6 | 14.5 | 15.0 | 13.4 | 13.5 |
 | cohere-transcribe-03-2026 | 27.2 | 14.7 | 8.7 | 10.0 | 12.3 | 13.8 | 11.5 | 10.8 |
@@ -82,6 +84,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 12.6 | 18.0 | 12.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.8 | 17.9 | 12.3 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 13.0 | 18.4 | 12.5 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 13.4 | 19.0 | 13.3 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 12.7 | 17.6 | 12.1 |
 | canary-1b-v2 | 16.7 | 26.4 | 14.6 |
 | cohere-transcribe-03-2026 | 13.9 | 29.3 | 12.3 |
@@ -114,6 +117,7 @@
 | arabic-stt-qwen3-asr-1.7b-run9-final | 10.1 | 11.7 | 10.1 | 16.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 10.1 | 11.8 | 10.1 | 16.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 10.3 | 12.0 | 10.3 | 16.4 |
+| arabic-stt-qwen3-asr-1.7b-run9-step-6000 | 10.4 | 12.4 | 10.9 | 17.2 |
 | arabic-stt-qwen3-asr-1.7b-run9b | 10.0 | 11.6 | 10.3 | 15.8 |
 | canary-1b-v2 | 12.4 | 14.1 | 12.3 | 22.1 |
 | cohere-transcribe-03-2026 | 12.8 | 11.9 | 10.5 | 19.3 |
