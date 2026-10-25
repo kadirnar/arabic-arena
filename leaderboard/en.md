@@ -10,9 +10,10 @@
 | 8 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **8.31** | 7.89–8.72 | 6–8 | 5.17 | 5.49 | 14.07 | 8.75 | 5.75 | 19.65 | 8.89 | 10.85 | 5.80 | 6.95 | — | 29.67 | — | 11.59 | 182.9 |
 | 9 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **8.64** | 8.15–9.08 | 9 | 5.50 | 5.75 | 17.34 | 9.19 | 5.90 | 19.61 | 9.29 | 11.49 | 6.25 | 7.41 | — | 23.67 | — | 12.30 | 84.5 |
 | 10 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **9.07** | 8.58–9.54 | 10 | 5.76 | 6.19 | 17.78 | 9.24 | 6.37 | 19.98 | 9.72 | 11.94 | 6.67 | 7.85 | — | 27.33 | — | 13.61 | 133.4 |
+| 11 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **11.81** | 11.21–12.39 | 11 | 8.14 | 7.00 | 20.97 | 13.58 | 7.70 | 32.78 | 12.50 | 16.51 | 7.74 | 12.48 | — | 9.00 | — | 17.18 | 20.5 |
 
 WER/CER in %, lower is better. Per set: profile `L2sp` (dialect-lenient normalization, space-insensitive alignment, multi-reference where available, errors capped per utterance). Arena: weighted geometric mean over sets (track weight split evenly over its sets; Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Strict (L1): the same aggregation of orthographic-only WER. Real audio: the Arena over the clean sets whose audio is not simulated (no telephony, call-center, added noise or band-limiting). Zero-shot: Arena over the sets no ranked model trained on (fleurs_en, minds14_tel, urgent2024, vystadial_voip). Exposure: share of the Arena weight on sets whose training split the model saw (†). Halluc. ≥3 words: share of noise-only clips (silence, hold, line noise, distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' salient terms (names, places, question words) and the named entities of the CV18 test sentences (Elyadata/CV18-NER); not part of the Arena. 95% CI and rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. 2024): models whose rank sets overlap are not separated by this benchmark.
-Effective track weights (share of the between-model spread of the Arena): Clean 28%, Accented 5%, Noisy 18%, Telephony 18%, Call-center 31%.
+Effective track weights (share of the between-model spread of the Arena): Clean 26%, Accented 4%, Noisy 19%, Telephony 18%, Call-center 33%.
 Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/callcenter (few clusters: G=6), earnings22/clean (few clusters: G=6), earnings22/noisy (few clusters: G=6), earnings22/telephony (few clusters: G=6), minds14_tel/clean (iid: no cluster key), urgent2024/clean (iid: no cluster key).
 
 <details><summary>Per-set WER v2 (%)</summary>
@@ -29,6 +30,7 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | qwen3-asr-0.6b | 1.59 | 3.90 | 5.28 | 9.33 | 6.54 | 10.66 | 7.91 | 3.22 | 8.31 | 14.07 | 11.59 | 2.35 | 11.15 | 9.94 | 16.97 | 1.31 | 5.10 | 2.33 | 6.67 | 7.76 | 10.95 | 15.85 | 8.56 | 11.72 | 19.17 | 16.16 | 24.88 | 37.09 | 17.19 |
 | whisper-large-v3 | 1.43 | 3.06 | 5.28 | 9.53 | 8.77 | 10.81 | 8.73 | 2.85 | 13.15 | 17.34 | 13.49 | 2.96 | 11.51 | 9.23 | 15.48 | 1.54 | 5.26 | 2.04 | 6.52 | 7.55 | 11.74 | 16.61 | 9.33 | 11.00 | 21.18 | 14.28 | 23.88 | 42.46 | 16.82 |
 | whisper-large-v3-turbo | 1.63 | 3.33 | 5.58 | 10.83 | 11.05 | 11.17 | 8.71 | 2.81 | 13.40 | 17.78 | 13.44 | 2.59 | 11.53 | 10.51 | 15.93 | 1.78 | 5.31 | 2.11 | 7.37 | 8.70 | 11.19 | 19.27 | 9.75 | 11.11 | 22.86 | 14.92 | 23.28 | 42.04 | 17.14 |
+| voxtral-mini-4b-realtime-2602 | 1.53 | 4.85 | 13.48 | 14.34 | 8.15 | 11.37 | 9.23 | 2.69 | 12.17 | 20.97 | 17.98 | 3.53 | 29.93 | 12.62 | 19.28 | 2.15 | 6.80 | 2.99 | 8.96 | 9.04 | 12.54 | 27.72 | 10.07 | 21.94 | 32.36 | 28.15 | 40.36 | 53.15 | 28.92 |
 
 </details>
 
@@ -46,6 +48,7 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | 8 | [canary-1b-v2](https://huggingface.co/nvidia/canary-1b-v2) | 0.98 | **11.82** | 11.46–12.20 | 7–8 | 7.52 | 7.30 | 18.95 | 11.37 | 8.17 | 21.23 | 24.00 | 113.3 |
 | 9 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **12.30** | 11.95–12.67 | 8–9 | 7.96 | 7.69 | 19.14 | 11.03 | 8.52 | 22.59 | 99.00 | 84.5 |
 | 10 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **13.61** | 12.76–14.70 | 10 | 8.84 | 8.23 | 19.59 | 11.44 | 10.40 | 25.33 | 85.00 | 133.4 |
+| 11 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **17.18** | 16.69–17.68 | 11 | 12.94 | 9.27 | 22.72 | 17.09 | 10.89 | 34.61 | 9.33 | 20.5 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
 
@@ -65,6 +68,7 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, A
 | canary-1b-v2 | 1.86 | 3.49 | 6.22 | 9.32 | 6.16 | 11.74 | 11.08 | 2.43 | 13.42 | 18.95 | 15.12 | 2.86 | 12.53 | 8.68 | 17.65 | 2.14 | 9.07 | 2.47 | 6.96 | 7.09 | 11.79 | 15.67 | 10.15 | 10.64 | 19.60 | 14.17 | 22.94 | 41.70 | 18.32 |
 | whisper-large-v3 | 1.81 | 3.44 | 5.76 | 10.36 | 9.10 | 11.27 | 9.62 | 3.13 | 14.74 | 19.14 | 13.90 | 3.27 | 12.05 | 9.58 | 16.34 | 1.58 | 8.51 | 2.40 | 7.04 | 7.92 | 12.28 | 18.10 | 10.35 | 11.28 | 22.01 | 14.63 | 24.94 | 44.91 | 17.75 |
 | whisper-large-v3-turbo | 1.96 | 3.73 | 6.12 | 11.51 | 11.37 | 11.67 | 9.60 | 3.10 | 14.98 | 19.59 | 14.48 | 2.98 | 12.21 | 10.80 | 16.71 | 1.82 | 8.38 | 2.42 | 7.98 | 8.99 | 11.81 | 31.11 | 10.70 | 16.94 | 29.90 | 15.30 | 23.98 | 44.91 | 20.96 |
+| voxtral-mini-4b-realtime-2602 | 1.98 | 5.27 | 13.96 | 15.33 | 8.51 | 11.85 | 10.09 | 2.90 | 13.55 | 22.72 | 18.33 | 3.81 | 30.29 | 13.01 | 19.98 | 2.19 | 9.78 | 3.31 | 9.49 | 9.36 | 13.17 | 28.75 | 11.08 | 22.18 | 32.88 | 28.42 | 40.83 | 53.67 | 29.65 |
 
 </details>
 
