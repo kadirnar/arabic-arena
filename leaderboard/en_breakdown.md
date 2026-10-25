@@ -5,6 +5,7 @@
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 11.5 | 14.6 | 12.1 | 9.2 | 9.7 | 10.1 | 8.7 | 10.3 | 11.7 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 11.3 | 15.1 | 11.8 | 9.0 | 9.7 | 9.6 | 8.6 | 10.1 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 11.8 | 14.9 | 12.6 | 9.7 | 10.1 | 10.8 | 9.1 | 10.7 | 12.4 |
+| arabic-stt-qwen3-asr-1.7b-run12-rl-s1500 | 11.6 | 15.0 | 12.9 | 9.8 | 10.1 | 10.9 | 9.1 | 10.7 | 12.2 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s1000 | 11.8 | 14.4 | 12.5 | 9.6 | 9.7 | 10.6 | 9.0 | 10.7 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 11.7 | 14.7 | 12.4 | 9.5 | 9.7 | 10.5 | 8.9 | 10.7 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 11.7 | 14.6 | 12.5 | 9.6 | 9.8 | 10.8 | 8.8 | 10.6 | 12.1 |
@@ -28,6 +29,7 @@
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 16.0 | 16.4 | 8.6 | 9.1 | 10.9 | 12.2 | 10.9 | 10.4 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 16.0 | 16.2 | 8.9 | 8.4 | 11.0 | 11.8 | 10.9 | 10.4 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 17.2 | 17.1 | 9.6 | 10.0 | 11.6 | 11.7 | 11.3 | 10.6 |
+| arabic-stt-qwen3-asr-1.7b-run12-rl-s1500 | 16.9 | 17.1 | 9.9 | 10.0 | 11.4 | 12.0 | 11.6 | 11.4 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s1000 | 16.4 | 16.2 | 9.8 | 9.7 | 11.5 | 11.8 | 11.3 | 10.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 16.4 | 16.2 | 9.6 | 9.4 | 11.1 | 11.9 | 11.6 | 10.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 16.4 | 16.2 | 9.7 | 9.9 | 11.7 | 12.0 | 12.0 | 10.8 |
@@ -51,6 +53,7 @@
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 11.9 | 16.6 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 11.9 | 16.4 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 12.5 | 17.5 | 12.3 |
+| arabic-stt-qwen3-asr-1.7b-run12-rl-s1500 | 12.7 | 17.5 | 12.3 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s1000 | 12.4 | 17.0 | 11.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 12.3 | 17.0 | 11.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 12.3 | 17.3 | 11.9 |
@@ -74,6 +77,7 @@
 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | 9.5 | 11.0 | 9.8 | 15.8 |
 | arabic-stt-qwen3-asr-1.7b-best-task06 | 9.4 | 11.1 | 9.6 | 15.9 |
 | arabic-stt-qwen3-asr-1.7b-run10 | 10.0 | 11.5 | 10.0 | 16.2 |
+| arabic-stt-qwen3-asr-1.7b-run12-rl-s1500 | 10.0 | 11.5 | 10.1 | 16.6 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s1000 | 9.9 | 11.3 | 10.0 | 15.6 |
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 9.8 | 11.3 | 9.9 | 15.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 9.9 | 11.3 | 10.0 | 15.9 |
