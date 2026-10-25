@@ -447,8 +447,8 @@
     0.09793
    ],
    "rank": [
-    8,
-    11
+    9,
+    12
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run12-rl-s1500": {
@@ -597,8 +597,8 @@
     0.09881
    ],
    "rank": [
-    10,
-    12
+    11,
+    13
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run13": {
@@ -747,8 +747,8 @@
     0.09792
    ],
    "rank": [
-    8,
-    11
+    9,
+    12
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run16": {
@@ -897,8 +897,158 @@
     0.09726
    ],
    "rank": [
-    7,
-    9
+    8,
+    10
+   ]
+  },
+  "arabic-stt-qwen3-asr-1.7b-run16-rl-s1000": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.01934,
+     0.02502
+    ],
+    "librispeech_other/clean": [
+     0.04351,
+     0.0536
+    ],
+    "fleurs_en/clean": [
+     0.05735,
+     0.07205
+    ],
+    "common_voice_en/clean": [
+     0.08252,
+     0.1029
+    ],
+    "voxpopuli_en/clean": [
+     0.06972,
+     0.07896
+    ],
+    "earnings22/clean": [
+     0.07848,
+     0.09216
+    ],
+    "gigaspeech/clean": [
+     0.08684,
+     0.09744
+    ],
+    "spgispeech/clean": [
+     0.03302,
+     0.03825
+    ],
+    "ami_sdm/clean": [
+     0.07778,
+     0.09269
+    ],
+    "edacc/clean": [
+     0.13599,
+     0.16834
+    ],
+    "urgent2024/clean": [
+     0.09928,
+     0.12075
+    ],
+    "librispeech_clean/noisy": [
+     0.02126,
+     0.03252
+    ],
+    "fleurs_en/noisy": [
+     0.07598,
+     0.10036
+    ],
+    "voxpopuli_en/noisy": [
+     0.0803,
+     0.10051
+    ],
+    "earnings22/noisy": [
+     0.09352,
+     0.1251
+    ],
+    "minds14_tel/clean": [
+     0.01324,
+     0.02139
+    ],
+    "vystadial_voip/clean": [
+     0.06776,
+     0.08659
+    ],
+    "librispeech_clean/telephony": [
+     0.02126,
+     0.03197
+    ],
+    "fleurs_en/telephony": [
+     0.06252,
+     0.08308
+    ],
+    "voxpopuli_en/telephony": [
+     0.07354,
+     0.09198
+    ],
+    "earnings22/telephony": [
+     0.07301,
+     0.09718
+    ],
+    "common_voice_en/telephony": [
+     0.10904,
+     0.16127
+    ],
+    "gigaspeech/telephony": [
+     0.08411,
+     0.10615
+    ],
+    "librispeech_clean/callcenter": [
+     0.0534,
+     0.07814
+    ],
+    "fleurs_en/callcenter": [
+     0.12032,
+     0.15793
+    ],
+    "voxpopuli_en/callcenter": [
+     0.10317,
+     0.13051
+    ],
+    "earnings22/callcenter": [
+     0.12716,
+     0.16653
+    ],
+    "common_voice_en/callcenter": [
+     0.24938,
+     0.32094
+    ],
+    "gigaspeech/callcenter": [
+     0.12868,
+     0.16426
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.06452,
+     0.06882
+    ],
+    "accented": [
+     0.13599,
+     0.16834
+    ],
+    "noisy": [
+     0.07956,
+     0.0894
+    ],
+    "telephony": [
+     0.06936,
+     0.07804
+    ],
+    "callcenter": [
+     0.14128,
+     0.15891
+    ]
+   },
+   "arena_wer": [
+    0.09141,
+    0.09639
+   ],
+   "rank": [
+    5,
+    7
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run20-mwer-s1000": {
@@ -1348,7 +1498,7 @@
    ],
    "rank": [
     5,
-    7
+    8
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run20-s7all-s500": {
@@ -1498,7 +1648,7 @@
    ],
    "rank": [
     5,
-    6
+    7
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-run9b": {
@@ -1647,8 +1797,8 @@
     0.09762
    ],
    "rank": [
-    7,
-    11
+    8,
+    12
    ]
   },
   "canary-1b-v2": {
@@ -1797,8 +1947,8 @@
     0.12198
    ],
    "rank": [
-    16,
-    17
+    17,
+    18
    ]
   },
   "cohere-transcribe-03-2026": {
@@ -1947,8 +2097,8 @@
     0.12577
    ],
    "rank": [
-    13,
-    18
+    14,
+    19
    ]
   },
   "cohere-transcribe-arabic-07-2026": {
@@ -2097,8 +2247,8 @@
     0.11979
    ],
    "rank": [
-    12,
-    17
+    13,
+    18
    ]
   },
   "gemma-4-e2b-it": {
@@ -2247,8 +2397,8 @@
     0.22549
    ],
    "rank": [
-    21,
-    21
+    22,
+    22
    ]
   },
   "parakeet-tdt-0.6b-v3": {
@@ -2397,8 +2547,8 @@
     0.11437
    ],
    "rank": [
-    13,
-    15
+    14,
+    16
    ]
   },
   "qwen3-asr-0.6b": {
@@ -2547,8 +2697,8 @@
     0.11974
    ],
    "rank": [
-    15,
-    17
+    16,
+    18
    ]
   },
   "qwen3-asr-1.7b": {
@@ -2697,8 +2847,8 @@
     0.09932
    ],
    "rank": [
-    8,
-    12
+    9,
+    13
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -2847,8 +2997,8 @@
     0.17682
    ],
    "rank": [
-    20,
-    20
+    21,
+    21
    ]
   },
   "whisper-large-v3": {
@@ -2997,8 +3147,8 @@
     0.12671
    ],
    "rank": [
-    17,
-    18
+    18,
+    19
    ]
   },
   "whisper-large-v3-turbo": {
@@ -3147,8 +3297,8 @@
     0.14697
    ],
    "rank": [
-    19,
-    19
+    20,
+    20
    ]
   }
  }
