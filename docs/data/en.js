@@ -823,8 +823,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.0508,
-       0.05434
+       0.04917,
+       0.05583
       ]
      },
      "accented": {
@@ -834,8 +834,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.11994,
-       0.13872
+       0.10876,
+       0.15161
       ]
      },
      "noisy": {
@@ -845,8 +845,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.06205,
-       0.07215
+       0.06103,
+       0.07375
       ]
      },
      "telephony": {
@@ -856,8 +856,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.04803,
-       0.05493
+       0.04745,
+       0.05577
       ]
      },
      "callcenter": {
@@ -867,8 +867,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.11742,
-       0.13254
+       0.11548,
+       0.13426
       ]
      }
     },
@@ -885,8 +885,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.41,
     "rank": 4,
     "arena_ci": [
-     0.06627,
-     0.07148
+     0.0649,
+     0.07323
     ],
     "rank_set": [
      1,
@@ -1547,8 +1547,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05104,
-       0.05462
+       0.04941,
+       0.05605
       ]
      },
      "accented": {
@@ -1558,8 +1558,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.12002,
-       0.13834
+       0.11089,
+       0.14941
       ]
      },
      "noisy": {
@@ -1569,8 +1569,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.06221,
-       0.07152
+       0.06117,
+       0.07319
       ]
      },
      "telephony": {
@@ -1580,8 +1580,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.04853,
-       0.05504
+       0.04795,
+       0.05591
       ]
      },
      "callcenter": {
@@ -1591,8 +1591,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.11798,
-       0.13271
+       0.11666,
+       0.13454
       ]
      }
     },
@@ -1609,8 +1609,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.38333333333333336,
     "rank": 5,
     "arena_ci": [
-     0.06663,
-     0.07166
+     0.06526,
+     0.07328
     ],
     "rank_set": [
      1,
@@ -2261,8 +2261,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.04463,
-       0.04815
+       0.04336,
+       0.04915
       ]
      },
      "accented": {
@@ -2272,8 +2272,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.11576,
-       0.1331
+       0.10479,
+       0.14395
       ]
      },
      "noisy": {
@@ -2283,8 +2283,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.06426,
-       0.07635
+       0.06391,
+       0.07755
       ]
      },
      "telephony": {
@@ -2294,8 +2294,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.04392,
-       0.05027
+       0.04315,
+       0.05102
       ]
      },
      "callcenter": {
@@ -2305,8 +2305,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.14341,
-       0.16242
+       0.14278,
+       0.16362
       ]
      }
     },
@@ -2323,8 +2323,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.44,
     "rank": 3,
     "arena_ci": [
-     0.06539,
-     0.07053
+     0.06436,
+     0.07183
     ],
     "rank_set": [
      1,
@@ -2975,8 +2975,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.04182,
-       0.04523
+       0.0406,
+       0.04646
       ]
      },
      "accented": {
@@ -2986,8 +2986,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.12841,
-       0.1483
+       0.11834,
+       0.15821
       ]
      },
      "noisy": {
@@ -2997,8 +2997,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.06084,
-       0.07248
+       0.06009,
+       0.07429
       ]
      },
      "telephony": {
@@ -3008,8 +3008,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.04573,
-       0.05223
+       0.04539,
+       0.05305
       ]
      },
      "callcenter": {
@@ -3019,8 +3019,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.14059,
-       0.16039
+       0.14014,
+       0.16247
       ]
      }
     },
@@ -3037,8 +3037,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.4266666666666667,
     "rank": 1,
     "arena_ci": [
-     0.0642,
-     0.06927
+     0.06313,
+     0.0707
     ],
     "rank_set": [
      1,
@@ -3689,8 +3689,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.04279,
-       0.04629
+       0.0415,
+       0.04738
       ]
      },
      "accented": {
@@ -3700,8 +3700,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.12536,
-       0.14403
+       0.11357,
+       0.15563
       ]
      },
      "noisy": {
@@ -3711,8 +3711,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.06416,
-       0.07533
+       0.06309,
+       0.07719
       ]
      },
      "telephony": {
@@ -3722,8 +3722,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.04712,
-       0.05375
+       0.04667,
+       0.05437
       ]
      },
      "callcenter": {
@@ -3733,8 +3733,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.13593,
-       0.155
+       0.13499,
+       0.1571
       ]
      }
     },
@@ -3751,8 +3751,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.62,
     "rank": 2,
     "arena_ci": [
-     0.06492,
-     0.0699
+     0.06371,
+     0.07147
     ],
     "rank_set": [
      1,
@@ -4403,8 +4403,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05131,
-       0.05488
+       0.04978,
+       0.0562
       ]
      },
      "accented": {
@@ -4414,8 +4414,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.12611,
-       0.14422
+       0.11595,
+       0.15515
       ]
      },
      "noisy": {
@@ -4425,8 +4425,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.07874,
-       0.09354
+       0.0786,
+       0.09561
       ]
      },
      "telephony": {
@@ -4436,8 +4436,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.05389,
-       0.06053
+       0.0529,
+       0.06148
       ]
      },
      "callcenter": {
@@ -4447,8 +4447,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.17201,
-       0.19327
+       0.17066,
+       0.19599
       ]
      }
     },
@@ -4465,12 +4465,12 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.15666666666666668,
     "rank": 6,
     "arena_ci": [
-     0.0775,
-     0.08288
+     0.07606,
+     0.08468
     ],
     "rank_set": [
      6,
-     6
+     8
     ]
    }
   },
@@ -5117,8 +5117,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05298,
-       0.05657
+       0.05146,
+       0.05787
       ]
      },
      "accented": {
@@ -5128,8 +5128,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.13102,
-       0.15024
+       0.12006,
+       0.16058
       ]
      },
      "noisy": {
@@ -5139,8 +5139,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.08082,
-       0.0941
+       0.0805,
+       0.09546
       ]
      },
      "telephony": {
@@ -5150,8 +5150,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.05391,
-       0.0607
+       0.05321,
+       0.06202
       ]
      },
      "callcenter": {
@@ -5161,8 +5161,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.18541,
-       0.20682
+       0.1852,
+       0.20866
       ]
      }
     },
@@ -5179,11 +5179,11 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.27666666666666667,
     "rank": 8,
     "arena_ci": [
-     0.08019,
-     0.08558
+     0.07894,
+     0.08719
     ],
     "rank_set": [
-     7,
+     6,
      8
     ]
    }
@@ -5831,8 +5831,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05189,
-       0.05544
+       0.05043,
+       0.05656
       ]
      },
      "accented": {
@@ -5842,8 +5842,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.1611,
-       0.18151
+       0.14772,
+       0.19553
       ]
      },
      "noisy": {
@@ -5853,8 +5853,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.08349,
-       0.09743
+       0.08273,
+       0.09902
       ]
      },
      "telephony": {
@@ -5864,8 +5864,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.05641,
-       0.06357
+       0.05563,
+       0.06449
       ]
      },
      "callcenter": {
@@ -5875,8 +5875,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.1689,
-       0.18979
+       0.16785,
+       0.19214
       ]
      }
     },
@@ -5893,11 +5893,11 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.23333333333333334,
     "rank": 7,
     "arena_ci": [
-     0.07984,
-     0.08532
+     0.07846,
+     0.0869
     ],
     "rank_set": [
-     7,
+     6,
      8
     ]
    }
@@ -6545,8 +6545,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05525,
-       0.05951
+       0.05366,
+       0.06064
       ]
      },
      "accented": {
@@ -6556,8 +6556,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.16263,
-       0.18429
+       0.15161,
+       0.19633
       ]
      },
      "noisy": {
@@ -6567,8 +6567,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.0833,
-       0.1002
+       0.08255,
+       0.10228
       ]
      },
      "telephony": {
@@ -6578,8 +6578,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.0553,
-       0.06261
+       0.05466,
+       0.0631
       ]
      },
      "callcenter": {
@@ -6589,8 +6589,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.1839,
-       0.20732
+       0.18289,
+       0.20972
       ]
      }
     },
@@ -6607,8 +6607,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.82,
     "rank": 9,
     "arena_ci": [
-     0.08309,
-     0.08932
+     0.08154,
+     0.09082
     ],
     "rank_set": [
      9,
@@ -7259,8 +7259,8 @@ window.ARENA_DATA['en'] = {
       "done": 9,
       "total": 9,
       "ci": [
-       0.05942,
-       0.06414
+       0.05785,
+       0.06534
       ]
      },
      "accented": {
@@ -7270,8 +7270,8 @@ window.ARENA_DATA['en'] = {
       "done": 1,
       "total": 1,
       "ci": [
-       0.1669,
-       0.18845
+       0.15388,
+       0.20183
       ]
      },
      "noisy": {
@@ -7281,8 +7281,8 @@ window.ARENA_DATA['en'] = {
       "done": 5,
       "total": 5,
       "ci": [
-       0.0843,
-       0.09963
+       0.08371,
+       0.1017
       ]
      },
      "telephony": {
@@ -7292,8 +7292,8 @@ window.ARENA_DATA['en'] = {
       "done": 8,
       "total": 8,
       "ci": [
-       0.05952,
-       0.06776
+       0.05858,
+       0.06847
       ]
      },
      "callcenter": {
@@ -7303,8 +7303,8 @@ window.ARENA_DATA['en'] = {
       "done": 6,
       "total": 6,
       "ci": [
-       0.18758,
-       0.21046
+       0.18667,
+       0.21379
       ]
      }
     },
@@ -7321,8 +7321,8 @@ window.ARENA_DATA['en'] = {
     "boh_share": 0.72,
     "rank": 10,
     "arena_ci": [
-     0.08721,
-     0.09377
+     0.08577,
+     0.09545
     ],
     "rank_set": [
      10,
@@ -7733,35 +7733,13 @@ window.ARENA_DATA['en'] = {
   "bootstrap": {
    "n_boot": 2000,
    "flags": {
-    "librispeech_clean/clean": "iid: no cluster key",
-    "librispeech_clean/noisy": "iid: no cluster key",
-    "librispeech_clean/telephony": "iid: no cluster key",
-    "librispeech_clean/callcenter": "iid: no cluster key",
-    "librispeech_other/clean": "iid: no cluster key",
-    "fleurs_en/clean": "iid: no cluster key",
-    "fleurs_en/noisy": "iid: no cluster key",
-    "fleurs_en/telephony": "iid: no cluster key",
-    "fleurs_en/callcenter": "iid: no cluster key",
-    "common_voice_en/clean": "iid: no cluster key",
-    "common_voice_en/telephony": "iid: no cluster key",
-    "common_voice_en/callcenter": "iid: no cluster key",
-    "voxpopuli_en/clean": "iid: no cluster key",
-    "voxpopuli_en/noisy": "iid: no cluster key",
-    "voxpopuli_en/telephony": "iid: no cluster key",
-    "voxpopuli_en/callcenter": "iid: no cluster key",
-    "earnings22/clean": "iid: no cluster key",
-    "earnings22/noisy": "iid: no cluster key",
-    "earnings22/telephony": "iid: no cluster key",
-    "earnings22/callcenter": "iid: no cluster key",
-    "gigaspeech/clean": "iid: no cluster key",
-    "gigaspeech/telephony": "iid: no cluster key",
-    "gigaspeech/callcenter": "iid: no cluster key",
-    "spgispeech/clean": "iid: no cluster key",
-    "ami_sdm/clean": "iid: no cluster key",
-    "edacc/clean": "iid: no cluster key",
+    "earnings22/clean": "few clusters: G=6",
+    "earnings22/noisy": "few clusters: G=6",
+    "earnings22/telephony": "few clusters: G=6",
+    "earnings22/callcenter": "few clusters: G=6",
+    "ami_sdm/clean": "few clusters: G=16",
     "urgent2024/clean": "iid: no cluster key",
-    "minds14_tel/clean": "iid: no cluster key",
-    "vystadial_voip/clean": "iid: no cluster key"
+    "minds14_tel/clean": "iid: no cluster key"
    }
   }
  }

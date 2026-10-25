@@ -132,14 +132,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 19.9,
-   "rtfx": 369.18,
    "num_failed": 0,
    "wer": 0.012320844857933116,
    "cer": 0.003682891639456299,
    "num_utterances": 1000,
    "wer_v2": 0.009454362584862963,
-   "cer_v2": 0.003666138526836828
+   "cer_v2": 0.003666138526836828,
+   "seconds": 19.9,
+   "rtfx": 369.18
   },
   "librispeech_other/clean": {
    "schema": "result@2.0",
@@ -273,14 +273,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 17.55,
-   "rtfx": 371.53,
    "num_failed": 0,
    "wer": 0.022922956502292296,
    "cer": 0.008504738198174593,
    "num_utterances": 1000,
    "wer_v2": 0.020071564352007156,
-   "cer_v2": 0.009436487752643555
+   "cer_v2": 0.009436487752643555,
+   "seconds": 17.55,
+   "rtfx": 371.53
   },
   "fleurs_en/clean": {
    "schema": "result@2.0",
@@ -414,14 +414,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 17.05,
-   "rtfx": 374.61,
    "num_failed": 0,
    "wer": 0.07045311296309266,
    "cer": 0.039955185893298585,
    "num_utterances": 647,
    "wer_v2": 0.06506057847188178,
-   "cer_v2": 0.04028619405709279
+   "cer_v2": 0.04028619405709279,
+   "seconds": 17.05,
+   "rtfx": 374.61
   },
   "common_voice_en/clean": {
    "schema": "result@2.0",
@@ -555,14 +555,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 14.81,
-   "rtfx": 399.66,
    "num_failed": 0,
    "wer": 0.07401473886574816,
    "cer": 0.035679919941495705,
    "num_utterances": 1000,
    "wer_v2": 0.06963580049129553,
-   "cer_v2": 0.037936649923163375
+   "cer_v2": 0.037936649923163375,
+   "seconds": 14.81,
+   "rtfx": 399.66
   },
   "voxpopuli_en/clean": {
    "schema": "result@2.0",
@@ -696,14 +696,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 24.79,
-   "rtfx": 379.84,
    "num_failed": 0,
    "wer": 0.05770206290158945,
    "cer": 0.034847304112570025,
    "num_utterances": 1000,
    "wer_v2": 0.055038890767669935,
-   "cer_v2": 0.03524866362048586
+   "cer_v2": 0.03524866362048586,
+   "seconds": 24.79,
+   "rtfx": 379.84
   },
   "earnings22/clean": {
    "schema": "result@2.0",
@@ -852,14 +852,14 @@
      "loop_share": 0.0
     }
    },
-   "seconds": 20.42,
-   "rtfx": 360.18,
    "num_failed": 0,
    "wer": 0.10527459394861209,
    "cer": 0.07151722313780545,
    "num_utterances": 997,
    "wer_v2": 0.10005975338149818,
-   "cer_v2": 0.07097643597161438
+   "cer_v2": 0.07097643597161438,
+   "seconds": 20.42,
+   "rtfx": 360.18
   },
   "gigaspeech/clean": {
    "schema": "result@2.0",
@@ -993,14 +993,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 33.43,
-   "rtfx": 372.24,
    "num_failed": 0,
    "wer": 0.08733590931190666,
    "cer": 0.04443097132752305,
    "num_utterances": 1000,
    "wer_v2": 0.07881470866705903,
-   "cer_v2": 0.04398608660836055
+   "cer_v2": 0.04398608660836055,
+   "seconds": 33.43,
+   "rtfx": 372.24
   },
   "spgispeech/clean": {
    "schema": "result@2.0",
@@ -1134,14 +1134,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 34.42,
-   "rtfx": 419.31,
    "num_failed": 0,
    "wer": 0.03470900015437658,
    "cer": 0.017921690205534503,
    "num_utterances": 1000,
    "wer_v2": 0.031132609478721762,
-   "cer_v2": 0.017569318188136264
+   "cer_v2": 0.017569318188136264,
+   "seconds": 34.42,
+   "rtfx": 419.31
   },
   "ami_sdm/clean": {
    "schema": "result@2.0",
@@ -1290,14 +1290,14 @@
      "loop_share": 0.0
     }
    },
-   "seconds": 11.58,
-   "rtfx": 319.45,
    "num_failed": 0,
    "wer": 0.06774941995359629,
    "cer": 0.03883400746733043,
    "num_utterances": 991,
    "wer_v2": 0.060696055684454756,
-   "cer_v2": 0.03856868395773295
+   "cer_v2": 0.03856868395773295,
+   "seconds": 11.58,
+   "rtfx": 319.45
   },
   "edacc/clean": {
    "schema": "result@2.0",
@@ -1446,14 +1446,14 @@
      "loop_share": 0.2
     }
    },
-   "seconds": 21.73,
-   "rtfx": 314.41,
    "num_failed": 0,
    "wer": 0.18587177096473428,
    "cer": 0.146812001875293,
    "num_utterances": 995,
    "wer_v2": 0.13475566280919213,
-   "cer_v2": 0.1027143738433066
+   "cer_v2": 0.1027143738433066,
+   "seconds": 21.73,
+   "rtfx": 314.41
   },
   "urgent2024/clean": {
    "schema": "result@2.0",
@@ -1587,14 +1587,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 18.2,
-   "rtfx": 380.64,
    "num_failed": 0,
    "wer": 0.09919715501912818,
    "cer": 0.06613234647665586,
    "num_utterances": 1000,
    "wer_v2": 0.09537151786195378,
-   "cer_v2": 0.06775479691004237
+   "cer_v2": 0.06775479691004237,
+   "seconds": 18.2,
+   "rtfx": 380.64
   },
   "minds14_tel/clean": {
    "schema": "result@2.0",
@@ -1728,14 +1728,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 11.63,
-   "rtfx": 395.68,
    "num_failed": 0,
    "wer": 0.015701189779598206,
    "cer": 0.009500241176100497,
    "num_utterances": 558,
    "wer_v2": 0.015018529354398284,
-   "cer_v2": 0.009608550293521468
+   "cer_v2": 0.009608550293521468,
+   "seconds": 11.63,
+   "rtfx": 395.68
   },
   "vystadial_voip/clean": {
    "schema": "result@2.0",
@@ -1869,14 +1869,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 8.42,
-   "rtfx": 374.51,
    "num_failed": 0,
    "wer": 0.0845368765646062,
    "cer": 0.03056967306379428,
    "num_utterances": 1000,
    "wer_v2": 0.05180050067398421,
-   "cer_v2": 0.02764623641365625
+   "cer_v2": 0.02764623641365625,
+   "seconds": 8.42,
+   "rtfx": 374.51
   },
   "librispeech_clean/noisy": {
    "schema": "result@2.0",
@@ -2010,14 +2010,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 6.58,
-   "rtfx": 318.56,
    "num_failed": 0,
    "wer": 0.018802228412256268,
    "cer": 0.00793071409609769,
    "num_utterances": 300,
    "wer_v2": 0.016713091922005572,
-   "cer_v2": 0.008383282034667098
+   "cer_v2": 0.008383282034667098,
+   "seconds": 6.58,
+   "rtfx": 318.56
   },
   "fleurs_en/noisy": {
    "schema": "result@2.0",
@@ -2151,14 +2151,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.86,
-   "rtfx": 378.0,
    "num_failed": 0,
    "wer": 0.11681388973499848,
    "cer": 0.07072525145579672,
    "num_utterances": 300,
    "wer_v2": 0.10767590618336886,
-   "cer_v2": 0.0725709208605699
+   "cer_v2": 0.0725709208605699,
+   "seconds": 7.86,
+   "rtfx": 378.0
   },
   "voxpopuli_en/noisy": {
    "schema": "result@2.0",
@@ -2292,14 +2292,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.34,
-   "rtfx": 379.14,
    "num_failed": 0,
    "wer": 0.0723589001447178,
    "cer": 0.04253513392077082,
    "num_utterances": 300,
    "wer_v2": 0.06960926193921853,
-   "cer_v2": 0.04307793488983887
+   "cer_v2": 0.04307793488983887,
+   "seconds": 7.34,
+   "rtfx": 379.14
   },
   "earnings22/noisy": {
    "schema": "result@2.0",
@@ -2448,14 +2448,14 @@
      "loop_share": 0.0
     }
    },
-   "seconds": 7.15,
-   "rtfx": 279.89,
    "num_failed": 0,
    "wer": 0.18240595611285265,
    "cer": 0.12787308614646745,
    "num_utterances": 298,
    "wer_v2": 0.1391065830721003,
-   "cer_v2": 0.10664155343288936
+   "cer_v2": 0.10664155343288936,
+   "seconds": 7.15,
+   "rtfx": 279.89
   },
   "librispeech_clean/telephony": {
    "schema": "result@2.0",
@@ -2589,14 +2589,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 6.35,
-   "rtfx": 329.98,
    "num_failed": 0,
    "wer": 0.017757660167130918,
    "cer": 0.006304751791876825,
    "num_utterances": 300,
    "wer_v2": 0.015146239554317549,
-   "cer_v2": 0.006682326259517253
+   "cer_v2": 0.006682326259517253,
+   "seconds": 6.35,
+   "rtfx": 329.98
   },
   "fleurs_en/telephony": {
    "schema": "result@2.0",
@@ -2730,14 +2730,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.85,
-   "rtfx": 378.43,
    "num_failed": 0,
    "wer": 0.07523606457508376,
    "cer": 0.04041821069348862,
    "num_utterances": 300,
    "wer_v2": 0.06807797745964057,
-   "cer_v2": 0.041156311480611794
+   "cer_v2": 0.041156311480611794,
+   "seconds": 7.85,
+   "rtfx": 378.43
   },
   "voxpopuli_en/telephony": {
    "schema": "result@2.0",
@@ -2871,14 +2871,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.23,
-   "rtfx": 385.0,
    "num_failed": 0,
    "wer": 0.061070911722141824,
    "cer": 0.034946706272933774,
    "num_utterances": 300,
    "wer_v2": 0.05832127351664255,
-   "cer_v2": 0.03536516098173448
+   "cer_v2": 0.03536516098173448,
+   "seconds": 7.23,
+   "rtfx": 385.0
   },
   "earnings22/telephony": {
    "schema": "result@2.0",
@@ -3027,14 +3027,14 @@
      "loop_share": 0.0
     }
    },
-   "seconds": 6.05,
-   "rtfx": 330.75,
    "num_failed": 0,
    "wer": 0.10188087774294671,
    "cer": 0.07172108467072495,
    "num_utterances": 298,
    "wer_v2": 0.09600313479623825,
-   "cer_v2": 0.07184178662720302
+   "cer_v2": 0.07184178662720302,
+   "seconds": 6.05,
+   "rtfx": 330.75
   },
   "common_voice_en/telephony": {
    "schema": "result@2.0",
@@ -3168,14 +3168,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 4.4,
-   "rtfx": 401.95,
    "num_failed": 0,
    "wer": 0.12422145328719723,
    "cer": 0.06134094151212553,
    "num_utterances": 300,
    "wer_v2": 0.12006920415224913,
-   "cer_v2": 0.06628242074927954
+   "cer_v2": 0.06628242074927954,
+   "seconds": 4.4,
+   "rtfx": 401.95
   },
   "gigaspeech/telephony": {
    "schema": "result@2.0",
@@ -3309,14 +3309,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 9.77,
-   "rtfx": 381.25,
    "num_failed": 0,
    "wer": 0.08848411602209945,
    "cer": 0.04611147005814942,
    "num_utterances": 300,
    "wer_v2": 0.07950621546961326,
-   "cer_v2": 0.04533978539869556
+   "cer_v2": 0.04533978539869556,
+   "seconds": 9.77,
+   "rtfx": 381.25
   },
   "librispeech_clean/callcenter": {
    "schema": "result@2.0",
@@ -3450,14 +3450,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 6.19,
-   "rtfx": 338.37,
    "num_failed": 0,
    "wer": 0.07311977715877438,
    "cer": 0.04443190868064773,
    "num_utterances": 300,
    "wer_v2": 0.0706824512534819,
-   "cer_v2": 0.04750526486311356
+   "cer_v2": 0.04750526486311356,
+   "seconds": 6.19,
+   "rtfx": 338.37
   },
   "fleurs_en/callcenter": {
    "schema": "result@2.0",
@@ -3591,14 +3591,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 9.72,
-   "rtfx": 305.67,
    "num_failed": 0,
    "wer": 0.23332318001827596,
    "cer": 0.1434356802541027,
    "num_utterances": 300,
    "wer_v2": 0.16113310996040206,
-   "cer_v2": 0.10874531954052168
+   "cer_v2": 0.10874531954052168,
+   "seconds": 9.72,
+   "rtfx": 305.67
   },
   "voxpopuli_en/callcenter": {
    "schema": "result@2.0",
@@ -3732,14 +3732,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.12,
-   "rtfx": 390.75,
    "num_failed": 0,
    "wer": 0.10578871201157743,
    "cer": 0.064002396345573,
    "num_utterances": 300,
    "wer_v2": 0.10115774240231548,
-   "cer_v2": 0.06594720636154375
+   "cer_v2": 0.06594720636154375,
+   "seconds": 7.12,
+   "rtfx": 390.75
   },
   "earnings22/callcenter": {
    "schema": "result@2.0",
@@ -3888,14 +3888,14 @@
      "loop_share": 0.0
     }
    },
-   "seconds": 6.0,
-   "rtfx": 333.48,
    "num_failed": 0,
    "wer": 0.20376175548589343,
    "cer": 0.14244604316546763,
    "num_utterances": 298,
    "wer_v2": 0.19278996865203762,
-   "cer_v2": 0.14377326337503923
+   "cer_v2": 0.14377326337503923,
+   "seconds": 6.0,
+   "rtfx": 333.48
   },
   "common_voice_en/callcenter": {
    "schema": "result@2.0",
@@ -4029,14 +4029,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 7.13,
-   "rtfx": 248.12,
    "num_failed": 0,
    "wer": 0.5418685121107266,
    "cer": 0.336599888358246,
    "num_utterances": 300,
    "wer_v2": 0.30519031141868513,
-   "cer_v2": 0.22500554200842385
+   "cer_v2": 0.22500554200842385,
+   "seconds": 7.13,
+   "rtfx": 248.12
   },
   "gigaspeech/callcenter": {
    "schema": "result@2.0",
@@ -4170,14 +4170,14 @@
      "marker_msa_replacement": null
     }
    },
-   "seconds": 9.44,
-   "rtfx": 394.46,
    "num_failed": 0,
    "wer": 0.15305593922651933,
    "cer": 0.09281803652191654,
    "num_utterances": 300,
    "wer_v2": 0.1424378453038674,
-   "cer_v2": 0.09593940669051125
+   "cer_v2": 0.09593940669051125,
+   "seconds": 9.44,
+   "rtfx": 394.46
   },
   "noise_only/clean": {
    "schema": "result@2.0",
@@ -4326,15 +4326,15 @@
      "loop_share": 0.04666666666666667
     }
    },
-   "seconds": 16.63,
-   "rtfx": 161.77,
    "num_failed": 0,
    "hallucination_rate": 0.6866666666666666,
    "hallucination_3plus": 0.6166666666666667,
    "inserted_wpm": 183.70601684046173,
    "num_utterances": 300,
    "wer": null,
-   "cer": null
+   "cer": null,
+   "seconds": 16.63,
+   "rtfx": 161.77
   }
  },
  "model": "cohere-transcribe-03-2026",

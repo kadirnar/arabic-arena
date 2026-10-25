@@ -16,6 +16,7 @@ datasets:
     domain: audiobooks
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: speaker_id}  # 40 speakers
 
   librispeech_other:
     source: openslr/librispeech_asr
@@ -28,6 +29,7 @@ datasets:
     domain: audiobooks
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: speaker_id}  # 33 speakers
 
   fleurs_en:
     source: google/fleurs
@@ -40,6 +42,7 @@ datasets:
     domain: read wikipedia
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: id}  # sentence: 647 clips of 350 sentences, a sentence read twice is one cluster
 
   common_voice_en:
     source: hf-audio/open-asr-leaderboard
@@ -52,6 +55,7 @@ datasets:
     domain: read (crowd-sourced)
     license: CC0-1.0
     redistribute: true
+    cluster: {field: id}  # the mirror's id is Common Voice's client_id (128-hex speaker hash): 974 speakers
 
   voxpopuli_en:
     source: hf-audio/open-asr-leaderboard
@@ -64,6 +68,7 @@ datasets:
     domain: parliament
     license: CC0-1.0
     redistribute: true
+    cluster: {field: id, regex: '^(.*?)_'}  # session item (one plenary recording): 400
 
   earnings22:
     source: hf-audio/open-asr-leaderboard
@@ -76,6 +81,7 @@ datasets:
     domain: earnings calls
     license: CC-BY-SA-4.0
     redistribute: true
+    cluster: {field: id, regex: '^([^/]+)/'}  # call: 1,000 rows from 6 calls
 
   gigaspeech:
     source: hf-audio/open-asr-leaderboard
@@ -89,6 +95,7 @@ datasets:
     domain: podcasts / youtube
     license: GigaSpeech terms
     redistribute: false
+    cluster: {field: id, regex: '^([A-Z]+\d+)_'}  # podcast / video / audiobook file: 94
 
   spgispeech:
     source: hf-audio/open-asr-leaderboard
@@ -102,6 +109,7 @@ datasets:
     domain: finance calls
     license: Kensho SPGISpeech terms
     redistribute: false
+    cluster: {field: id, regex: '^([^/]+)/'}  # call: 565
 
   ami_sdm:
     source: hf-audio/open-asr-leaderboard
@@ -114,6 +122,7 @@ datasets:
     domain: meetings
     license: CC-BY-4.0
     redistribute: true
+    cluster: {field: id, regex: '^AMI_([A-Z]+\d+[a-z])_'}  # meeting: 16
 
   edacc:
     source: edinburghcstr/edacc
@@ -125,6 +134,7 @@ datasets:
     domain: conversation
     license: CC-BY-SA-4.0
     redistribute: true
+    cluster: {field: speaker, regex: '^(EDACC-C\d+)'}  # conversation (two speakers): 30
 
   urgent2024:
     source: hf-audio/open-asr-leaderboard
@@ -137,6 +147,7 @@ datasets:
     domain: noisy (-5..20 dB)
     license: mixed
     redistribute: false
+    # no speaker or recording column in the mirror (fileid_N), so the bootstrap cannot cluster it
 
   # ---- real telephone speech ------------------------------------------------------------
   minds14_tel:
@@ -149,6 +160,7 @@ datasets:
     domain: banking IVR calls (8 kHz)
     license: CC-BY-4.0
     redistribute: true
+    # no caller column (one clip per call, callers unknown), so the bootstrap cannot cluster it
 
   vystadial_voip:
     source: BrunoHays/vystadial-telephony-en
@@ -160,6 +172,7 @@ datasets:
     domain: VoIP dialogue system
     license: CC-BY-SA-3.0
     redistribute: true
+    cluster: {field: audio_id, regex: '^vystadial-telephony-en_(.*_\d{6}_\d{6})_\d+_\d+$'}  # call: one utterance per call
 
 # Noise-only clips for the hallucination metric (scripts/build_hallucination_set.py). v1 (data/en/noise_only,
 # 300 clips) is the published set; v2 (--version 2 -> data/en/noise_only_v2) has groups G1-G3, G5, G7 and
