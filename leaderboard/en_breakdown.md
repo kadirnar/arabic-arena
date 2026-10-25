@@ -16,6 +16,7 @@
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 11.7 | 14.7 | 12.4 | 9.5 | 9.7 | 10.5 | 8.9 | 10.7 | 11.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 11.7 | 14.6 | 12.5 | 9.6 | 9.8 | 10.8 | 8.8 | 10.6 | 12.1 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s500 | 11.7 | 15.1 | 12.4 | 9.7 | 10.0 | 10.8 | 8.8 | 10.6 | 12.0 |
+| arabic-stt-qwen3-asr-1.7b-run6b-soup70 | 11.5 | 14.8 | 12.7 | 9.6 | 10.2 | 11.2 | 8.6 | 10.6 | 11.5 |
 | arabic-stt-qwen3-asr-1.7b-run9-final | 11.9 | 15.1 | 12.5 | 9.6 | 10.3 | 11.0 | 9.2 | 10.6 | 12.8 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.1 | 15.4 | 12.8 | 9.5 | 10.3 | 10.4 | 9.2 | 10.7 | 12.7 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 12.1 | 15.2 | 13.2 | 9.7 | 10.4 | 10.7 | 9.3 | 10.9 | 13.0 |
@@ -52,6 +53,7 @@
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 16.4 | 16.2 | 9.6 | 9.4 | 11.1 | 11.9 | 11.6 | 10.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 16.4 | 16.2 | 9.7 | 9.9 | 11.7 | 12.0 | 12.0 | 10.8 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s500 | 16.4 | 16.8 | 9.8 | 9.5 | 11.4 | 12.1 | 11.9 | 11.0 |
+| arabic-stt-qwen3-asr-1.7b-run6b-soup70 | 17.0 | 17.4 | 8.6 | 10.3 | 10.4 | 13.2 | 11.8 | 11.5 |
 | arabic-stt-qwen3-asr-1.7b-run9-final | 17.1 | 16.9 | 9.7 | 9.8 | 12.5 | 12.2 | 11.6 | 11.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 17.2 | 16.9 | 10.0 | 9.7 | 12.9 | 12.4 | 11.6 | 11.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 17.4 | 17.7 | 9.6 | 9.5 | 13.1 | 12.9 | 12.0 | 11.2 |
@@ -88,6 +90,7 @@
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 12.3 | 17.0 | 11.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 12.3 | 17.3 | 11.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s500 | 12.3 | 17.2 | 12.1 |
+| arabic-stt-qwen3-asr-1.7b-run6b-soup70 | 12.5 | 17.8 | 12.5 |
 | arabic-stt-qwen3-asr-1.7b-run9-final | 12.6 | 18.0 | 12.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 12.8 | 17.9 | 12.3 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 13.0 | 18.4 | 12.5 |
@@ -124,6 +127,7 @@
 | arabic-stt-qwen3-asr-1.7b-run20-mwer-s800 | 9.8 | 11.3 | 9.9 | 15.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s1000 | 9.9 | 11.3 | 10.0 | 15.9 |
 | arabic-stt-qwen3-asr-1.7b-run20-s7all-s500 | 9.9 | 11.3 | 10.0 | 16.1 |
+| arabic-stt-qwen3-asr-1.7b-run6b-soup70 | 9.9 | 11.3 | 10.0 | 16.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-final | 10.1 | 11.7 | 10.1 | 16.1 |
 | arabic-stt-qwen3-asr-1.7b-run9-rl-step-500 | 10.1 | 11.8 | 10.1 | 16.2 |
 | arabic-stt-qwen3-asr-1.7b-run9-step-12000 | 10.3 | 12.0 | 10.3 | 16.4 |
