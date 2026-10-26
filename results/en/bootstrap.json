@@ -147,8 +147,8 @@
     0.21078
    ],
    "rank": [
-    35,
-    39
+    36,
+    40
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-best-grpo2": {
@@ -4351,6 +4351,156 @@
     28
    ]
   },
+  "fun-asr-mlt-nano-2512": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.01437,
+     0.01917
+    ],
+    "librispeech_other/clean": [
+     0.03558,
+     0.04484
+    ],
+    "fleurs_en/clean": [
+     0.06084,
+     0.07643
+    ],
+    "common_voice_en/clean": [
+     0.09097,
+     0.1137
+    ],
+    "voxpopuli_en/clean": [
+     0.06271,
+     0.07182
+    ],
+    "earnings22/clean": [
+     0.11054,
+     0.12583
+    ],
+    "gigaspeech/clean": [
+     0.08192,
+     0.09215
+    ],
+    "spgispeech/clean": [
+     0.02189,
+     0.02592
+    ],
+    "ami_sdm/clean": [
+     0.14402,
+     0.17681
+    ],
+    "edacc/clean": [
+     0.18145,
+     0.21439
+    ],
+    "urgent2024/clean": [
+     0.133,
+     0.15957
+    ],
+    "librispeech_clean/noisy": [
+     0.01885,
+     0.02991
+    ],
+    "fleurs_en/noisy": [
+     0.09947,
+     0.14
+    ],
+    "voxpopuli_en/noisy": [
+     0.08459,
+     0.10713
+    ],
+    "earnings22/noisy": [
+     0.14397,
+     0.18943
+    ],
+    "minds14_tel/clean": [
+     0.01778,
+     0.02862
+    ],
+    "vystadial_voip/clean": [
+     0.07954,
+     0.10122
+    ],
+    "librispeech_clean/telephony": [
+     0.021,
+     0.0304
+    ],
+    "fleurs_en/telephony": [
+     0.07311,
+     0.0923
+    ],
+    "voxpopuli_en/telephony": [
+     0.08211,
+     0.1015
+    ],
+    "earnings22/telephony": [
+     0.1289,
+     0.16177
+    ],
+    "common_voice_en/telephony": [
+     0.16294,
+     0.22074
+    ],
+    "gigaspeech/telephony": [
+     0.08524,
+     0.10691
+    ],
+    "librispeech_clean/callcenter": [
+     0.11018,
+     0.16238
+    ],
+    "fleurs_en/callcenter": [
+     0.2054,
+     0.26279
+    ],
+    "voxpopuli_en/callcenter": [
+     0.16785,
+     0.21101
+    ],
+    "earnings22/callcenter": [
+     0.26239,
+     0.33009
+    ],
+    "common_voice_en/callcenter": [
+     0.41307,
+     0.51036
+    ],
+    "gigaspeech/callcenter": [
+     0.18545,
+     0.23091
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.07306,
+     0.07856
+    ],
+    "accented": [
+     0.18145,
+     0.21439
+    ],
+    "noisy": [
+     0.10361,
+     0.11765
+    ],
+    "telephony": [
+     0.08805,
+     0.09837
+    ],
+    "callcenter": [
+     0.24063,
+     0.26624
+    ]
+   },
+   "arena_wer": [
+    0.12748,
+    0.13458
+   ],
+   "rank": [
+    33,
+    34
+   ]
+  },
   "gemma-4-e2b-it": {
    "sets": {
     "librispeech_clean/clean": [
@@ -4497,8 +4647,8 @@
     0.22549
    ],
    "rank": [
-    38,
-    41
+    39,
+    42
    ]
   },
   "jais-asr": {
@@ -4647,8 +4797,8 @@
     0.3401
    ],
    "rank": [
-    44,
-    44
+    45,
+    45
    ]
   },
   "mms-1b-all": {
@@ -4797,8 +4947,8 @@
     0.2617
    ],
    "rank": [
-    42,
-    42
+    43,
+    43
    ]
   },
   "nemotron-3.5-asr-streaming-0.6b": {
@@ -4947,8 +5097,8 @@
     0.19342
    ],
    "rank": [
-    36,
-    37
+    37,
+    38
    ]
   },
   "omniasr-ctc-1b-v2": {
@@ -5097,8 +5247,8 @@
     0.21737
    ],
    "rank": [
-    39,
-    40
+    40,
+    41
    ]
   },
   "omniasr-ctc-300m-v2": {
@@ -5247,8 +5397,8 @@
     0.30577
    ],
    "rank": [
-    43,
-    43
+    44,
+    44
    ]
   },
   "omniasr-ctc-3b-v2": {
@@ -5397,8 +5547,8 @@
     0.19982
    ],
    "rank": [
-    37,
-    38
+    38,
+    39
    ]
   },
   "omniasr-llm-1b-v2": {
@@ -5547,8 +5697,8 @@
     0.1837
    ],
    "rank": [
-    34,
-    36
+    35,
+    37
    ]
   },
   "omniasr-llm-300m-v2": {
@@ -5697,8 +5847,8 @@
     0.23318
    ],
    "rank": [
-    40,
-    41
+    41,
+    42
    ]
   },
   "parakeet-tdt-0.6b-v3": {
@@ -6297,8 +6447,8 @@
     0.36882
    ],
    "rank": [
-    45,
-    45
+    46,
+    46
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -6447,8 +6597,8 @@
     0.17682
    ],
    "rank": [
-    34,
-    35
+    35,
+    36
    ]
   },
   "whisper-large-v3": {
@@ -6748,7 +6898,7 @@
    ],
    "rank": [
     33,
-    33
+    34
    ]
   }
  }
