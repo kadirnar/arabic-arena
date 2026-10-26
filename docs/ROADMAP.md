@@ -80,6 +80,7 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 ## M5 — English suite
 - [x] LibriSpeech, AMI, Earnings22, GigaSpeech, SPGISpeech, VoxPopuli, CV, FLEURS, EdAcc, URGENT-2024
 - [x] Real telephony: MInDS-14, Vystadial VoIP
+- [x] 47 models re-run on scoring v2 (one A10), with bootstrap cluster keys wherever a set has them
 - [ ] Remaining English models (Canary-Qwen-2.5B, Granite-Speech)
 
 ## M6 — Leaderboard UX
