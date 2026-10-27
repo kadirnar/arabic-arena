@@ -23501,10 +23501,7 @@ window.ARENA_DATA['en'] = {
     0.1241,
     0.13143
    ],
-   "rank_range": [
-    33,
-    33
-   ],
+   "rank_range": null,
    "rtfx": 32.2,
    "audio_hours": 38.41,
    "v2": {
@@ -24187,8 +24184,8 @@ window.ARENA_DATA['en'] = {
     0.13458
    ],
    "rank_range": [
-    34,
-    35
+    33,
+    34
    ],
    "rtfx": 12.8,
    "audio_hours": 38.41,
@@ -24901,8 +24898,8 @@ window.ARENA_DATA['en'] = {
     0.14697
    ],
    "rank_range": [
-    34,
-    35
+    33,
+    34
    ],
    "rtfx": 133.4,
    "audio_hours": 38.41,
@@ -25615,8 +25612,8 @@ window.ARENA_DATA['en'] = {
     0.17682
    ],
    "rank_range": [
-    36,
-    37
+    35,
+    36
    ],
    "rtfx": 20.5,
    "audio_hours": 38.41,
@@ -26328,8 +26325,8 @@ window.ARENA_DATA['en'] = {
     0.1837
    ],
    "rank_range": [
-    36,
-    38
+    35,
+    37
    ],
    "rtfx": 10.2,
    "audio_hours": 38.41,
@@ -27042,8 +27039,8 @@ window.ARENA_DATA['en'] = {
     0.19342
    ],
    "rank_range": [
-    38,
-    39
+    37,
+    38
    ],
    "rtfx": 335.1,
    "audio_hours": 38.41,
@@ -27756,8 +27753,8 @@ window.ARENA_DATA['en'] = {
     0.21078
    ],
    "rank_range": [
-    37,
-    42
+    36,
+    41
    ],
    "rtfx": 98.5,
    "audio_hours": 38.41,
@@ -28470,8 +28467,8 @@ window.ARENA_DATA['en'] = {
     0.20091
    ],
    "rank_range": [
-    39,
-    41
+    38,
+    40
    ],
    "rtfx": 10.2,
    "audio_hours": 38.41,
@@ -29183,8 +29180,8 @@ window.ARENA_DATA['en'] = {
     0.19982
    ],
    "rank_range": [
-    39,
-    41
+    38,
+    40
    ],
    "rtfx": 30.2,
    "audio_hours": 38.41,
@@ -29896,8 +29893,8 @@ window.ARENA_DATA['en'] = {
     0.21737
    ],
    "rank_range": [
-    42,
-    43
+    41,
+    42
    ],
    "rtfx": 77.9,
    "audio_hours": 38.41,
@@ -30610,8 +30607,8 @@ window.ARENA_DATA['en'] = {
     0.22549
    ],
    "rank_range": [
-    41,
-    44
+    40,
+    43
    ],
    "rtfx": 36.2,
    "audio_hours": 38.41,
@@ -31323,8 +31320,8 @@ window.ARENA_DATA['en'] = {
     0.23318
    ],
    "rank_range": [
-    43,
-    44
+    42,
+    43
    ],
    "rtfx": 10.9,
    "audio_hours": 38.41,
@@ -32037,8 +32034,8 @@ window.ARENA_DATA['en'] = {
     0.2617
    ],
    "rank_range": [
-    45,
-    45
+    44,
+    44
    ],
    "rtfx": 88.8,
    "audio_hours": 38.41,
@@ -32750,8 +32747,8 @@ window.ARENA_DATA['en'] = {
     0.30577
    ],
    "rank_range": [
-    46,
-    46
+    45,
+    45
    ],
    "rtfx": 178.1,
    "audio_hours": 38.41,
@@ -33464,8 +33461,8 @@ window.ARENA_DATA['en'] = {
     0.3401
    ],
    "rank_range": [
-    47,
-    47
+    46,
+    46
    ],
    "rtfx": 50.6,
    "audio_hours": 38.41,
@@ -34178,8 +34175,8 @@ window.ARENA_DATA['en'] = {
     0.36882
    ],
    "rank_range": [
-    48,
-    48
+    47,
+    47
    ],
    "rtfx": 47.4,
    "audio_hours": 38.41,

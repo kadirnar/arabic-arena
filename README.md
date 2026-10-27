@@ -530,6 +530,13 @@ row of this board included, so their Earnings-22 scores are not held out); the r
 lines and best-grpo2 also SPGISpeech. The Zero-shot column averages only the sets no ranked model
 trained on.
 
+Closed-API reference (unranked, shown on the site with an API badge): `soniox-stt-async-v5`, run one
+request per clip with the language hint `en` (not strict) on every set, scores an Arena WER v2 of
+9.18, between whisper-large-v3-turbo and omniasr-llm-1b-v2. 15 of its 17,305 transcripts (0.1 %)
+came back in another script, 10 of them in Indic scripts on Indian-accented clips; Soniox's
+`language_hints_strict` would prevent that, which is worth at most 0.05 Arena points. Its RTFx is the
+wall-clock time of the API calls.
+
 <!-- LEADERBOARD:en:START -->
 | # | Model | Params (B) | **Arena WER v2** | 95% CI | Rank set | Arena CER v2 | Clean | Accented | Noisy | Telephony | Call-center | Strict (L1) | Arithmetic | Real audio | Zero-shot | Exposure | Halluc. ≥3 words | Terms missed | v1 Arena | RTFx |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|

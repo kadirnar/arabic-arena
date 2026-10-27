@@ -21,6 +21,7 @@ import numpy as np
 
 from .data import Suite
 from .degrade.chain import seed_for
+from .models.registry import MODELS
 from .runner import RESULTS_DIR
 
 
@@ -105,9 +106,10 @@ def compute(suite_name: str, n_boot: int = 1000) -> dict:
             entry["arena_wer"] = ci(arena[m])
         out["models"][m] = entry
 
-    # Rank interval among the models that have a full Arena score (rank 1 = lowest WER).
-    if arena:
-        names = list(arena)
+    # Rank interval among the ranked models that have a full Arena score (rank 1 = lowest WER); closed APIs
+    # are unranked references, so they do not take a place in anyone's rank interval.
+    names = [m for m in arena if getattr(MODELS.get(m), "kind", "open") != "api"]
+    if names:
         mat = np.stack([arena[m] for m in names], axis=1)  # (B, M)
         ranks = mat.argsort(axis=1).argsort(axis=1) + 1
         for j, m in enumerate(names):

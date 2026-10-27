@@ -142,21 +142,21 @@ Intervals likely too narrow on: ami_sdm/clean (few clusters: G=16), earnings22/c
 | 30 | [qwen3-asr-0.6b](https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf) | 0.94 | **11.59** | 11.25–11.97 | 29–31 | 7.18 | 6.91 | 15.72 | 10.84 | 7.93 | 22.09 | 95.00 | 182.9 |
 | 31 | [canary-1b-v2](https://huggingface.co/nvidia/canary-1b-v2) | 0.98 | **11.82** | 11.46–12.20 | 30–31 | 7.52 | 7.30 | 18.95 | 11.37 | 8.17 | 21.23 | 24.00 | 113.3 |
 | 32 | [whisper-large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.54 | **12.30** | 11.95–12.67 | 31–32 | 7.96 | 7.69 | 19.14 | 11.03 | 8.52 | 22.59 | 99.00 | 84.5 |
-| 33 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **13.08** | 12.75–13.46 | 34–35 | 8.02 | 7.58 | 19.65 | 11.02 | 9.31 | 25.34 | 91.00 | 12.8 |
-| 34 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **13.61** | 12.76–14.70 | 34–35 | 8.84 | 8.23 | 19.59 | 11.44 | 10.40 | 25.33 | 85.00 | 133.4 |
-| 35 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **17.18** | 16.69–17.68 | 36–37 | 12.94 | 9.27 | 22.72 | 17.09 | 10.89 | 34.61 | 9.33 | 20.5 |
-| 36 | [omniasr-llm-1b-v2](https://huggingface.co/facebook/omniASR-LLM-1B) | 2.28 | **17.70** | 17.04–18.37 | 36–38 | 10.36 | 9.39 | 21.83 | 13.75 | 12.20 | 37.85 | 100.00 | 10.2 |
-| 37 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **18.92** | 18.48–19.34 | 38–39 | 13.17 | 10.04 | 23.84 | 17.97 | 12.93 | 38.27 | 4.00 | 335.1 |
-| 38 | [arabic-stt-qwen3-asr-1.7b](https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run3) *(gated weights)* | 2.04 | **19.14** | 17.62–21.08 | 37–42 | 12.61 | 10.22 | 19.45 | 20.56 | 13.10 | 38.06 | 98.67 | 98.5 |
-| 39 | [gemma-4-e4b-it](https://huggingface.co/google/gemma-4-E4B-it) | 8.00 | **19.51** | 18.98–20.09 | 39–41 | 12.71 | 9.39 | 22.31 | 17.59 | 12.99 | 42.45 | 43.00 | 10.2 |
-| 40 | [omniasr-ctc-3b-v2](https://huggingface.co/facebook/omniASR-CTC-3B) | 3.08 | **19.56** | 19.15–19.98 | 39–41 | 11.11 | 10.88 | 25.16 | 17.48 | 16.92 | 35.83 | 19.33 | 30.2 |
-| 41 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **21.29** | 20.91–21.74 | 42–43 | 11.41 | 12.97 | 27.05 | 20.00 | 18.21 | 36.89 | 23.00 | 77.9 |
-| 42 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **21.30** | 20.37–22.55 | 41–44 | 13.53 | 11.19 | 23.93 | 19.81 | 14.81 | 43.94 | 88.67 | 36.2 |
-| 43 | [omniasr-llm-300m-v2](https://huggingface.co/facebook/omniASR-LLM-300M) | 1.63 | **22.41** | 21.61–23.32 | 43–44 | 13.14 | 11.63 | 26.93 | 17.90 | 15.95 | 47.62 | 100.00 | 10.9 |
-| 44 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) | 0.96 | **25.74** | 25.29–26.17 | 45 | 13.28 | 15.46 | 42.86 | 21.97 | 21.60 | 44.57 | 99.00 | 88.8 |
-| 45 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **30.13** | 29.72–30.58 | 46 | 15.39 | 19.20 | 38.25 | 28.27 | 26.73 | 49.96 | 24.67 | 178.1 |
-| 46 | [jais-asr](https://huggingface.co/IFM/Jais-ASR) | 5.72 | **33.26** | 32.53–34.01 | 47 | 29.96 | 13.92 | 24.99 | 41.25 | 23.18 | 69.93 | 2.33 | 50.6 |
-| 47 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **35.74** | 34.67–36.88 | 48 | 25.09 | 17.17 | 49.08 | 20.48 | 36.62 | 70.96 | 88.67 | 47.4 |
+| 33 | [fun-asr-mlt-nano-2512](https://huggingface.co/FunAudioLLM/Fun-ASR-MLT-Nano-2512) | 0.80 | **13.08** | 12.75–13.46 | 33–34 | 8.02 | 7.58 | 19.65 | 11.02 | 9.31 | 25.34 | 91.00 | 12.8 |
+| 34 | [whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) | 0.81 | **13.61** | 12.76–14.70 | 33–34 | 8.84 | 8.23 | 19.59 | 11.44 | 10.40 | 25.33 | 85.00 | 133.4 |
+| 35 | [voxtral-mini-4b-realtime-2602](https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602) | 4.43 | **17.18** | 16.69–17.68 | 35–36 | 12.94 | 9.27 | 22.72 | 17.09 | 10.89 | 34.61 | 9.33 | 20.5 |
+| 36 | [omniasr-llm-1b-v2](https://huggingface.co/facebook/omniASR-LLM-1B) | 2.28 | **17.70** | 17.04–18.37 | 35–37 | 10.36 | 9.39 | 21.83 | 13.75 | 12.20 | 37.85 | 100.00 | 10.2 |
+| 37 | [nemotron-3.5-asr-streaming-0.6b](https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b) | 0.64 | **18.92** | 18.48–19.34 | 37–38 | 13.17 | 10.04 | 23.84 | 17.97 | 12.93 | 38.27 | 4.00 | 335.1 |
+| 38 | [arabic-stt-qwen3-asr-1.7b](https://huggingface.co/Arabic-STT/qwen3-asr-1.7b-ar-run3) *(gated weights)* | 2.04 | **19.14** | 17.62–21.08 | 36–41 | 12.61 | 10.22 | 19.45 | 20.56 | 13.10 | 38.06 | 98.67 | 98.5 |
+| 39 | [gemma-4-e4b-it](https://huggingface.co/google/gemma-4-E4B-it) | 8.00 | **19.51** | 18.98–20.09 | 38–40 | 12.71 | 9.39 | 22.31 | 17.59 | 12.99 | 42.45 | 43.00 | 10.2 |
+| 40 | [omniasr-ctc-3b-v2](https://huggingface.co/facebook/omniASR-CTC-3B) | 3.08 | **19.56** | 19.15–19.98 | 38–40 | 11.11 | 10.88 | 25.16 | 17.48 | 16.92 | 35.83 | 19.33 | 30.2 |
+| 41 | [omniasr-ctc-1b-v2](https://huggingface.co/facebook/omniASR-CTC-1B) | 0.98 | **21.29** | 20.91–21.74 | 41–42 | 11.41 | 12.97 | 27.05 | 20.00 | 18.21 | 36.89 | 23.00 | 77.9 |
+| 42 | [gemma-4-e2b-it](https://huggingface.co/google/gemma-4-E2B-it) | 5.10 | **21.30** | 20.37–22.55 | 40–43 | 13.53 | 11.19 | 23.93 | 19.81 | 14.81 | 43.94 | 88.67 | 36.2 |
+| 43 | [omniasr-llm-300m-v2](https://huggingface.co/facebook/omniASR-LLM-300M) | 1.63 | **22.41** | 21.61–23.32 | 42–43 | 13.14 | 11.63 | 26.93 | 17.90 | 15.95 | 47.62 | 100.00 | 10.9 |
+| 44 | [mms-1b-all](https://huggingface.co/facebook/mms-1b-all) | 0.96 | **25.74** | 25.29–26.17 | 44 | 13.28 | 15.46 | 42.86 | 21.97 | 21.60 | 44.57 | 99.00 | 88.8 |
+| 45 | [omniasr-ctc-300m-v2](https://huggingface.co/facebook/omniASR-CTC-300M) | 0.33 | **30.13** | 29.72–30.58 | 45 | 15.39 | 19.20 | 38.25 | 28.27 | 26.73 | 49.96 | 24.67 | 178.1 |
+| 46 | [jais-asr](https://huggingface.co/IFM/Jais-ASR) | 5.72 | **33.26** | 32.53–34.01 | 46 | 29.96 | 13.92 | 24.99 | 41.25 | 23.18 | 69.93 | 2.33 | 50.6 |
+| 47 | [seamless-m4t-v2-large](https://huggingface.co/facebook/seamless-m4t-v2-large) | 2.31 | **35.74** | 34.67–36.88 | 47 | 25.09 | 17.17 | 49.08 | 20.48 | 36.62 | 70.96 | 88.67 | 47.4 |
 
 WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, Accented 5%, Noisy 15%, Telephony 22%, Call-center 22%). Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which the model output any words; not part of the Arena score. 95% CI and rank range: paired bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not reliably separated by this benchmark.
 
