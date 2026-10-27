@@ -317,15 +317,30 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     # Cohere-AR's SFT of cohere-transcribe-arabic-07-2026 for calls (10,000-step run, a branch step-<N> every
     # 2,000 steps, main = the latest). The card names its 69 training sources only by kind, except Earnings-22
     # (all of it, so in-domain on the English board), SpokenWOZ and L2-ARCTIC.
-    _M("cohere-transcribe-ar-sft-step-6000", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-sft", 2.07,
-       "gated weights", kind="gated", batch_size=32, finetune_of="CohereLabs/cohere-transcribe-arabic-07-2026",
-       kwargs={"revision": "4005a4913c3ead33599987154bb72f7ae4060748", "punctuation": True},
-       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-sft/tree/step-6000", in_domain=("earnings22",),
+    *[_M(f"cohere-transcribe-ar-sft-step-{step}", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-sft", 2.07,
+         "gated weights", kind="gated", batch_size=32, finetune_of="CohereLabs/cohere-transcribe-arabic-07-2026",
+         kwargs={"revision": sha, "punctuation": True},
+         repo=f"https://huggingface.co/Cohere-AR/cohere-transcribe-ar-sft/tree/step-{step}", in_domain=("earnings22",),
+         training_data="undisclosed",
+         notes=f"Cohere-AR SFT for Arabic, English and code-switched phone calls, snapshot step {step} of 10,000 "
+               f"(branch `step-{step}`, commit {sha[:10]}){extra}, weights gated on the Hub; run with the card's prompt "
+               "(<|pnc|>, language forced). 69 training sources named only by kind on the card, except Earnings-22, "
+               "SpokenWOZ and L2-ARCTIC")
+      for step, sha, extra in [
+          ("6000", "4005a4913c3ead33599987154bb72f7ae4060748", ""),
+          ("10000", "2c712c47f44e04776757cacc0c5e2ae28ff697f6", ", the last one and the base of cohere-transcribe-ar-rl"),
+      ]],
+    # Cohere-AR's MWER post-training of that SFT at step 10000 (800 steps, a branch step-<N> every 200, main = the
+    # latest); it inherits the SFT's Earnings-22 exposure, and its own data is named only by kind.
+    _M("cohere-transcribe-ar-rl-step-800", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-sft",
+       kwargs={"revision": "eb22db2e4ce4e610c9eb4998026de12d8e19da59", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl/tree/step-800", in_domain=("earnings22",),
        training_data="undisclosed",
-       notes="Cohere-AR SFT for Arabic, English and code-switched phone calls, snapshot step 6000 of 10,000 (branch "
-             "`step-6000`, commit 4005a4913c), weights gated on the Hub; run with the card's prompt (<|pnc|>, "
-             "language forced). 69 training sources named only by kind on the card, except Earnings-22, SpokenWOZ "
-             "and L2-ARCTIC"),
+       notes="Cohere-AR MWER post-training (decoder only, KL to the SFT) of cohere-transcribe-ar-sft at step 10000, "
+             "snapshot step 800 of 800 (branch `step-800`, commit eb22db2e4c), weights gated on the Hub; run with "
+             "the card's prompt (<|pnc|>, language forced). Its SFT base names Earnings-22 among its training "
+             "sources; the MWER data (48,061 clips, 119 h) is named only by kind"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
