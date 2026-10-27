@@ -66,14 +66,21 @@ class CohereASR(ASRModel):
         super().__init__(spec, device)
         from transformers import AutoProcessor, CohereAsrForConditionalGeneration
 
-        self.processor = AutoProcessor.from_pretrained(spec.kwargs.get("processor", spec.hf_id))
-        self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, dtype=NATIVE).to(device).eval()
+        # kwargs.revision: a branch, tag or commit of the repo (one repo holding several checkpoints), for the
+        # weights and the repo's own processor. kwargs.punctuation: prompt with <|pnc|>, for fine-tunes whose
+        # card prompts that way (the default prompt is <|nopnc|>; scoring ignores punctuation either way).
+        rev = spec.kwargs.get("revision")
+        proc = spec.kwargs.get("processor")
+        self.processor = AutoProcessor.from_pretrained(proc or spec.hf_id, revision=None if proc else rev)
+        self.model = CohereAsrForConditionalGeneration.from_pretrained(spec.hf_id, revision=rev,
+                                                                       dtype=NATIVE).to(device).eval()
+        self.punctuation = spec.kwargs.get("punctuation", False)
 
     def transcribe(self, audios, language):
         import torch
 
         inputs = self.processor(list(audios), sampling_rate=SR, return_tensors="pt", language=language,
-                                punctuation=False)
+                                punctuation=self.punctuation)
         chunk_index = inputs.pop("audio_chunk_index", None)
         inputs = inputs.to(self.device, dtype=self.model.dtype)
         with torch.inference_mode():

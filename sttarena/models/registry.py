@@ -314,6 +314,18 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        2.07, "Apache-2.0", languages=("ar",), batch_size=32,
        kwargs={"processor": "CohereLabs/cohere-transcribe-arabic-07-2026"},
        finetune_of="CohereLabs/cohere-transcribe-arabic-07-2026", notes="lahgtna-v3 (13 dialects)"),
+    # Cohere-AR's SFT of cohere-transcribe-arabic-07-2026 for calls (10,000-step run, a branch step-<N> every
+    # 2,000 steps, main = the latest). The card names its 69 training sources only by kind, except Earnings-22
+    # (all of it, so in-domain on the English board), SpokenWOZ and L2-ARCTIC.
+    _M("cohere-transcribe-ar-sft-step-6000", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-sft", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="CohereLabs/cohere-transcribe-arabic-07-2026",
+       kwargs={"revision": "4005a4913c3ead33599987154bb72f7ae4060748", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-sft/tree/step-6000", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR SFT for Arabic, English and code-switched phone calls, snapshot step 6000 of 10,000 (branch "
+             "`step-6000`, commit 4005a4913c), weights gated on the Hub; run with the card's prompt (<|pnc|>, "
+             "language forced). 69 training sources named only by kind on the card, except Earnings-22, SpokenWOZ "
+             "and L2-ARCTIC"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
