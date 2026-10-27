@@ -147,8 +147,8 @@
     0.21078
    ],
    "rank": [
-    36,
-    41
+    37,
+    42
    ]
   },
   "arabic-stt-qwen3-asr-1.7b-best-grpo2": {
@@ -4497,8 +4497,8 @@
     0.13458
    ],
    "rank": [
-    33,
-    34
+    34,
+    35
    ]
   },
   "gemma-4-e2b-it": {
@@ -4647,8 +4647,8 @@
     0.22549
    ],
    "rank": [
-    40,
-    43
+    41,
+    44
    ]
   },
   "gemma-4-e4b-it": {
@@ -4797,8 +4797,8 @@
     0.20091
    ],
    "rank": [
-    38,
-    40
+    39,
+    41
    ]
   },
   "jais-asr": {
@@ -4947,8 +4947,8 @@
     0.3401
    ],
    "rank": [
-    46,
-    46
+    47,
+    47
    ]
   },
   "mms-1b-all": {
@@ -5097,8 +5097,8 @@
     0.2617
    ],
    "rank": [
-    44,
-    44
+    45,
+    45
    ]
   },
   "nemotron-3.5-asr-streaming-0.6b": {
@@ -5247,8 +5247,8 @@
     0.19342
    ],
    "rank": [
-    37,
-    38
+    38,
+    39
    ]
   },
   "omniasr-ctc-1b-v2": {
@@ -5397,8 +5397,8 @@
     0.21737
    ],
    "rank": [
-    41,
-    42
+    42,
+    43
    ]
   },
   "omniasr-ctc-300m-v2": {
@@ -5547,8 +5547,8 @@
     0.30577
    ],
    "rank": [
-    45,
-    45
+    46,
+    46
    ]
   },
   "omniasr-ctc-3b-v2": {
@@ -5697,8 +5697,8 @@
     0.19982
    ],
    "rank": [
-    38,
-    40
+    39,
+    41
    ]
   },
   "omniasr-llm-1b-v2": {
@@ -5847,8 +5847,8 @@
     0.1837
    ],
    "rank": [
-    35,
-    37
+    36,
+    38
    ]
   },
   "omniasr-llm-300m-v2": {
@@ -5997,8 +5997,8 @@
     0.23318
    ],
    "rank": [
-    42,
-    43
+    43,
+    44
    ]
   },
   "parakeet-tdt-0.6b-v3": {
@@ -6597,8 +6597,158 @@
     0.36882
    ],
    "rank": [
-    47,
-    47
+    48,
+    48
+   ]
+  },
+  "soniox-stt-async-v5": {
+   "sets": {
+    "librispeech_clean/clean": [
+     0.02432,
+     0.03045
+    ],
+    "librispeech_other/clean": [
+     0.05434,
+     0.06563
+    ],
+    "fleurs_en/clean": [
+     0.0548,
+     0.06958
+    ],
+    "common_voice_en/clean": [
+     0.11869,
+     0.14678
+    ],
+    "voxpopuli_en/clean": [
+     0.06991,
+     0.07877
+    ],
+    "earnings22/clean": [
+     0.10697,
+     0.12199
+    ],
+    "gigaspeech/clean": [
+     0.08979,
+     0.10101
+    ],
+    "spgispeech/clean": [
+     0.03307,
+     0.03828
+    ],
+    "ami_sdm/clean": [
+     0.13964,
+     0.16468
+    ],
+    "edacc/clean": [
+     0.16536,
+     0.19899
+    ],
+    "urgent2024/clean": [
+     0.1203,
+     0.14437
+    ],
+    "librispeech_clean/noisy": [
+     0.03187,
+     0.04725
+    ],
+    "fleurs_en/noisy": [
+     0.1028,
+     0.14785
+    ],
+    "voxpopuli_en/noisy": [
+     0.0799,
+     0.1014
+    ],
+    "earnings22/noisy": [
+     0.14194,
+     0.1914
+    ],
+    "minds14_tel/clean": [
+     0.01051,
+     0.01712
+    ],
+    "vystadial_voip/clean": [
+     0.07663,
+     0.09907
+    ],
+    "librispeech_clean/telephony": [
+     0.03252,
+     0.04683
+    ],
+    "fleurs_en/telephony": [
+     0.065,
+     0.08539
+    ],
+    "voxpopuli_en/telephony": [
+     0.07317,
+     0.09142
+    ],
+    "earnings22/telephony": [
+     0.10611,
+     0.13706
+    ],
+    "common_voice_en/telephony": [
+     0.18217,
+     0.25071
+    ],
+    "gigaspeech/telephony": [
+     0.08102,
+     0.10369
+    ],
+    "librispeech_clean/callcenter": [
+     0.11067,
+     0.15911
+    ],
+    "fleurs_en/callcenter": [
+     0.19347,
+     0.2475
+    ],
+    "voxpopuli_en/callcenter": [
+     0.11764,
+     0.15084
+    ],
+    "earnings22/callcenter": [
+     0.21411,
+     0.27587
+    ],
+    "common_voice_en/callcenter": [
+     0.46741,
+     0.57607
+    ],
+    "gigaspeech/callcenter": [
+     0.13575,
+     0.16862
+    ]
+   },
+   "tracks": {
+    "clean": [
+     0.08094,
+     0.08648
+    ],
+    "accented": [
+     0.16536,
+     0.19899
+    ],
+    "noisy": [
+     0.10325,
+     0.11774
+    ],
+    "telephony": [
+     0.08534,
+     0.09624
+    ],
+    "callcenter": [
+     0.22072,
+     0.24621
+    ]
+   },
+   "arena_wer": [
+    0.1241,
+    0.13143
+   ],
+   "rank": [
+    33,
+    33
    ]
   },
   "voxtral-mini-4b-realtime-2602": {
@@ -6747,8 +6897,8 @@
     0.17682
    ],
    "rank": [
-    35,
-    36
+    36,
+    37
    ]
   },
   "whisper-large-v3": {
@@ -7047,8 +7197,8 @@
     0.14697
    ],
    "rank": [
-    33,
-    34
+    34,
+    35
    ]
   }
  }
