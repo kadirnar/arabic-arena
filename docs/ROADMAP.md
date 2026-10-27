@@ -32,7 +32,7 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [x] v2 Arena weights: simulated channels halved (telephony and call-center 10 % each), the freed weight
       on real recordings; `nadi_robust` scored as an unweighted diagnostic ([RESEARCH.md §11](RESEARCH.md))
 - [x] Re-run every board model on one A10 and publish the v2 board (v1 → v2 rank-change table:
-      [RESEARCH.md §12](RESEARCH.md)); the Soniox API reference keeps its v1-only run
+      [RESEARCH.md §12](RESEARCH.md)); the Soniox API reference was re-run on every set on 2026-10-27
 - [ ] Error budget next to WER (scoring artefacts / reference / hallucination / genuine) on every set
 
 ## M3 — References and contamination
@@ -91,5 +91,5 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [ ] Human-preference side board (dialect-matched raters, Bradley–Terry)
 
 ## Out of scope
-Closed APIs are not ranked; they appear as unranked references on the re-hosted sets, subject to
+Closed APIs are not ranked; they appear as unranked references, subject to
 their terms of service (several vendors forbid publishing benchmark results without consent).

@@ -161,8 +161,8 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
   <p class="note">Click a column or a score in the Score bar to sort; the best value in each column is highlighted. Click a model
     name to open it on Hugging Face. Small grey numbers are 95 % bootstrap
     intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
-    Models with gated or private weights are ranked like open ones; closed APIs are unranked references, scored on the
-    re-hosted sets only. † marks models
+    Models with gated or private weights are ranked like open ones; closed APIs are unranked references (no rank),
+    scored on every set. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
     Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
   <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
@@ -595,7 +595,7 @@ function drawTable() {
     else if (m.finetune_of) h("span", "fine-tune", td, "tag").title = info;
     const k = KIND[kind] || [kind, "b-open"];
     const badge = h("span", k[0], h("td", null, row), "badge " + k[1]);
-    if (unranked) badge.title = "Closed commercial API: unranked reference, scored on the re-hosted sets only";
+    if (unranked) badge.title = "Closed commercial API: unranked reference (no rank), scored on every set";
     else if (kind !== "open") badge.title = kind === "gated" ? "Weights gated on the Hub (access on request)" : "Weights not public";
     h("td", m.params_b ? m.params_b.toFixed(2) : "—", row);
     TRACKS.forEach(([key], j) => {

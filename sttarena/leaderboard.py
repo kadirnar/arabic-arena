@@ -171,7 +171,7 @@ def _v2_set(res: dict, profile: str) -> dict | None:
 
 def is_ranked(row: dict) -> bool:
     """Every model whose weights were run here (open, gated or private) is ranked; closed APIs are unranked
-    references, scored on the re-hosted sets only."""
+    references."""
     return row.get("kind", "open") != "api"
 
 

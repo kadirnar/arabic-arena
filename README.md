@@ -395,16 +395,19 @@ WER/CER in %, lower is better. Arena = weighted mean of track WERs (Clean 35%, N
 <!-- API:ar:START -->
 ### Reference models
 
-`soniox-stt-async-v5`, a closed API, is not ranked: it was run on the re-hosted sets only. The Arabic-STT
-fine-tunes (gated or private weights) have results on every set and are ranked on the board above like any other model.
+`soniox-stt-async-v5`, a closed API, is not ranked. Since 2026-10-27 it has results on every set: Arena
+WER v2 19.13 (Clean 18.59, Code-switch 26.22, Noisy 15.80, Telephony 15.08, Call-center 23.24), between
+`arabic-stt-qwen3-asr-1.7b` (#25, 18.93) and `cohere-transcribe-arabic-07-2026` (#26, 19.25); the site
+shows it with an API badge and no rank. The Arabic-STT fine-tunes (gated or private weights) have results
+on every set and are ranked on the board above like any other model.
 
-- `soniox-stt-async-v5`: a closed commercial API, run one request per clip with language hints `ar, en` (with those hints it sometimes answers in English on short or noisy Arabic clips: about 3 % of SADA clips, 10 % of SADA call-center clips, counted as errors); its RTFx is the wall-clock time of the API calls.
+- `soniox-stt-async-v5`: a closed commercial API, run one request per clip with language hints `ar, en` (with those hints it sometimes answers in English on short or noisy Arabic clips: 2.6 % of all clips, about 3 % of SADA clips and 6–9 % of SADA call-center clips, counted as errors); its RTFx is the wall-clock time of the API calls.
 - `arabic-stt-qwen3-asr-1.7b`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; it was trained on the train splits of CV18 and MASC and on MGB-2/SADA/MGB-3 train rows (rows that overlap their test sets were excluded), so those sets are in-domain for it (†). One of its training streams also holds 20 FLEURS ar_eg test sentences (37 of the 428 fleurs_ar rows), so FLEURS is in-domain too; that stream's labels come from `soniox-stt-async-v5`.
 - `arabic-stt-qwen3-asr-1.7b-run5`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 3 continued twice with more call, dialect and code-switching data, so it has the same in-domain sets (CV18, MASC, MGB-2, SADA, MGB-3 and the 20 FLEURS test sentences) and was also trained on clips of the lahgtna-v3-small test split (†).
 - `arabic-stt-qwen3-asr-1.7b-run5base`: a fine-tune of Qwen3-ASR-1.7B whose weights are on the Hub with gated access (granted on request), run with the same backend and settings as `qwen3-asr-1.7b`; run 5's data trained from the base model, so it has the same in-domain sets as run 5 (†).
 - `arabic-stt-qwen3-asr-1.7b-run6b-soup70`: a weight average (model soup) of two Qwen3-ASR-1.7B fine-tunes, 0.7 × run 6b and 0.3 × run 5, with no further training; its weights are private (not downloadable). Run with the same backend and settings as `qwen3-asr-1.7b`. Run 6b was trained on the train splits of MASC and Common Voice and on MGB-2/SADA train rows; the run-5 share carries run 5's in-domain sets (†).
 
-Soniox, a closed API, was run on the 15 re-hosted set-conditions only, so it has no Arena score. For a like-for-like view, the table scores every model on those same sets: track means over the re-hosted sets, combined with the v1 Arena weights (the v1 scorer: Soniox's hypotheses were not kept, so it has no v2 score). Subset WER v2 applies the v2 Arena formula to the same sets (phone tracks on chain v2). † = trained on at least one of these sets.
+The table scores every model on the 15 re-hosted set-conditions, the sets anyone can download from the Hub (and the only ones the Soniox reference covered until 2026-10-27): track means over the re-hosted sets, combined with the v1 Arena weights (the v1 scorer). Subset WER v2 applies the v2 Arena formula to the same sets (phone tracks on chain v2). † = trained on at least one of these sets.
 
 | # | Model | Kind | **Subset WER** | Subset WER v2 | Clean | Noisy | Code-switch | Telephony | Call-center |
 |---|---|---|---|---|---|---|---|---|---|
@@ -434,7 +437,7 @@ Soniox, a closed API, was run on the 15 re-hosted set-conditions only, so it has
 | 24 | **arabic-stt-qwen3-asr-1.7b-run5base** † | gated weights | **17.62** | 10.89 | 11.81 | 16.90 | 19.64 | 16.05 | 28.91 |
 | 25 | **arabic-stt-qwen3-asr-1.7b** † | gated weights | **18.71** | 10.80 | 10.87 | 23.48 | 17.18 | 15.61 | 32.71 |
 | 26 | cohere-transcribe-arabic-07-2026 | open | **20.08** | 9.79 | 12.48 | 20.81 | 17.75 | 18.30 | 35.78 |
-| 27 | **soniox-stt-async-v5** | closed API | **20.65** | — | 12.54 | 21.08 | 16.80 | 19.57 | 37.53 |
+| 27 | **soniox-stt-async-v5** | closed API | **20.72** | 11.00 | 12.52 | 21.06 | 16.77 | 19.76 | 37.74 |
 | 28 | audar-asr-v1-turbo | open | **22.44** | 11.83 | 11.75 | 22.52 | 15.34 | 20.05 | 47.05 |
 | 29 | jais-asr | open | **23.26** | 12.74 | 12.87 | 23.44 | 16.22 | 21.62 | 46.49 |
 | 30 | nvidia-fastconformer-ar-pc † | open | **24.90** | 13.28 | 15.02 | 24.12 | 27.85 | 23.73 | 42.47 |
@@ -495,26 +498,26 @@ Per-set WER (%, v1 scorer) of the references next to the two best-ranked other m
 
 | Set | soniox-stt-async-v5 | arabic-stt-qwen3-asr-1.7b | arabic-stt-qwen3-asr-1.7b-run5 | arabic-stt-qwen3-asr-1.7b-run5base | arabic-stt-qwen3-asr-1.7b-run6b-soup70 | arabic-stt-qwen3-asr-1.7b-best-grpo2 | arabic-stt-qwen3-asr-1.7b-best-task06 |
 |---|---|---|---|---|---|---|---|
-| cv18_ar/callcenter | 45.70 | 32.58 | 24.25 | 25.45 | 23.72 | **20.99** | 21.39 |
-| cv18_ar/clean | 9.40 | 7.67 | 7.18 | 7.87 | 7.00 | 6.68 | **6.60** |
+| cv18_ar/callcenter | 46.24 | 32.58 | 24.25 | 25.45 | 23.72 | **20.99** | 21.39 |
+| cv18_ar/clean | 9.34 | 7.67 | 7.18 | 7.87 | 7.00 | 6.68 | **6.60** |
 | cv18_ar/noisy | 20.12 | 24.85 | 11.46 | 12.13 | 11.53 | **10.73** | 11.33 |
-| cv18_ar/telephony | 15.46 | 10.86 | 10.19 | 10.33 | 9.46 | 9.53 | **9.39** |
-| fleurs_ar/callcenter | 14.68 | 18.82 | 14.66 | 15.33 | 14.29 | 12.48 | **12.32** |
-| fleurs_ar/clean | **4.23** | 5.82 | 5.68 | 5.84 | 5.39 | 4.89 | 4.92 |
-| fleurs_ar/noisy | 6.93 | 9.59 | 7.07 | 6.88 | 6.95 | 6.22 | **6.15** |
-| fleurs_ar/telephony | **5.97** | 7.11 | 6.79 | 6.93 | 6.50 | 6.08 | 6.27 |
-| masc_clean/clean | 5.46 | 5.76 | 5.50 | 6.20 | 5.64 | **5.20** | 5.30 |
-| masc_noisy/clean | 16.65 | 16.15 | 15.25 | 15.26 | 15.53 | **15.14** | 15.32 |
-| mixat_cs/clean | 16.80 | 17.18 | 17.28 | 19.64 | 17.83 | 13.46 | **13.16** |
-| sada/callcenter | 52.20 | 46.73 | 43.05 | 45.93 | 43.68 | 39.36 | **39.03** |
-| sada/clean | 31.05 | 24.21 | 24.81 | 27.32 | 24.76 | 24.08 | **23.95** |
-| sada/noisy | 40.61 | 43.33 | 30.17 | 33.34 | 29.78 | 28.08 | **27.75** |
-| sada/telephony | 37.29 | 28.86 | 28.81 | 30.90 | 29.18 | 28.04 | **28.02** |
+| cv18_ar/telephony | 16.19 | 10.86 | 10.19 | 10.33 | 9.46 | 9.53 | **9.39** |
+| fleurs_ar/callcenter | 14.60 | 18.82 | 14.66 | 15.33 | 14.29 | 12.48 | **12.32** |
+| fleurs_ar/clean | **4.21** | 5.82 | 5.68 | 5.84 | 5.39 | 4.89 | 4.92 |
+| fleurs_ar/noisy | 6.91 | 9.59 | 7.07 | 6.88 | 6.95 | 6.22 | **6.15** |
+| fleurs_ar/telephony | **5.88** | 7.11 | 6.79 | 6.93 | 6.50 | 6.08 | 6.27 |
+| masc_clean/clean | 5.48 | 5.76 | 5.50 | 6.20 | 5.64 | **5.20** | 5.30 |
+| masc_noisy/clean | 16.55 | 16.15 | 15.25 | 15.26 | 15.53 | **15.14** | 15.32 |
+| mixat_cs/clean | 16.77 | 17.18 | 17.28 | 19.64 | 17.83 | 13.46 | **13.16** |
+| sada/callcenter | 52.37 | 46.73 | 43.05 | 45.93 | 43.68 | 39.36 | **39.03** |
+| sada/clean | 31.04 | 24.21 | 24.81 | 27.32 | 24.76 | 24.08 | **23.95** |
+| sada/noisy | 40.65 | 43.33 | 30.17 | 33.34 | 29.78 | 28.08 | **27.75** |
+| sada/telephony | 37.21 | 28.86 | 28.81 | 30.90 | 29.18 | 28.04 | **28.02** |
 <!-- API:ar:END -->
 
 Hardware: 1× NVIDIA A10 (24 GB) for every model on the board (re-run 2026-10-19/20, so RTFx is
 measured on that GPU), batch inference, greedy decoding, language forced to Arabic. The Soniox API
-reference keeps its 2026-10-16 run. Models that only fit with quantization are not included yet.
+reference was re-run on every set on 2026-10-27. Models that only fit with quantization are not included yet.
 
 ## 🇬🇧 English leaderboard
 
@@ -888,8 +891,8 @@ Some models need their own environment (`qwen-asr`, NeMo, omniASR/fairseq2); see
 
 The ranked board includes every model that runs locally on its own weights, whether they are public,
 gated (on the Hub, access on request) or private; the board marks gated and private weights. Closed
-commercial APIs are not ranked: when one is run, it appears as an unranked reference under the
-board, scored on the re-hosted sets only (see "Reference models"). Only the current version of a model family is run:
+commercial APIs are not ranked: when one is run, it appears as an unranked reference, scored on
+every set (see "Reference models"). Only the current version of a model family is run:
 Whisper large-v3 and large-v3-turbo (not small, medium or large-v2), omniASR v2 (not v1); community
 fine-tunes are separate models and stay, whatever their base.
 Models run unmodified, in the precision of their released weights: no down-casting and no
