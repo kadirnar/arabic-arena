@@ -43,7 +43,7 @@ header p { margin: 0; color: var(--muted); max-width: 780px; }
 .links a { font-size: 13px; text-decoration: none; color: var(--fg); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; background: var(--head); }
 .links a:hover { border-color: var(--accent); color: var(--accent); }
 .bar { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 24px 0 12px; }
-.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-width: 0; max-width: 100%; }
 .filters .label { color: var(--muted); font-size: 13px; margin: 0 2px 0 6px; }
 .filters .label:first-child { margin-left: 0; }
 .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; max-width: 100%; overflow-x: auto; }
@@ -56,6 +56,12 @@ header p { margin: 0; color: var(--muted); max-width: 780px; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
 #tbl { min-width: 980px; }
 th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+/* The leaderboard needs ~1,400 px: it spans the window (up to 1,440 px) instead of the text column, and its
+   headers and long model names wrap before it scrolls sideways. */
+.table-wrap.bleed { width: min(100vw - 32px, 1440px); margin-left: calc(50% - min(50vw - 16px, 720px)); }
+#tbl th, #tbl td { padding: 8px 9px; }
+#tbl th { white-space: normal; }
+#tbl td.model { white-space: normal; min-width: 190px; max-width: 250px; }
 tbody tr:last-child td { border-bottom: 0; }
 #tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2) { text-align: left; }
 th { background: var(--head); color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; position: sticky; top: 0; }
@@ -157,7 +163,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     </div>
   </div>
 
-  <div class="table-wrap"><table id="tbl"></table></div>
+  <div class="table-wrap bleed"><table id="tbl"></table></div>
   <p class="note">Click a column or a score in the Score bar to sort; the best value in each column is highlighted. Click a model
     name to open it on Hugging Face. Small grey numbers are 95 % bootstrap
     intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
