@@ -36,7 +36,9 @@ class SonioxAPI(ASRModel):
         if not self.key:
             raise RuntimeError("set SONIOX_API_KEY")
         self.model_id = spec.kwargs.get("model_id", "stt-async-v5")
-        self.hints = list(spec.kwargs.get("language_hints", ("ar", "en")))
+        # language hints per suite language: Arabic keeps "en" for code-switching, English sends "en" alone
+        self.hints = {k: list(v) for k, v in spec.kwargs.get("language_hints", {"ar": ("ar", "en"),
+                                                                                "en": ("en",)}).items()}
         self.workers = int(spec.kwargs.get("workers", 24))
         self._local = threading.local()
         self._cool_until = 0.0
@@ -68,12 +70,12 @@ class SonioxAPI(ASRModel):
             return r.json() if r.content else None
         raise RuntimeError("soniox: retries exhausted")
 
-    def _one(self, audio: np.ndarray) -> str:
+    def _one(self, audio: np.ndarray, hints: list[str]) -> str:
         fid = tid = None
         try:
             fid = self._call("POST", "/files", files={"file": ("clip.flac", encode_flac(audio, SR), "audio/flac")})["id"]
             tid = self._call("POST", "/transcriptions", json={"model": self.model_id, "file_id": fid,
-                                                             "language_hints": self.hints})["id"]
+                                                             "language_hints": hints})["id"]
             time.sleep(4.0)   # few status calls: the requests-per-minute limit is the bottleneck
             while (st := self._call("GET", f"/transcriptions/{tid}"))["status"] not in ("completed", "error"):
                 time.sleep(3.0)
@@ -88,5 +90,6 @@ class SonioxAPI(ASRModel):
                     pass
 
     def transcribe(self, audios: list[np.ndarray], language: str) -> list[str]:
+        hints = self.hints[language]
         with ThreadPoolExecutor(self.workers) as ex:
-            return list(ex.map(self._one, audios))
+            return list(ex.map(lambda a: self._one(a, hints), audios))

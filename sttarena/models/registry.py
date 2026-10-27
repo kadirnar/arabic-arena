@@ -42,7 +42,8 @@ RUN13_LINE = {"run13", "run16", "run13-sft-s3000", "run13c-rl-s750", "run16-rl-s
 MODELS: dict[str, ModelSpec] = {m.key: m for m in [
     # --- Closed APIs (internal comparison only; out of the public board's scope) ---------------
     _M("soniox-stt-async-v5", "soniox_api", "soniox/stt-async-v5", None, "proprietary API", kind="api",
-       batch_size=400, kwargs={"model_id": "stt-async-v5", "language_hints": ("ar", "en"), "workers": 32},
+       batch_size=400, kwargs={"model_id": "stt-async-v5", "language_hints": {"ar": ("ar", "en"), "en": ("en",)},
+                               "workers": 32},
        notes="closed commercial API; RTFx is API wall-clock time", repo="https://soniox.com"),
     # --- Whisper family ---------------------------------------------------------------------
     _M("whisper-large-v3", "whisper_hf", "openai/whisper-large-v3", 1.54, "Apache-2.0", batch_size=32),
