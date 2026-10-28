@@ -341,6 +341,20 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "snapshot step 800 of 800 (branch `step-800`, commit eb22db2e4c), weights gated on the Hub; run with "
              "the card's prompt (<|pnc|>, language forced). Its SFT base names Earnings-22 among its training "
              "sources; the MWER data (48,061 clips, 119 h) is named only by kind"),
+    # The same repo's branch r4-step-800 (main since 2026-10-28): three MWER rounds on the SFT (rounds 1, 2 and 4, 800
+    # steps each, on pools of ~45-48k human-labelled clips named only by kind, a penalty for English words not written
+    # in Latin script); the SFT base is the step-10000 entry's.
+    _M("cohere-transcribe-ar-rl-r4-step-800", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-sft",
+       kwargs={"revision": "beba661319dbe0aa7657ff86aa8f02cedebfdd0b", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl/tree/r4-step-800", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR MWER post-training (decoder only) of cohere-transcribe-ar-sft at step 10000: rounds 1, 2 and 4 "
+             "of 800 steps each, snapshot round 4 step 800 (branch `r4-step-800`, commit beba661319; the repo's main "
+             "since 2026-10-28), weights gated on the Hub; run with the card's prompt (<|pnc|>, language forced). Its "
+             "SFT base names Earnings-22 among its training sources; the MWER pools (~45-48k clips each) are named "
+             "only by kind. Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; "
+             "mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
