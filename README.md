@@ -861,6 +861,9 @@ board takes both phone tracks from chain v2 (A-law-first MENA codec mix, tandem 
 paths, handset rooms and unintelligible babble; [METHODOLOGY](docs/METHODOLOGY.md)); the v1 board keeps
 the v1 chain.
 
+The site's Arabic + English table is the plain mean of each model's two Arena scores (both languages weigh
+the same), for the models on both boards; it follows the site's Scorer and Metric choice.
+
 - **Within each set**: errors are summed over all utterances. This is corpus WER, not the mean
   of per-utterance WERs.
 - **v1**: track score = the plain mean over that track's sets; Arena = the weighted mean of the

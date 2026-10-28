@@ -62,8 +62,14 @@ th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--l
 #tbl th, #tbl td { padding: 8px 9px; }
 #tbl th { white-space: normal; }
 #tbl td.model { white-space: normal; min-width: 190px; max-width: 250px; }
+#avg td.model { white-space: normal; min-width: 150px; }
+@media (max-width: 600px) {  /* phones: the three numbers stay in view (the API's rank is a dash anyway) */
+  #avg th, #avg td { padding: 8px 6px; } #avg th { white-space: normal; } #avg td.model { min-width: 0; }
+  #avg th:nth-child(3), #avg td:nth-child(3) { display: none; }
+}
 tbody tr:last-child td { border-bottom: 0; }
-#tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2) { text-align: left; }
+#tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2),
+#avg th:nth-child(-n+3), #avg td:nth-child(-n+3) { text-align: left; }
 th { background: var(--head); color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; position: sticky; top: 0; }
 th.sorted::after { content: " ▲"; font-size: 10px; }
 tbody tr:hover td { background: var(--head); }
@@ -173,6 +179,12 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
   <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
 
+  <section id="combined" hidden>
+    <h2 class="section">Arabic + English</h2>
+    <div class="table-wrap"><table id="avg"></table></div>
+    <p class="note" id="avg-note"></p>
+  </section>
+
   <h2 class="section">Charts</h2>
   <section class="card">
     <h3 id="rank-title">Arena WER</h3>
@@ -214,6 +226,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same normalization is applied to references and hypotheses (Arabic: diacritics, alef/hamza/ta-marbuta spellings and punctuation are unified and digits are written out as words).</li>
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
+      <li><b>Arabic + English</b>: the plain mean of a model's Arabic and English Arena scores (both languages weigh the same), for the models on both boards.</li>
       <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: v1 board: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. v2 board: chain v2, an A-law-first MENA codec mix with AMR-WB, Opus and G.722 paths, tandem coding to A-law and losses on the encoded frames. <b>Call-center</b> adds noise and a room at the caller before that channel (v2: a handset room and unintelligible babble).</li>
@@ -646,7 +659,39 @@ function drawWeights() {
     : "the weighted mean of the track scores: " + list(d.weights);
 }
 
-function drawAll() { drawWeights(); drawTable(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
+// ---- Arabic + English ---------------------------------------------------------------------
+// The plain mean of each model's Arabic and English Arena scores (both languages weigh the same), for the models on
+// both boards; it follows the Scorer and Metric bars. Closed APIs are unranked references, as in the main table.
+function drawAverage() {
+  const all = window.ARENA_DATA || {}, sec = document.getElementById("combined"), tbl = document.getElementById("avg");
+  tbl.replaceChildren();
+  sec.hidden = !(all.ar && all.en);
+  if (sec.hidden) return;
+  const en = Object.fromEntries(all.en.models.map((m) => [m.model, m]));
+  const rows = all.ar.models.map((m) => {
+    const a = score(m, "arena"), b = en[m.model] ? score(en[m.model], "arena") : null;
+    return a != null && b != null ? { m, vals: [a, b, (a + b) / 2] } : null;
+  }).filter(Boolean).sort((x, y) => x.vals[2] - y.vals[2]);
+  const metric = state.metric.toUpperCase(), tr = h("tr", null, h("thead", null, tbl));
+  ["#", "Model", "Type", `Arabic ${metric}`, `English ${metric}`, `Average ${metric}`].forEach((l) => h("th", l, tr));
+  const best = [0, 1, 2].map((i) => Math.min(...rows.map((r) => r.vals[i])));
+  const tb = h("tbody", null, tbl);
+  let rank = 0;
+  rows.forEach(({ m, vals }) => {
+    const row = h("tr", null, tb), kind = m.kind || "open", unranked = kind === "api";
+    h("td", unranked ? "—" : String(++rank), row, "rank");
+    modelLink(h("td", null, row, "model"), m);
+    const k = KIND[kind] || [kind, "b-open"];
+    h("span", k[0], h("td", null, row), "badge " + k[1]);
+    vals.forEach((v, i) => { const c = h("td", pct(v), row, i === 2 ? "arena" : ""); if (v === best[i]) c.classList.add("best"); });
+  });
+  document.getElementById("avg-note").textContent = `Average: the plain mean of each model's Arabic and English Arena `
+    + `${metric} (${isV2() ? "v2" : "v1"} scorer; both languages weigh the same), for the ${rows.length} models on both `
+    + `boards, ${rank} of them ranked. It follows the Scorer and Metric bars, not the Language bar. Closed APIs are `
+    + `unranked references.`;
+}
+
+function drawAll() { drawWeights(); drawTable(); drawAverage(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
 
 function setupSeg(id, key, onChange) {
   document.getElementById(id).addEventListener("click", (e) => {
