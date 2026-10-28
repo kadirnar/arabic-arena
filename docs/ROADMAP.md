@@ -55,7 +55,8 @@ items is summarized in [RESEARCH.md](RESEARCH.md).
 - [x] Every board model and the Arabic-STT references on every set (the references were re-hosted-only)
 - [x] echonova dialect benchmark (Kuwaiti, Qatari, Omani, Syrian, Lebanese; gated; balanced 112 rows per variety)
 - [x] GigaSpeechBench (Iraqi, Syrian, Algerian, Moroccan, Egyptian, Saudi; the GPT-4o-drafted Emirati region left
-      out), Speech-MASSIVE ar-SA, Sudanese (SDN), mTEDx, TEDxTN (Tunisian-French code-switching)
+      out), Speech-MASSIVE ar-SA, Sudanese (SDN), mTEDx, TEDxTN (Tunisian-French code-switching); SDN and mTEDx
+      left the v2 Arena on 2026-10-28 (references not verbatim; scored as diagnostics)
 - [ ] DAI-ASR-I18N real two-channel conversations (gated, manual approval)
 - [x] Every registered Arabic model on the board, current versions only: Whisper large-v3 and large-v3-turbo
       (not small, medium or large-v2), omniASR v2 (not v1); community fine-tunes of any base stay

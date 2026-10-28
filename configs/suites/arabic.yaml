@@ -330,6 +330,8 @@ datasets:
     redistribute: false
     cluster: {field: youtube_video}
   # Sudanese dialect speech (Zenodo 6721683 via arbml): two TV programmes, one transcriber; no test split exists.
+  # Not weighted in the v2 Arena since 2026-10-28 (scoring.v2.set_tracks): in 959 of the 1,000 rows the reference
+  # belongs to the clip one or two rows earlier in the source.
   sudanese_sdn:
     source: arbml/sudanese_dialect_speech
     split: train
@@ -342,6 +344,8 @@ datasets:
     redistribute: true
     cluster: {field: path, regex: '.*/((?:hm|wb)_\d+)_'}  # episode (re.match: from the start of the path)
   # mTEDx Arabic test: TEDx talks, mostly MSA; 7 talks only, and its train split is public.
+  # Not weighted in the v2 Arena since 2026-10-28 (scoring.v2.set_tracks): the references are subtitles edited
+  # towards MSA, not verbatim transcripts (every model is above 61 % WER).
   mtedx_ar:
     source: deepdml/mtedx
     config: ar
@@ -460,6 +464,8 @@ scoring:
   # instead of 20 %, and the freed 20 % goes to real recordings (clean +15, code-switching +5). Simulated
   # audio falls from 52.5 % to 32 % of the Arena. nadi_robust is Casablanca audio band-limited to 4 kHz
   # (simulated, partly the same utterances as `casablanca`): it is scored as a diagnostic, outside the Arena.
+  # sudanese_sdn and mtedx_ar are diagnostics too since 2026-10-28: their references do not match the audio
+  # verbatim (README, Datasets). The v1 board keeps both.
   v2:
     tracks:
       clean: {weight: 0.5}
@@ -467,7 +473,8 @@ scoring:
       noisy: {weight: 0.15}
       telephony: {weight: 0.1}
       callcenter: {weight: 0.1}
-    set_tracks: {nadi_robust: bandlimited}  # clean-condition track moves; a track without a weight is not in the Arena
+    # clean-condition track moves; a track without a weight is not in the Arena
+    set_tracks: {nadi_robust: bandlimited, sudanese_sdn: unreliable_refs, mtedx_ar: unreliable_refs}
     # Since 2026-10-20 (every ranked model has results on them) the v2 Arena's phone tracks take the chain-v2
     # conditions; the v1 chain moves to unweighted tracks. The v1 board keeps the v1 chain.
     condition_tracks: {telephony: telephony_v1, callcenter: callcenter_v1, telephony_v2: telephony,

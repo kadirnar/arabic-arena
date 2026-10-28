@@ -238,6 +238,13 @@ seven-model consensus, not human transcripts), Egyptian-Arabic-Lectures (Gemini 
 subtitles), the LinTO YouTube subsets (auto-captions), both Alyah Emirati repos (text-only), Abjad-Kids
 (keyword spotting). DAI-ASR-I18N (real two-channel conversations) waits for a manual access grant.
 
+Moved out of the v2 Arena on 2026-10-28 (still scored, as diagnostics): Sudanese SDN, whose reference in 959
+of 1,000 rows belongs to the clip one or two rows earlier in the source (reference length against audio
+duration correlates at 0.18, against 0.77–0.92 on the other clean sets; every model is at 95 % WER or more),
+and mTEDx, whose references are TEDx subtitles edited towards MSA rather than verbatim transcripts (the lengths
+agree, correlation 0.88, but every model is above 61 % WER). Together they carried 5.9 % of the Arena weight;
+the order of the board barely moves without them.
+
 ## 10. Tooling verdicts
 
 - **Alignment engines** agree on total errors (14 engines, 300,069 errors on 100k pairs) but split
