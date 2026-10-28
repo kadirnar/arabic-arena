@@ -62,14 +62,9 @@ th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--l
 #tbl th, #tbl td { padding: 8px 9px; }
 #tbl th { white-space: normal; }
 #tbl td.model { white-space: normal; min-width: 190px; max-width: 250px; }
-#avg td.model { white-space: normal; min-width: 150px; }
-@media (max-width: 600px) {  /* phones: the three numbers stay in view (the API's rank is a dash anyway) */
-  #avg th, #avg td { padding: 8px 6px; } #avg th { white-space: normal; } #avg td.model { min-width: 0; }
-  #avg th:nth-child(3), #avg td:nth-child(3) { display: none; }
-}
+body.avg .per-lang { display: none; }  /* the Average tab has no sets, speeds or breakdowns of its own */
 tbody tr:last-child td { border-bottom: 0; }
-#tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2),
-#avg th:nth-child(-n+3), #avg td:nth-child(-n+3) { text-align: left; }
+#tbl th:nth-child(-n+3), #tbl td:nth-child(-n+3), #sets th:nth-child(-n+2), #sets td:nth-child(-n+2) { text-align: left; }
 th { background: var(--head); color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; position: sticky; top: 0; }
 th.sorted::after { content: " ▲"; font-size: 10px; }
 tbody tr:hover td { background: var(--head); }
@@ -146,6 +141,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <div class="seg" id="lang">
         <button data-v="ar" aria-pressed="true">Arabic</button>
         <button data-v="en" disabled title="Coming soon">English</button>
+        <button data-v="avg" disabled title="Coming soon">Average</button>
       </div>
       <span class="label">Score</span>
       <div class="seg" id="track"></div>
@@ -177,13 +173,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     scored on every set. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
     Halluc. % is the share of noise-only clips for which the model wrote any words; it is not part of the Arena score.</p>
-  <details><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
-
-  <section id="combined" hidden>
-    <h2 class="section">Arabic + English</h2>
-    <div class="table-wrap"><table id="avg"></table></div>
-    <p class="note" id="avg-note"></p>
-  </section>
+  <details class="per-lang"><summary>Per-set results</summary><div class="table-wrap"><table id="sets"></table></div></details>
 
   <h2 class="section">Charts</h2>
   <section class="card">
@@ -192,7 +182,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     <div id="rank" class="chart-wide"></div>
   </section>
 
-  <div class="grid2">
+  <div class="grid2 per-lang">
     <section class="card">
       <h3>Accuracy vs speed</h3>
       <p class="sub" id="scatter-sub">RTFx on one NVIDIA A10 (log scale). Down and to the right is better.</p>
@@ -206,7 +196,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     </section>
   </div>
 
-  <section class="card">
+  <section class="card per-lang">
     <h3>Where models break</h3>
     <p class="sub" id="heat-sub"></p>
     <div class="inline-filters"><div class="seg" id="dim"></div></div>
@@ -214,7 +204,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
     <div class="ramp"><span id="ramp-lo">0%</span><i id="ramp-bar"></i><span id="ramp-hi"></span></div>
   </section>
 
-  <section class="card">
+  <section class="card per-lang">
     <h3>Hallucination on noise-only audio</h3>
     <p class="sub">Share of 300 clips with no target speech (line silence, hold hiss, mains hum, distant babble, office, street and transport noise; half sent through a phone codec) for which the model still wrote words (v2: three or more words, so a short filler does not count). Lower is better. Not part of the Arena score.</p>
     <div id="halluc" class="chart-wide"></div>
@@ -226,7 +216,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Per set</b>: corpus WER and CER, meaning total errors over total reference words or characters, after the same normalization is applied to references and hypotheses (Arabic: diacritics, alef/hamza/ta-marbuta spellings and punctuation are unified and digits are written out as words).</li>
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
-      <li><b>Arabic + English</b>: the plain mean of a model's Arabic and English Arena scores (both languages weigh the same), for the models on both boards.</li>
+      <li><b>Average tab</b>: the plain mean of a model's Arabic and English Arena scores (both languages weigh the same), for the models on both boards; it follows the Scorer and Metric bars.</li>
       <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
       <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
       <li><b>Telephony</b>: v1 board: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. v2 board: chain v2, an A-law-first MENA codec mix with AMR-WB, Opus and G.722 paths, tandem coding to A-law and losses on the encoded frames. <b>Call-center</b> adds noise and a room at the caller before that channel (v2: a handset room and unintelligible babble).</li>
@@ -244,7 +234,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
 <script src="data/en_breakdown.js"></script>
 <script>
 const TRACK_NAMES = { arena: "Arena", clean: "Clean", accented: "Accented", noisy: "Noisy", codeswitch: "Code-switch",
-  telephony: "Telephony", callcenter: "Call-center" };
+  telephony: "Telephony", callcenter: "Call-center", ar: "Arabic", en: "English" };
 let TRACKS = [];
 const DIMS = [["codec", "Codec"], ["packet_loss", "Packet loss"], ["noise:callcenter", "Call-center noise"],
   ["snr:noisy", "SNR"], ["dialect", "Dialect"]];
@@ -651,6 +641,11 @@ function drawTable() {
 
 function drawWeights() {
   const d = state.data, names = Object.fromEntries(TRACKS), v2 = isV2() && d.v2?.track_weights;
+  if (state.lang === "avg") {
+    document.getElementById("weights").textContent = "per language, as on its own tab; on the Average tab, the plain "
+      + "mean of the Arabic and English Arena scores (each language 50%)";
+    return;
+  }
   const list = (w) => Object.entries(w).map(([k, v]) => `${names[k] || k} ${Math.round(v * 100)}%`).join(", ");
   document.getElementById("weights").textContent = v2
     ? "the weighted geometric mean of the set scores, each set weighing its track's weight split over the track's sets: "
@@ -659,39 +654,12 @@ function drawWeights() {
     : "the weighted mean of the track scores: " + list(d.weights);
 }
 
-// ---- Arabic + English ---------------------------------------------------------------------
-// The plain mean of each model's Arabic and English Arena scores (both languages weigh the same), for the models on
-// both boards; it follows the Scorer and Metric bars. Closed APIs are unranked references, as in the main table.
-function drawAverage() {
-  const all = window.ARENA_DATA || {}, sec = document.getElementById("combined"), tbl = document.getElementById("avg");
-  tbl.replaceChildren();
-  sec.hidden = !(all.ar && all.en);
-  if (sec.hidden) return;
-  const en = Object.fromEntries(all.en.models.map((m) => [m.model, m]));
-  const rows = all.ar.models.map((m) => {
-    const a = score(m, "arena"), b = en[m.model] ? score(en[m.model], "arena") : null;
-    return a != null && b != null ? { m, vals: [a, b, (a + b) / 2] } : null;
-  }).filter(Boolean).sort((x, y) => x.vals[2] - y.vals[2]);
-  const metric = state.metric.toUpperCase(), tr = h("tr", null, h("thead", null, tbl));
-  ["#", "Model", "Type", `Arabic ${metric}`, `English ${metric}`, `Average ${metric}`].forEach((l) => h("th", l, tr));
-  const best = [0, 1, 2].map((i) => Math.min(...rows.map((r) => r.vals[i])));
-  const tb = h("tbody", null, tbl);
-  let rank = 0;
-  rows.forEach(({ m, vals }) => {
-    const row = h("tr", null, tb), kind = m.kind || "open", unranked = kind === "api";
-    h("td", unranked ? "—" : String(++rank), row, "rank");
-    modelLink(h("td", null, row, "model"), m);
-    const k = KIND[kind] || [kind, "b-open"];
-    h("span", k[0], h("td", null, row), "badge " + k[1]);
-    vals.forEach((v, i) => { const c = h("td", pct(v), row, i === 2 ? "arena" : ""); if (v === best[i]) c.classList.add("best"); });
-  });
-  document.getElementById("avg-note").textContent = `Average: the plain mean of each model's Arabic and English Arena `
-    + `${metric} (${isV2() ? "v2" : "v1"} scorer; both languages weigh the same), for the ${rows.length} models on both `
-    + `boards, ${rank} of them ranked. It follows the Scorer and Metric bars, not the Language bar. Closed APIs are `
-    + `unranked references.`;
+// the speed, phone-channel, breakdown and noise-only charts belong to one language's run (hidden on the Average tab)
+const perLanguage = () => state.lang !== "avg";
+function drawAll() {
+  drawWeights(); drawTable(); drawRank();
+  if (perLanguage()) { drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
 }
-
-function drawAll() { drawWeights(); drawTable(); drawAverage(); drawRank(); drawScatter(); drawDumbbell(); drawHeat(); drawHalluc(); }
 
 function setupSeg(id, key, onChange) {
   document.getElementById(id).addEventListener("click", (e) => {
@@ -705,7 +673,7 @@ function setupSeg(id, key, onChange) {
 (async function init() {
   const data = window.ARENA_DATA || {};
   for (const b of document.querySelectorAll("#lang button")) {
-    if (data[b.dataset.v]) { b.disabled = false; b.removeAttribute("title"); }
+    if (data[b.dataset.v] || (b.dataset.v === "avg" && data.ar && data.en)) { b.disabled = false; b.removeAttribute("title"); }
   }
   const dm = document.getElementById("dim");
   DIMS.forEach(([k, l]) => { const b = h("button", l, dm); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.dim)); });
@@ -722,19 +690,44 @@ function setupSeg(id, key, onChange) {
 function setTrack(k) {
   state.track = k; state.sort = null;
   for (const b of document.querySelectorAll("#track button")) b.setAttribute("aria-pressed", String(b.dataset.v === k));
-  drawTable(); drawRank(); drawScatter();
+  drawTable(); drawRank(); if (perLanguage()) drawScatter();
 }
 
 function buildTrackSeg() {
-  TRACKS = [["arena", "Arena"], ...Object.keys(state.data.tracks).map((k) => [k, TRACK_NAMES[k] || k])];
+  TRACKS = [["arena", state.lang === "avg" ? "Average" : "Arena"],
+    ...Object.keys(state.data.tracks).map((k) => [k, TRACK_NAMES[k] || k])];
   if (!TRACKS.some(([k]) => k === state.track)) state.track = "arena";
   const tr = document.getElementById("track"); tr.replaceChildren();
   TRACKS.forEach(([k, l]) => { const b = h("button", l, tr); b.dataset.v = k; b.setAttribute("aria-pressed", String(k === state.track)); });
 }
 
+// The Average tab: every model on both boards, with its Arabic and English Arena scores as two tracks and their plain
+// mean as the score (both languages weigh the same); hallucination rates are averaged the same way. No intervals, rank
+// sets, per-set results or speeds: those belong to one language's run.
+function averageBoard(ar, en) {
+  const byEn = Object.fromEntries(en.models.map((m) => [m.model, m]));
+  const mean = (a, b) => (a == null || b == null ? null : (a + b) / 2);
+  const side = (wer, cer) => (wer == null ? undefined : { wer, cer });
+  const models = ar.models.filter((m) => byEn[m.model]).map((a) => {
+    const e = byEn[a.model];
+    const v2 = a.v2?.arena != null && e.v2?.arena != null ? {
+      arena: mean(a.v2.arena, e.v2.arena), arena_cer: mean(a.v2.arena_cer, e.v2.arena_cer),
+      halluc_3plus: mean(a.v2.halluc_3plus, e.v2.halluc_3plus),
+      tracks: { ar: side(a.v2.arena, a.v2.arena_cer), en: side(e.v2.arena, e.v2.arena_cer) } } : null;
+    return { model: a.model, hf_id: a.hf_id, kind: a.kind, params_b: a.params_b, finetune_of: a.finetune_of,
+      in_domain: [...new Set([...(a.in_domain || []), ...(e.in_domain || [])])], rtfx: null,
+      arena_wer: mean(a.arena_wer, e.arena_wer), arena_cer: mean(a.arena_cer, e.arena_cer),
+      hallucination_rate: mean(a.hallucination_rate, e.hallucination_rate),
+      tracks: { ar: side(a.arena_wer, a.arena_cer), en: side(e.arena_wer, e.arena_cer) }, sets: {}, v2 };
+  });
+  return { models, tracks: { ar: [], en: [] }, weights: { ar: 0.5, en: 0.5 },
+    v2: { tracks: { ar: [], en: [] }, track_weights: { ar: 0.5, en: 0.5 }, diagnostic_sets: [] } };
+}
+
 async function load() {
   try {
-    state.data = (window.ARENA_DATA || {})[state.lang]
+    const all = window.ARENA_DATA || {};
+    state.data = state.lang === "avg" ? averageBoard(all.ar, all.en) : all[state.lang]
       || await (await fetch(`data/${state.lang}.json`, { cache: "no-store" })).json();
   } catch (e) {
     document.getElementById("tbl").replaceChildren(h("caption", "Could not load results.", null, "empty"));
@@ -742,6 +735,7 @@ async function load() {
   }
   state.bd = (window.ARENA_BREAKDOWN || {})[state.lang] || null;
   state.sort = null;
+  document.body.classList.toggle("avg", state.lang === "avg");
   const hasV2 = state.data.models.some((m) => m.v2?.arena != null);
   const v2b = document.querySelector('#scorer button[data-v="v2"]');
   v2b.disabled = !hasV2;
