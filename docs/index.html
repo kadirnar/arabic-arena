@@ -76,8 +76,6 @@ td.best { color: var(--best); background: var(--bestbg); font-weight: 700; }
 tbody tr:hover td.best { background: var(--bestbg); }
 td.arena { font-weight: 700; }
 .pending { color: var(--muted); }
-.ci { display: block; color: var(--muted); font-size: 11.5px; font-weight: 400; }
-td.best .ci { color: var(--best); opacity: 0.8; }
 .badge { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
 .b-open { color: var(--open); background: var(--openbg); }
 .b-api { color: var(--api); background: var(--apibg); }
@@ -101,7 +99,6 @@ svg .muted { fill: var(--muted); }
 svg .gridline { stroke: var(--grid); stroke-width: 1; }
 svg .axis { stroke: var(--axis); stroke-width: 1; }
 svg .halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
-svg .whisker { stroke: var(--ink-2); stroke-width: 1.5; }
 .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); margin-bottom: 8px; }
 .chart-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
 .tip { position: fixed; pointer-events: none; z-index: 10; background: var(--card); border: 1px solid var(--line);
@@ -167,8 +164,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
 
   <div class="table-wrap bleed"><table id="tbl"></table></div>
   <p class="note">Click a column or a score in the Score bar to sort; the best value in each column is highlighted. Click a model
-    name to open it on Hugging Face. Small grey numbers are 95 % bootstrap
-    intervals (WER) and, under the rank, the rank range. Values in parentheses are the number of sets finished so far.
+    name to open it on Hugging Face. Values in parentheses are the number of sets finished so far.
     Models with gated or private weights are ranked like open ones; closed APIs are unranked references (no rank),
     scored on every set. † marks models
     trained on the train split of one of the benchmark corpora, so their score there is not zero-shot (hover for details).
@@ -217,8 +213,7 @@ footer { color: var(--muted); font-size: 13px; margin-top: 24px; }
       <li><b>Per track</b>: the unweighted mean over that track's sets.</li>
       <li><b>Arena</b>: <span id="weights"></span>.</li>
       <li><b>Average tab</b>: the plain mean of a model's Arabic and English Arena scores (both languages weigh the same), for the models on both boards; it follows the Scorer and Metric bars.</li>
-      <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores; intervals come from a bootstrap that resamples whole speakers, videos or recordings, and the rank is a simultaneous 95 % confidence set. See the methodology page for the measurements behind each choice.</li>
-      <li><b>Uncertainty</b>: 95% intervals from a paired bootstrap over utterances (1000 resamples per set, the same resample for every model). The rank range is how far a model's Arena rank moves across resamples; models whose ranges overlap are not reliably separated.</li>
+      <li><b>Scorer v2</b>: per set, dialect-lenient normalization (fillers, elongation, same-word spelling variants such as برضو/برضه), space-insensitive alignment (ما فيش = مفيش), several references where a set has them (MGB-3's four annotators, Mixat's Arabic-script English) and every utterance's errors capped at its reference length. The Arena is the weighted geometric mean of the set scores. See the methodology page for the measurements behind each choice.</li>
       <li><b>Telephony</b>: v1 board: 8 kHz, a 300–3400 Hz band, a G.711, GSM, AMR-NB, G.726 or Opus codec, and packet loss. v2 board: chain v2, an A-law-first MENA codec mix with AMR-WB, Opus and G.722 paths, tandem coding to A-law and losses on the encoded frames. <b>Call-center</b> adds noise and a room at the caller before that channel (v2: a handset room and unintelligible babble).</li>
       <li><b>Decoding</b>: greedy, language forced to the suite language, batch inference on one NVIDIA A10 (24 GB).</li>
       <li><b>Models</b>: every model run locally is ranked, whether its weights are open, gated or private; closed APIs are listed as unranked references.</li>
@@ -287,19 +282,10 @@ function setVal(m, key, metric = state.metric) {
   const s = m.v2?.sets?.[key];
   return s ? s[metric] : null;
 }
-const rankOf = (m) => (isV2() ? m.v2?.rank_set : m.rank_range);
 // v2: share of noise-only clips with three or more words; v1: with any output
 const halluc = (m) => (isV2() ? m.v2?.halluc_3plus ?? null : m.hallucination_rate);
 // v2 only: share of the SVQ queries' key terms (names, places, question words) missing from the output
 const termsMissed = (m) => (isV2() && m.v2?.term_recall != null ? 1 - m.v2.term_recall : null);
-// 95% bootstrap interval (WER only; CER intervals are not computed).
-function ciOf(m, track = state.track, metric = state.metric) {
-  if (metric !== "wer") return null;
-  if (isV2()) return track === "arena" ? m.v2?.arena_ci ?? null : m.v2?.tracks?.[track]?.ci ?? null;
-  return track === "arena" ? m.arena_ci : m.tracks[track]?.ci ?? null;
-}
-const ciText = (c) => (c ? `${pct(c[0])}–${pct(c[1])}` : "—");
-const rankText = (r) => (!r ? "—" : r[0] === r[1] ? String(r[0]) : `${r[0]}–${r[1]}`);
 function showTip(evt, title, rows) {
   tip.replaceChildren();
   h("div", title, tip, "t");
@@ -356,7 +342,7 @@ function drawRank() {
   const W = 1000, labelW = 270, row = 28, bar = 18, top = 8, right = 60;
   const H = top + ms.length * row + 24;
   const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${label} ranking` }, box);
-  const max = niceMax(Math.max(...ms.map((m) => Math.max(score(m), ciOf(m)?.[1] ?? 0))) * 100);
+  const max = niceMax(Math.max(...ms.map((m) => score(m))) * 100);
   const x = (v) => labelW + (v * 100 / max) * (W - labelW - right);
   for (let i = 0; i <= 4; i++) {
     const v = (max / 4) * i, gx = labelW + (v / max) * (W - labelW - right);
@@ -369,16 +355,10 @@ function drawRank() {
     const fill = (m.kind || "open") === "open" ? "var(--s1)" : m.kind === "api" ? "var(--s2)" : "var(--priv)";
     el("path", { d: `M${x0},${y} h${w - r} a${r},${r} 0 0 1 ${r},${r} v${bar - 2 * r} a${r},${r} 0 0 1 -${r},${r} h-${w - r} z`,
       fill }, svg);
-    const c = ciOf(m), cy = y + bar / 2;
-    if (c) {
-      el("line", { x1: x(c[0]), x2: x(c[1]), y1: cy, y2: cy, class: "whisker" }, svg);
-      for (const cx of [x(c[0]), x(c[1])]) el("line", { x1: cx, x2: cx, y1: cy - 4, y2: cy + 4, class: "whisker" }, svg);
-    }
-    el("text", { x: Math.max(x0 + w, c ? x(c[1]) : 0) + 6, y: cy + 4, fill: "var(--ink)" }, svg).textContent = pct(v);
+    const cy = y + bar / 2;
+    el("text", { x: x0 + w + 6, y: cy + 4, fill: "var(--ink)" }, svg).textContent = pct(v);
     const hit = el("rect", { x: 0, y: top + i * row, width: W, height: row, fill: "transparent" }, svg);
     const rows = [[`${label} ${state.metric.toUpperCase()}`, pct(v) + "%"]];
-    if (c) rows.push(["95% CI", ciText(c) + "%"]);
-    if (state.track === "arena" && rankOf(m)) rows.push([isV2() ? "Rank set (95%)" : "Rank range (95%)", rankText(rankOf(m))]);
     bindHover(hit, (e) => showTip(e, m.model, [...rows,
       ["RTFx", String(m.rtfx ?? "—")], ["Params", m.params_b ? m.params_b + "B" : "—"]]));
     modelLabel(svg, m, { x: labelW - 10, y: y + bar / 2 + 4, "text-anchor": "end" }, `${i + 1}. ${m.model}`);
@@ -592,10 +572,6 @@ function drawTable() {
     const row = h("tr", null, tb);
     const kind = m.kind || "open", unranked = kind === "api";  // closed APIs are unranked references
     const rc = h("td", unranked ? "—" : String(++rank), row, "rank");
-    const rr = sc === FIRST_TRACK ? rankOf(m) : null;  // the rank set is the Arena rank's
-    if (rr && rr[0] !== rr[1]) {
-      h("span", rankText(rr), rc, "ci").title = isV2() ? "95% simultaneous rank confidence set" : "95% bootstrap range of the Arena rank";
-    }
     const td = h("td", null, row, "model");
     modelLink(td, m);
     const info = (m.notes ? m.notes + ". " : "") + (m.finetune_of ? `Fine-tune of ${m.finetune_of}.` : "")
@@ -611,8 +587,6 @@ function drawTable() {
       const v = score(m, key), t = trackOf(m, key);
       const c = h("td", v != null ? pct(v) : (t ? `(${t.done}/${t.total})` : "—"), row, v == null ? "pending" : (key === "arena" ? "arena" : ""));
       if (v != null && v === best[FIRST_TRACK + j]) c.classList.add("best");
-      const ci = ciOf(m, key);
-      if (v != null && ci) h("span", ciText(ci), c, "ci").title = "95% bootstrap confidence interval";
     });
     const hv = halluc(m), hc = h("td", pct(hv), row, hv == null ? "pending" : "");
     if (hv != null && hv === best[FIRST_TRACK + TRACKS.length]) hc.classList.add("best");

@@ -348,7 +348,7 @@ def to_markdown_v2(lb: dict) -> str:
     rows = _ranked_v2(lb)
     if not rows:
         return ""
-    head = ["#", "Model", "Params (B)", "**Arena WER v2**", "95% CI", "Rank set", "Arena CER v2",
+    head = ["#", "Model", "Params (B)", "**Arena WER v2**", "Arena CER v2",
             *[TRACK_LABEL.get(t, t) for t in tracks],
             "Strict (L1)", "Arithmetic", "Real audio", "Zero-shot", "Exposure", "Halluc. ≥3 words", "Terms missed",
             "v1 Arena", "RTFx"]
@@ -357,11 +357,8 @@ def to_markdown_v2(lb: dict) -> str:
         v = r["v2"]
         kind = r.get("kind", "open")
         mark = (" †" if v["exposure"] else "") + (f" *({kind} weights)*" if kind != "open" else "")
-        ci, rs = v.get("arena_ci"), v.get("rank_set")
         cells = [str(rank), f"{_name_md(r)}{mark}",
-                 f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(v['arena'])}**",
-                 f"{_pct(ci[0])}–{_pct(ci[1])}" if ci else "—",
-                 ("—" if not rs else str(rs[0]) if rs[0] == rs[1] else f"{rs[0]}–{rs[1]}"), _pct(v["arena_cer"]),
+                 f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(v['arena'])}**", _pct(v["arena_cer"]),
                  *[_pct(v["tracks"][t]["wer"]) for t in tracks], _pct(v["arena_strict"]), _pct(v["arena_arith"]),
                  _pct(v["arena_real"]), _pct(v["zero_shot"]), f"{v['exposure']:.0%}" if v["exposure"] else "—", _pct(v.get("halluc_3plus")),
                  _pct(1 - v["term_recall"]) if v.get("term_recall") is not None else "—",
@@ -382,17 +379,11 @@ def to_markdown_v2(lb: dict) -> str:
               "distant chatter) on which the model wrote three or more words; not part of the Arena. Terms missed: share of "
               "key terms the hypothesis does not contain after the same normalization, pooled over the SVQ queries' "
               "salient terms (names, places, question words) and the named entities of the CV18 test sentences "
-              "(Elyadata/CV18-NER); not part of the Arena. 95% CI and "
-              "rank set: joint cluster bootstrap (speakers / videos / recordings / sentences resampled together "
-              "across a set's conditions and across models) and simultaneous rank confidence sets (Mogstad et al. "
-              "2024): models whose rank sets overlap are not separated by this benchmark."]
+              "(Elyadata/CV18-NER); not part of the Arena."]
     eff = meta.get("effective_weights", {}).get(meta["aggregate"])
     if eff:
         lines.append("Effective track weights (share of the between-model spread of the Arena): "
                      + ", ".join(f"{TRACK_LABEL.get(t, t)} {w:.0%}" for t, w in eff.items()) + ".")
-    flags = meta.get("bootstrap", {}).get("flags")
-    if flags:
-        lines.append("Intervals likely too narrow on: " + ", ".join(f"{k} ({v})" for k, v in sorted(flags.items())) + ".")
     keys = [k for t in tracks for k in meta["tracks"][t]] + meta["diagnostic_sets"]
     floors = meta.get("floors", {})
     lines += ["", "<details><summary>Per-set WER v2 (%)</summary>", "",
@@ -409,7 +400,7 @@ def to_markdown_v2(lb: dict) -> str:
 
 def to_markdown(lb: dict) -> str:
     tracks = list(lb["tracks"])
-    head = ["#", "Model", "Params (B)", "**Arena WER**", "95% CI", "Rank range", "Arena CER",
+    head = ["#", "Model", "Params (B)", "**Arena WER**", "Arena CER",
             *[TRACK_LABEL.get(t, t) for t in tracks], "RTFx"]
     head.insert(-1, "Halluc. %")
     lines = ["| " + " | ".join(head) + " |", "|" + "---|" * len(head)]
@@ -419,8 +410,6 @@ def to_markdown(lb: dict) -> str:
         mark = (" †" if r.get("in_domain") else "") + (f" *({kind} weights)*" if kind != "open" else "")
         cells = [str(i), f"{_name_md(r)}{mark}",
                  f"{r['params_b']:.2f}" if r["params_b"] else "—", f"**{_pct(r['arena_wer'])}**",
-                 f"{_pct(r['arena_ci'][0])}–{_pct(r['arena_ci'][1])}" if r.get("arena_ci") else "—",
-                 (lambda rr: "—" if not rr else str(rr[0]) if rr[0] == rr[1] else f"{rr[0]}–{rr[1]}")(r.get("rank_range")),
                  _pct(r["arena_cer"])]
         for t in tracks:
             tr = r["tracks"][t]
@@ -432,9 +421,7 @@ def to_markdown(lb: dict) -> str:
     lines.append("")
     lines.append(f"WER/CER in %, lower is better. Arena = weighted mean of track WERs ({weights}). "
                  "Halluc. % = share of noise-only clips (silence, hold, line noise, distant chatter) for which "
-                 "the model output any words; not part of the Arena score. 95% CI and rank range: paired "
-                 "bootstrap over utterances (1000 resamples); models whose rank ranges overlap are not "
-                 "reliably separated by this benchmark.")
+                 "the model output any words; not part of the Arena score.")
     flagged = [f"{r['model']} ({', '.join(r['in_domain'])})" for r in ranked if r.get("in_domain")]
     if flagged:
         lines.append("")
