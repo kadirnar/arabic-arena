@@ -355,6 +355,32 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "SFT base names Earnings-22 among its training sources; the MWER pools (~45-48k clips each) are named "
              "only by kind. Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; "
              "mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    # Cohere-AR's round-4 line (2026-10-29), each in its own repository: RL v4c is SFT v4 (the human-annotated Levantine
+    # phone calls of 89 train folders, the order calls twice) + two MWER stages of 800 steps (v4b, v4c) on pools of
+    # ~65-74k human-labelled clips named only by kind; soup v4c70 = 0.7 x RL v4c + 0.3 x the r4-step-800 entry (a
+    # weight average, no further training; the main of cohere-transcribe-ar-rl since 2026-10-29).
+    _M("cohere-transcribe-ar-rl-v4c", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl-v4c", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-rl-v4b",
+       kwargs={"revision": "4fd9a97ccccd205490e85d28dc25c6da96f833f5", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl-v4c", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR MWER post-training (decoder only), second stage after cohere-transcribe-ar-rl-v4b on "
+             "cohere-transcribe-ar-sft-v4 (commit 4fd9a97ccc), weights gated on the Hub; run with the card's prompt "
+             "(<|pnc|>, language forced). Its SFT base names Earnings-22 among its training sources; the MWER pools "
+             "are named only by kind. Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not "
+             "comparable; mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and "
+             "libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v4c70", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v4c70", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-rl-v4c",
+       kwargs={"revision": "857dadf087ae4e06a74750240cb9c087cae18a6c", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v4c70", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.7 x cohere-transcribe-ar-rl-v4c + 0.3 x cohere-transcribe-ar-rl-r4-step-800 "
+             "(commit 857dadf087; the main of Cohere-AR/cohere-transcribe-ar-rl since 2026-10-29), weights gated on "
+             "the Hub; run with the card's prompt (<|pnc|>, language forced). Both SFT bases name Earnings-22 among "
+             "their training sources. Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not "
+             "comparable; mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and "
+             "libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
