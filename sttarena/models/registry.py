@@ -381,6 +381,16 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "their training sources. Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not "
              "comparable; mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and "
              "libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v4c50", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v4c50", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-rl-v4c",
+       kwargs={"revision": "bfedcc49362e05bfa3fe1cfe1e3cb8f4d5b443f3", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v4c50", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl-v4c + 0.5 x cohere-transcribe-ar-rl-r4-step-800 "
+             "(commit bfedcc4936), weights gated on the Hub; run with the card's prompt (<|pnc|>, language forced). "
+             "Both SFT bases name Earnings-22 among their training sources. Run on 4 x H100 NVL (the other entries on "
+             "an A10), so its RTFx is not comparable; mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, "
+             "libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),

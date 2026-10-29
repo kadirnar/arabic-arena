@@ -34,6 +34,7 @@
 | cohere-transcribe-ar-rl-v4c | 10.3 | 13.6 | 10.5 | 8.4 | 8.7 | 9.7 | 7.3 | 9.3 | 9.8 |
 | cohere-transcribe-ar-sft-step-10000 | 10.4 | 13.7 | 10.6 | 8.4 | 8.8 | 10.4 | 7.5 | 9.5 | 9.7 |
 | cohere-transcribe-ar-sft-step-6000 | 10.6 | 13.7 | 10.7 | 8.5 | 8.9 | 10.4 | 7.8 | 9.5 | 9.9 |
+| cohere-transcribe-ar-soup-v4c50 | 10.3 | 13.6 | 10.3 | 8.4 | 8.6 | 9.5 | 7.3 | 9.4 | 9.6 |
 | cohere-transcribe-ar-soup-v4c70 | 10.4 | 13.5 | 10.4 | 8.5 | 8.6 | 9.7 | 7.4 | 9.3 | 9.7 |
 | cohere-transcribe-arabic-07-2026 | 15.1 | 16.1 | 13.5 | 13.0 | 10.8 | 12.8 | 8.8 | 11.1 | 12.3 |
 | confucius4-r2t2 | 13.5 | 16.6 | 14.5 | 11.4 | 11.9 | 13.3 | 9.3 | 12.1 | 13.8 |
@@ -93,6 +94,7 @@
 | cohere-transcribe-ar-rl-v4c | 14.8 | 12.5 | 7.8 | 8.0 | 10.4 | 10.6 | 9.9 | 9.5 |
 | cohere-transcribe-ar-sft-step-10000 | 15.0 | 12.5 | 8.1 | 8.4 | 10.4 | 11.4 | 9.6 | 9.2 |
 | cohere-transcribe-ar-sft-step-6000 | 15.1 | 13.8 | 7.9 | 8.6 | 11.0 | 11.2 | 9.3 | 9.7 |
+| cohere-transcribe-ar-soup-v4c50 | 14.6 | 12.6 | 8.0 | 8.0 | 10.3 | 10.9 | 9.5 | 9.4 |
 | cohere-transcribe-ar-soup-v4c70 | 14.8 | 12.2 | 7.9 | 8.1 | 10.4 | 10.8 | 9.8 | 9.5 |
 | cohere-transcribe-arabic-07-2026 | 25.9 | 15.5 | 8.8 | 9.4 | 12.7 | 13.2 | 12.0 | 10.3 |
 | confucius4-r2t2 | 22.3 | 17.4 | 10.3 | 10.5 | 14.2 | 14.2 | 13.1 | 12.1 |
@@ -152,6 +154,7 @@
 | cohere-transcribe-ar-rl-v4c | 10.8 | 15.1 | 10.2 |
 | cohere-transcribe-ar-sft-step-10000 | 11.2 | 15.2 | 10.3 |
 | cohere-transcribe-ar-sft-step-6000 | 11.1 | 15.8 | 10.3 |
+| cohere-transcribe-ar-soup-v4c50 | 10.8 | 15.0 | 10.2 |
 | cohere-transcribe-ar-soup-v4c70 | 10.9 | 15.1 | 10.2 |
 | cohere-transcribe-arabic-07-2026 | 13.9 | 27.5 | 12.4 |
 | confucius4-r2t2 | 15.1 | 22.6 | 13.9 |
@@ -211,6 +214,7 @@
 | cohere-transcribe-ar-rl-v4c | 8.7 | 9.8 | 8.8 | 13.3 |
 | cohere-transcribe-ar-sft-step-10000 | 8.8 | 9.8 | 8.6 | 14.0 |
 | cohere-transcribe-ar-sft-step-6000 | 8.9 | 9.8 | 9.0 | 14.2 |
+| cohere-transcribe-ar-soup-v4c50 | 8.7 | 9.6 | 8.6 | 13.6 |
 | cohere-transcribe-ar-soup-v4c70 | 8.8 | 9.7 | 8.7 | 13.4 |
 | cohere-transcribe-arabic-07-2026 | 11.0 | 11.3 | 13.2 | 19.7 |
 | confucius4-r2t2 | 11.0 | 13.1 | 11.5 | 21.0 |
