@@ -391,6 +391,38 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "Both SFT bases name Earnings-22 among their training sources. Run on 4 x H100 NVL (the other entries on "
              "an A10), so its RTFx is not comparable; mgb2, casablanca and mgb3_egy rebuilt with ffmpeg 6.1.1, "
              "libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-sft-v9-full", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-sft-v9-full", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="CohereLabs/cohere-transcribe-arabic-07-2026",
+       kwargs={"revision": "3c478c20decf8ba34bc50c7737fae5ab7bcd45a6", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-sft-v9-full", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR SFT v9-full (commit 3c478c20de): full-parameter fine-tune of the base for 100,000 steps on the whole training collection with self-labelled open Arabic dialect audio. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-rl-v9ctrl", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl-v9ctrl", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-sft-v9-full",
+       kwargs={"revision": "REV_RLV9CTRL", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl-v9ctrl", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR RL v9 (commit REV_RLV9CTRL_SHORT): 800 minimum-WER steps from SFT v9-full, encoder frozen. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-rl-v9enc", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl-v9enc", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-sft-v9-full",
+       kwargs={"revision": "REV_RLV9ENC", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl-v9enc", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR RL v9 (commit REV_RLV9ENC_SHORT): 800 minimum-WER steps from SFT v9-full, encoder learning. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v8e70", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v8e70", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-rl-v8enc",
+       kwargs={"revision": "c9fecda4d253a75a85250b7407031c85944a10df", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v8e70", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl-v8enc + 0.5 x cohere-transcribe-ar-soup-v4c70 (commit c9fecda4d2). Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
