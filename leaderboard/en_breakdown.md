@@ -43,6 +43,7 @@
 | cohere-transcribe-ar-soup-v4c50 | 10.3 | 13.6 | 10.3 | 8.4 | 8.6 | 9.5 | 7.3 | 9.4 | 9.6 |
 | cohere-transcribe-ar-soup-v4c70 | 10.4 | 13.5 | 10.4 | 8.5 | 8.6 | 9.7 | 7.4 | 9.3 | 9.7 |
 | cohere-transcribe-ar-soup-v8e70 | 10.2 | 13.1 | 10.4 | 8.5 | 8.5 | 9.5 | 7.6 | 9.4 | 9.7 |
+| cohere-transcribe-ar-soup-v9e2 | 10.2 | 12.8 | 10.1 | 8.3 | 8.2 | 9.6 | 7.3 | 9.0 | 9.8 |
 | cohere-transcribe-arabic-07-2026 | 15.1 | 16.1 | 13.5 | 13.0 | 10.8 | 12.8 | 8.8 | 11.1 | 12.3 |
 | confucius4-r2t2 | 13.5 | 16.6 | 14.5 | 11.4 | 11.9 | 13.3 | 9.3 | 12.1 | 13.8 |
 | fun-asr-mlt-nano-2512 | 17.4 | 21.9 | 20.1 | 14.1 | 14.6 | 19.0 | 12.6 | 15.2 | 17.6 |
@@ -110,6 +111,7 @@
 | cohere-transcribe-ar-soup-v4c50 | 14.6 | 12.6 | 8.0 | 8.0 | 10.3 | 10.9 | 9.5 | 9.4 |
 | cohere-transcribe-ar-soup-v4c70 | 14.8 | 12.2 | 7.9 | 8.1 | 10.4 | 10.8 | 9.8 | 9.5 |
 | cohere-transcribe-ar-soup-v8e70 | 14.6 | 12.1 | 7.9 | 8.1 | 10.4 | 10.3 | 9.5 | 9.4 |
+| cohere-transcribe-ar-soup-v9e2 | 14.0 | 12.1 | 7.6 | 7.8 | 9.8 | 10.9 | 9.4 | 9.0 |
 | cohere-transcribe-arabic-07-2026 | 25.9 | 15.5 | 8.8 | 9.4 | 12.7 | 13.2 | 12.0 | 10.3 |
 | confucius4-r2t2 | 22.3 | 17.4 | 10.3 | 10.5 | 14.2 | 14.2 | 13.1 | 12.1 |
 | fun-asr-mlt-nano-2512 | 29.2 | 23.4 | 14.8 | 14.9 | 19.4 | 18.6 | 18.1 | 17.6 |
@@ -177,6 +179,7 @@
 | cohere-transcribe-ar-soup-v4c50 | 10.8 | 15.0 | 10.2 |
 | cohere-transcribe-ar-soup-v4c70 | 10.9 | 15.1 | 10.2 |
 | cohere-transcribe-ar-soup-v8e70 | 10.5 | 14.8 | 10.2 |
+| cohere-transcribe-ar-soup-v9e2 | 10.4 | 14.4 | 9.9 |
 | cohere-transcribe-arabic-07-2026 | 13.9 | 27.5 | 12.4 |
 | confucius4-r2t2 | 15.1 | 22.6 | 13.9 |
 | fun-asr-mlt-nano-2512 | 20.6 | 29.0 | 19.3 |
@@ -244,6 +247,7 @@
 | cohere-transcribe-ar-soup-v4c50 | 8.7 | 9.6 | 8.6 | 13.6 |
 | cohere-transcribe-ar-soup-v4c70 | 8.8 | 9.7 | 8.7 | 13.4 |
 | cohere-transcribe-ar-soup-v8e70 | 8.7 | 9.8 | 8.6 | 13.0 |
+| cohere-transcribe-ar-soup-v9e2 | 8.7 | 9.3 | 8.5 | 12.6 |
 | cohere-transcribe-arabic-07-2026 | 11.0 | 11.3 | 13.2 | 19.7 |
 | confucius4-r2t2 | 11.0 | 13.1 | 11.5 | 21.0 |
 | fun-asr-mlt-nano-2512 | 13.9 | 16.9 | 14.6 | 28.1 |

@@ -447,6 +447,46 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
        notes="Cohere-AR RL v9 second stage (commit f68c3c844b): 800 more minimum-WER steps on rl-v9ctrl, encoder frozen. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
              "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v9e2", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e2", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl2-v9enc",
+       kwargs={"revision": "d76bc459ad06f670f374ddb8a886a2a113e593e6", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e2", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl2-v9enc + 0.5 x cohere-transcribe-ar-soup-v4c70 (commit d76bc459ad), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v9e273", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e273", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl2-v9enc",
+       kwargs={"revision": "d76bc459ad06f670f374ddb8a886a2a113e593e673", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e273", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.7 x cohere-transcribe-ar-rl2-v9enc + 0.3 x cohere-transcribe-ar-soup-v4c70 (commit d76bc459ad06f670f374ddb8a886a2a113e593e673_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v9e", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl-v9enc",
+       kwargs={"revision": "REV_SOUPV9E", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl-v9enc + 0.5 x cohere-transcribe-ar-soup-v4c70 (commit REV_SOUPV9E_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v9c", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9c", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl-v9ctrl",
+       kwargs={"revision": "REV_SOUPV9C", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9c", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl-v9ctrl + 0.5 x cohere-transcribe-ar-soup-v4c70 (commit REV_SOUPV9C_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
+    _M("cohere-transcribe-ar-soup-v9e2e70", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e2e70", 2.07,
+       "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl2-v9enc",
+       kwargs={"revision": "d76bc459ad06f670f374ddb8a886a2a113e593e6E70", "punctuation": True},
+       repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e2e70", in_domain=("earnings22",),
+       training_data="undisclosed",
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl2-v9enc + 0.5 x cohere-transcribe-ar-soup-v8e70 (commit d76bc459ad06f670f374ddb8a886a2a113e593e6E70_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+             "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
+             "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
        "OpenMDW-1.1", env="nemo", languages=("ar",), batch_size=32, kwargs={"nemo_file": "nemotron-v2.nemo"},
        finetune_of="nvidia/nemotron-3.5-asr-streaming-0.6b", notes="lahgtna-v3 (13 dialects)"),
