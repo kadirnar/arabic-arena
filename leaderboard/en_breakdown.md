@@ -36,6 +36,7 @@
 | cohere-transcribe-ar-rl-v9enc | 10.5 | 21.4 | 16.2 | 11.5 | 8.3 | 10.0 | 7.5 | 9.0 | 9.9 |
 | cohere-transcribe-ar-rl2-v9ctrl | 10.6 | 12.8 | 16.2 | 11.5 | 8.3 | 9.9 | 7.6 | 9.0 | 10.1 |
 | cohere-transcribe-ar-rl2-v9enc | 10.5 | 12.7 | 16.2 | 11.5 | 8.3 | 10.0 | 7.5 | 9.0 | 10.0 |
+| cohere-transcribe-ar-rl2-v9fromctrl | 10.3 | 12.8 | 16.1 | 11.6 | 8.4 | 9.8 | 7.5 | 8.9 | 10.2 |
 | cohere-transcribe-ar-sft-step-10000 | 10.4 | 13.7 | 10.6 | 8.4 | 8.8 | 10.4 | 7.5 | 9.5 | 9.7 |
 | cohere-transcribe-ar-sft-step-6000 | 10.6 | 13.7 | 10.7 | 8.5 | 8.9 | 10.4 | 7.8 | 9.5 | 9.9 |
 | cohere-transcribe-ar-sft-v9-full | 10.6 | 13.0 | 16.2 | 11.5 | 8.5 | 10.0 | 7.7 | 9.1 | 9.9 |
@@ -102,6 +103,7 @@
 | cohere-transcribe-ar-rl-v9enc | 16.6 | 25.7 | 8.0 | 8.6 | 10.0 | 10.5 | 9.3 | 8.9 |
 | cohere-transcribe-ar-rl2-v9ctrl | 16.6 | 13.0 | 7.9 | 8.5 | 9.9 | 10.6 | 9.4 | 8.9 |
 | cohere-transcribe-ar-rl2-v9enc | 16.6 | 12.8 | 7.9 | 8.3 | 9.8 | 10.6 | 9.4 | 9.0 |
+| cohere-transcribe-ar-rl2-v9fromctrl | 16.6 | 12.7 | 8.0 | 8.5 | 10.0 | 10.4 | 9.3 | 8.9 |
 | cohere-transcribe-ar-sft-step-10000 | 15.0 | 12.5 | 8.1 | 8.4 | 10.4 | 11.4 | 9.6 | 9.2 |
 | cohere-transcribe-ar-sft-step-6000 | 15.1 | 13.8 | 7.9 | 8.6 | 11.0 | 11.2 | 9.3 | 9.7 |
 | cohere-transcribe-ar-sft-v9-full | 16.8 | 13.1 | 8.1 | 9.1 | 9.9 | 10.5 | 9.3 | 8.9 |
@@ -168,6 +170,7 @@
 | cohere-transcribe-ar-rl-v9enc | 10.3 | 17.7 | 13.3 |
 | cohere-transcribe-ar-rl2-v9ctrl | 10.4 | 17.6 | 10.2 |
 | cohere-transcribe-ar-rl2-v9enc | 10.4 | 17.6 | 10.3 |
+| cohere-transcribe-ar-rl2-v9fromctrl | 10.2 | 17.7 | 10.2 |
 | cohere-transcribe-ar-sft-step-10000 | 11.2 | 15.2 | 10.3 |
 | cohere-transcribe-ar-sft-step-6000 | 11.1 | 15.8 | 10.3 |
 | cohere-transcribe-ar-sft-v9-full | 10.3 | 18.1 | 10.2 |
@@ -234,6 +237,7 @@
 | cohere-transcribe-ar-rl-v9enc | 8.8 | 12.3 | 11.3 | 17.7 |
 | cohere-transcribe-ar-rl2-v9ctrl | 8.8 | 12.3 | 11.3 | 12.7 |
 | cohere-transcribe-ar-rl2-v9enc | 8.8 | 12.4 | 11.3 | 12.7 |
+| cohere-transcribe-ar-rl2-v9fromctrl | 8.8 | 12.3 | 11.3 | 12.8 |
 | cohere-transcribe-ar-sft-step-10000 | 8.8 | 9.8 | 8.6 | 14.0 |
 | cohere-transcribe-ar-sft-step-6000 | 8.9 | 9.8 | 9.0 | 14.2 |
 | cohere-transcribe-ar-sft-v9-full | 8.8 | 12.4 | 11.4 | 13.1 |
