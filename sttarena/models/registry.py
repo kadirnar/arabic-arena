@@ -457,10 +457,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("cohere-transcribe-ar-soup-v9e273", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e273", 2.07,
        "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl2-v9enc",
-       kwargs={"revision": "d76bc459ad06f670f374ddb8a886a2a113e593e673", "punctuation": True},
+       kwargs={"revision": "fc4717ab702032f6ca6caf28d0742fe5e7d5a566", "punctuation": True},
        repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e273", in_domain=("earnings22",),
        training_data="undisclosed",
-       notes="Cohere-AR weight average 0.7 x cohere-transcribe-ar-rl2-v9enc + 0.3 x cohere-transcribe-ar-soup-v4c70 (commit d76bc459ad06f670f374ddb8a886a2a113e593e673_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+       notes="Cohere-AR weight average 0.7 x cohere-transcribe-ar-rl2-v9enc + 0.3 x cohere-transcribe-ar-soup-v4c70 (commit fc4717ab70), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
              "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("cohere-transcribe-ar-soup-v9e", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e", 2.07,
@@ -481,10 +481,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("cohere-transcribe-ar-soup-v9e2e70", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-soup-v9e2e70", 2.07,
        "gated weights", kind="gated", batch_size=32, finetune_of="cohere-transcribe-ar-rl2-v9enc",
-       kwargs={"revision": "d76bc459ad06f670f374ddb8a886a2a113e593e6E70", "punctuation": True},
+       kwargs={"revision": "4e073cd00dc4dfbd4511d1010b37c272abab0a3f", "punctuation": True},
        repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-soup-v9e2e70", in_domain=("earnings22",),
        training_data="undisclosed",
-       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl2-v9enc + 0.5 x cohere-transcribe-ar-soup-v8e70 (commit d76bc459ad06f670f374ddb8a886a2a113e593e6E70_SHORT), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+       notes="Cohere-AR weight average 0.5 x cohere-transcribe-ar-rl2-v9enc + 0.5 x cohere-transcribe-ar-soup-v8e70 (commit 4e073cd00d), no further training. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
              "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
