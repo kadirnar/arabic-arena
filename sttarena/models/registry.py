@@ -441,10 +441,10 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("cohere-transcribe-ar-rl2-v9fromctrl", "cohere_asr", "Cohere-AR/cohere-transcribe-ar-rl2-v9fromctrl", 2.07,
        "gated weights", kind="gated", batch_size=32, finetune_of="Cohere-AR/cohere-transcribe-ar-rl-v9ctrl",
-       kwargs={"revision": "REV_RL2V9FROMCTRL", "punctuation": True},
+       kwargs={"revision": "f68c3c844bfb00a29aee272e02b0ea3c31592f16", "punctuation": True},
        repo="https://huggingface.co/Cohere-AR/cohere-transcribe-ar-rl2-v9fromctrl", in_domain=("earnings22",),
        training_data="undisclosed",
-       notes="Cohere-AR RL v9 second stage (commit REV_RL2V9FROMCTRL_SHORT): 800 more minimum-WER steps on rl-v9ctrl, encoder frozen. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
+       notes="Cohere-AR RL v9 second stage (commit f68c3c844b): 800 more minimum-WER steps on rl-v9ctrl, encoder frozen. Run with the card's prompt (<|pnc|>, language forced); weights gated on the Hub. "
              "Run on 4 x H100 NVL (the other entries on an A10), so its RTFx is not comparable; mgb2, casablanca and "
              "mgb3_egy rebuilt with ffmpeg 6.1.1, libopencore-amrnb 0.1.6 and libopus 1.4"),
     _M("nemotron-3.5-asr-arabic-dialectal-v2", "nemo", "oddadmix/nemotron-3.5-asr-arabic-dialectal-v2", 0.64,
