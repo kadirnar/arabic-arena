@@ -65,6 +65,9 @@ MODELS: dict[str, ModelSpec] = {m.key: m for m in [
              "no further training; private weights. Trained on the train splits of MASC and Common Voice and on "
              "MGB-2/SADA train rows; the run-5 share carries run 5's exposure (MGB-3 train, the 20 leaked FLEURS "
              "ar_eg test sentences)"),
+    _M("oruk-fourier-2b", "qwen3_asr_hf", "oruk/oruk-fourier-2b", 2.04, "CC-BY-NC-4.0",
+       languages=("en",), batch_size=32, finetune_of="Qwen/Qwen3-ASR-1.7B", training_data="undisclosed",
+       notes="Also derives from Musci-research/Musci-ASR-qwen-1019-hf. English speech recognition."),
     _M("qwen3-asr-1.7b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-1.7B-hf", 2.04, "Apache-2.0", batch_size=32),
     _M("qwen3-asr-0.6b", "qwen3_asr_hf", "Qwen/Qwen3-ASR-0.6B-hf", 0.94, "Apache-2.0", batch_size=32),
     # --- Cohere Transcribe --------------------------------------------------------------------

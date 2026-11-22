@@ -53,7 +53,7 @@ class Qwen3ASRHF(ASRModel):
             list(audios), language=[LANG_NAMES[language]] * len(audios)
         ).to(self.device, self.model.dtype)
         with torch.inference_mode():
-            out = self.model.generate(**inputs, max_new_tokens=440, do_sample=False)
+            out = self.model.generate(**inputs, max_new_tokens=440, do_sample=False, num_beams=1)
         gen = out[:, inputs["input_ids"].shape[1]:]
         return self.processor.decode(gen, return_format="transcription_only")
 
